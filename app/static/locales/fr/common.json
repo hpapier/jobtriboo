@@ -1,0 +1,18 @@
+{
+  "login": "Se connecter",
+  "register": "S'inscrire",
+  "recruiter": "Recruteur",
+  "candidate": "Candidat",
+  "firstName": "Prénom",
+  "lastName": "Nom",
+  "email": "Email",
+  "password": "Mot de passe",
+  "birthDateDay": "Jour",
+  "birthDateMonth": "Mois",
+  "birthDateYear": "Année",
+  "validate": "Valider",
+  "connection": "Connexion",
+  "dashboard": "Tableau de bord",
+  "settings": "Paramètres",
+  "logout": "Déconnexion"
+}

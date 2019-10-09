@@ -1,0 +1,18 @@
+{
+  "login": "login",
+  "register": "register",
+  "recruiter": "recruiter",
+  "candidate": "candidate",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "email": "Email",
+  "password": "Password",
+  "birthDateDay": "Day",
+  "birthDateMonth": "Month",
+  "birthDateYear": "Year",
+  "validate": "Validate",
+  "connection": "Connection",
+  "dashboard": "Dashboard",
+  "settings": "Settings",
+  "logout": "Logout"
+}
