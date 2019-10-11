@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/index.js"],{
 
-/***/ "./components/header.js":
-/*!******************************!*\
-  !*** ./components/header.js ***!
-  \******************************/
+/***/ "./components/Navbar/LangButton/index.js":
+/*!***********************************************!*\
+  !*** ./components/Navbar/LangButton/index.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12,157 +12,428 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./i18n */ "./components/i18n.js");
-/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var _store_container_modalConnexion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/container/modalConnexion */ "./store/container/modalConnexion.js");
-/* harmony import */ var _utils_lang__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/lang */ "./utils/lang.js");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _language__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./language */ "./components/language.js");
-/* harmony import */ var react_cookie__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-cookie */ "./node_modules/react-cookie/es6/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+/* harmony import */ var react_cookie__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-cookie */ "./node_modules/react-cookie/es6/index.js");
+/* harmony import */ var _utils_lang__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../utils/lang */ "./utils/lang.js");
+/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../i18n */ "./components/i18n.js");
+/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_i18n__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style.css */ "./components/Navbar/LangButton/style.css");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _static_assets_bottom_arrow_icon_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../static/assets/bottom_arrow_icon.svg */ "./static/assets/bottom_arrow_icon.svg");
+/* harmony import */ var _static_assets_bottom_arrow_icon_svg__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_static_assets_bottom_arrow_icon_svg__WEBPACK_IMPORTED_MODULE_7__);
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
-
-
- // import { checkAuth } from '../utils/auth'
-
+// @module import
 
 
 
+ // @local import
 
 
-/* Header style (need to move) */
 
-var headerLayoutStyle = {
-  // backgroundColor: '#fb9e91',
-  // backgroundColor: '#90aeff',
-  background: 'linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)',
-  boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .30)',
-  width: '100%',
-  height: '60px',
-  display: 'flex',
-  justifyContent: 'space-between'
-};
-var headerBtnStyle = {
-  borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
-  margin: "0px",
-  borderRadius: 0,
-  height: '100%',
-  color: "white",
-  padding: '0px 40px',
-  // backgroundColor: '#87e5da'
-  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
 
-};
-var headerLogo = {
-  color: '#FFF',
-  width: 300,
-  height: '65px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  fontSize: '2em',
-  textTransform: 'uppercase',
-  fontWeight: '600',
-  // fontStyle: 'italic',
-  textShadow: '2px 2px rgba(0, 0, 0, 0.2)'
-  /* Component */
+ // @component
 
-};
+var LangBtn = function LangBtn() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('en'),
+      selectedLanguage = _useState[0],
+      setSelectedLanguage = _useState[1];
 
-var HeaderLayout = function HeaderLayout(props) {
-  return __jsx("div", {
-    style: headerLayoutStyle
-  }, props.children);
-};
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      menuState = _useState2[0],
+      setMenuState = _useState2[1];
 
-var JobTribooLogo = function JobTribooLogo() {
-  var router = Object(next_router__WEBPACK_IMPORTED_MODULE_6__["useRouter"])();
-  return __jsx("div", {
-    style: headerLogo,
-    onClick: function onClick() {
-      return router.pathname !== '/' ? router.push('/') : null;
-    }
-  }, "JobTriboo");
-};
-
-var HeaderOnline = function HeaderOnline(_ref) {
-  var t = _ref.t,
-      setLoginState = _ref.setLoginState;
-
-  var _useCookies = Object(react_cookie__WEBPACK_IMPORTED_MODULE_8__["useCookies"])(),
+  var _useCookies = Object(react_cookie__WEBPACK_IMPORTED_MODULE_3__["useCookies"])(['next-i18next']),
       _useCookies2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useCookies, 3),
       cookies = _useCookies2[0],
       setCookies = _useCookies2[1],
       removeCookies = _useCookies2[2];
 
-  var router = Object(next_router__WEBPACK_IMPORTED_MODULE_6__["useRouter"])();
+  var prefLang = cookies['next-i18next'] === undefined ? 'en' : cookies['next-i18next'];
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    setSelectedLanguage(prefLang);
+  }, []);
+
+  var languagesSwitch = function languagesSwitch(e) {
+    if (e.target.value !== selectedLanguage) {
+      _i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"].changeLanguage(e.target.value);
+      setSelectedLanguage(e.target.value);
+      setMenuState(false);
+    }
+  };
+
+  return __jsx("div", {
+    className: "lang-btn-root"
+  }, __jsx("button", {
+    value: selectedLanguage,
+    onClick: function onClick() {
+      return setMenuState(!menuState);
+    },
+    className: "lang-btn-select"
+  }, selectedLanguage, __jsx("img", {
+    src: _static_assets_bottom_arrow_icon_svg__WEBPACK_IMPORTED_MODULE_7___default.a,
+    className: menuState ? ' --activated' : ''
+  })), __jsx("div", {
+    className: menuState ? "lang-btn-menu" : "--disable"
+  }, _utils_lang__WEBPACK_IMPORTED_MODULE_4__["languages"].map(function (item, index) {
+    return __jsx("button", {
+      key: index,
+      value: item,
+      onClick: languagesSwitch,
+      className: selectedLanguage === item ? "lang-btn-menu-item-selected" : "lang-btn-menu-item"
+    }, item);
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (LangBtn);
+
+/***/ }),
+
+/***/ "./components/Navbar/Layout/index.js":
+/*!*******************************************!*\
+  !*** ./components/Navbar/Layout/index.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style */ "./components/Navbar/Layout/style.js");
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+var HeaderLayout = function HeaderLayout(props) {
+  return __jsx("div", {
+    style: _style__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }, props.children);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (HeaderLayout);
+
+/***/ }),
+
+/***/ "./components/Navbar/Layout/style.js":
+/*!*******************************************!*\
+  !*** ./components/Navbar/Layout/style.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  // background: 'linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)',
+  background: '#fff',
+  boxShadow: '0px 2px 5px 0px rgba(0, 0, 0, .15)',
+  width: '100%',
+  height: '60px',
+  display: 'flex',
+  justifyContent: 'space-between'
+});
+
+/***/ }),
+
+/***/ "./components/Navbar/Logo/index.js":
+/*!*****************************************!*\
+  !*** ./components/Navbar/Logo/index.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style */ "./components/Navbar/Logo/style.js");
+/* harmony import */ var _static_assets_jb_logo_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../static/assets/jb_logo.svg */ "./static/assets/jb_logo.svg");
+/* harmony import */ var _static_assets_jb_logo_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_static_assets_jb_logo_svg__WEBPACK_IMPORTED_MODULE_3__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+// @module import
+
+ // @local import
+
+
+
+/* @component */
+
+var NavbarLogo = function NavbarLogo() {
+  var router = Object(next_router__WEBPACK_IMPORTED_MODULE_1__["useRouter"])();
+  return __jsx("div", {
+    style: _style__WEBPACK_IMPORTED_MODULE_2__["default"],
+    onClick: function onClick() {
+      return router.pathname !== '/' ? router.push('/') : null;
+    }
+  }, __jsx("img", {
+    src: _static_assets_jb_logo_svg__WEBPACK_IMPORTED_MODULE_3___default.a
+  }));
+};
+/* @export */
+
+
+/* harmony default export */ __webpack_exports__["default"] = (NavbarLogo);
+
+/***/ }),
+
+/***/ "./components/Navbar/Logo/style.js":
+/*!*****************************************!*\
+  !*** ./components/Navbar/Logo/style.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  height: '60px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  margin: '0px',
+  cursor: 'pointer'
+});
+
+/***/ }),
+
+/***/ "./components/Navbar/Offline/index.js":
+/*!********************************************!*\
+  !*** ./components/Navbar/Offline/index.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _LangButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../LangButton */ "./components/Navbar/LangButton/index.js");
+/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Layout */ "./components/Navbar/Layout/index.js");
+/* harmony import */ var _Logo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Logo */ "./components/Navbar/Logo/index.js");
+/* harmony import */ var _static_assets_feather_icon_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../static/assets/feather_icon.svg */ "./static/assets/feather_icon.svg");
+/* harmony import */ var _static_assets_feather_icon_svg__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_static_assets_feather_icon_svg__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _static_assets_arrow_icon_0_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../static/assets/arrow_icon_0.svg */ "./static/assets/arrow_icon_0.svg");
+/* harmony import */ var _static_assets_arrow_icon_0_svg__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_static_assets_arrow_icon_0_svg__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./style */ "./components/Navbar/Offline/style.js");
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./index.css */ "./components/Navbar/Offline/index.css");
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_9__);
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+// @module import
+
+ // @local import
+
+
+
+
+
+
+
+ // @component
+
+var Offline = function Offline(_ref) {
+  var t = _ref.t;
+  var router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
+  return __jsx(_Layout__WEBPACK_IMPORTED_MODULE_4__["default"], null, __jsx("div", {
+    className: "navbar-offline-logo"
+  }, __jsx(_Logo__WEBPACK_IMPORTED_MODULE_5__["default"], null)), __jsx("div", {
+    style: _style__WEBPACK_IMPORTED_MODULE_8__["SRightButtonDiv"]
+  }, __jsx(_LangButton__WEBPACK_IMPORTED_MODULE_3__["default"], null), __jsx("button", {
+    style: _style__WEBPACK_IMPORTED_MODULE_8__["SSignInBtn"],
+    onClick: function onClick() {
+      return router.push('/signin');
+    }
+  }, t('login')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    style: _style__WEBPACK_IMPORTED_MODULE_8__["SSignUpBtn"]
+  }, t('register'), __jsx("img", {
+    src: _static_assets_feather_icon_svg__WEBPACK_IMPORTED_MODULE_6___default.a
+  })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    style: _style__WEBPACK_IMPORTED_MODULE_8__["SRecruiterBtn"]
+  }, t('recruiter'), __jsx("img", {
+    src: _static_assets_arrow_icon_0_svg__WEBPACK_IMPORTED_MODULE_7___default.a
+  }))));
+}; // @export
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Offline);
+
+/***/ }),
+
+/***/ "./components/Navbar/Offline/style.js":
+/*!********************************************!*\
+  !*** ./components/Navbar/Offline/style.js ***!
+  \********************************************/
+/*! exports provided: SRightButtonDiv, SSignInBtn, SSignUpBtn, SRecruiterBtn */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SRightButtonDiv", function() { return SRightButtonDiv; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SSignInBtn", function() { return SSignInBtn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SSignUpBtn", function() { return SSignUpBtn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SRecruiterBtn", function() { return SRecruiterBtn; });
+// Left Button Div
+// Right Button Div
+var SRightButtonDiv = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center' // Sign In Button
+
+};
+var SSignInBtn = {
+  color: '#404660',
+  fontFamily: 'Roboto',
+  fontSize: '1em',
+  padding: '0px',
+  height: '40px',
+  backgroundColor: 'rgba(0, 0, 0, 0)',
+  border: 'none',
+  cursor: 'pointer',
+  fontWeight: 500,
+  margin: '0px 10px' // Sign Up Button
+
+};
+var SSignUpBtn = {
+  color: '#404660',
+  backgroundColor: 'rgba(0, 0, 0, 0)',
+  width: '125px',
+  height: '40px',
+  borderRadius: '1px',
+  border: '1px solid #404660',
+  display: 'flex',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  textTransform: 'Capitalize',
+  fontFamily: 'Roboto',
+  boxSizing: 'border-box',
+  margin: '0px 10px' // Recruiter Button
+
+};
+var SRecruiterBtn = {
+  color: '#fff',
+  backgroundColor: '#6B5AED',
+  width: '125px',
+  height: '40px',
+  borderRadius: '1px',
+  display: 'flex',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  textTransform: 'Capitalize',
+  margin: '0px 10px'
+};
+
+/***/ }),
+
+/***/ "./components/Navbar/Online/index.js":
+/*!*******************************************!*\
+  !*** ./components/Navbar/Online/index.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_cookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-cookie */ "./node_modules/react-cookie/es6/index.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Layout */ "./components/Navbar/Layout/index.js");
+/* harmony import */ var _Logo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Logo */ "./components/Navbar/Logo/index.js");
+/* harmony import */ var _LangButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../LangButton */ "./components/Navbar/LangButton/index.js");
+
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+// @module import
+
+
+ // @local import
+
+
+
+ // @component
+
+var Online = function Online(_ref) {
+  var t = _ref.t,
+      setLoginState = _ref.setLoginState;
+
+  var _useCookies = Object(react_cookie__WEBPACK_IMPORTED_MODULE_2__["useCookies"])(),
+      _useCookies2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useCookies, 3),
+      _ = _useCookies2[0],
+      __ = _useCookies2[1],
+      removeCookies = _useCookies2[2];
+
+  var router = Object(next_router__WEBPACK_IMPORTED_MODULE_3__["useRouter"])();
 
   var handleLogout = function handleLogout() {
-    console.log('LOGOUT');
+    console.log('- LOGOUT -');
     removeCookies('token');
     setLoginState(false);
   };
 
-  return __jsx(HeaderLayout, null, __jsx("div", null, __jsx(JobTribooLogo, null)), __jsx("div", null, __jsx(_language__WEBPACK_IMPORTED_MODULE_7__["default"], null), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-    style: headerBtnStyle,
+  return __jsx(_Layout__WEBPACK_IMPORTED_MODULE_5__["default"], null, __jsx("div", null, __jsx(_Logo__WEBPACK_IMPORTED_MODULE_6__["default"], null)), __jsx("div", null, __jsx(_LangButton__WEBPACK_IMPORTED_MODULE_7__["default"], null), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Button"], {
     onClick: function onClick() {
       return router.push('/dashboard');
     }
-  }, t('dashboard')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-    style: headerBtnStyle
-  }, t('settings')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-    style: headerBtnStyle,
+  }, t('dashboard')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Button"], {
     onClick: handleLogout
   }, t('logout'))));
-};
+}; // @export
 
-var HeaderOffline = function HeaderOffline(_ref2) {
-  var t = _ref2.t;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
-      modalOpen = _useState[0],
-      setModalOpenState = _useState[1];
+/* harmony default export */ __webpack_exports__["default"] = (Online);
 
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
-      modalWindowLogin = _useState2[0],
-      setMWindowLogin = _useState2[1];
+/***/ }),
 
-  var openModalMechanism = function openModalMechanism(modalWindowState) {
-    setModalOpenState(true);
-    setMWindowLogin(modalWindowState);
-  };
+/***/ "./components/Navbar/index.js":
+/*!************************************!*\
+  !*** ./components/Navbar/index.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-  return __jsx(HeaderLayout, null, __jsx("div", null, __jsx(JobTribooLogo, null)), __jsx("div", null, __jsx(_language__WEBPACK_IMPORTED_MODULE_7__["default"], null), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-    style: headerBtnStyle,
-    onClick: function onClick() {
-      return openModalMechanism(true);
-    }
-  }, t('login')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-    style: headerBtnStyle,
-    onClick: function onClick() {
-      return openModalMechanism(false);
-    }
-  }, t('register'))), __jsx(_store_container_modalConnexion__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    setModalOpenState: setModalOpenState,
-    setMWindowLogin: setMWindowLogin,
-    modalWindowLogin: modalWindowLogin,
-    modalOpen: modalOpen
-  }));
-};
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_cookie__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-cookie */ "./node_modules/react-cookie/es6/index.js");
+/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../i18n */ "./components/i18n.js");
+/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Online__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Online */ "./components/Navbar/Online/index.js");
+/* harmony import */ var _Offline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Offline */ "./components/Navbar/Offline/index.js");
 
-var Header = function Header(_ref3) {
-  var isLoggedIn = _ref3.isLoggedIn,
-      t = _ref3.t,
-      setLoginState = _ref3.setLoginState,
-      loginState = _ref3.loginState;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+// @module import
 
-  var _useCookies3 = Object(react_cookie__WEBPACK_IMPORTED_MODULE_8__["useCookies"])(),
-      _useCookies4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useCookies3, 1),
-      cookies = _useCookies4[0];
 
-  var router = Object(next_router__WEBPACK_IMPORTED_MODULE_6__["useRouter"])();
+ // @local import
+
+
+
+ // @component
+
+var Navbar = function Navbar(_ref) {
+  var isLoggedIn = _ref.isLoggedIn,
+      t = _ref.t,
+      setLoginState = _ref.setLoginState,
+      loginState = _ref.loginState;
+
+  var _useCookies = Object(react_cookie__WEBPACK_IMPORTED_MODULE_3__["useCookies"])(),
+      _useCookies2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useCookies, 1),
+      cookies = _useCookies2[0];
+
+  var router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     if (isLoggedIn !== undefined && cookies.token === undefined) {
       setLoginState(false);
@@ -171,18 +442,17 @@ var Header = function Header(_ref3) {
       setLoginState(isLoggedIn);
       if (!isLoggedIn && router.pathname === '/settings') router.push('/');
     }
-
-    console.log(isLoggedIn, loginState);
   });
-  return loginState ? __jsx(HeaderOnline, {
+  return loginState ? __jsx(_Online__WEBPACK_IMPORTED_MODULE_5__["default"], {
     t: t,
     setLoginState: setLoginState
-  }) : __jsx(HeaderOffline, {
+  }) : __jsx(_Offline__WEBPACK_IMPORTED_MODULE_6__["default"], {
     t: t
   });
-};
+}; // @export
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_i18n__WEBPACK_IMPORTED_MODULE_2__["withTranslation"])('common')(Header));
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(_i18n__WEBPACK_IMPORTED_MODULE_4__["withTranslation"])('common')(Navbar));
 
 /***/ }),
 
@@ -322,673 +592,6 @@ module.exports = {
   Link: Link,
   i18n: i18n
 };
-
-/***/ }),
-
-/***/ "./components/language.js":
-/*!********************************!*\
-  !*** ./components/language.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_lang__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/lang */ "./utils/lang.js");
-/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./i18n */ "./components/i18n.js");
-/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_i18n__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var react_cookie__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-cookie */ "./node_modules/react-cookie/es6/index.js");
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
-
-
-
-
-
-var languageBtnStyle = {
-  width: 80
-};
-var languageItemStyle = {
-  'selected': {
-    backgroundColor: 'red'
-  }
-};
-
-var LangBtn = function LangBtn() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('en'),
-      selectedLanguage = _useState[0],
-      setSelectedLanguage = _useState[1];
-
-  var _useCookies = Object(react_cookie__WEBPACK_IMPORTED_MODULE_5__["useCookies"])(['next-i18next']),
-      _useCookies2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useCookies, 3),
-      cookies = _useCookies2[0],
-      setCookies = _useCookies2[1],
-      removeCookies = _useCookies2[2];
-
-  var prefLang = cookies['next-i18next'] === undefined ? 'en' : cookies['next-i18next'];
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    setSelectedLanguage(prefLang);
-  }, []);
-
-  var languagesSwitch = function languagesSwitch(e) {
-    _i18n__WEBPACK_IMPORTED_MODULE_3__["i18n"].changeLanguage(e.target.value);
-    setSelectedLanguage(e.target.value);
-  };
-
-  return __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["FormControl"], {
-    style: languageBtnStyle
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Select"], {
-    value: selectedLanguage,
-    style: {
-      color: '#fff',
-      textTransform: 'uppercase',
-      height: '60px'
-    },
-    onChange: languagesSwitch,
-    variant: "filled"
-  }, _utils_lang__WEBPACK_IMPORTED_MODULE_2__["languages"].map(function (item, index) {
-    return __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["MenuItem"], {
-      key: index,
-      value: item
-    }, item);
-  })));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (LangBtn);
-
-/***/ }),
-
-/***/ "./components/login.js":
-/*!*****************************!*\
-  !*** ./components/login.js ***!
-  \*****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_cookie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-cookie */ "./node_modules/react-cookie/es6/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/request */ "./utils/request.js");
-/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./i18n */ "./components/i18n.js");
-/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_i18n__WEBPACK_IMPORTED_MODULE_7__);
-
-
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
-
-
-
-
-
-var LoginTab = Object(_i18n__WEBPACK_IMPORTED_MODULE_7__["withTranslation"])('common')(function (_ref) {
-  var t = _ref.t,
-      setLoginState = _ref.setLoginState;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(false),
-      errorStatus = _useState[0],
-      setErrorStatus = _useState[1];
-
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(''),
-      email = _useState2[0],
-      setEmail = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(''),
-      password = _useState3[0],
-      setPassword = _useState3[1];
-
-  var _useState4 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(false),
-      connexionBtnStatus = _useState4[0],
-      setConnectionBtnStatus = _useState4[1];
-
-  var _useCookies = Object(react_cookie__WEBPACK_IMPORTED_MODULE_4__["useCookies"])(),
-      _useCookies2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useCookies, 3),
-      cookies = _useCookies2[0],
-      setCookies = _useCookies2[1],
-      removeCookies = _useCookies2[2];
-
-  var handleConnexion =
-  /*#__PURE__*/
-  function () {
-    var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
-    /*#__PURE__*/
-    _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
-      var response, data;
-      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              e.preventDefault();
-              setConnectionBtnStatus(true);
-              console.log('SUBMITTED');
-              _context.prev = 3;
-              _context.next = 6;
-              return Object(_utils_request__WEBPACK_IMPORTED_MODULE_6__["request"])('/api/authentication', {
-                method: 'post',
-                body: {
-                  email: email,
-                  password: password
-                },
-                headers: {
-                  'Content-type': 'application/json'
-                }
-              });
-
-            case 6:
-              response = _context.sent;
-              _context.next = 9;
-              return response.json();
-
-            case 9:
-              data = _context.sent;
-
-              if (response.status === 200) {
-                // Set the new cookie.
-                setCookies('token', data.token); // Login user.
-
-                setConnectionBtnStatus(false);
-                setLoginState(true);
-                console.log('PROCESS LOGIN COMPLETE');
-              } else {
-                setConnectionBtnStatus(false);
-                setErrorStatus(response.status);
-              }
-
-              _context.next = 17;
-              break;
-
-            case 13:
-              _context.prev = 13;
-              _context.t0 = _context["catch"](3);
-              setConnectionBtnStatus(false);
-              setErrorStatus(500);
-
-            case 17:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[3, 13]]);
-    }));
-
-    return function handleConnexion(_x) {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-
-  return __jsx("form", {
-    onSubmit: handleConnexion
-  }, __jsx("div", null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["FormControl"], {
-    margin: "normal"
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["InputLabel"], {
-    htmlFor: "email"
-  }, t('email')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["Input"], {
-    value: email,
-    onChange: function onChange(e) {
-      return setEmail(e.target.value);
-    },
-    type: "email",
-    name: "email",
-    autoComplete: "email",
-    error: errorStatus && email === ""
-  })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["FormControl"], {
-    margin: "normal"
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["InputLabel"], {
-    htmlFor: "password"
-  }, t('password')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["Input"], {
-    value: password,
-    onChange: function onChange(e) {
-      return setPassword(e.target.value);
-    },
-    type: "password",
-    name: "password",
-    autoComplete: "current-password",
-    error: errorStatus && password === ""
-  }))), __jsx("div", null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["Button"], {
-    disabled: connexionBtnStatus,
-    variant: "outlined",
-    color: "secondary",
-    type: "submit"
-  }, t('connection'))), errorStatus === 500 ? 'ERROR OCCURED' : null);
-});
-/* harmony default export */ __webpack_exports__["default"] = (LoginTab);
-
-/***/ }),
-
-/***/ "./components/modalConnexion.js":
-/*!**************************************!*\
-  !*** ./components/modalConnexion.js ***!
-  \**************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
-/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./i18n */ "./components/i18n.js");
-/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_i18n__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react_cookie__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-cookie */ "./node_modules/react-cookie/es6/index.js");
-/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utils/request */ "./utils/request.js");
-/* harmony import */ var _store_container_login__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/container/login */ "./store/container/login.js");
-
-
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
-
-
-
-
-
-
-
-
-react_modal__WEBPACK_IMPORTED_MODULE_5___default.a.setAppElement("#__next");
-
-var ModalConnexion = function ModalConnexion(_ref) {
-  var t = _ref.t,
-      modalOpen = _ref.modalOpen,
-      modalWindowLogin = _ref.modalWindowLogin,
-      setModalOpenState = _ref.setModalOpenState,
-      setMWindowLogin = _ref.setMWindowLogin,
-      router = _ref.router,
-      storeUserInfo = _ref.storeUserInfo,
-      setLoginState = _ref.setLoginState;
-
-  /* State */
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(1),
-      birthDateDay = _useState[0],
-      setBirthDateDay = _useState[1];
-
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(1),
-      birthDateMonth = _useState2[0],
-      setBirthDateMonth = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(2019),
-      birthDateYear = _useState3[0],
-      setBirthDateYear = _useState3[1];
-
-  var _useState4 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])("candidate"),
-      status = _useState4[0],
-      setStatus = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(true),
-      validationBtnState = _useState5[0],
-      setValidationBtnState = _useState5[1];
-
-  var _useState6 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(''),
-      firstName = _useState6[0],
-      setFirstName = _useState6[1];
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(''),
-      lastName = _useState7[0],
-      setLastName = _useState7[1];
-
-  var _useState8 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(''),
-      email = _useState8[0],
-      setEmail = _useState8[1];
-
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(''),
-      password = _useState9[0],
-      setPassword = _useState9[1];
-
-  var _useState10 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(false),
-      fieldError = _useState10[0],
-      setFieldError = _useState10[1];
-
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(0),
-      validationStatus = _useState11[0],
-      setValidationStatus = _useState11[1];
-
-  var _useCookies = Object(react_cookie__WEBPACK_IMPORTED_MODULE_8__["useCookies"])(),
-      _useCookies2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useCookies, 3),
-      cookies = _useCookies2[0],
-      setCookies = _useCookies2[1],
-      removeCookies = _useCookies2[2];
-
-  console.log('COOKIES: ', cookies);
-  /* Utils function */
-
-  var getDayList = function getDayList() {
-    var dayNumber = 31;
-    if (birthDateMonth % 2 === 0 && birthDateMonth != 8) dayNumber = 30;
-
-    if (birthDateMonth === 2) {
-      if (birthDateYear % 4 === 0) {
-        if (birthDateYear % 100 === 0) {
-          if (birthDateYear % 400 === 0) dayNumber = 29;else dayNumber = 28;
-        } else dayNumber = 29;
-      }
-
-      dayNumber = 28;
-    }
-
-    if (dayNumber < birthDateDay) setBirthDateDay(dayNumber);
-    var dateElements = [];
-
-    for (var i = 1; i <= dayNumber; i++) {
-      dateElements.push(__jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["MenuItem"], {
-        key: i,
-        value: i
-      }, i));
-    }
-
-    return dateElements;
-  };
-
-  var getMonthList = function getMonthList() {
-    var monthElement = [];
-
-    for (var i = 1; i <= 12; i++) {
-      monthElement.push(__jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["MenuItem"], {
-        key: i,
-        value: i
-      }, i));
-    }
-
-    return monthElement;
-  };
-
-  var getYearList = function getYearList() {
-    var yearElement = [];
-
-    for (var i = new Date().getFullYear(); i >= 1900; i--) {
-      yearElement.push(__jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["MenuItem"], {
-        key: i,
-        value: i
-      }, i));
-    }
-
-    return yearElement;
-  };
-
-  var handleValidation =
-  /*#__PURE__*/
-  function () {
-    var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
-    /*#__PURE__*/
-    _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event) {
-      var birthDate, res, data;
-      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              event.preventDefault();
-              setValidationBtnState(false);
-
-              if (!(firstName === '' || lastName === '' || email === '' || password === '')) {
-                _context.next = 8;
-                break;
-              }
-
-              setFieldError(true);
-              setValidationBtnState(true);
-              return _context.abrupt("return");
-
-            case 8:
-              _context.prev = 8;
-              birthDate = new Date(birthDateYear + "-" + birthDateMonth + "-" + birthDateDay); // .. Start loading front-end process
-
-              _context.next = 12;
-              return Object(_utils_request__WEBPACK_IMPORTED_MODULE_9__["request"])("/api/register", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: {
-                  status: status,
-                  firstName: firstName,
-                  lastName: lastName,
-                  email: email,
-                  password: password,
-                  birthDate: birthDate
-                }
-              });
-
-            case 12:
-              res = _context.sent;
-
-              if (!(res.status === 201)) {
-                _context.next = 26;
-                break;
-              }
-
-              _context.next = 16;
-              return res.json();
-
-            case 16:
-              data = _context.sent;
-              setCookies('token', data.token);
-              storeUserInfo({
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                password: password,
-                birthDate: birthDate
-              });
-              setValidationStatus(201);
-              setValidationBtnState(true);
-              setModalOpenState(false);
-              setLoginState(true);
-              router.push('/settings');
-              _context.next = 29;
-              break;
-
-            case 26:
-              setValidationStatus(res.status);
-              setEmail('');
-              setValidationBtnState(true);
-
-            case 29:
-              _context.next = 36;
-              break;
-
-            case 31:
-              _context.prev = 31;
-              _context.t0 = _context["catch"](8);
-              console.log(_context.t0);
-              setValidationBtnState(true);
-              setValidationStatus(500);
-
-            case 36:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[8, 31]]);
-    }));
-
-    return function handleValidation(_x) {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-  /* Jsx Rendering */
-
-
-  return __jsx(react_modal__WEBPACK_IMPORTED_MODULE_5___default.a, {
-    isOpen: modalOpen,
-    onRequestClose: function onRequestClose() {
-      return setModalOpenState(false);
-    },
-    style: {
-      overlay: {
-        backgroundColor: "rgba(0, 0, 0, 0.6)"
-      },
-      content: {
-        opacity: "1",
-        width: '700px',
-        margin: 'auto'
-      }
-    }
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-    variant: !modalWindowLogin ? "outlined" : "contained",
-    onClick: function onClick() {
-      return setMWindowLogin(true);
-    },
-    style: {
-      margin: 5
-    },
-    color: "primary"
-  }, t('login')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-    variant: !modalWindowLogin ? "contained" : "outlined",
-    onClick: function onClick() {
-      return setMWindowLogin(false);
-    },
-    style: {
-      margin: 5
-    },
-    color: "primary"
-  }, t('register')), __jsx("hr", null), modalWindowLogin ? __jsx(_store_container_login__WEBPACK_IMPORTED_MODULE_10__["default"], null) : __jsx("form", {
-    onSubmit: handleValidation
-  }, __jsx("div", null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-    variant: status !== "candidate" ? "outlined" : "contained",
-    color: "secondary",
-    onClick: function onClick() {
-      return setStatus("candidate");
-    },
-    style: {
-      margin: 5
-    }
-  }, t('candidate')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-    variant: status !== "recruiter" ? "outlined" : "contained",
-    color: "secondary",
-    onClick: function onClick() {
-      return setStatus("recruiter");
-    },
-    style: {
-      margin: 5
-    }
-  }, t('recruiter'))), __jsx("div", null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["TextField"], {
-    label: t('firstName'),
-    type: "text",
-    name: "firstName",
-    variant: "filled",
-    style: {
-      margin: 5
-    },
-    value: firstName,
-    onChange: function onChange(e) {
-      return setFirstName(e.target.value);
-    },
-    error: fieldError && firstName === ''
-  }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["TextField"], {
-    label: t('lastName'),
-    type: "text",
-    name: "lastName",
-    variant: "filled",
-    style: {
-      margin: 5
-    },
-    value: lastName,
-    onChange: function onChange(e) {
-      return setLastName(e.target.value);
-    },
-    error: fieldError && lastName === ''
-  })), __jsx("div", null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["TextField"], {
-    label: t('email'),
-    type: "email",
-    name: "email",
-    variant: "filled",
-    autoComplete: "email",
-    style: {
-      margin: 5
-    },
-    value: email,
-    onChange: function onChange(e) {
-      return setEmail(e.target.value);
-    },
-    error: fieldError && email === ''
-  }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["TextField"], {
-    label: t('password'),
-    type: "password",
-    name: "password",
-    variant: "filled",
-    value: password,
-    autoComplete: "new-password",
-    style: {
-      margin: 5
-    },
-    onChange: function onChange(e) {
-      return setPassword(e.target.value);
-    },
-    error: fieldError && password === ''
-  })), __jsx("div", {
-    style: {
-      margin: "5px 0px"
-    }
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["FormControl"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["InputLabel"], {
-    htmlFor: "age-customized-select",
-    style: {
-      margin: "0px 5px"
-    }
-  }, t('birthDateDay')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Select"], {
-    value: birthDateDay,
-    onChange: function onChange(e) {
-      return setBirthDateDay(e.target.value);
-    },
-    style: {
-      margin: "10px 5px",
-      width: "60px"
-    }
-  }, getDayList())), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["FormControl"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["InputLabel"], {
-    htmlFor: "age-customized-select",
-    style: {
-      margin: "0px 5px"
-    }
-  }, t('birthDateMonth')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Select"], {
-    value: birthDateMonth,
-    onChange: function onChange(e) {
-      return setBirthDateMonth(e.target.value);
-    },
-    style: {
-      margin: "10px 5px",
-      width: "60px"
-    }
-  }, getMonthList())), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["FormControl"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["InputLabel"], {
-    htmlFor: "age-customized-select",
-    style: {
-      margin: "0px 5px"
-    }
-  }, t('birthDateYear')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Select"], {
-    value: birthDateYear,
-    onChange: function onChange(e) {
-      return setBirthDateYear(e.target.value);
-    },
-    style: {
-      margin: "10px 5px",
-      width: "100px"
-    }
-  }, getYearList()))), __jsx("div", null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-    variant: "contained",
-    color: "primary",
-    style: {
-      margin: 5
-    },
-    type: "submit",
-    disabled: !validationBtnState
-  }, t('validate'))), validationStatus !== 0 ? __jsx("div", null, __jsx("p", null, validationStatus === 201 ? 'success' : validationStatus === 200 ? 'Email already used' : 'an error occured')) : null));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(_i18n__WEBPACK_IMPORTED_MODULE_6__["withTranslation"])('common')(Object(next_router__WEBPACK_IMPORTED_MODULE_7__["withRouter"])(ModalConnexion)));
 
 /***/ }),
 
@@ -50429,54 +50032,6 @@ function removeClass(element, className) {
 
 /***/ }),
 
-/***/ "./node_modules/exenv/index.js":
-/*!*************************************!*\
-  !*** ./node_modules/exenv/index.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2015 Jed Watson.
-  Based on code that is Copyright 2013-2015, Facebook, Inc.
-  All rights reserved.
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var canUseDOM = !!(
-		typeof window !== 'undefined' &&
-		window.document &&
-		window.document.createElement
-	);
-
-	var ExecutionEnvironment = {
-
-		canUseDOM: canUseDOM,
-
-		canUseWorkers: typeof Worker !== 'undefined',
-
-		canUseEventListeners:
-			canUseDOM && !!(window.addEventListener || window.attachEvent),
-
-		canUseViewport: canUseDOM && !!window.screen
-
-	};
-
-	if (true) {
-		!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
-			return ExecutionEnvironment;
-		}).call(exports, __webpack_require__, exports, module),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {}
-
-}());
-
-
-/***/ }),
-
 /***/ "./node_modules/function-bind/implementation.js":
 /*!******************************************************!*\
   !*** ./node_modules/function-bind/implementation.js ***!
@@ -67351,1401 +66906,6 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js ***!
-  \****************************************************************************/
-/*! exports provided: polyfill */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "polyfill", function() { return polyfill; });
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-function componentWillMount() {
-  // Call this.constructor.gDSFP to support sub-classes.
-  var state = this.constructor.getDerivedStateFromProps(this.props, this.state);
-  if (state !== null && state !== undefined) {
-    this.setState(state);
-  }
-}
-
-function componentWillReceiveProps(nextProps) {
-  // Call this.constructor.gDSFP to support sub-classes.
-  // Use the setState() updater to ensure state isn't stale in certain edge cases.
-  function updater(prevState) {
-    var state = this.constructor.getDerivedStateFromProps(nextProps, prevState);
-    return state !== null && state !== undefined ? state : null;
-  }
-  // Binding "this" is important for shallow renderer support.
-  this.setState(updater.bind(this));
-}
-
-function componentWillUpdate(nextProps, nextState) {
-  try {
-    var prevProps = this.props;
-    var prevState = this.state;
-    this.props = nextProps;
-    this.state = nextState;
-    this.__reactInternalSnapshotFlag = true;
-    this.__reactInternalSnapshot = this.getSnapshotBeforeUpdate(
-      prevProps,
-      prevState
-    );
-  } finally {
-    this.props = prevProps;
-    this.state = prevState;
-  }
-}
-
-// React may warn about cWM/cWRP/cWU methods being deprecated.
-// Add a flag to suppress these warnings for this special case.
-componentWillMount.__suppressDeprecationWarning = true;
-componentWillReceiveProps.__suppressDeprecationWarning = true;
-componentWillUpdate.__suppressDeprecationWarning = true;
-
-function polyfill(Component) {
-  var prototype = Component.prototype;
-
-  if (!prototype || !prototype.isReactComponent) {
-    throw new Error('Can only polyfill class components');
-  }
-
-  if (
-    typeof Component.getDerivedStateFromProps !== 'function' &&
-    typeof prototype.getSnapshotBeforeUpdate !== 'function'
-  ) {
-    return Component;
-  }
-
-  // If new component APIs are defined, "unsafe" lifecycles won't be called.
-  // Error if any of these lifecycles are present,
-  // Because they would work differently between older and newer (16.3+) versions of React.
-  var foundWillMountName = null;
-  var foundWillReceivePropsName = null;
-  var foundWillUpdateName = null;
-  if (typeof prototype.componentWillMount === 'function') {
-    foundWillMountName = 'componentWillMount';
-  } else if (typeof prototype.UNSAFE_componentWillMount === 'function') {
-    foundWillMountName = 'UNSAFE_componentWillMount';
-  }
-  if (typeof prototype.componentWillReceiveProps === 'function') {
-    foundWillReceivePropsName = 'componentWillReceiveProps';
-  } else if (typeof prototype.UNSAFE_componentWillReceiveProps === 'function') {
-    foundWillReceivePropsName = 'UNSAFE_componentWillReceiveProps';
-  }
-  if (typeof prototype.componentWillUpdate === 'function') {
-    foundWillUpdateName = 'componentWillUpdate';
-  } else if (typeof prototype.UNSAFE_componentWillUpdate === 'function') {
-    foundWillUpdateName = 'UNSAFE_componentWillUpdate';
-  }
-  if (
-    foundWillMountName !== null ||
-    foundWillReceivePropsName !== null ||
-    foundWillUpdateName !== null
-  ) {
-    var componentName = Component.displayName || Component.name;
-    var newApiName =
-      typeof Component.getDerivedStateFromProps === 'function'
-        ? 'getDerivedStateFromProps()'
-        : 'getSnapshotBeforeUpdate()';
-
-    throw Error(
-      'Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n' +
-        componentName +
-        ' uses ' +
-        newApiName +
-        ' but also contains the following legacy lifecycles:' +
-        (foundWillMountName !== null ? '\n  ' + foundWillMountName : '') +
-        (foundWillReceivePropsName !== null
-          ? '\n  ' + foundWillReceivePropsName
-          : '') +
-        (foundWillUpdateName !== null ? '\n  ' + foundWillUpdateName : '') +
-        '\n\nThe above lifecycles should be removed. Learn more about this warning here:\n' +
-        'https://fb.me/react-async-component-lifecycle-hooks'
-    );
-  }
-
-  // React <= 16.2 does not support static getDerivedStateFromProps.
-  // As a workaround, use cWM and cWRP to invoke the new static lifecycle.
-  // Newer versions of React will ignore these lifecycles if gDSFP exists.
-  if (typeof Component.getDerivedStateFromProps === 'function') {
-    prototype.componentWillMount = componentWillMount;
-    prototype.componentWillReceiveProps = componentWillReceiveProps;
-  }
-
-  // React <= 16.2 does not support getSnapshotBeforeUpdate.
-  // As a workaround, use cWU to invoke the new lifecycle.
-  // Newer versions of React will ignore that lifecycle if gSBU exists.
-  if (typeof prototype.getSnapshotBeforeUpdate === 'function') {
-    if (typeof prototype.componentDidUpdate !== 'function') {
-      throw new Error(
-        'Cannot polyfill getSnapshotBeforeUpdate() for components that do not define componentDidUpdate() on the prototype'
-      );
-    }
-
-    prototype.componentWillUpdate = componentWillUpdate;
-
-    var componentDidUpdate = prototype.componentDidUpdate;
-
-    prototype.componentDidUpdate = function componentDidUpdatePolyfill(
-      prevProps,
-      prevState,
-      maybeSnapshot
-    ) {
-      // 16.3+ will not execute our will-update method;
-      // It will pass a snapshot value to did-update though.
-      // Older versions will require our polyfilled will-update value.
-      // We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
-      // Because for <= 15.x versions this might be a "prevContext" object.
-      // We also can't just check "__reactInternalSnapshot",
-      // Because get-snapshot might return a falsy value.
-      // So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
-      var snapshot = this.__reactInternalSnapshotFlag
-        ? this.__reactInternalSnapshot
-        : maybeSnapshot;
-
-      componentDidUpdate.call(this, prevProps, prevState, snapshot);
-    };
-  }
-
-  return Component;
-}
-
-
-
-
-/***/ }),
-
-/***/ "./node_modules/react-modal/lib/components/Modal.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/react-modal/lib/components/Modal.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.bodyOpenClassName = exports.portalClassName = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _ModalPortal = __webpack_require__(/*! ./ModalPortal */ "./node_modules/react-modal/lib/components/ModalPortal.js");
-
-var _ModalPortal2 = _interopRequireDefault(_ModalPortal);
-
-var _ariaAppHider = __webpack_require__(/*! ../helpers/ariaAppHider */ "./node_modules/react-modal/lib/helpers/ariaAppHider.js");
-
-var ariaAppHider = _interopRequireWildcard(_ariaAppHider);
-
-var _safeHTMLElement = __webpack_require__(/*! ../helpers/safeHTMLElement */ "./node_modules/react-modal/lib/helpers/safeHTMLElement.js");
-
-var _safeHTMLElement2 = _interopRequireDefault(_safeHTMLElement);
-
-var _reactLifecyclesCompat = __webpack_require__(/*! react-lifecycles-compat */ "./node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var portalClassName = exports.portalClassName = "ReactModalPortal";
-var bodyOpenClassName = exports.bodyOpenClassName = "ReactModal__Body--open";
-
-var isReact16 = _reactDom2.default.createPortal !== undefined;
-
-var getCreatePortal = function getCreatePortal() {
-  return isReact16 ? _reactDom2.default.createPortal : _reactDom2.default.unstable_renderSubtreeIntoContainer;
-};
-
-function getParentElement(parentSelector) {
-  return parentSelector();
-}
-
-var Modal = function (_Component) {
-  _inherits(Modal, _Component);
-
-  function Modal() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Modal);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.removePortal = function () {
-      !isReact16 && _reactDom2.default.unmountComponentAtNode(_this.node);
-      var parent = getParentElement(_this.props.parentSelector);
-      parent.removeChild(_this.node);
-    }, _this.portalRef = function (ref) {
-      _this.portal = ref;
-    }, _this.renderPortal = function (props) {
-      var createPortal = getCreatePortal();
-      var portal = createPortal(_this, _react2.default.createElement(_ModalPortal2.default, _extends({ defaultStyles: Modal.defaultStyles }, props)), _this.node);
-      _this.portalRef(portal);
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(Modal, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (!_safeHTMLElement.canUseDOM) return;
-
-      if (!isReact16) {
-        this.node = document.createElement("div");
-      }
-      this.node.className = this.props.portalClassName;
-
-      var parent = getParentElement(this.props.parentSelector);
-      parent.appendChild(this.node);
-
-      !isReact16 && this.renderPortal(this.props);
-    }
-  }, {
-    key: "getSnapshotBeforeUpdate",
-    value: function getSnapshotBeforeUpdate(prevProps) {
-      var prevParent = getParentElement(prevProps.parentSelector);
-      var nextParent = getParentElement(this.props.parentSelector);
-      return { prevParent: prevParent, nextParent: nextParent };
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, _, snapshot) {
-      if (!_safeHTMLElement.canUseDOM) return;
-      var _props = this.props,
-          isOpen = _props.isOpen,
-          portalClassName = _props.portalClassName;
-
-
-      if (prevProps.portalClassName !== portalClassName) {
-        this.node.className = portalClassName;
-      }
-
-      var prevParent = snapshot.prevParent,
-          nextParent = snapshot.nextParent;
-
-      if (nextParent !== prevParent) {
-        prevParent.removeChild(this.node);
-        nextParent.appendChild(this.node);
-      }
-
-      // Stop unnecessary renders if modal is remaining closed
-      if (!prevProps.isOpen && !isOpen) return;
-
-      !isReact16 && this.renderPortal(this.props);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      if (!_safeHTMLElement.canUseDOM || !this.node || !this.portal) return;
-
-      var state = this.portal.state;
-      var now = Date.now();
-      var closesAt = state.isOpen && this.props.closeTimeoutMS && (state.closesAt || now + this.props.closeTimeoutMS);
-
-      if (closesAt) {
-        if (!state.beforeClose) {
-          this.portal.closeWithTimeout();
-        }
-
-        setTimeout(this.removePortal, closesAt - now);
-      } else {
-        this.removePortal();
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      if (!_safeHTMLElement.canUseDOM || !isReact16) {
-        return null;
-      }
-
-      if (!this.node && isReact16) {
-        this.node = document.createElement("div");
-      }
-
-      var createPortal = getCreatePortal();
-      return createPortal(_react2.default.createElement(_ModalPortal2.default, _extends({
-        ref: this.portalRef,
-        defaultStyles: Modal.defaultStyles
-      }, this.props)), this.node);
-    }
-  }], [{
-    key: "setAppElement",
-    value: function setAppElement(element) {
-      ariaAppHider.setElement(element);
-    }
-
-    /* eslint-disable react/no-unused-prop-types */
-
-    /* eslint-enable react/no-unused-prop-types */
-
-  }]);
-
-  return Modal;
-}(_react.Component);
-
-Modal.propTypes = {
-  isOpen: _propTypes2.default.bool.isRequired,
-  style: _propTypes2.default.shape({
-    content: _propTypes2.default.object,
-    overlay: _propTypes2.default.object
-  }),
-  portalClassName: _propTypes2.default.string,
-  bodyOpenClassName: _propTypes2.default.string,
-  htmlOpenClassName: _propTypes2.default.string,
-  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.shape({
-    base: _propTypes2.default.string.isRequired,
-    afterOpen: _propTypes2.default.string.isRequired,
-    beforeClose: _propTypes2.default.string.isRequired
-  })]),
-  overlayClassName: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.shape({
-    base: _propTypes2.default.string.isRequired,
-    afterOpen: _propTypes2.default.string.isRequired,
-    beforeClose: _propTypes2.default.string.isRequired
-  })]),
-  appElement: _propTypes2.default.instanceOf(_safeHTMLElement2.default),
-  onAfterOpen: _propTypes2.default.func,
-  onRequestClose: _propTypes2.default.func,
-  closeTimeoutMS: _propTypes2.default.number,
-  ariaHideApp: _propTypes2.default.bool,
-  shouldFocusAfterRender: _propTypes2.default.bool,
-  shouldCloseOnOverlayClick: _propTypes2.default.bool,
-  shouldReturnFocusAfterClose: _propTypes2.default.bool,
-  parentSelector: _propTypes2.default.func,
-  aria: _propTypes2.default.object,
-  data: _propTypes2.default.object,
-  role: _propTypes2.default.string,
-  contentLabel: _propTypes2.default.string,
-  shouldCloseOnEsc: _propTypes2.default.bool,
-  overlayRef: _propTypes2.default.func,
-  contentRef: _propTypes2.default.func
-};
-Modal.defaultProps = {
-  isOpen: false,
-  portalClassName: portalClassName,
-  bodyOpenClassName: bodyOpenClassName,
-  role: "dialog",
-  ariaHideApp: true,
-  closeTimeoutMS: 0,
-  shouldFocusAfterRender: true,
-  shouldCloseOnEsc: true,
-  shouldCloseOnOverlayClick: true,
-  shouldReturnFocusAfterClose: true,
-  parentSelector: function parentSelector() {
-    return document.body;
-  }
-};
-Modal.defaultStyles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(255, 255, 255, 0.75)"
-  },
-  content: {
-    position: "absolute",
-    top: "40px",
-    left: "40px",
-    right: "40px",
-    bottom: "40px",
-    border: "1px solid #ccc",
-    background: "#fff",
-    overflow: "auto",
-    WebkitOverflowScrolling: "touch",
-    borderRadius: "4px",
-    outline: "none",
-    padding: "20px"
-  }
-};
-
-
-(0, _reactLifecyclesCompat.polyfill)(Modal);
-
-exports.default = Modal;
-
-/***/ }),
-
-/***/ "./node_modules/react-modal/lib/components/ModalPortal.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/react-modal/lib/components/ModalPortal.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _focusManager = __webpack_require__(/*! ../helpers/focusManager */ "./node_modules/react-modal/lib/helpers/focusManager.js");
-
-var focusManager = _interopRequireWildcard(_focusManager);
-
-var _scopeTab = __webpack_require__(/*! ../helpers/scopeTab */ "./node_modules/react-modal/lib/helpers/scopeTab.js");
-
-var _scopeTab2 = _interopRequireDefault(_scopeTab);
-
-var _ariaAppHider = __webpack_require__(/*! ../helpers/ariaAppHider */ "./node_modules/react-modal/lib/helpers/ariaAppHider.js");
-
-var ariaAppHider = _interopRequireWildcard(_ariaAppHider);
-
-var _classList = __webpack_require__(/*! ../helpers/classList */ "./node_modules/react-modal/lib/helpers/classList.js");
-
-var classList = _interopRequireWildcard(_classList);
-
-var _safeHTMLElement = __webpack_require__(/*! ../helpers/safeHTMLElement */ "./node_modules/react-modal/lib/helpers/safeHTMLElement.js");
-
-var _safeHTMLElement2 = _interopRequireDefault(_safeHTMLElement);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// so that our CSS is statically analyzable
-var CLASS_NAMES = {
-  overlay: "ReactModal__Overlay",
-  content: "ReactModal__Content"
-};
-
-var TAB_KEY = 9;
-var ESC_KEY = 27;
-
-var ariaHiddenInstances = 0;
-
-var ModalPortal = function (_Component) {
-  _inherits(ModalPortal, _Component);
-
-  function ModalPortal(props) {
-    _classCallCheck(this, ModalPortal);
-
-    var _this = _possibleConstructorReturn(this, (ModalPortal.__proto__ || Object.getPrototypeOf(ModalPortal)).call(this, props));
-
-    _this.setOverlayRef = function (overlay) {
-      _this.overlay = overlay;
-      _this.props.overlayRef && _this.props.overlayRef(overlay);
-    };
-
-    _this.setContentRef = function (content) {
-      _this.content = content;
-      _this.props.contentRef && _this.props.contentRef(content);
-    };
-
-    _this.afterClose = function () {
-      var _this$props = _this.props,
-          appElement = _this$props.appElement,
-          ariaHideApp = _this$props.ariaHideApp,
-          htmlOpenClassName = _this$props.htmlOpenClassName,
-          bodyOpenClassName = _this$props.bodyOpenClassName;
-
-      // Remove classes.
-
-      bodyOpenClassName && classList.remove(document.body, bodyOpenClassName);
-
-      htmlOpenClassName && classList.remove(document.getElementsByTagName("html")[0], htmlOpenClassName);
-
-      // Reset aria-hidden attribute if all modals have been removed
-      if (ariaHideApp && ariaHiddenInstances > 0) {
-        ariaHiddenInstances -= 1;
-
-        if (ariaHiddenInstances === 0) {
-          ariaAppHider.show(appElement);
-        }
-      }
-
-      if (_this.props.shouldFocusAfterRender) {
-        if (_this.props.shouldReturnFocusAfterClose) {
-          focusManager.returnFocus();
-          focusManager.teardownScopedFocus();
-        } else {
-          focusManager.popWithoutFocus();
-        }
-      }
-
-      if (_this.props.onAfterClose) {
-        _this.props.onAfterClose();
-      }
-    };
-
-    _this.open = function () {
-      _this.beforeOpen();
-      if (_this.state.afterOpen && _this.state.beforeClose) {
-        clearTimeout(_this.closeTimer);
-        _this.setState({ beforeClose: false });
-      } else {
-        if (_this.props.shouldFocusAfterRender) {
-          focusManager.setupScopedFocus(_this.node);
-          focusManager.markForFocusLater();
-        }
-
-        _this.setState({ isOpen: true }, function () {
-          _this.setState({ afterOpen: true });
-
-          if (_this.props.isOpen && _this.props.onAfterOpen) {
-            _this.props.onAfterOpen();
-          }
-        });
-      }
-    };
-
-    _this.close = function () {
-      if (_this.props.closeTimeoutMS > 0) {
-        _this.closeWithTimeout();
-      } else {
-        _this.closeWithoutTimeout();
-      }
-    };
-
-    _this.focusContent = function () {
-      return _this.content && !_this.contentHasFocus() && _this.content.focus();
-    };
-
-    _this.closeWithTimeout = function () {
-      var closesAt = Date.now() + _this.props.closeTimeoutMS;
-      _this.setState({ beforeClose: true, closesAt: closesAt }, function () {
-        _this.closeTimer = setTimeout(_this.closeWithoutTimeout, _this.state.closesAt - Date.now());
-      });
-    };
-
-    _this.closeWithoutTimeout = function () {
-      _this.setState({
-        beforeClose: false,
-        isOpen: false,
-        afterOpen: false,
-        closesAt: null
-      }, _this.afterClose);
-    };
-
-    _this.handleKeyDown = function (event) {
-      if (event.keyCode === TAB_KEY) {
-        (0, _scopeTab2.default)(_this.content, event);
-      }
-
-      if (_this.props.shouldCloseOnEsc && event.keyCode === ESC_KEY) {
-        event.stopPropagation();
-        _this.requestClose(event);
-      }
-    };
-
-    _this.handleOverlayOnClick = function (event) {
-      if (_this.shouldClose === null) {
-        _this.shouldClose = true;
-      }
-
-      if (_this.shouldClose && _this.props.shouldCloseOnOverlayClick) {
-        if (_this.ownerHandlesClose()) {
-          _this.requestClose(event);
-        } else {
-          _this.focusContent();
-        }
-      }
-      _this.shouldClose = null;
-    };
-
-    _this.handleContentOnMouseUp = function () {
-      _this.shouldClose = false;
-    };
-
-    _this.handleOverlayOnMouseDown = function (event) {
-      if (!_this.props.shouldCloseOnOverlayClick && event.target == _this.overlay) {
-        event.preventDefault();
-      }
-    };
-
-    _this.handleContentOnClick = function () {
-      _this.shouldClose = false;
-    };
-
-    _this.handleContentOnMouseDown = function () {
-      _this.shouldClose = false;
-    };
-
-    _this.requestClose = function (event) {
-      return _this.ownerHandlesClose() && _this.props.onRequestClose(event);
-    };
-
-    _this.ownerHandlesClose = function () {
-      return _this.props.onRequestClose;
-    };
-
-    _this.shouldBeClosed = function () {
-      return !_this.state.isOpen && !_this.state.beforeClose;
-    };
-
-    _this.contentHasFocus = function () {
-      return document.activeElement === _this.content || _this.content.contains(document.activeElement);
-    };
-
-    _this.buildClassName = function (which, additional) {
-      var classNames = (typeof additional === "undefined" ? "undefined" : _typeof(additional)) === "object" ? additional : {
-        base: CLASS_NAMES[which],
-        afterOpen: CLASS_NAMES[which] + "--after-open",
-        beforeClose: CLASS_NAMES[which] + "--before-close"
-      };
-      var className = classNames.base;
-      if (_this.state.afterOpen) {
-        className = className + " " + classNames.afterOpen;
-      }
-      if (_this.state.beforeClose) {
-        className = className + " " + classNames.beforeClose;
-      }
-      return typeof additional === "string" && additional ? className + " " + additional : className;
-    };
-
-    _this.attributesFromObject = function (prefix, items) {
-      return Object.keys(items).reduce(function (acc, name) {
-        acc[prefix + "-" + name] = items[name];
-        return acc;
-      }, {});
-    };
-
-    _this.state = {
-      afterOpen: false,
-      beforeClose: false
-    };
-
-    _this.shouldClose = null;
-    _this.moveFromContentToOverlay = null;
-    return _this;
-  }
-
-  _createClass(ModalPortal, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (this.props.isOpen) {
-        this.open();
-      }
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
-      if (true) {
-        if (prevProps.bodyOpenClassName !== this.props.bodyOpenClassName) {
-          // eslint-disable-next-line no-console
-          console.warn('React-Modal: "bodyOpenClassName" prop has been modified. ' + "This may cause unexpected behavior when multiple modals are open.");
-        }
-        if (prevProps.htmlOpenClassName !== this.props.htmlOpenClassName) {
-          // eslint-disable-next-line no-console
-          console.warn('React-Modal: "htmlOpenClassName" prop has been modified. ' + "This may cause unexpected behavior when multiple modals are open.");
-        }
-      }
-
-      if (this.props.isOpen && !prevProps.isOpen) {
-        this.open();
-      } else if (!this.props.isOpen && prevProps.isOpen) {
-        this.close();
-      }
-
-      // Focus only needs to be set once when the modal is being opened
-      if (this.props.shouldFocusAfterRender && this.state.isOpen && !prevState.isOpen) {
-        this.focusContent();
-      }
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      if (this.state.isOpen) {
-        this.afterClose();
-      }
-      clearTimeout(this.closeTimer);
-    }
-  }, {
-    key: "beforeOpen",
-    value: function beforeOpen() {
-      var _props = this.props,
-          appElement = _props.appElement,
-          ariaHideApp = _props.ariaHideApp,
-          htmlOpenClassName = _props.htmlOpenClassName,
-          bodyOpenClassName = _props.bodyOpenClassName;
-
-      // Add classes.
-
-      bodyOpenClassName && classList.add(document.body, bodyOpenClassName);
-
-      htmlOpenClassName && classList.add(document.getElementsByTagName("html")[0], htmlOpenClassName);
-
-      if (ariaHideApp) {
-        ariaHiddenInstances += 1;
-        ariaAppHider.hide(appElement);
-      }
-    }
-
-    // Don't steal focus from inner elements
-
-  }, {
-    key: "render",
-    value: function render() {
-      var _props2 = this.props,
-          id = _props2.id,
-          className = _props2.className,
-          overlayClassName = _props2.overlayClassName,
-          defaultStyles = _props2.defaultStyles;
-
-      var contentStyles = className ? {} : defaultStyles.content;
-      var overlayStyles = overlayClassName ? {} : defaultStyles.overlay;
-
-      return this.shouldBeClosed() ? null : _react2.default.createElement(
-        "div",
-        {
-          ref: this.setOverlayRef,
-          className: this.buildClassName("overlay", overlayClassName),
-          style: _extends({}, overlayStyles, this.props.style.overlay),
-          onClick: this.handleOverlayOnClick,
-          onMouseDown: this.handleOverlayOnMouseDown
-        },
-        _react2.default.createElement(
-          "div",
-          _extends({
-            id: id,
-            ref: this.setContentRef,
-            style: _extends({}, contentStyles, this.props.style.content),
-            className: this.buildClassName("content", className),
-            tabIndex: "-1",
-            onKeyDown: this.handleKeyDown,
-            onMouseDown: this.handleContentOnMouseDown,
-            onMouseUp: this.handleContentOnMouseUp,
-            onClick: this.handleContentOnClick,
-            role: this.props.role,
-            "aria-label": this.props.contentLabel
-          }, this.attributesFromObject("aria", this.props.aria || {}), this.attributesFromObject("data", this.props.data || {}), {
-            "data-testid": this.props.testId
-          }),
-          this.props.children
-        )
-      );
-    }
-  }]);
-
-  return ModalPortal;
-}(_react.Component);
-
-ModalPortal.defaultProps = {
-  style: {
-    overlay: {},
-    content: {}
-  },
-  defaultStyles: {}
-};
-ModalPortal.propTypes = {
-  isOpen: _propTypes2.default.bool.isRequired,
-  defaultStyles: _propTypes2.default.shape({
-    content: _propTypes2.default.object,
-    overlay: _propTypes2.default.object
-  }),
-  style: _propTypes2.default.shape({
-    content: _propTypes2.default.object,
-    overlay: _propTypes2.default.object
-  }),
-  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]),
-  overlayClassName: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]),
-  bodyOpenClassName: _propTypes2.default.string,
-  htmlOpenClassName: _propTypes2.default.string,
-  ariaHideApp: _propTypes2.default.bool,
-  appElement: _propTypes2.default.instanceOf(_safeHTMLElement2.default),
-  onAfterOpen: _propTypes2.default.func,
-  onAfterClose: _propTypes2.default.func,
-  onRequestClose: _propTypes2.default.func,
-  closeTimeoutMS: _propTypes2.default.number,
-  shouldFocusAfterRender: _propTypes2.default.bool,
-  shouldCloseOnOverlayClick: _propTypes2.default.bool,
-  shouldReturnFocusAfterClose: _propTypes2.default.bool,
-  role: _propTypes2.default.string,
-  contentLabel: _propTypes2.default.string,
-  aria: _propTypes2.default.object,
-  data: _propTypes2.default.object,
-  children: _propTypes2.default.node,
-  shouldCloseOnEsc: _propTypes2.default.bool,
-  overlayRef: _propTypes2.default.func,
-  contentRef: _propTypes2.default.func,
-  id: _propTypes2.default.string,
-  testId: _propTypes2.default.string
-};
-exports.default = ModalPortal;
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ "./node_modules/react-modal/lib/helpers/ariaAppHider.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/react-modal/lib/helpers/ariaAppHider.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.assertNodeList = assertNodeList;
-exports.setElement = setElement;
-exports.validateElement = validateElement;
-exports.hide = hide;
-exports.show = show;
-exports.documentNotReadyOrSSRTesting = documentNotReadyOrSSRTesting;
-exports.resetForTesting = resetForTesting;
-
-var _warning = __webpack_require__(/*! warning */ "./node_modules/warning/warning.js");
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _safeHTMLElement = __webpack_require__(/*! ./safeHTMLElement */ "./node_modules/react-modal/lib/helpers/safeHTMLElement.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var globalElement = null;
-
-function assertNodeList(nodeList, selector) {
-  if (!nodeList || !nodeList.length) {
-    throw new Error("react-modal: No elements were found for selector " + selector + ".");
-  }
-}
-
-function setElement(element) {
-  var useElement = element;
-  if (typeof useElement === "string" && _safeHTMLElement.canUseDOM) {
-    var el = document.querySelectorAll(useElement);
-    assertNodeList(el, useElement);
-    useElement = "length" in el ? el[0] : el;
-  }
-  globalElement = useElement || globalElement;
-  return globalElement;
-}
-
-function validateElement(appElement) {
-  if (!appElement && !globalElement) {
-    (0, _warning2.default)(false, ["react-modal: App element is not defined.", "Please use `Modal.setAppElement(el)` or set `appElement={el}`.", "This is needed so screen readers don't see main content", "when modal is opened. It is not recommended, but you can opt-out", "by setting `ariaHideApp={false}`."].join(" "));
-
-    return false;
-  }
-
-  return true;
-}
-
-function hide(appElement) {
-  if (validateElement(appElement)) {
-    (appElement || globalElement).setAttribute("aria-hidden", "true");
-  }
-}
-
-function show(appElement) {
-  if (validateElement(appElement)) {
-    (appElement || globalElement).removeAttribute("aria-hidden");
-  }
-}
-
-function documentNotReadyOrSSRTesting() {
-  globalElement = null;
-}
-
-function resetForTesting() {
-  globalElement = null;
-}
-
-/***/ }),
-
-/***/ "./node_modules/react-modal/lib/helpers/classList.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/react-modal/lib/helpers/classList.js ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.dumpClassLists = dumpClassLists;
-var htmlClassList = {};
-var docBodyClassList = {};
-
-function dumpClassLists() {
-  if (true) {
-    var classes = document.getElementsByTagName("html")[0].className;
-    var buffer = "Show tracked classes:\n\n";
-
-    buffer += "<html /> (" + classes + "):\n";
-    for (var x in htmlClassList) {
-      buffer += "  " + x + " " + htmlClassList[x] + "\n";
-    }
-
-    classes = document.body.className;
-
-    // eslint-disable-next-line max-len
-    buffer += "\n\ndoc.body (" + classes + "):\n";
-    for (var _x in docBodyClassList) {
-      buffer += "  " + _x + " " + docBodyClassList[_x] + "\n";
-    }
-
-    buffer += "\n";
-
-    // eslint-disable-next-line no-console
-    console.log(buffer);
-  }
-}
-
-/**
- * Track the number of reference of a class.
- * @param {object} poll The poll to receive the reference.
- * @param {string} className The class name.
- * @return {string}
- */
-var incrementReference = function incrementReference(poll, className) {
-  if (!poll[className]) {
-    poll[className] = 0;
-  }
-  poll[className] += 1;
-  return className;
-};
-
-/**
- * Drop the reference of a class.
- * @param {object} poll The poll to receive the reference.
- * @param {string} className The class name.
- * @return {string}
- */
-var decrementReference = function decrementReference(poll, className) {
-  if (poll[className]) {
-    poll[className] -= 1;
-  }
-  return className;
-};
-
-/**
- * Track a class and add to the given class list.
- * @param {Object} classListRef A class list of an element.
- * @param {Object} poll         The poll to be used.
- * @param {Array}  classes      The list of classes to be tracked.
- */
-var trackClass = function trackClass(classListRef, poll, classes) {
-  classes.forEach(function (className) {
-    incrementReference(poll, className);
-    classListRef.add(className);
-  });
-};
-
-/**
- * Untrack a class and remove from the given class list if the reference
- * reaches 0.
- * @param {Object} classListRef A class list of an element.
- * @param {Object} poll         The poll to be used.
- * @param {Array}  classes      The list of classes to be untracked.
- */
-var untrackClass = function untrackClass(classListRef, poll, classes) {
-  classes.forEach(function (className) {
-    decrementReference(poll, className);
-    poll[className] === 0 && classListRef.remove(className);
-  });
-};
-
-/**
- * Public inferface to add classes to the document.body.
- * @param {string} bodyClass The class string to be added.
- *                           It may contain more then one class
- *                           with ' ' as separator.
- */
-var add = exports.add = function add(element, classString) {
-  return trackClass(element.classList, element.nodeName.toLowerCase() == "html" ? htmlClassList : docBodyClassList, classString.split(" "));
-};
-
-/**
- * Public inferface to remove classes from the document.body.
- * @param {string} bodyClass The class string to be added.
- *                           It may contain more then one class
- *                           with ' ' as separator.
- */
-var remove = exports.remove = function remove(element, classString) {
-  return untrackClass(element.classList, element.nodeName.toLowerCase() == "html" ? htmlClassList : docBodyClassList, classString.split(" "));
-};
-
-/***/ }),
-
-/***/ "./node_modules/react-modal/lib/helpers/focusManager.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/react-modal/lib/helpers/focusManager.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.handleBlur = handleBlur;
-exports.handleFocus = handleFocus;
-exports.markForFocusLater = markForFocusLater;
-exports.returnFocus = returnFocus;
-exports.popWithoutFocus = popWithoutFocus;
-exports.setupScopedFocus = setupScopedFocus;
-exports.teardownScopedFocus = teardownScopedFocus;
-
-var _tabbable = __webpack_require__(/*! ../helpers/tabbable */ "./node_modules/react-modal/lib/helpers/tabbable.js");
-
-var _tabbable2 = _interopRequireDefault(_tabbable);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var focusLaterElements = [];
-var modalElement = null;
-var needToFocus = false;
-
-function handleBlur() {
-  needToFocus = true;
-}
-
-function handleFocus() {
-  if (needToFocus) {
-    needToFocus = false;
-    if (!modalElement) {
-      return;
-    }
-    // need to see how jQuery shims document.on('focusin') so we don't need the
-    // setTimeout, firefox doesn't support focusin, if it did, we could focus
-    // the element outside of a setTimeout. Side-effect of this implementation
-    // is that the document.body gets focus, and then we focus our element right
-    // after, seems fine.
-    setTimeout(function () {
-      if (modalElement.contains(document.activeElement)) {
-        return;
-      }
-      var el = (0, _tabbable2.default)(modalElement)[0] || modalElement;
-      el.focus();
-    }, 0);
-  }
-}
-
-function markForFocusLater() {
-  focusLaterElements.push(document.activeElement);
-}
-
-/* eslint-disable no-console */
-function returnFocus() {
-  var toFocus = null;
-  try {
-    if (focusLaterElements.length !== 0) {
-      toFocus = focusLaterElements.pop();
-      toFocus.focus();
-    }
-    return;
-  } catch (e) {
-    console.warn(["You tried to return focus to", toFocus, "but it is not in the DOM anymore"].join(" "));
-  }
-}
-/* eslint-enable no-console */
-
-function popWithoutFocus() {
-  focusLaterElements.length > 0 && focusLaterElements.pop();
-}
-
-function setupScopedFocus(element) {
-  modalElement = element;
-
-  if (window.addEventListener) {
-    window.addEventListener("blur", handleBlur, false);
-    document.addEventListener("focus", handleFocus, true);
-  } else {
-    window.attachEvent("onBlur", handleBlur);
-    document.attachEvent("onFocus", handleFocus);
-  }
-}
-
-function teardownScopedFocus() {
-  modalElement = null;
-
-  if (window.addEventListener) {
-    window.removeEventListener("blur", handleBlur);
-    document.removeEventListener("focus", handleFocus);
-  } else {
-    window.detachEvent("onBlur", handleBlur);
-    document.detachEvent("onFocus", handleFocus);
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/react-modal/lib/helpers/safeHTMLElement.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/react-modal/lib/helpers/safeHTMLElement.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.canUseDOM = undefined;
-
-var _exenv = __webpack_require__(/*! exenv */ "./node_modules/exenv/index.js");
-
-var _exenv2 = _interopRequireDefault(_exenv);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var EE = _exenv2.default;
-
-var SafeHTMLElement = EE.canUseDOM ? window.HTMLElement : {};
-
-var canUseDOM = exports.canUseDOM = EE.canUseDOM;
-
-exports.default = SafeHTMLElement;
-
-/***/ }),
-
-/***/ "./node_modules/react-modal/lib/helpers/scopeTab.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/react-modal/lib/helpers/scopeTab.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = scopeTab;
-
-var _tabbable = __webpack_require__(/*! ./tabbable */ "./node_modules/react-modal/lib/helpers/tabbable.js");
-
-var _tabbable2 = _interopRequireDefault(_tabbable);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function scopeTab(node, event) {
-  var tabbable = (0, _tabbable2.default)(node);
-
-  if (!tabbable.length) {
-    // Do nothing, since there are no elements that can receive focus.
-    event.preventDefault();
-    return;
-  }
-
-  var shiftKey = event.shiftKey;
-  var head = tabbable[0];
-  var tail = tabbable[tabbable.length - 1];
-
-  // proceed with default browser behavior on tab.
-  // Focus on last element on shift + tab.
-  if (node === document.activeElement) {
-    if (!shiftKey) return;
-    target = tail;
-  }
-
-  var target;
-  if (tail === document.activeElement && !shiftKey) {
-    target = head;
-  }
-
-  if (head === document.activeElement && shiftKey) {
-    target = tail;
-  }
-
-  if (target) {
-    event.preventDefault();
-    target.focus();
-    return;
-  }
-
-  // Safari radio issue.
-  //
-  // Safari does not move the focus to the radio button,
-  // so we need to force it to really walk through all elements.
-  //
-  // This is very error prone, since we are trying to guess
-  // if it is a safari browser from the first occurence between
-  // chrome or safari.
-  //
-  // The chrome user agent contains the first ocurrence
-  // as the 'chrome/version' and later the 'safari/version'.
-  var checkSafari = /(\bChrome\b|\bSafari\b)\//.exec(navigator.userAgent);
-  var isSafariDesktop = checkSafari != null && checkSafari[1] != "Chrome" && /\biPod\b|\biPad\b/g.exec(navigator.userAgent) == null;
-
-  // If we are not in safari desktop, let the browser control
-  // the focus
-  if (!isSafariDesktop) return;
-
-  var x = tabbable.indexOf(document.activeElement);
-
-  if (x > -1) {
-    x += shiftKey ? -1 : 1;
-  }
-
-  // If the tabbable element does not exist,
-  // focus head/tail based on shiftKey
-  if (typeof tabbable[x] === "undefined") {
-    event.preventDefault();
-    target = shiftKey ? tail : head;
-    target.focus();
-    return;
-  }
-
-  event.preventDefault();
-
-  tabbable[x].focus();
-}
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ "./node_modules/react-modal/lib/helpers/tabbable.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/react-modal/lib/helpers/tabbable.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = findTabbableDescendants;
-/*!
- * Adapted from jQuery UI core
- *
- * http://jqueryui.com
- *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/category/ui-core/
- */
-
-var tabbableNode = /input|select|textarea|button|object/;
-
-function hidesContents(element) {
-  var zeroSize = element.offsetWidth <= 0 && element.offsetHeight <= 0;
-
-  // If the node is empty, this is good enough
-  if (zeroSize && !element.innerHTML) return true;
-
-  // Otherwise we need to check some styles
-  var style = window.getComputedStyle(element);
-  return zeroSize ? style.getPropertyValue("overflow") !== "visible" : style.getPropertyValue("display") == "none";
-}
-
-function visible(element) {
-  var parentElement = element;
-  while (parentElement) {
-    if (parentElement === document.body) break;
-    if (hidesContents(parentElement)) return false;
-    parentElement = parentElement.parentNode;
-  }
-  return true;
-}
-
-function focusable(element, isTabIndexNotNaN) {
-  var nodeName = element.nodeName.toLowerCase();
-  var res = tabbableNode.test(nodeName) && !element.disabled || (nodeName === "a" ? element.href || isTabIndexNotNaN : isTabIndexNotNaN);
-  return res && visible(element);
-}
-
-function tabbable(element) {
-  var tabIndex = element.getAttribute("tabindex");
-  if (tabIndex === null) tabIndex = undefined;
-  var isTabIndexNaN = isNaN(tabIndex);
-  return (isTabIndexNaN || tabIndex >= 0) && focusable(element, !isTabIndexNaN);
-}
-
-function findTabbableDescendants(element) {
-  return [].slice.call(element.querySelectorAll("*"), 0).filter(tabbable);
-}
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ "./node_modules/react-modal/lib/index.js":
-/*!***********************************************!*\
-  !*** ./node_modules/react-modal/lib/index.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Modal = __webpack_require__(/*! ./components/Modal */ "./node_modules/react-modal/lib/components/Modal.js");
-
-var _Modal2 = _interopRequireDefault(_Modal);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Modal2.default;
-module.exports = exports["default"];
-
-/***/ }),
-
 /***/ "./node_modules/react-redux/es/components/Context.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-redux/es/components/Context.js ***!
@@ -76843,7 +75003,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _store_container_header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/container/header */ "./store/container/header.js");
+/* harmony import */ var _store_container_navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/container/navbar */ "./store/container/navbar.js");
 /* harmony import */ var _components_home__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/home */ "./components/home.js");
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/auth */ "./utils/auth.js");
 /* harmony import */ var _utils_query__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/query */ "./utils/query.js");
@@ -76854,26 +75014,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
-// import React from 'react'
+// @module import
+
+ // @local import
 
 
 
-
-
+ // @page
 
 var App = function App(_ref) {
   var isLoggedIn = _ref.isLoggedIn,
       sampleData = _ref.sampleData;
   return __jsx("div", {
     className: "jsx-4166312007"
-  }, __jsx(_store_container_header__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, __jsx(_store_container_navbar__WEBPACK_IMPORTED_MODULE_4__["default"], {
     isLoggedIn: isLoggedIn
   }), __jsx(_components_home__WEBPACK_IMPORTED_MODULE_5__["default"], {
     data: sampleData
   }), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a, {
     id: "4166312007"
-  }, "body{padding:0;margin:0;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9odWdvcGFwaWVyL0RvY3VtZW50cy9qb2JUcmlib28vYXBwL3BhZ2VzL2luZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWF5QixBQUd1QixVQUNELFNBQ1giLCJmaWxlIjoiL1VzZXJzL2h1Z29wYXBpZXIvRG9jdW1lbnRzL2pvYlRyaWJvby9hcHAvcGFnZXMvaW5kZXguanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgSGVhZGVyIGZyb20gJy4uL3N0b3JlL2NvbnRhaW5lci9oZWFkZXInXG5pbXBvcnQgSG9tZSBmcm9tICcuLi9jb21wb25lbnRzL2hvbWUnXG5cbmltcG9ydCB7IGNoZWNrQXV0aCB9IGZyb20gJy4uL3V0aWxzL2F1dGgnXG5pbXBvcnQgeyBnZXRTYW1wbGVEYXRhIH0gZnJvbSAnLi4vdXRpbHMvcXVlcnknXG5pbXBvcnQgeyB3aXRoVHJhbnNsYXRpb24gfSBmcm9tICcuLi9jb21wb25lbnRzL2kxOG4nO1xuXG5jb25zdCBBcHAgPSAoeyBpc0xvZ2dlZEluLCBzYW1wbGVEYXRhIH0pID0+IHtcbiAgcmV0dXJuIChcbiAgICA8ZGl2PlxuICAgICAgPEhlYWRlciBpc0xvZ2dlZEluPXtpc0xvZ2dlZElufSAvPlxuICAgICAgPEhvbWUgZGF0YT17c2FtcGxlRGF0YX0gLz5cbiAgICAgIDxzdHlsZSBqc3ggZ2xvYmFsPntgXG4gICAgICAgICAgYm9keSB7XG4gICAgICAgICAgICBwYWRkaW5nOiAwO1xuICAgICAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICAgIH1cbiAgICAgIGB9PC9zdHlsZT5cbiAgICA8L2Rpdj5cbiAgKTtcbn1cblxuQXBwLmdldEluaXRpYWxQcm9wcyA9IGFzeW5jIGN0eCA9PiB7XG4gIGNvbnN0IGlzTG9nZ2VkSW4gPSBhd2FpdCBjaGVja0F1dGgoY3R4KTtcbiAgY29uc3Qgc2FtcGxlRGF0YSA9IGF3YWl0IGdldFNhbXBsZURhdGEoKTtcbiAgcmV0dXJuIHtcbiAgICBzYW1wbGVEYXRhLFxuICAgIGlzTG9nZ2VkSW4sXG4gICAgbmFtZXNwYWNlc1JlcXVpcmVkOiBbJ2NvbW1vbiddXG4gIH07XG59XG5cbmV4cG9ydCBkZWZhdWx0IHdpdGhUcmFuc2xhdGlvbignY29tbW9uJykoQXBwKTsiXX0= */\n/*@ sourceURL=/Users/hugopapier/Documents/jobTriboo/app/pages/index.js */"));
-};
+  }, "body{padding:0;margin:0;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9odWdvcGFwaWVyL0RvY3VtZW50cy9qb2JUcmlib28vYXBwL3BhZ2VzL2luZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWtCeUIsQUFHdUIsVUFDRCxTQUNYIiwiZmlsZSI6Ii9Vc2Vycy9odWdvcGFwaWVyL0RvY3VtZW50cy9qb2JUcmlib28vYXBwL3BhZ2VzL2luZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gQG1vZHVsZSBpbXBvcnRcbmltcG9ydCBOYXZiYXIgZnJvbSAnLi4vc3RvcmUvY29udGFpbmVyL25hdmJhcidcbmltcG9ydCBIb21lIGZyb20gJy4uL2NvbXBvbmVudHMvaG9tZSdcblxuXG4vLyBAbG9jYWwgaW1wb3J0XG5pbXBvcnQgeyBjaGVja0F1dGggfSBmcm9tICcuLi91dGlscy9hdXRoJ1xuaW1wb3J0IHsgZ2V0U2FtcGxlRGF0YSB9IGZyb20gJy4uL3V0aWxzL3F1ZXJ5J1xuaW1wb3J0IHsgd2l0aFRyYW5zbGF0aW9uIH0gZnJvbSAnLi4vY29tcG9uZW50cy9pMThuJztcblxuXG4vLyBAcGFnZVxuY29uc3QgQXBwID0gKHsgaXNMb2dnZWRJbiwgc2FtcGxlRGF0YSB9KSA9PiB7XG4gIHJldHVybiAoXG4gICAgPGRpdj5cbiAgICAgIDxOYXZiYXIgaXNMb2dnZWRJbj17aXNMb2dnZWRJbn0gLz5cbiAgICAgIDxIb21lIGRhdGE9e3NhbXBsZURhdGF9IC8+XG5cbiAgICAgIDxzdHlsZSBqc3ggZ2xvYmFsPntgXG4gICAgICAgICAgYm9keSB7XG4gICAgICAgICAgICBwYWRkaW5nOiAwO1xuICAgICAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICAgIH1cbiAgICAgIGB9PC9zdHlsZT5cbiAgICA8L2Rpdj5cbiAgKTtcbn1cblxuXG4vLyBAcmVxdWVzdFxuQXBwLmdldEluaXRpYWxQcm9wcyA9IGFzeW5jIGN0eCA9PiB7XG4gIGNvbnN0IGlzTG9nZ2VkSW4gPSBhd2FpdCBjaGVja0F1dGgoY3R4KTtcbiAgY29uc3Qgc2FtcGxlRGF0YSA9IGF3YWl0IGdldFNhbXBsZURhdGEoKTtcbiAgcmV0dXJuIHtcbiAgICBzYW1wbGVEYXRhLFxuICAgIGlzTG9nZ2VkSW4sXG4gICAgbmFtZXNwYWNlc1JlcXVpcmVkOiBbJ2NvbW1vbiddXG4gIH07XG59XG5cblxuLy8gQGV4cG9ydFxuZXhwb3J0IGRlZmF1bHQgd2l0aFRyYW5zbGF0aW9uKCdjb21tb24nKShBcHApOyJdfQ== */\n/*@ sourceURL=/Users/hugopapier/Documents/jobTriboo/app/pages/index.js */"));
+}; // @request
+
 
 App.getInitialProps =
 /*#__PURE__*/
@@ -76913,9 +75075,54 @@ function () {
   return function (_x) {
     return _ref2.apply(this, arguments);
   };
-}();
+}(); // @export
+
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(_components_i18n__WEBPACK_IMPORTED_MODULE_8__["withTranslation"])('common')(App));
+
+/***/ }),
+
+/***/ "./static/assets/arrow_icon_0.svg":
+/*!****************************************!*\
+  !*** ./static/assets/arrow_icon_0.svg ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMThweCIgaGVpZ2h0PSI1cHgiIHZpZXdCb3g9IjAgMCAxOCA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA1Mi42ICg2NzQ5MSkgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+YXJyb3hMb2dvPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IkNVVF9WSUVXIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTI0MS4wMDAwMDAsIC0yOS4wMDAwMDApIiBmaWxsPSIjRkZGRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iPgogICAgICAgICAgICA8ZyBpZD0iRmlyc3RfUGFydCI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iTmF2QmFyIj4KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iUmVjcnVpdGVyQnV0dG9uIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMTQ1LjAwMDAwMCwgMTAuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxnIGlkPSJhcnJveExvZ28iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDk2LjAwMDAwMCwgMTkuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTQuNTk3NjQyOSwwLjc2NjI4MTIwMSBDMTQuNDk5MTc5LDAuNzEzNDc3NjEyIDE0LjM4MDAxOSwwLjcxNTM2MzM5OSAxNC4yODIxODIzLDAuNzc0NDUzMTgyIEMxNC4xODU2LDAuODMyMjg1NzUyIDE0LjEyNjY0NzEsMC45MzY2MzU3MTggMTQuMTI2MDE5OSwxLjA0OTE1NzczIEMxNC4xMjQzMzQ0LDEuNDYwOTc4ODMgMTQuMTQyMTMsMS44NzQyOTI5MyAxNC4xNTYzNTg3LDIuMjg3MzMxOTEgQzEyLjkzNDQ1ODUsMi4yNTM2MjI0MyA5LjAzMTg0ODg1LDIuMTk3MzIyMTkgNS45NDE5MTg2OSwyLjE1NzI4NzI1IEM1Ljg5ODk5NzU1LDEuOTI0MTg5MTEgNS43ODk0ODAwNiwxLjY4ODY5NDQgNS42MzM2NzA0LDEuNDM1MTI3MDEgQzUuMjM5MTg3ODksMC43OTI2ODI5MzIgNS4xMDY4NTc1LDAuNTgwMjExMjMyIDUuMDQwMzc4NzUsMC40NzMzNDY3NzYgQzQuOTc1NzgxNDcsMC4zNjg5OTY4MSA0Ljk3NTc4MTQ3LDAuMzY4OTk2ODEgNC44NDg0NjgzNSwwLjE1NjUyNTA0NiBDNC43OTA3Njk3NiwwLjA1OTA4OTc4MzIgNC42ODYwMzQzNiwwIDQuNTczMTQ1OTEsMCBMMC43NTkzOTY4OTgsMCBDMC42NDM5OTk3ODYsMCAwLjUzNjc1NTcyMiwwLjA2MjIzMjg0NzkgMC40ODAzMTE0OTksMC4xNjM0Mzk3NDkgQzAuNDIzMjQwMDkzLDAuMjY0MDE4MDc2IDAuNDI0NDk0MzkzLDAuMzg3ODU1MTMzIDAuNDg0MDc0NDY0LDAuNDg3MTc2MjQ3IEMwLjYxNTE1MDU1NiwwLjcwNjU2MjcxNSAwLjYxNTE1MDU1NiwwLjcwNjU2MjcxNSAwLjY4MjI1NjQ5MywwLjgxNDA1NTgxIEMwLjc0ODEwODEzLDAuOTIwMjkxNjkyIDAuODgwNDM4NTIyLDEuMTMyNzYzMzkgMS4yNzM2NjY2NywxLjc3MjA2NDM0IEMxLjYwMTA0MzQzLDIuMzA1NzU4MTEgMS41NzI4MjEzMiwyLjQ2ODU2OTIyIDEuMjg3NDY0MTcsMi44MDA0Nzc3IEMwLjY3NzIzOTIyNywzLjU3MjQxNjQgMC40NzU5MjE0MTUsMy44MzA3NzY5MiAwLjM3NDk0ODk4MywzLjk2MDI3MTUzIEMwLjI3NTg1Nzk2OCw0LjA4Nzg4MDI5IDAuMjc1ODU3OTY4LDQuMDg3ODgwMjkgMC4wNzIwMzE1NTU0LDQuMzM4Njk3NDcgQy0wLjAwNjM2MzIxMzgsNC40MzQ4NzU1MiAtMC4wMjIwNDIxOTMzLDQuNTY4MTQxNzcgMC4wMzEyNjYyNDcxLDQuNjgwMDM1MTQgQzAuMDgzOTQ3NTA1Myw0Ljc5MTkyODUxIDAuMTk2ODM2MDE3LDQuODYzNTkwNTYgMC4zMjEwMTMzNiw0Ljg2MzU5MDU2IEw0LjEzNDc2MjMxLDQuODYzNTkwNTYgQzQuMjMxMzQ0NjYsNC44NjM1OTA1NiA0LjMyMjkwOTgxLDQuODIwMjE2MTYgNC4zODM3NDQxMiw0Ljc0NDc4MjQxIEM0LjU5MjU4NzgsNC40ODcwNTA0NyA0LjU5MjU4NzgsNC40ODcwNTA0NyA0LjY5NDgxNDU5LDQuMzU2Mjk4NjQgQzQuNzk1MTU5OTEsNC4yMjc0MzI2NyA0Ljk5NjQ3NzcyLDMuOTY5NzAwNzIgNS41OTYwNDA5NCwzLjIxMDMzNDM1IEM1LjcxODMzNjgsMy4wNjgwNzEwMyA1LjgwMjQxNTIsMi45MzI0ODY3NCA1Ljg2MjA3MzYyLDIuNzk5ODQ5MDYgQzguOTY0OTc4MDksMi44Mzk5MjMyNyAxMi45MjQ2NTkxLDIuODk2ODkxNDEgMTQuMTQ2NzE2MSwyLjkzMTIyOTUzIEMxNC4xNDk4NTE4LDIuOTMxMjI5NTMgMTQuMTUyMzYwNSwyLjkzMTIyOTUzIDE0LjE1NTQ5NjMsMi45MzEyMjk1MyBDMTQuMTYyMTU5OSwyLjkzMTIyOTUzIDE0LjE2NzgwNDMsMi45Mjc4NTA3NCAxNC4xNzQzODk0LDIuOTI3NDU3ODMgQzE0LjIwNjg4NCwzLjUyNTg1OTYxIDE0LjI1NDg2MTcsNC4xMjI4ODYyNSAxNC4zMjA0Mzg5LDQuNzEzOTgwMzQgQzE0LjMzMTEwMDYsNC44MTE0MTU2IDE0LjM4NjI5MDUsNC44OTg3OTMwMyAxNC40NjkwNzU0LDQuOTUwOTY4MDUgQzE0LjUyMDUwMjMsNC45ODMwMjc0IDE0LjU4MDA4MjQsNSAxNC42Mzk2NjI0LDUgQzE0LjY3NTQxMDUsNSAxNC43MTE3ODU2LDQuOTkzNzEzODcgMTQuNzQ2Mjc5Myw0Ljk4MTc3MDE5IEMxNS44NTAwNzc4LDQuNTkxNDAwNTYgMTYuODk4Njg2Myw0LjA1MTQyMDY2IDE3Ljg2MjYyODUsMy4zNzYyODg2NiBDMTcuOTQ3Mjk0OCwzLjMxNjU3MDMgMTcuOTk4NzIxOSwzLjIyMDM5MjI1IDE3Ljk5OTk3NjIsMy4xMTY2NzA4NiBDMTguMDAxMjMwNSwzLjAxMjk0OTQ3IDE3Ljk1MjkzOTMsMi45MTQ4ODU1NyAxNy44Njk1MjcyLDIuODUzMjgxMzYgQzE3LjM3NDY5OTQsMi40ODY3OTkxNyAxNS4wODE4MDksMS4wMjQwMTMxNSAxNC41OTc2NDI5LDAuNzY2MjgxMjAxIFogTTQuNDk2MDA1NDUsMC44MTQwNTU4NzQgQzQuNTYxODU3MDgsMC45MjAyOTE3NTYgNC42OTQxODc0NywxLjEzMjc2MzQ2IDUuMDg2Nzg4NSwxLjc3MjA2NDQxIEM1LjE4MDg2MjI1LDEuOTI1NDQ2MzIgNS4yMzc5MzM2NiwyLjA0MzgyMjM1IDUuMjc1NjQxNTMsMi4xNDg3NjE2OSBDNC44NDQxMTc1LDIuMTQzMjYxMzIgNC40MzU3MTk5MSwyLjEzODE5MzA4IDQuMDYwOTUzNjMsMi4xMzM2MzU2NyBDNC4wMTQ5NzUxMiwxLjkwODA4MDk0IDMuOTA2NTE1OTMsMS42Nzk3NzU5OSAzLjc1NTk1OTA0LDEuNDM0NDk4NDQgQzMuNTAyMjM0MzIsMS4wMjE2NTU4NSAzLjM1NzQzOTIxLDAuNzg3NDE4MzU2IDMuMjY4MTg2NzIsMC42NDM3MDEzNTcgTDQuMzkxMjY5OTgsMC42NDM3MDEzNTcgQzQuNDM1Nzk4MjYsMC43MTc4Nzc4ODkgNC40NTA4NTAwNSwwLjc0MTc2NTE5NCA0LjQ5NjAwNTQ1LDAuODE0MDU1ODc0IFogTTEuMzMyNjE5NjksMC42NDM3MDEzNTcgTDIuNTEzMTY2NjEsMC42NDM3MDEzNTcgQzIuNTU1ODEzMzQsMC43MTQ2OTU0OTUgMi41NzM0NTIyMSwwLjc0MzIxODkyOSAyLjYxNzY2NjgzLDAuODE0MDU1ODc0IEMyLjY4MzUxODQ3LDAuOTIwMjkxNzU2IDIuODE1ODQ4ODYsMS4xMzI3NjM0NiAzLjIwOTA3NzAxLDEuNzcyMDY0NDEgQzMuMjk1NjI0ODMsMS45MTMxODgzOCAzLjM1NDAyODk1LDIuMDI2NDU2ODMgMy4zOTI3MTY3NywyLjEyNTY5OTM1IEMyLjgyOTA1ODM1LDIuMTE5MTM4MTcgMi4zODk3MzM5OCwyLjExNDM4NDMgMi4xMjI2MDM3NywyLjExMTk4NzY3IEMyLjA3NDA3NzQxLDEuODkzNDY1NTcgMS45NjYyODQ1OCwxLjY3MTkxODIgMS44MjA1NDg3LDEuNDM0NDk4MzcgQzEuNTY3MTc2ODcsMS4wMjI3NTU5MyAxLjQyMjMwMzI5LDAuNzg3NjU0MDggMS4zMzI2MTk2OSwwLjY0MzcwMTM1NyBaIE0xLjc4MjI5MjEyLDMuMjEwOTYzMTIgQzEuOTE4NDI0NjUsMy4wNTI2NzAxNSAyLjAxMjU3Njc1LDIuOTAxOTk5MDUgMi4wNzE4ODI0LDIuNzU1MjU2ODUgQzIuMzA5ODQ5NzMsMi43NTcyNjA1NiAyLjcyMDE2Nzk4LDIuNzYxNjIxNTggMy4yNDY3NDU3MSwyLjc2NzY3MTk4IEMzLjIzNzA2Mzk0LDIuNzc5MzAxMzUgMy4yMzMyNjE4LDIuNzg4NDE2MjkgMy4yMjI4NzQ1LDIuODAwNDc3ODMgQzIuNjEyNjQ5NTcsMy41NzI0MTY1MiAyLjQxMTMzMTc2LDMuODMwNzc3MDUgMi4zMTAzNTkzMiwzLjk2MDI3MTY2IEMyLjIzMTI5ODIsNC4wNjIxMDcyIDIuMjEwNzE5NTQsNC4wODgyNzMyNyAyLjEwMzk0NTksNC4yMTk4ODk0NiBMMC45ODc2ODI1MjEsNC4yMTk4ODk0NiBDMS4xMTYyNDk5NSw0LjA1NTgyMTA3IDEuMzQxMzk5OTIsMy43Njg1NDQyNiAxLjc4MjI5MjEyLDMuMjEwOTYzMTIgWiBNNS4xMDEyMTMxMiwyLjgwMDQ3NzgzIEM0LjQ5MDk4ODE4LDMuNTcyNDE2NTIgNC4yODk2NzAzNywzLjgzMDc3NzA1IDQuMTg4Njk3OTQsMy45NjAyNzE2NiBDNC4xMDg0MjE2OCw0LjA2MzM2NDQxIDQuMDkyNzQyNyw0LjA4Mjg1MTUgMy45ODE3MzU3NCw0LjIxOTg4OTQ2IEwyLjkyMjk3NTM0LDQuMjE5ODg5NDYgQzMuMDUxMjY4NDEsNC4wNTU5Mzg5MyAzLjI3NTk4NzAxLDMuNzY5OTU4NiAzLjcxNzcwMjM5LDMuMjEwOTYzMTIgQzMuODQ3MzY3MzYsMy4wNjAyMTM0OSAzLjkzNjU4MDI4LDIuOTE2NjE0MzYgMy45OTYyNzc5NCwyLjc3NjUxMTg3IEM0LjM0MDgyMjk3LDIuNzgwNjM3MTYgNC43MTMzNTQ5NCwyLjc4NTIzMzg5IDUuMTA4NjYwNjMsMi43OTAyMjM1NCBDNS4xMDU0ODU2MSwyLjc5Mzk1NTk4IDUuMTA0NDI3MzEsMi43OTY3MDYxMyA1LjEwMTIxMzEyLDIuODAwNDc3ODMgWiBNMTQuOTE2MjM5Miw0LjIzMTgzMzE0IEMxNC44MzE1NzI5LDMuMzY0OTczNjggMTQuNzgzMjgxNywyLjQ4ODA1NjM4IDE0Ljc3MDczODUsMS42MTQyODIyMSBDMTUuNDI0MjM3MywyLjAxMjgyMzgyIDE2LjQ5NzMwNTEsMi42OTg2NDIyOSAxNy4xMDgxNTcyLDMuMTA4NDk5MDEgQzE2LjQxNTE0NzQsMy41NTYwNzI1IDE1LjY4MDc0NTEsMy45MzI2MTI2NSAxNC45MTYyMzkyLDQuMjMxODMzMTQgWiIgaWQ9IlNoYXBlIj48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg=="
+
+/***/ }),
+
+/***/ "./static/assets/bottom_arrow_icon.svg":
+/*!*********************************************!*\
+  !*** ./static/assets/bottom_arrow_icon.svg ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iN3B4IiBoZWlnaHQ9IjRweCIgdmlld0JveD0iMCAwIDcgNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNTIuNiAoNjc0OTEpIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPgogICAgPHRpdGxlPmJvdHRvbV9hcnJvd19pY29uPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IkNVVF9WSUVXIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtODU4LjAwMDAwMCwgLTMwLjAwMDAwMCkiIGZpbGw9IiM0MDQ2NjAiPgogICAgICAgICAgICA8ZyBpZD0iRmlyc3RfUGFydCI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iTmF2QmFyIj4KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iTGFuZyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODM5LjAwMDAwMCwgMjQuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxnIGlkPSJib3R0b21fYXJyb3dfaWNvbiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTkuMDAwMDAwLCA2LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTAsMC43MDQwNDE3MjEgQzAsMC41MjMyNTA3NjEgMC4wNzM2NjQ4MjUsMC4zNDk0MTMyOTkgMC4yMTM2Mjc5OTMsMC4yMTAzNDMzMjkgQzAuNTAwOTIwODEsLTAuMDYwODQzMTExNyAwLjk3MjM3NTY5MSwtMC4wNjA4NDMxMTE3IDEuMjU5NjY4NTEsMC4yMTAzNDMzMjkgTDMuNDk5MDc5MTksMi4zMTcyNTMzNyBMNS43Mzg0ODk4NywwLjIwMzM4OTgzMSBDNi4wMjU3ODI2OSwtMC4wNjc3OTY2MTAyIDYuNDk3MjM3NTcsLTAuMDY3Nzk2NjEwMiA2Ljc4NDUzMDM5LDAuMjAzMzg5ODMxIEM3LjA3MTgyMzIsMC40NzQ1NzYyNzEgNy4wNzE4MjMyLDAuOTE5NjAwMTc0IDYuNzg0NTMwMzksMS4xOTA3ODY2MSBMNC4wMjIwOTk0NSwzLjc5ODM0ODU0IEMzLjg4MjEzNjI4LDMuOTMwNDY1MDIgMy42OTc5NzQyMiw0IDMuNDk5MDc5MTksNCBDMy4zMDAxODQxNiw0IDMuMTE2MDIyMSwzLjkyMzUxMTUyIDIuOTc2MDU4OTMsMy43OTgzNDg1NCBMMC4yMTM2Mjc5OTMsMS4xOTc3NDAxMSBDMC4wNzM2NjQ4MjUsMS4wNTg2NzAxNCAwLDAuODc3ODc5MTgzIDAsMC43MDQwNDE3MjEgWiIgaWQ9IlBhdGgiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+"
+
+/***/ }),
+
+/***/ "./static/assets/feather_icon.svg":
+/*!****************************************!*\
+  !*** ./static/assets/feather_icon.svg ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTVweCIgaGVpZ2h0PSIxM3B4IiB2aWV3Qm94PSIwIDAgMTUgMTMiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUyLjYgKDY3NDkxKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5GZWF0aGVyX0xvZ288L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iQ1VUX1ZJRVciIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMDk2LjAwMDAwMCwgLTI0LjAwMDAwMCkiIGZpbGw9IiM0MDQ2NjAiPgogICAgICAgICAgICA8ZyBpZD0iRmlyc3RfUGFydCI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iTmF2QmFyIj4KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iU2lnbkluQnRuIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMDAxLjAwMDAwMCwgMTAuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxnIGlkPSJGZWF0aGVyX0xvZ28iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDk1LjAwMDAwMCwgMTQuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNC4yMDI5ODg3OSwyLjU3MTM4NTAxIEMxLjM0NDk1NjQxLDQuNzg1ODA5NjEgMC41NDE3MTg1NTUsNy40MTY2MjE3NCAxLjIxNDE5Njc2LDguODE3MTk3OTggQzAuNDY2OTk4NzU1LDEwLjA4NTI4NzMgMC4xODY3OTk1MDIsMTEuMzE1NTIzMiAwLDEzIEMxLjQxOTY3NjIxLDEwLjIzNjcwMDkgMi4yNzg5NTM5Miw4LjAwMzM0OTYyIDYuOTExNTgxNTcsNC4yNTU4NjE4NCBDNS41ODUzMDUxMSw0LjUzOTc2MjQzIDMuMzA2MzUxMTgsNS45MDI0ODUyNiAxLjc1NTkxNTMyLDcuOTg0NDIyOTIgQzEuNTEzMDc1OTcsNS45MjE0MTE5NyAzLjg4NTQyOTY0LDMuNjMxMjgwNTQgNS40OTE5MDUzNSwyLjYwOTIzODQyIEM1LjI2Nzc0NTk1LDMuMzA5NTI2NTQgNS4zNDI0NjU3NSwzLjEzOTE4NjE5IDQuODc1NDY3LDQuMTA0NDQ4MTkgQzUuNTY2NjI1MTYsMy40NjA5NDAxOSA2LjAxNDk0Mzk2LDMuMDYzNDc5MzYgNi42Njg3NDIyMiwxLjk0NjgwMzcxIEM3LjU0NjY5OTg4LDEuNTExNDg5NDggOC40NDMzMzc0OCwxLjE4OTczNTQ3IDkuMzU4NjU1MDQsMC45ODE1NDE3MDggQzkuMjA5MjE1NDQsMS40OTI1NjI3NyA5LjE1MzE3NTU5LDIuMjg3NDg0NDIgNy44MjY4OTkxMywzLjUzNjY0NzAxIEM3LjgyNjg5OTEzLDMuNTM2NjQ3MDEgOS41MDgwOTQ2NSwyLjc3OTU3ODc4IDEwLjMxMTMzMjUsMi44MzYzNTg4OSBDOS4xMzQ0OTU2NCw0LjE2MTIyODMxIDguMjkzODk3ODgsNS42MTg1ODQ2NyA2Ljk4NjMwMTM3LDYuODY3NzQ3MjcgQzUuODY1NTA0MzYsNi43NTQxODcwMyA1LjEzNjk4NjMsNy4xODk1MDEyNyA0LjQ0NTgyODE0LDcuOTI3NjQyOCBDNC45ODc1NDY3LDcuNjYyNjY4OTIgNS43MTYwNjQ3Niw3LjQ1NDQ3NTE1IDYuMTgzMDYzNTEsNy41ODY5NjIwOSBDNS4zMjM3ODU4LDguMjg3MjUwMjEgMy45OTc1MDkzNCw5LjE5NTczMjEgMi45MTQwNzIyMyw5LjEyMDAyNTI4IEMyLjcwODU5Mjc4LDkuNDQxNzc5MjggMi42ODk5MTI4Myw5LjQ2MDcwNTk4IDIuNDY1NzUzNDIsOS44MzkyNDAxIEM0LjI0MDM0ODY5LDEwLjI5MzQ4MSA2LjQ2MzI2Mjc2LDguNDU3NTkwNTcgNy43NzA4NTkyOCw3LjE3MDU3NDU2IEMxMC42NjYyNTE2LDQuMzMxNTY4NjcgMTAuMjkyNjUyNiwyLjI4NzQ4NDQyIDE1LDEuMTg5NzM1NDcgQzExLjQxMzQ0OTYsLTEuMDI0Njg5MTIgNy40MTU5NDAyMiwwLjA5MTk4NjUyNzQgNC4yMDI5ODg3OSwyLjU3MTM4NTAxIFoiIGlkPSJQYXRoIj48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg=="
+
+/***/ }),
+
+/***/ "./static/assets/jb_logo.svg":
+/*!***********************************!*\
+  !*** ./static/assets/jb_logo.svg ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTEzcHgiIGhlaWdodD0iMjFweCIgdmlld0JveD0iMCAwIDExMyAyMSIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICA8ZGVmcz4KICAgICAgPHJlY3QgaWQ9InBhdGgtMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjkiIGhlaWdodD0iOSI+PC9yZWN0PgogICAgICA8cmVjdCBpZD0icGF0aC0zIiB4PSIwIiB5PSIwIiB3aWR0aD0iOSIgaGVpZ2h0PSI5Ij48L3JlY3Q+CiAgPC9kZWZzPgogIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICA8ZyBpZD0iQ1VUX1ZJRVciIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01Mi4wMDAwMDAsIC0xOS4wMDAwMDApIj4KICAgICAgICAgIDxnIGlkPSJGaXJzdF9QYXJ0Ij4KICAgICAgICAgICAgICA8ZyBpZD0iTmF2QmFyIj4KICAgICAgICAgICAgICAgICAgPGcgaWQ9ImxvZ29KQiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTIuMDAwMDAwLCAxNS4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICAgIDx0ZXh0IGlkPSJKIiBmb250LWZhbWlseT0iU291cmNlU2Fuc1Byby1CbGFjaywgU291cmNlIFNhbnMgUHJvIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjNDA0NjYwIj4KICAgICAgICAgICAgICAgICAgICAgICAgICA8dHNwYW4geD0iMCIgeT0iMjQiPko8L3RzcGFuPgogICAgICAgICAgICAgICAgICAgICAgPC90ZXh0PgogICAgICAgICAgICAgICAgICAgICAgPHRleHQgaWQ9Ik8iIGZvbnQtZmFtaWx5PSJTb3VyY2VTYW5zUHJvLUJsYWNrLCBTb3VyY2UgU2FucyBQcm8iIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM0MDQ2NjAiPgogICAgICAgICAgICAgICAgICAgICAgICAgIDx0c3BhbiB4PSIxMCIgeT0iMjQiPk88L3RzcGFuPgogICAgICAgICAgICAgICAgICAgICAgPC90ZXh0PgogICAgICAgICAgICAgICAgICAgICAgPHRleHQgaWQ9IkIiIGZvbnQtZmFtaWx5PSJTb3VyY2VTYW5zUHJvLUJsYWNrLCBTb3VyY2UgU2FucyBQcm8iIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM0MDQ2NjAiPgogICAgICAgICAgICAgICAgICAgICAgICAgIDx0c3BhbiB4PSIyNCIgeT0iMjQiPkI8L3RzcGFuPgogICAgICAgICAgICAgICAgICAgICAgPC90ZXh0PgogICAgICAgICAgICAgICAgICAgICAgPHRleHQgaWQ9IlQiIGZvbnQtZmFtaWx5PSJTb3VyY2VTYW5zUHJvLVJlZ3VsYXIsIFNvdXJjZSBTYW5zIFBybyIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgZmlsbD0iIzQwNDY2MCI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgPHRzcGFuIHg9IjM3IiB5PSIyNCI+VDwvdHNwYW4+CiAgICAgICAgICAgICAgICAgICAgICA8L3RleHQ+CiAgICAgICAgICAgICAgICAgICAgICA8dGV4dCBpZD0iUiIgZm9udC1mYW1pbHk9IlNvdXJjZVNhbnNQcm8tUmVndWxhciwgU291cmNlIFNhbnMgUHJvIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0ibm9ybWFsIiBmaWxsPSIjNDA0NjYwIj4KICAgICAgICAgICAgICAgICAgICAgICAgICA8dHNwYW4geD0iNDgiIHk9IjI0Ij5SPC90c3Bhbj4KICAgICAgICAgICAgICAgICAgICAgIDwvdGV4dD4KICAgICAgICAgICAgICAgICAgICAgIDx0ZXh0IGlkPSJCIiBmb250LWZhbWlseT0iU291cmNlU2Fuc1Byby1SZWd1bGFyLCBTb3VyY2UgU2FucyBQcm8iIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIGZpbGw9IiM0MDQ2NjAiPgogICAgICAgICAgICAgICAgICAgICAgICAgIDx0c3BhbiB4PSI2NiIgeT0iMjQiPkI8L3RzcGFuPgogICAgICAgICAgICAgICAgICAgICAgPC90ZXh0PgogICAgICAgICAgICAgICAgICAgICAgPGcgaWQ9Im5vdW5fQXJyb3dfMzc5MDEiIHN0cm9rZS13aWR0aD0iMSIgZmlsbC1ydWxlPSJldmVub2RkIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MC4wMDAwMDAsIDcuMDAwMDAwKSIgZmlsbD0iIzQwNDY2MCI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0LjQyMjM5NSwgOC43MTg5NTkpIHJvdGF0ZSgtOTAuMDAwMDAwKSB0cmFuc2xhdGUoLTQuNDIyMzk1LCAtOC43MTg5NTkpIHRyYW5zbGF0ZSgtNC4wNzc2MDUsIDUuMjE4OTU5KSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xMy4zNzIyOTMsNi4yMzM3NTc5NiBDMTMuMjA5MjM1Nyw2LjIzMzc1Nzk2IDEzLjA0NjgxNTMsNi4xNzIyOTI5OSAxMi45MjIyOTMsNi4wNDc3NzA3IEMxMi42NzM1NjY5LDUuNzk5MDQ0NTkgMTIuNjczMjQ4NCw1LjM5NTg1OTg3IDEyLjkyMTY1NjEsNS4xNDcxMzM3NiBMMTQuODgyNDg0MSwzLjE4MjgwMjU1IEwxMi45MTY4NzksMS4yMjM4ODUzNSBDMTIuNjY3ODM0NCwwLjk3NTQ3NzcwNyAxMi42NjcxOTc1LDAuNTcyMjkyOTk0IDEyLjkxNTI4NjYsMC4zMjMyNDg0MDggQzEzLjE2MzM3NTgsMC4wNzM1NjY4NzkgMTMuNTY2ODc5LDAuMDczMjQ4NDA3NiAxMy44MTYyNDIsMC4zMjE2NTYwNTEgTDE2LjIzMzQzOTUsMi43MzAyNTQ3OCBDMTYuMzUzMTg0NywyLjg0OTY4MTUzIDE2LjQyMDM4MjIsMy4wMTE3ODM0NCAxNi40MjA3MDA2LDMuMTgwNTczMjUgQzE2LjQyMTAxOTEsMy4zNDkzNjMwNiAxNi4zNTM4MjE3LDMuNTExNzgzNDQgMTYuMjM0Mzk0OSwzLjYzMTIxMDE5IEwxMy44MjI5Mjk5LDYuMDQ3MTMzNzYgQzEzLjY5ODcyNjEsNi4xNzE2NTYwNSAxMy41MzU2Njg4LDYuMjMzNzU3OTYgMTMuMzcyMjkzLDYuMjMzNzU3OTYgWiIgaWQ9IlBhdGgiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTAuNjQ0NTg1OTg3LDUuNTU5NTU0MTQgQzAuNTE4MTUyODY2LDUuNTU5NTU0MTQgMC4zOTE0MDEyNzQsNS41MTExNDY1IDAuMjk0OTA0NDU5LDUuNDE0NjQ5NjggQzAuMTAxNTkyMzU3LDUuMjIxMzM3NTggMC4xMDEyNzM4ODUsNC45MDc2NDMzMSAwLjI5NDU4NTk4Nyw0LjcxNDMzMTIxIEwxLjgxODE1Mjg3LDMuMTg5MTcxOTcgTDAuMjg2NjI0MjA0LDEuNjc0NTIyMjkgQzAuMDkyMzU2Njg3OSwxLjQ4MjE2NTYxIDAuMDkwNDQ1ODU5OSwxLjE2ODc4OTgxIDAuMjgyODAyNTQ4LDAuOTc0NTIyMjkzIEMwLjQ3NTE1OTIzNiwwLjc3OTkzNjMwNiAwLjc4ODUzNTAzMiwwLjc3ODM0Mzk0OSAwLjk4MjgwMjU0OCwwLjk3MDcwMDYzNyBMMi44Njc4MzQzOSwyLjgzNTAzMTg1IEMyLjk2MTQ2NDk3LDIuOTI3NzA3MDEgMy4wMTQzMzEyMSwzLjA1NDE0MDEzIDMuMDE0NjQ5NjgsMy4xODU2Njg3OSBDMy4wMTQ5NjgxNSwzLjMxNzUxNTkyIDIuOTYzMDU3MzIsMy40NDM5NDkwNCAyLjg2OTc0NTIyLDMuNTM3MjYxMTUgTDAuOTk0OTA0NDU5LDUuNDE0MDEyNzQgQzAuODk4NDA3NjQzLDUuNTExMTQ2NSAwLjc3MTMzNzU4LDUuNTU5NTU0MTQgMC42NDQ1ODU5ODcsNS41NTk1NTQxNCBaIiBpZD0iUGF0aCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMi43NDI5OTM2Myw1LjU1NDQ1ODYgQzIuNjE2NTYwNTEsNS41NTQ0NTg2IDIuNDg5ODA4OTIsNS41MDY2ODc5IDIuMzkzMzEyMSw1LjQwOTU1NDE0IEMyLjIsNS4yMTY4Nzg5OCAyLjE5OTY4MTUzLDQuOTAzMTg0NzEgMi4zOTI2NzUxNiw0LjcwOTg3MjYxIEwzLjkxNjI0MjA0LDMuMTg0Mzk0OSBMMi4zODQ3MTMzOCwxLjY3MDA2MzY5IEMyLjE5MDQ0NTg2LDEuNDc3NzA3MDEgMi4xODg1MzUwMywxLjE2NDMzMTIxIDIuMzgwNTczMjUsMC45NzAwNjM2OTQgQzIuNTcyNjExNDYsMC43NzU3OTYxNzggMi44ODYzMDU3MywwLjc3MzU2Njg3OSAzLjA4MDU3MzI1LDAuOTY1OTIzNTY3IEw0Ljk2NTYwNTEsMi44MzAyNTQ3OCBDNS4wNTkyMzU2NywyLjkyMjkyOTk0IDUuMTEyMTAxOTEsMy4wNDkzNjMwNiA1LjExMjQyMDM4LDMuMTgwODkxNzIgQzUuMTEyNzM4ODUsMy4zMTI0MjAzOCA1LjA2MDgyODAzLDMuNDM4ODUzNSA0Ljk2NzgzNDM5LDMuNTMyMTY1NjEgTDMuMDkyOTkzNjMsNS40MDk4NzI2MSBDMi45OTY0OTY4Miw1LjUwNjA1MDk2IDIuODY5NzQ1MjIsNS41NTQ0NTg2IDIuNzQyOTkzNjMsNS41NTQ0NTg2IFoiIGlkPSJQYXRoIj48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xNS4wNDI2NzUyLDMuODIxNjU2MDUgTDIuNDYwNTA5NTUsMy44MjE2NTYwNSBDMi4xMDg5MTcyLDMuODIxNjU2MDUgMS44MjM1NjY4OCwzLjUzNjMwNTczIDEuODIzNTY2ODgsMy4xODQ3MTMzOCBDMS44MjM1NjY4OCwyLjgzMzEyMTAyIDIuMTA4OTE3MiwyLjU0Nzc3MDcgMi40NjA1MDk1NSwyLjU0Nzc3MDcgTDE1LjA0Mjk5MzYsMi41NDc3NzA3IEMxNS4zOTQ1ODYsMi41NDc3NzA3IDE1LjY3OTkzNjMsMi44MzMxMjEwMiAxNS42Nzk5MzYzLDMuMTg0NzEzMzggQzE1LjY3OTYxNzgsMy41MzYzMDU3MyAxNS4zOTQ1ODYsMy44MjE2NTYwNSAxNS4wNDI2NzUyLDMuODIxNjU2MDUgWiIgaWQ9IlBhdGgiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICAgICAgICA8dGV4dCBpZD0iTyIgZm9udC1mYW1pbHk9IlNvdXJjZVNhbnNQcm8tUmVndWxhciwgU291cmNlIFNhbnMgUHJvIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0ibm9ybWFsIiBmaWxsPSIjNDA0NjYwIj4KICAgICAgICAgICAgICAgICAgICAgICAgICA8dHNwYW4geD0iNzgiIHk9IjI0Ij5PPC90c3Bhbj4KICAgICAgICAgICAgICAgICAgICAgIDwvdGV4dD4KICAgICAgICAgICAgICAgICAgICAgIDx0ZXh0IGlkPSJPLUNvcHkiIGZvbnQtZmFtaWx5PSJTb3VyY2VTYW5zUHJvLVJlZ3VsYXIsIFNvdXJjZSBTYW5zIFBybyIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgZmlsbD0iIzQwNDY2MCI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgPHRzcGFuIHg9IjkyIiB5PSIyNCI+TzwvdHNwYW4+CiAgICAgICAgICAgICAgICAgICAgICA8L3RleHQ+CiAgICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iQ2xpcHBlZCIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwMi4wMDAwMDAsIDEuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgPG1hc2sgaWQ9Im1hc2stMiIgZmlsbD0id2hpdGUiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiNwYXRoLTEiPjwvdXNlPgogICAgICAgICAgICAgICAgICAgICAgICAgIDwvbWFzaz4KICAgICAgICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iYiI+PC9nPgogICAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zLjY0NjA5Mjg4LDYuNTk2NDg4MTIgQzMuOTc4MzE5NTMsNi40MTA1MzEwOCA0LjgyODY2MTU1LDYuMjYwMTgyODUgNS41NzYxNzE1MSw2LjE1MzM1NjQ3IEM1LjcxMDY0NDIsNS45NjM0NDI5IDUuODM3MjA2NzMsNS43Njk1NzI4MSA1Ljk1OTgxNDE4LDUuNTY3Nzg5NjQgQzUuNTkxOTkxODIsNS41ODc1NzIzMSA1LjE4NDYxODY3LDUuNjI3MTM3NjMgNC43NDE2NDk4MSw1LjY2NjcwMjk2IEM0Ljk4MjkwOTYzLDUuNTMyMTgwODUgNS41NDQ1MzA4Nyw1LjM2MjA0OTk1IDYuMTYxNTIzMjIsNS4xOTk4MzIxMSBDNi41MTM1MjUyNiw0LjUzOTA5MTE3IDYuODAyMjQ2MDQsMy44MDcxMzI2NSA3LDMgQzUuNTQ4NDg1OTUsMy4yODA5MTM4MSA0LjM3MzgyNzQ1LDMuNzI0MDQ1NDYgMy40MjQ2MDg0NSw0LjI1MDI2NDMgQzMuMzkyOTY3ODIsNC42MTAzMDg3NiAzLjMyOTY4NjU1LDQuOTM4NzAwOTYgMy4yMTEwMzQxOCw1LjE0NDQ0MDY2IEMzLjE4MzM0ODYyLDQuODkxMjIyNTcgMy4xNTU2NjMwNyw0LjY0OTg3NDA5IDMuMTI0MDIyNDQsNC40MjQzNTE3MyBDMC41NDUzMTA4MzEsNS45ODcxODIxIC0wLjI0OTY2MDA3OCw4LjIwMjg0MDM0IC0wLjU2MjExMTMzMSw5LjQ1NzA2MTE3IEMtMS40MzIyMjg3NCwxMC42Njc3NjAxIC0xLjk2MjIwOTM1LDExLjgwNzI0MTUgLTEuOTk3ODA1MDYsMTEuOTUzNjMzMiBDLTIuMDA5NjcwMywxMi4wMDExMTE2IC0xLjk3MDExOTUxLDEyLjAxMjk4MTIgLTEuOTU4MjU0MjcsMTEuOTg1Mjg1NSBDLTEuMTIzNzMyNTcsMTAuNzA3MzI1NSAxLjU3MzYzMTQxLDYuNTI5MjI3MDYgNS40MDYxMDMxLDQuMzg0Nzg2NCBDMy4xNjc1MjgzMSw2LjA5MDA1MTk1IDEuMjQxNDA0NzYsOC4yMDI4NDAzNCAwLjAyMzI0MDM4MzIsOS42NDMwMTgyIEMxLjk4ODkxNDcyLDkuMjcxMTA0MTQgMy44MTYxNjEyOSw4LjI4NTkyNzUzIDUuMTUyOTc4MDQsNi42OTkzNTc5NiBDNC43NjkzMzUzNiw2LjU4ODU3NTA1IDQuMjM5MzU0NzUsNi41NjQ4MzU4NiAzLjY0NjA5Mjg4LDYuNTk2NDg4MTIiIGlkPSJQYXRoIiBmaWxsPSIjNDA0NjYwIiBtYXNrPSJ1cmwoI21hc2stMikiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICAgIDxnIGlkPSJDbGlwcGVkLUNvcHkiIHN0cm9rZS13aWR0aD0iMSIgZmlsbC1ydWxlPSJldmVub2RkIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMDkuODMxNzgwLCA5LjI5MDU3MSkgcm90YXRlKDI5LjAwMDAwMCkgdHJhbnNsYXRlKC0xMDkuODMxNzgwLCAtOS4yOTA1NzEpIHRyYW5zbGF0ZSgxMDUuMzMxNzgwLCA0Ljc5MDU3MSkiPgogICAgICAgICAgICAgICAgICAgICAgICAgIDxtYXNrIGlkPSJtYXNrLTQiIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHVzZSB4bGluazpocmVmPSIjcGF0aC0zIj48L3VzZT4KICAgICAgICAgICAgICAgICAgICAgICAgICA8L21hc2s+CiAgICAgICAgICAgICAgICAgICAgICAgICAgPGcgaWQ9ImIiPjwvZz4KICAgICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMy42NDYwOTI4OCw2LjU5NjQ4ODEyIEMzLjk3ODMxOTUzLDYuNDEwNTMxMDggNC44Mjg2NjE1NSw2LjI2MDE4Mjg1IDUuNTc2MTcxNTEsNi4xNTMzNTY0NyBDNS43MTA2NDQyLDUuOTYzNDQyOSA1LjgzNzIwNjczLDUuNzY5NTcyODEgNS45NTk4MTQxOCw1LjU2Nzc4OTY0IEM1LjU5MTk5MTgyLDUuNTg3NTcyMzEgNS4xODQ2MTg2Nyw1LjYyNzEzNzYzIDQuNzQxNjQ5ODEsNS42NjY3MDI5NiBDNC45ODI5MDk2Myw1LjUzMjE4MDg1IDUuNTQ0NTMwODcsNS4zNjIwNDk5NSA2LjE2MTUyMzIyLDUuMTk5ODMyMTEgQzYuNTEzNTI1MjYsNC41MzkwOTExNyA2LjgwMjI0NjA0LDMuODA3MTMyNjUgNywzIEM1LjU0ODQ4NTk1LDMuMjgwOTEzODEgNC4zNzM4Mjc0NSwzLjcyNDA0NTQ2IDMuNDI0NjA4NDUsNC4yNTAyNjQzIEMzLjM5Mjk2NzgyLDQuNjEwMzA4NzYgMy4zMjk2ODY1NSw0LjkzODcwMDk2IDMuMjExMDM0MTgsNS4xNDQ0NDA2NiBDMy4xODMzNDg2Miw0Ljg5MTIyMjU3IDMuMTU1NjYzMDcsNC42NDk4NzQwOSAzLjEyNDAyMjQ0LDQuNDI0MzUxNzMgQzAuNTQ1MzEwODMxLDUuOTg3MTgyMSAtMC4yNDk2NjAwNzgsOC4yMDI4NDAzNCAtMC41NjIxMTEzMzEsOS40NTcwNjExNyBDLTEuNDMyMjI4NzQsMTAuNjY3NzYwMSAtMS45NjIyMDkzNSwxMS44MDcyNDE1IC0xLjk5NzgwNTA2LDExLjk1MzYzMzIgQy0yLjAwOTY3MDMsMTIuMDAxMTExNiAtMS45NzAxMTk1MSwxMi4wMTI5ODEyIC0xLjk1ODI1NDI3LDExLjk4NTI4NTUgQy0xLjEyMzczMjU3LDEwLjcwNzMyNTUgMS41NzM2MzE0MSw2LjUyOTIyNzA2IDUuNDA2MTAzMSw0LjM4NDc4NjQgQzMuMTY3NTI4MzEsNi4wOTAwNTE5NSAxLjI0MTQwNDc2LDguMjAyODQwMzQgMC4wMjMyNDAzODMyLDkuNjQzMDE4MiBDMS45ODg5MTQ3Miw5LjI3MTEwNDE0IDMuODE2MTYxMjksOC4yODU5Mjc1MyA1LjE1Mjk3ODA0LDYuNjk5MzU3OTYgQzQuNzY5MzM1MzYsNi41ODg1NzUwNSA0LjIzOTM1NDc1LDYuNTY0ODM1ODYgMy42NDYwOTI4OCw2LjU5NjQ4ODEyIiBpZD0iUGF0aCIgZmlsbD0iIzQwNDY2MCIgbWFzaz0idXJsKCNtYXNrLTQpIj48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICA8L2c+CiAgICAgIDwvZz4KICA8L2c+Cjwvc3ZnPg=="
 
 /***/ }),
 
@@ -76945,9 +75152,9 @@ var setLoginState = function setLoginState(data) {
 
 /***/ }),
 
-/***/ "./store/container/header.js":
+/***/ "./store/container/navbar.js":
 /*!***********************************!*\
-  !*** ./store/container/header.js ***!
+  !*** ./store/container/navbar.js ***!
   \***********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -76956,16 +75163,19 @@ var setLoginState = function setLoginState(data) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../action */ "./store/action/index.js");
-/* harmony import */ var _components_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/header */ "./components/header.js");
+/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Navbar */ "./components/Navbar/index.js");
+// @module import
+ // @local import
 
 
-
+ // @state dispatcher
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
     loginState: state.loginState
   };
-};
+}; // @action dispatcher
+
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
@@ -76973,68 +75183,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch(Object(_action__WEBPACK_IMPORTED_MODULE_1__["setLoginState"])(state));
     }
   };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_header__WEBPACK_IMPORTED_MODULE_2__["default"]));
-
-/***/ }),
-
-/***/ "./store/container/login.js":
-/*!**********************************!*\
-  !*** ./store/container/login.js ***!
-  \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../action */ "./store/action/index.js");
-/* harmony import */ var _components_login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/login */ "./components/login.js");
+}; // @export
 
 
-
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    setLoginState: function setLoginState(data) {
-      return dispatch(Object(_action__WEBPACK_IMPORTED_MODULE_1__["setLoginState"])(data));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mapDispatchToProps)(_components_login__WEBPACK_IMPORTED_MODULE_2__["default"]));
-
-/***/ }),
-
-/***/ "./store/container/modalConnexion.js":
-/*!*******************************************!*\
-  !*** ./store/container/modalConnexion.js ***!
-  \*******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../action */ "./store/action/index.js");
-/* harmony import */ var _components_modalConnexion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/modalConnexion */ "./components/modalConnexion.js");
-
-
-
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    storeUserInfo: function storeUserInfo(dataObject) {
-      return dispatch(Object(_action__WEBPACK_IMPORTED_MODULE_1__["setUserInfo"])(dataObject));
-    },
-    setLoginState: function setLoginState(data) {
-      return dispatch(Object(_action__WEBPACK_IMPORTED_MODULE_1__["setLoginState"])(data));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mapDispatchToProps)(_components_modalConnexion__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -77298,7 +75450,7 @@ function () {
 
 /***/ }),
 
-/***/ 0:
+/***/ 5:
 /*!***************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fhugopapier%2FDocuments%2FjobTriboo%2Fapp%2Fpages%2Findex.js ***!
   \***************************************************************************************************************************************/
@@ -77321,5 +75473,5 @@ module.exports = dll_01f9a3fa864a7b7414d8;
 
 /***/ })
 
-},[[0,"static/runtime/webpack.js"]]]);
+},[[5,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=index.js.map

@@ -14,5 +14,14 @@
   "connection": "Connexion",
   "dashboard": "Tableau de bord",
   "settings": "Paramètres",
-  "logout": "Déconnexion"
+  "logout": "Déconnexion",
+  "signinTitle": "Content de vous revoir !",
+  "pwdForgotten": "Mot de passe oublié ?",
+  "neverRegistered": "Pas encore de compte ?",
+  "linkedinConnection": "Connexion avec Linkedin",
+  "googleConnection": "Connexion avec Google",
+  "phEmail": "Votre email",
+  "phPassword": "Entrez votre mot de passe",
+  "badId": "Mauvais email ou mot de passe",
+  "error500": "Oups ! Une error serveur est survenue."
 }

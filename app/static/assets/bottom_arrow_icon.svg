@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="7px" height="4px" viewBox="0 0 7 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>bottom_arrow_icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CUT_VIEW" transform="translate(-858.000000, -30.000000)" fill="#404660">
+            <g id="First_Part">
+                <g id="NavBar">
+                    <g id="Lang" transform="translate(839.000000, 24.000000)">
+                        <g id="bottom_arrow_icon" transform="translate(19.000000, 6.000000)">
+                            <path d="M0,0.704041721 C0,0.523250761 0.073664825,0.349413299 0.213627993,0.210343329 C0.50092081,-0.0608431117 0.972375691,-0.0608431117 1.25966851,0.210343329 L3.49907919,2.31725337 L5.73848987,0.203389831 C6.02578269,-0.0677966102 6.49723757,-0.0677966102 6.78453039,0.203389831 C7.0718232,0.474576271 7.0718232,0.919600174 6.78453039,1.19078661 L4.02209945,3.79834854 C3.88213628,3.93046502 3.69797422,4 3.49907919,4 C3.30018416,4 3.1160221,3.92351152 2.97605893,3.79834854 L0.213627993,1.19774011 C0.073664825,1.05867014 0,0.877879183 0,0.704041721 Z" id="Path"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,313 @@
+/* Root */
+.signin-input-root {
+  width: 500px;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+
+/* Head */
+.signin-input-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 35px;
+  padding-right: 25px;
+}
+
+
+/* Body */
+.signin-input-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* -> Body:Fields */
+.signin-input-body-fields {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0px 0px 0px
+}
+
+.signin-input-body-fields-title {
+  font-family: 'Roboto', sans-serif;
+  color: #404660;
+  font-weight: 600;
+  font-size: 2em;
+}
+
+.signin-input-body-fields-email {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.signin-input-body-fields-email-label {
+  color: #404660;
+  opacity: .6;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+}
+
+.signin-input-body-fields-email-input {
+  all: unset;
+  width: 315px;
+  height: 40px;
+  background-color: #F2F3FF;
+  color: #404660;
+  border-radius: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  margin-top: 5px;
+  border: 1px solid #F2F3FF;
+  transition: .2s;
+}
+
+.signin-input-body-fields-email-input:focus {
+  border: 1px solid rgba(107, 90, 237, .5);
+}
+
+.signin-input-body-fields-email-input::placeholder {
+  color: #404660;
+  opacity: .4;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: .875em;
+}
+
+.signin-input-body-fields-pwd {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.signin-input-body-fields-pwd-label {
+  color: #404660;
+  opacity: .6;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+}
+
+.signin-input-body-fields-pwd-input {
+  all: unset;
+  width: 315px;
+  height: 40px;
+  background-color: #F2F3FF;
+  color: #404660;
+  border-radius: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  margin-top: 5px;
+  border: 1px solid #F2F3FF;
+  transition: .2s;
+}
+
+.signin-input-body-fields-pwd-input:focus {
+  border: 1px solid rgba(107, 90, 237, .5);
+}
+
+.signin-input-body-fields-pwd-input::placeholder {
+  color: #404660;
+  opacity: .4;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: .875em;
+}
+
+.signin-input-body-fields-btn {
+  display: flex;
+  justify-content: space-between;
+  width: 315px;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.signin-input-body-fields-btn-login {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 1em;
+  background-color: #6b5AED;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .2);
+  border-radius: 1px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.signin-input-body-fields-btn-login:hover {
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .4);
+}
+
+
+.signin-input-body-fields-btn-pwdFg {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  color: rgba(64, 70, 96, 0.8);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  transition: .2s;
+}
+
+.signin-input-body-fields-btn-pwdFg:hover {
+  color: rgba(64, 70, 96, 1);
+}
+
+.signin-input-error {
+  color: #F00;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  width: 315px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* -> Body:Connect */
+.signin-input-body-connect {
+  width: 315px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signin-input-body-connect-line {
+  width: 100%;
+  height: 1px;
+  background-color: #404660;
+  opacity: .05;
+  margin: 30px 0px 20px 0px;
+}
+
+.signin-input-body-connect-linkedin {
+  all: unset;
+  margin-bottom: 10px;
+  background-color: rgba(64, 70, 96, 0.85);
+  width: 100%;
+  height: 40px;
+  display: flex;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .15);
+  transition: .2s;
+  cursor: pointer;
+}
+
+.signin-input-body-connect-linkedin:hover {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .3);
+}
+
+.signin-input-body-connect-linkedin-ib {
+  width: 50px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #404660;
+}
+
+.signin-input-body-connect-linkedin-tb {
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #fff;
+  width: calc(100% - 50px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+}
+
+.signin-input-body-connect-google {
+  all: unset;
+  margin-bottom: 10px;
+  background-color: #DCDFFF;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .1);
+  transition: .2s;
+  cursor: pointer;
+}
+
+.signin-input-body-connect-google:hover {
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, .15);
+}
+
+.signin-input-body-connect-google-ib {
+  width: 50px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #D0D4FF;
+}
+
+.signin-input-body-connect-google-tb {
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #fff;
+  width: calc(100% - 50px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+}
+
+
+/* -> Body:Out */
+.signin-input-body-out {
+  width: 315px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.signin-input-body-out-line {
+  width: 100%;
+  height: 1px;
+  background-color: #404660;
+  opacity: .05;
+  margin: 150px 0px 10px 0px;
+}
+
+.signin-input-body-out-tb {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.signin-input-body-out-nvRg {
+  font-family: 'Roboto', sans-serif;
+  font-size: .875em;
+  font-weight: 400;
+  color: #404660;
+  margin-right: 20px;
+}
+
+.signin-input-body-out-register {
+  all: unset;
+  font-family: 'Roboto', sans-serif;
+  font-size: .875em;
+  font-weight: 600;
+  color: #404660;
+  cursor: pointer;
+}
+
+

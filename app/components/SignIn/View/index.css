@@ -1,0 +1,12 @@
+.signin-view-root {
+  background-color: #f2f3ff;
+  width: calc(100% - 500px);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin-view-root img {
+  opacity: .55;
+}

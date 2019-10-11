@@ -1,19 +1,14 @@
-// @module import
-import Navbar from '../store/container/navbar'
-import Home from '../components/home'
+import Header from '../store/container/header'
+import Home from '../components/homeRecruiter'
 
-
-// @local import
 import { checkAuth } from '../utils/auth'
 import { getSampleData } from '../utils/query'
-import { withTranslation } from '../components/i18n';
+import { withTranslation } from '../components/i18n'
 
-
-// @page
 const App = ({ isLoggedIn, sampleData }) => {
   return (
     <div>
-      <Navbar isLoggedIn={isLoggedIn} />
+      <Header isLoggedIn={isLoggedIn} />
       <Home data={sampleData} />
 
       <style jsx global>{`
@@ -26,8 +21,6 @@ const App = ({ isLoggedIn, sampleData }) => {
   );
 }
 
-
-// @request
 App.getInitialProps = async ctx => {
   const isLoggedIn = await checkAuth(ctx);
   const sampleData = await getSampleData();
@@ -38,6 +31,4 @@ App.getInitialProps = async ctx => {
   };
 }
 
-
-// @export
 export default withTranslation('common')(App);

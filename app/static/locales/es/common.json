@@ -1,8 +1,8 @@
 {
-  "login": "login",
-  "register": "register",
-  "recruiter": "recruiter",
-  "candidate": "candidate",
+  "login": "Sign in",
+  "register": "Register",
+  "recruiter": "Recruiter",
+  "candidate": "Candidate",
   "firstName": "First name",
   "lastName": "Last name",
   "email": "Email",
@@ -14,5 +14,14 @@
   "connection": "Connection",
   "dashboard": "Dashboard",
   "settings": "Settings",
-  "logout": "Logout"
+  "logout": "Logout",
+  "signinTitle": "Happy to see you again !",
+  "pwdForgotten": "Forgot your password ?",
+  "neverRegistered": "No account yet ?",
+  "linkedinConnection": "Linkedin connect",
+  "googleConnection": "Google connect",
+  "phEmail": "Your email",
+  "phPassword": "Enter your password",
+  "badId": "Wrong email or password",
+  "error500": "Oops ! A server error occurred."
 }
