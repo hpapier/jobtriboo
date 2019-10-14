@@ -1,5 +1,6 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const { handleInputText, handleInputEmail, handleInputPrefix, handleInputNumber } = require('./utils/input');
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -29,11 +30,13 @@ app.use(express.json());
 /* Database schemas & models */
 
 const userAccountSchema = new mongoose.Schema({
+  state: String,
   firstName: String,
   lastName: String,
   email: String,
   password: String,
-  birthDate: Date,
+  prefixPhoneNumber: String,
+  phoneNumber: String,
   creationDate: { type: Date, default: Date.now }
 });
 
@@ -212,34 +215,55 @@ app.post('/api/authentication', async (req, res) => {
 });
 
 
-// "/api/register" route create an account for user.
+/*
+  @route:  /api/register
+  @method: POST
+  @param:
+    @string userState
+    @string firstName
+    @string lastName
+    @string email
+    @string password
+    @string prefixPhoneNumber
+    @string phoneNumber
+*/
 app.post('/api/register', async (req, res) => {
-  console.log("===>   /api/register route   <===");
 
-  console.log(req.body);
-  const { firstName, lastName, email, password, birthDate } = req.body;
+  const { userState, firstName, lastName, email, password, prefixPhoneNumber, phoneNumber } = req.body;
 
+  /* Check the validity of the information received. */
+  if (
+    !handleInputText(firstName) ||
+    !handleInputText(lastName) ||
+    !handleInputEmail(email) ||
+    !handleInputText(password) ||
+    !handleInputPrefix(prefixPhoneNumber) ||
+    !handleInputNumber(phoneNumber)
+  ) {
+    res.status(200).send({ errorMsg: 'formatError' });
+    return;
+  }
+    
+  /* Check the availibility of the email received. */
   let itemFind = [];
 
   try {
     itemFind = await userAccountModel.find({ email });
   } catch (e) {
     res.status(500).send();
+    return;
   }
 
   if (itemFind.length !== 0)
-    res.status(200).send({ status: 'email already used' });
+    res.status(200).send({ errorMsg: 'notAvailable' });
   else {
-    
     const cryptedPwd = await bcrypt.hash(password, saltRounds);
-    console.log(cryptedPwd);
-
-    const newAccount = new userAccountModel({ firstName, lastName, email, password: cryptedPwd,  birthDate });
+    const newAccount = new userAccountModel({ state: userState, firstName, lastName, email, password: cryptedPwd, prefixPhoneNumber, phoneNumber });
   
     try {
       await newAccount.save();
       const token = jwt.sign({ email }, jwtSecret, { expiresIn: 1000 * 60 * 60 * 24 });
-      res.status(201).send({ token });
+      res.status(201).send({ token, userState });
     } catch (e) {
       console.error("==> ERROR WHEN CREATING AN ACCOUNT:");
       console.error(e);

@@ -3,12 +3,12 @@ import { useState } from 'react'
 
 
 // @local import
-import Logo from '../../Navbar/Logo'
-import LangButton from '../../Navbar/LangButton'
+import SignNavbar from '../../Navbar';
 import './index.css'
-import InLogo from '../../../static/assets/in_w.svg'
-import GmailLogo from '../../../static/assets/gmail_w.svg'
-import { request } from '../../../utils/request'
+import InLogo from '../../../../static/assets/in_w.svg'
+import GmailLogo from '../../../../static/assets/gmail_w.svg'
+import { request } from '../../../../utils/request'
+import { useRouter } from 'next/router';
 
 
 // @component
@@ -16,6 +16,8 @@ const Input = ({ t }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(200);
+
+  const router = useRouter();
 
   const submit = async e => {
     e.preventDefault();
@@ -37,10 +39,7 @@ const Input = ({ t }) => {
 
   return (
     <div className='signin-input-root'>
-      <div className='signin-input-head'>
-        <Logo />
-        <LangButton />
-      </div>
+      <SignNavbar />
 
       <form onSubmit={submit} className='signin-input-body'>
         <div className='signin-input-body-fields'>
@@ -108,7 +107,7 @@ const Input = ({ t }) => {
             <p className='signin-input-body-out-nvRg'>
               {t('neverRegistered')}
             </p>
-            <button className='signin-input-body-out-register'>
+            <button className='signin-input-body-out-register' onClick={() => router.push('/signup')}>
               {t('register')}
             </button>
           </div>

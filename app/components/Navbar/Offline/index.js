@@ -28,7 +28,7 @@ const Offline = ({ t }) => {
           {t('login')}
         </button>
 
-        <Button style={SSignUpBtn}>
+        <Button style={SSignUpBtn} onClick={() => router.push('/signup')}>
           {t('register')}
           <img src={Feather} />
         </Button>

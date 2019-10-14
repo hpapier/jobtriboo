@@ -1,13 +1,13 @@
 // @module import
 // @local import
-import SignInComponent from '../components/Sign/SignIn';
+import SignUpComponent from '../components/Sign/SignUp';
 
 
 // @page
-const SignIn = () => {
+const SignUp = () => {
   return (
     <div>
-      <SignInComponent />
+      <SignUpComponent />
 
       <style jsx global>{`
           body {
@@ -20,8 +20,8 @@ const SignIn = () => {
 };
 
 
-// @request 
-SignIn.getInitialProps = () => {
+// @request
+SignUp.getInitialProps = () => {
   return {
     namespacesRequired: ['common']
   };
@@ -29,4 +29,4 @@ SignIn.getInitialProps = () => {
 
 
 // @export
-export default SignIn;
+export default SignUp;

@@ -3,7 +3,7 @@
 import Input from './Input'
 import View from './View'
 import './index.css'
-import { withTranslation } from '../i18n'
+import { withTranslation } from '../../i18n'
 
 
 // @component

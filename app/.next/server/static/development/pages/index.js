@@ -352,7 +352,8 @@ const Offline = ({
     style: _style__WEBPACK_IMPORTED_MODULE_8__["SSignInBtn"],
     onClick: () => router.push('/signin')
   }, t('login')), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    style: _style__WEBPACK_IMPORTED_MODULE_8__["SSignUpBtn"]
+    style: _style__WEBPACK_IMPORTED_MODULE_8__["SSignUpBtn"],
+    onClick: () => router.push('/signup')
   }, t('register'), __jsx("img", {
     src: _static_assets_feather_icon_svg__WEBPACK_IMPORTED_MODULE_6___default.a
   })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Button"], {

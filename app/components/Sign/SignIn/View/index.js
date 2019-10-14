@@ -1,6 +1,6 @@
 // @module import
 // @local import
-import TribeLogo from '../../../static/assets/tribe_logo_w_b.svg'
+import TribeLogo from '../../../../static/assets/tribe_logo_w_b.svg'
 import './index.css'
 
 
