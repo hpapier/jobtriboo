@@ -29,5 +29,8 @@
   "phPhoneNumber": "Your phone number",
   "badId": "Wrong email or password",
   "error500": "Oops ! A server error occurred.",
-  "alreadyAnAccount": "Already an account ?"
+  "alreadyAnAccount": "Already an account ?",
+  "emptyOrTooLongError": "Empty or too long.",
+  "emailError": "Empty, Invalid format or already taken.",
+  "emptyOrInvalidFormatError": "Empty or invalid format."
 }

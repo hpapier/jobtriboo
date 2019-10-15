@@ -29,5 +29,8 @@
   "phPhoneNumber": "Votre téléphone",
   "badId": "Mauvais email ou mot de passe",
   "error500": "Oups ! Une error serveur est survenue.",
-  "alreadyAnAccount": "Déjà un compte ?"
+  "alreadyAnAccount": "Déjà un compte ?",
+  "emptyOrTooLongError": "Champs vide ou trop long.",
+  "emailError": "Champs vide, format invalide ou email déjà pris.",
+  "emptyOrInvalidFormatError": "Champs vide ou format invalide."
 }

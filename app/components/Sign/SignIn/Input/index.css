@@ -107,6 +107,32 @@
   font-size: .875em;
 }
 
+.-input-error {
+  border-color: #F00 !important;
+}
+
+.signin-msg-error {
+  color: #F00;
+  font-family: 'Roboto', sans-serif;
+  font-size: .75em;
+  width: 315px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.signin-input-error {
+  color: #F00;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  width: 315px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
 .signin-input-body-fields-btn {
   display: flex;
   justify-content: space-between;
@@ -137,6 +163,24 @@
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .4);
 }
 
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.signin-loading-btn {
+  width: 15px;
+  height: 15px;
+  border: 5px solid rgba(0, 0, 0, 0);
+  border-top: 5px solid rgba(255, 255, 255, 1);
+  border-bottom: 5px solid rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  animation: loading 1s ease-in-out 0s infinite normal; 
+}
 
 .signin-input-body-fields-btn-pwdFg {
   all: unset;

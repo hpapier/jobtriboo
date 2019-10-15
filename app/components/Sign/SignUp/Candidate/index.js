@@ -1,4 +1,7 @@
 // @module import
+import { useRouter } from 'next/router';
+
+
 // @local import
 import SignNavbar from '../../Navbar'
 import './index.css'
@@ -6,6 +9,8 @@ import './index.css'
 
 // @component
 const Candidate = ({ t }) => {
+  const router = useRouter();
+
   return (
     <div className='candidate-root'>
       <SignNavbar />
@@ -22,8 +27,8 @@ const Candidate = ({ t }) => {
 
 
         <div>
-          <button>{t('validate')}</button>
-          <button>{t('skip')}</button>
+          <button onClick={() => router.push('/profil')}>{t('validate')}</button>
+          <button onClick={() => router.push('/profil')}>{t('skip')}</button>
         </div>
       </div>
     </div>

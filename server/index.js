@@ -227,7 +227,7 @@ app.post('/api/authentication', async (req, res) => {
       res.status(403).send();
     else {
       const token = jwt.sign({ email: body.email }, jwtSecret, { expiresIn: 1000 * 60 * 60 * 24 });
-      res.status(200).send({ token });
+      res.status(200).send({ token, userState: data[0].state });
     }
   } catch (e) {
     res.status(500).send();

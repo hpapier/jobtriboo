@@ -1,4 +1,4 @@
-import Header from '../store/container/header'
+import Navbar from '../store/container/navbar'
 import Home from '../components/homeRecruiter'
 
 import { checkAuth } from '../utils/auth'
@@ -8,7 +8,7 @@ import { withTranslation } from '../components/i18n'
 const App = ({ isLoggedIn, sampleData }) => {
   return (
     <div>
-      <Header isLoggedIn={isLoggedIn} />
+      <Navbar isLoggedIn={isLoggedIn} />
       <Home data={sampleData} />
 
       <style jsx global>{`

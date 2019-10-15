@@ -1,10 +1,10 @@
-import Header from '../store/container/header'
+import Navbar from '../store/container/navbar'
 import { checkAuth } from '../utils/auth'
 
 const Jobs = ({ isLoggedIn }) => {
   return (
     <div>
-      <Header isLoggedIn={isLoggedIn} />
+      <Navbar isLoggedIn={isLoggedIn} />
       <h1>JOBS PAGE</h1>
     </div>
   );

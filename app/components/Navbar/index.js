@@ -18,12 +18,12 @@ const Navbar = ({ isLoggedIn, t, setLoginState, loginState }) => {
   useEffect(() => {
     if (isLoggedIn !== undefined && cookies.token === undefined) {
       setLoginState(false);
-      if (router.pathname === '/settings')
+      if (router.pathname === '/profil' || router.pathname === '/dashboard')
         router.push('/');
     }
     else if (isLoggedIn !== undefined && !loginState) {
       setLoginState(isLoggedIn);
-      if (!isLoggedIn && router.pathname === '/settings')
+      if (!isLoggedIn && (router.pathname === '/profil' || router.pathname === '/dashboard'))
         router.push('/');
     }
   });

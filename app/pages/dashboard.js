@@ -4,7 +4,7 @@ import { Button, TextField, Card, CardContent } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add';
 import ClearIcon from '@material-ui/icons/Clear';
 
-import Header from '../store/container/header'
+import Navbar from '../store/container/navbar'
 import { checkAuth } from '../utils/auth'
 
 const DashboardBody = () => {
@@ -89,7 +89,7 @@ const DashboardBody = () => {
 const Dashboard = ({ isLoggedIn }) => {
   return (
     <div>
-      <Header isLoggedIn={isLoggedIn} />
+      <Navbar isLoggedIn={isLoggedIn} />
       <DashboardBody />
     </div>
   );

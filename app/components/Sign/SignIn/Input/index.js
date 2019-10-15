@@ -1,40 +1,68 @@
 // @module import
 import { useState } from 'react'
+import { useRouter } from 'next/router';
+import { useCookies } from 'react-cookie';
 
 
 // @local import
 import SignNavbar from '../../Navbar';
-import './index.css'
-import InLogo from '../../../../static/assets/in_w.svg'
-import GmailLogo from '../../../../static/assets/gmail_w.svg'
-import { request } from '../../../../utils/request'
-import { useRouter } from 'next/router';
+import './index.css';
+import InLogo from '../../../../static/assets/in_w.svg';
+import GmailLogo from '../../../../static/assets/gmail_w.svg';
+import { request } from '../../../../utils/request';
+import { handleInputEmail, handleInputText } from '../../../../utils/input';
 
 
 // @component
 const Input = ({ t }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(200);
-
+  const [error, setError] = useState({ email: false, password: false, reqRes: 0 });
+  const [cookies, setCookie, removeCookie] = useCookies();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const submit = async e => {
     e.preventDefault();
 
-    if (email === '' || password === '')
+    /* Verification of the email and password input. */
+    const CE = handleInputEmail(email);
+    const CPW = handleInputText(password);
+
+    if (!CE || !CPW) {
+      setError({ ...error, email: !CE, password: !CPW });
       return;
+    }
 
-    const res = await request('/api/authentication', {
-      method: 'POST',
-      body: { email, password },
-      headers: { 'Content-Type': 'application/json' }
-    });
+    setLoading(true);
 
-    if (res.status === 200)
-      console.log(res.status);
-    else
-      setError(res.status);
+    /* Request for authentication. */
+    try {
+      const res = await request('/api/authentication', {
+        method: 'POST',
+        body: { email, password },
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      if (res.status === 200) {
+        try {
+          const data = await res.json();
+          setCookie('token', data.token);
+          router.push(data.userState === 'candidate' ? '/profil' : '/dashboard');
+        } catch (e) {
+          console.log(e);
+          setError({ email: false, password: false, reqRes: 500 });
+          setLoading(false);
+        }
+      }
+      else {
+        setError({ email: false, password: false, reqRes: res.status });
+        setLoading(false);
+      }
+    } catch (e) {
+      setError({ email: false, password: false, reqRes: 500 });
+      setLoading(false);
+    }
   }
 
   return (
@@ -47,7 +75,7 @@ const Input = ({ t }) => {
           <div className='signin-input-body-fields-email'>
             <label className='signin-input-body-fields-email-label' htmlFor='signin-email'>{t('email')}</label>
             <input
-              className='signin-input-body-fields-email-input'
+              className={`signin-input-body-fields-email-input${error.email ? ` -input-error` : ``}`}
               placeholder={t('phEmail')}
               name='signin-email'
               autoComplete='email'
@@ -55,11 +83,12 @@ const Input = ({ t }) => {
               value={email}
               type='email'
             />
+            {error.email ? <div className='signin-msg-error'>{t('emptyOrInvalidFormatError')}</div> : null}
           </div>
           <div className='signin-input-body-fields-pwd'>
             <label className='signin-input-body-fields-pwd-label' htmlFor='signin-pwd'>{t('password')}</label>
             <input
-              className='signin-input-body-fields-pwd-input'
+              className={`signin-input-body-fields-pwd-input${error.email ? ` -input-error` : ``}`}
               placeholder={t('phPassword')}
               name='signin-pwd'
               autoComplete='new-password'
@@ -67,18 +96,16 @@ const Input = ({ t }) => {
               value={password}
               type='password'
             />
+            {error.password ? <div className='signin-msg-error'>{t('emptyOrTooLongError')}</div> : null}
           </div>
           <div className='signin-input-body-fields-btn'>
-            <button className='signin-input-body-fields-btn-login' type='submit'>{t('login')}</button>
-            <button className='signin-input-body-fields-btn-pwdFg'>{t('pwdForgotten')}</button>
+            <button disabled={loading} className='signin-input-body-fields-btn-login' type='submit'>{!loading ? t('login') : <div className='signin-loading-btn'></div>}</button>
+            <button disabled={loading} className='signin-input-body-fields-btn-pwdFg'>{t('pwdForgotten')}</button>
           </div>
             
-          { error !== 200 ?
-              error === 403 ?
-              <div className='signin-input-error'>{t('badId')}</div>
-              : <div className='signin-input-error'>{t('error500')}</div>
-            : null
-          }
+          { error.reqRes === 403 ? <div className='signin-input-error'>{t('badId')}</div> : null}  
+          { error.reqRes === 500 ? <div className='signin-input-error'>{t('error500')}</div> : null}  
+
         </div>
 
         <div className='signin-input-body-connect'>
@@ -104,9 +131,7 @@ const Input = ({ t }) => {
         <div className='signin-input-body-out'>
           <span className='signin-input-body-out-line'></span>
           <div className='signin-input-body-out-tb'>
-            <p className='signin-input-body-out-nvRg'>
-              {t('neverRegistered')}
-            </p>
+            <p className='signin-input-body-out-nvRg'>{t('neverRegistered')}</p>
             <button className='signin-input-body-out-register' onClick={() => router.push('/signup')}>
               {t('register')}
             </button>

@@ -9,6 +9,7 @@ import InLogo from '../../../../static/assets/in_w.svg';
 import GmailLogo from '../../../../static/assets/gmail_w.svg';
 import { request } from '../../../../utils/request';
 import { handleInputText, handleInputEmail, handleInputPrefix, handleInputNumber } from '../../../../utils/input';
+import { useCookies } from 'react-cookie';
 
 
 // @component
@@ -30,6 +31,7 @@ const Input = ({ t, setFlow }) => {
     reqRes: 0
   });
   const [loading, setLoading] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies();
   const router = useRouter();
 
   const submit = async e => {
@@ -86,9 +88,14 @@ const Input = ({ t, setFlow }) => {
         // Check the response and correctly handle them.
         try {
           const data = await res.json();
-          console.log(data.token);
-          console.log(data.userState);
-          setFlow(true);
+
+          setCookie('token', data.token);
+
+          if (data.userState === 'candidate')
+            setFlow(true);
+          else if (data.userState === 'recruiter')
+            router.push('/dashboard');
+
         } catch (e) {
           setLoading(false);
           setError({ ...error, reqRes: 500 });
@@ -139,7 +146,7 @@ const Input = ({ t, setFlow }) => {
               value={firstName}
               type='text'
             />
-            {error.firstName ? <div className='signup-msg-error'>Empty or too long.</div> : null}
+            {error.firstName ? <div className='signup-msg-error'>{t('emptyOrTooLongError')}</div> : null}
           </div>
 
           <div className='signup-input-body-fields-ib'>
@@ -153,7 +160,7 @@ const Input = ({ t, setFlow }) => {
               value={lastName}
               type='text'
             />
-            {error.lastName ? <div className='signup-msg-error'>Empty or too long.</div> : null}
+            {error.lastName ? <div className='signup-msg-error'>{t('emptyOrTooLongError')}</div> : null}
           </div>
 
           <div className='signup-input-body-fields-ib'>
@@ -167,7 +174,7 @@ const Input = ({ t, setFlow }) => {
               value={email}
               type='email'
             />
-            {error.email ? <div className='signup-msg-error'>Empty, invalid format or already taken.</div> : null}
+            {error.email ? <div className='signup-msg-error'>{t('emailError')}</div> : null}
           </div>
 
           <div className='signup-input-body-fields-ib'>
@@ -181,7 +188,7 @@ const Input = ({ t, setFlow }) => {
               value={password}
               type='password'
             />
-            {error.password ? <div className='signup-msg-error'>Empty or too long.</div> : null}
+            {error.password ? <div className='signup-msg-error'>{t('emptyOrTooLongError')}</div> : null}
           </div>
 
           <div className='signup-input-body-fields-ib'>
@@ -206,7 +213,7 @@ const Input = ({ t, setFlow }) => {
                 type='text'
               />
             </div>
-            {error.prefixPhoneNumber || error.phoneNumber ? <div className='signup-msg-error'>Empty or invalid format.</div> : null}
+            {error.prefixPhoneNumber || error.phoneNumber ? <div className='signup-msg-error'>{t('emptyOrInvalidFormatError')}</div> : null}
           </div>
 
           <div className='signup-input-body-fields-btn'>
