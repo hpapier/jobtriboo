@@ -29,7 +29,7 @@ app.use(express.json());
 
 /* Database schemas & models */
 
-const userAccountSchema = new mongoose.Schema({
+const basicAccountSchema = new mongoose.Schema({
   state: String,
   firstName: String,
   lastName: String,
@@ -40,7 +40,30 @@ const userAccountSchema = new mongoose.Schema({
   creationDate: { type: Date, default: Date.now }
 });
 
-const userAccountModel = mongoose.model('userAccount', userAccountSchema);
+const accountInformationSchema = new mongoose.Schema({
+  picture: { type: String, default: '' },
+  description: { type: String, default: '' },
+  country: { type: String, default: '' },
+  age: { type: Number, default: 18 },
+  triboo: { type: String, default: 'commercial' },
+  jobName: { type: String, default: '' },
+  skills: { type: [{ name: String, xp: Number }], default: [] },
+  studyLvl: { type: String, default: '' },
+  cv: { type: String, default: '' },
+  desiredContract: { type: String, default: 'indifferent' },
+  salaryExpected: { 
+    min: { type: Number, default: 15 },
+    max: { type: Number, default: 100 }
+  },
+  availability: { type: String, default: 'now' },
+  updated: { type: Date, default: Date.now }
+});
+
+const userAccountModel = mongoose.model('BasicUserAccount', basicAccountSchema, 'userAccount');
+
+const candidateAccountSchema = new mongoose.Schema();
+candidateAccountSchema.add(basicAccountSchema).add(accountInformationSchema);
+const candidateAccountModel = mongoose.model('CandidateAccount', candidateAccountSchema, 'userAccount');
 
 const announceSchema = new mongoose.Schema({
   company: String,
@@ -258,8 +281,13 @@ app.post('/api/register', async (req, res) => {
     res.status(200).send({ errorMsg: 'notAvailable' });
   else {
     const cryptedPwd = await bcrypt.hash(password, saltRounds);
-    const newAccount = new userAccountModel({ state: userState, firstName, lastName, email, password: cryptedPwd, prefixPhoneNumber, phoneNumber });
-  
+
+    let newAccount;
+    if (userState === 'recruiter')
+      newAccount = new userAccountModel({ state: userState, firstName, lastName, email, password: cryptedPwd, prefixPhoneNumber, phoneNumber });
+    else
+      newAccount = new candidateAccountModel({ state: userState, firstName, lastName, email, password: cryptedPwd, prefixPhoneNumber, phoneNumber });
+
     try {
       await newAccount.save();
       const token = jwt.sign({ email }, jwtSecret, { expiresIn: 1000 * 60 * 60 * 24 });

@@ -1,6 +1,6 @@
 // @module import
 import { useState } from 'react'
-
+import { useRouter } from 'next/router'
 
 // @local import
 import SignNavbar from '../../Navbar';
@@ -30,6 +30,7 @@ const Input = ({ t, setFlow }) => {
     reqRes: 0
   });
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const submit = async e => {
     e.preventDefault();
@@ -238,7 +239,7 @@ const Input = ({ t, setFlow }) => {
             <p className='signup-input-body-out-nvRg'>
               {t('alreadyAnAccount')}
             </p>
-            <button type='button' className='signup-input-body-out-register'>
+            <button onClick={() => router.push('/signin')} type='button' className='signup-input-body-out-register'>
               {t('login')}
             </button>
           </div>
