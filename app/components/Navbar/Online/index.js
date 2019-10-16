@@ -10,25 +10,29 @@ import Logo from '../Logo'
 import LangButton from '../LangButton'
 
 // @component
-const Online = ({ t, setLoginState }) => {
+const Online = ({ t, setLoginState, userState }) => {
   const [_, __, removeCookies] = useCookies();
   const router = useRouter();
 
   const handleLogout = () => {
-    console.log('- LOGOUT -');
+    // console.log('- LOGOUT -');
     removeCookies('token');
-    setLoginState(false);
+    router.push('/');
   }
 
   return (
     <Layout>
       <div>
         <Logo />
+        <button onClick={() => router.push('/jobs')}>{t('jobs')}</button>
+        <button onClick={() => router.push('/company')}>{t('companies')}</button>
+        <button onClick={() => router.push(userState === 'recruiter' ? '/dashboard' : '/profil')}>
+          {userState === 'recruiter' ? t('dashboard') : t('profil')}
+        </button>
       </div>
 
       <div>
         <LangButton />
-        <Button onClick={() => router.push('/dashboard')}>{t('dashboard')}</Button>
         <Button onClick={handleLogout}>{t('logout')}</Button>
       </div>
     </Layout>

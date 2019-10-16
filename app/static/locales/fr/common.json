@@ -32,5 +32,8 @@
   "alreadyAnAccount": "Déjà un compte ?",
   "emptyOrTooLongError": "Champs vide ou trop long.",
   "emailError": "Champs vide, format invalide ou email déjà pris.",
-  "emptyOrInvalidFormatError": "Champs vide ou format invalide."
+  "emptyOrInvalidFormatError": "Champs vide ou format invalide.",
+  "jobs": "jobs",
+  "company": "entreprises",
+  "profil": "profil"
 }

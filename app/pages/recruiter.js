@@ -1,14 +1,14 @@
-import Navbar from '../store/container/navbar'
+import Navbar from '../components/Navbar';
 import Home from '../components/homeRecruiter'
 
 import { checkAuth } from '../utils/auth'
 import { getSampleData } from '../utils/query'
 import { withTranslation } from '../components/i18n'
 
-const App = ({ isLoggedIn, sampleData }) => {
+const App = ({ logInfo, sampleData }) => {
   return (
     <div>
-      <Navbar isLoggedIn={isLoggedIn} />
+      <Navbar logInfo={logInfo} />
       <Home data={sampleData} />
 
       <style jsx global>{`
@@ -22,11 +22,11 @@ const App = ({ isLoggedIn, sampleData }) => {
 }
 
 App.getInitialProps = async ctx => {
-  const isLoggedIn = await checkAuth(ctx);
+  const logInfo = await checkAuth(ctx);
   const sampleData = await getSampleData();
   return {
     sampleData,
-    isLoggedIn,
+    logInfo,
     namespacesRequired: ['common']
   };
 }

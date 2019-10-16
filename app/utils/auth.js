@@ -13,7 +13,7 @@ export const checkAuth = async ctx => {
     const tk = ctx.req.headers.cookie.match(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/);
     console.log('tk: ', tk);
 
-    if (tk === null)
+    if (tk === null || tk === undefined)
       return false;
 
     token = tk[1];
@@ -24,13 +24,27 @@ export const checkAuth = async ctx => {
     token = cookie.get('token');
     console.log('Token: ', token);
 
-    if (token === null)
+    if (token === null || token === undefined)
       return false;
   }
 
-  const res = await fetch(serverUrl + "/api/auth", { method: "GET", headers: { "Authorization": token }});
-  if (res.status === 200)
-    return true;
+  try {
+    const res = await fetch(serverUrl + "/api/auth", { method: "GET", headers: { "Authorization": token }});
 
-  return false;
+    if (res.status === 200) {
+      try {
+        const data = await res.json();
+        return { loggedIn: true, userState: data.userState };
+      } catch (e) {
+        return false;
+      }
+    }
+    else
+      return false;
+
+  } catch (e) {
+    console.log('==> CHEK AUTH ERROR <==');
+    console.log(e);
+    return false;
+  }
 };

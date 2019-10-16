@@ -5,14 +5,14 @@ import { useRouter } from 'next/router';
 
 // @local imports
 import { checkAuth } from "../utils/auth";
-import Navbar from '../store/container/navbar'
+import Navbar from '../components/Navbar';
 
 
 // @page
-const Profil = ({ isLogged }) => {
+const Profil = ({ logInfo }) => {
   return (
     <div>
-      <Navbar isLoggedIn={isLogged} />
+      <Navbar logInfo={logInfo} />
       Profil page
     </div>
   );
@@ -21,9 +21,9 @@ const Profil = ({ isLogged }) => {
 
 // @request
 Profil.getInitialProps = async (ctx) => {
-  const isLogged = await checkAuth(ctx);
-  
-  if (!isLogged) {
+  const logInfo = await checkAuth(ctx);
+
+  if (!logInfo) {
     if (ctx.res) {
       ctx.res.writeHead(302, { Location: '/' })
       ctx.res.end()
@@ -33,7 +33,7 @@ Profil.getInitialProps = async (ctx) => {
   }
 
   return {
-    isLogged,
+    logInfo,
     namespacesRequired: ['common']
   }
 }

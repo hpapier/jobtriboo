@@ -191,23 +191,23 @@ app.get('/api/sample', async (req, res) => {
 
 
 // "/api/auth" route check the validity of a token passed via authorization header.
-app.get('/api/auth', (req, res) => {
+app.get('/api/auth', async (req, res) => {
   console.log("==>   /api/auth   <==");
 
   // Get the token passed via authorization header.
   const token = req.headers.authorization;
-
+  
   // Check the token content and return 401 error if it's equal to null.
   if (token === null)
     res.status(401).send();
-
-  // Verify the token.
-  try {
-    jwt.verify(token, jwtSecret);
-    res.status(200).send();
-  } catch (e) {
-    res.status(401).send();
-  }
+  
+    // Verify the token.
+    try {
+      const verifTk = await jwt.verify(token, jwtSecret);
+      res.status(200).send({ userState: verifTk.userState });
+    } catch (e) {
+      res.status(401).send();
+    }
 
 });
 
@@ -226,7 +226,7 @@ app.post('/api/authentication', async (req, res) => {
     else if (!(await bcrypt.compare(body.password, data[0].password)))
       res.status(403).send();
     else {
-      const token = jwt.sign({ email: body.email }, jwtSecret, { expiresIn: 1000 * 60 * 60 * 24 });
+      const token = jwt.sign({ email: data[0].email, userState: data[0].state }, jwtSecret, { expiresIn: 1000 * 60 * 60 * 24 });
       res.status(200).send({ token, userState: data[0].state });
     }
   } catch (e) {

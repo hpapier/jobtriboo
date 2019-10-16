@@ -1,19 +1,19 @@
-import Navbar from '../store/container/navbar'
+import Navbar from '../components/Navbar';
 import { checkAuth } from '../utils/auth'
 
-const Jobs = ({ isLoggedIn }) => {
+const Jobs = ({ logInfo }) => {
   return (
     <div>
-      <Navbar isLoggedIn={isLoggedIn} />
+      <Navbar logInfo={logInfo} />
       <h1>JOBS PAGE</h1>
     </div>
   );
 }
 
 Jobs.getInitialProps = async ctx => {
-  const isLoggedIn = await checkAuth(ctx);
+  const logInfo = await checkAuth(ctx);
   return {
-    isLoggedIn,
+    logInfo,
     namespacesRequired: ['common']
   };
 }

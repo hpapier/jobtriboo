@@ -11,24 +11,9 @@ import Offline from './Offline'
 
 
 // @component
-const Navbar = ({ isLoggedIn, t, setLoginState, loginState }) => {
-  const [cookies] = useCookies();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (isLoggedIn !== undefined && cookies.token === undefined) {
-      setLoginState(false);
-      if (router.pathname === '/profil' || router.pathname === '/dashboard')
-        router.push('/');
-    }
-    else if (isLoggedIn !== undefined && !loginState) {
-      setLoginState(isLoggedIn);
-      if (!isLoggedIn && (router.pathname === '/profil' || router.pathname === '/dashboard'))
-        router.push('/');
-    }
-  });
-
-  return (loginState ? <Online t={t} setLoginState={setLoginState} /> : <Offline t={t} />);
+const Navbar = ({ logInfo, t }) => {
+  console.log(logInfo);
+  return (logInfo ? <Online t={t} userState={logInfo.userState} /> : <Offline t={t} />);
 }
 
 

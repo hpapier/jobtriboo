@@ -4,7 +4,7 @@ import { Button, TextField, Card, CardContent } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add';
 import ClearIcon from '@material-ui/icons/Clear';
 
-import Navbar from '../store/container/navbar'
+import Navbar from '../components/Navbar';
 import { checkAuth } from '../utils/auth'
 
 const DashboardBody = () => {
@@ -86,20 +86,20 @@ const DashboardBody = () => {
   );
 };
 
-const Dashboard = ({ isLoggedIn }) => {
+const Dashboard = ({ logInfo }) => {
   return (
     <div>
-      <Navbar isLoggedIn={isLoggedIn} />
+      <Navbar logInfo={logInfo} />
       <DashboardBody />
     </div>
   );
 };
 
 Dashboard.getInitialProps = async (ctx) => {
-  const isLoggedIn = await checkAuth(ctx);
+  const logInfo = await checkAuth(ctx);
   //.. get current announces
   return {
-    isLoggedIn,
+    logInfo,
     namespacesRequired: ['common']
   };
 }

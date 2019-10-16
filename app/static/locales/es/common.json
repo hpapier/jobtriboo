@@ -32,5 +32,8 @@
   "alreadyAnAccount": "Already an account ?",
   "emptyOrTooLongError": "Empty or too long.",
   "emailError": "Empty, Invalid format or already taken.",
-  "emptyOrInvalidFormatError": "Empty or invalid format."
+  "emptyOrInvalidFormatError": "Empty or invalid format.",
+  "jobs": "jobs",
+  "company": "companies",
+  "profil": "profil"
 }
