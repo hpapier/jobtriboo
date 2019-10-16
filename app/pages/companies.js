@@ -8,11 +8,11 @@ import Navbar from '../components/Navbar';
 
 
 // @page
-const Jobs = ({ logInfo }) => {
+const Companies = ({ logInfo }) => {
   return (
     <div>
       <Navbar logInfo={logInfo} />
-      Jobs page
+      Companies page
 
       <style jsx global>{`
           body {
@@ -27,7 +27,7 @@ const Jobs = ({ logInfo }) => {
 
 
 // @request
-Jobs.getInitialProps = async (ctx) => {
+Companies.getInitialProps = async (ctx) => {
   const logInfo = await checkAuth(ctx);
 
   return {
@@ -38,4 +38,4 @@ Jobs.getInitialProps = async (ctx) => {
 
 
 // @export
-export default Jobs;
+export default Companies;

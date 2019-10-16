@@ -1,13 +1,15 @@
 // @module import
-import { useCookies } from 'react-cookie'
-import { useRouter } from 'next/router'
-import { Button } from '@material-ui/core'
+import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 
 
 // @local import
-import Layout from '../Layout'
-import Logo from '../Logo'
-import LangButton from '../LangButton'
+import Layout from '../Layout';
+import Logo from '../Logo';
+import NavCandidate from './NavState/NavCandidate';
+import NavRecruiter from './NavState/NavRecruiter';
+import './index.css';
+
 
 // @component
 const Online = ({ t, setLoginState, userState }) => {
@@ -15,25 +17,32 @@ const Online = ({ t, setLoginState, userState }) => {
   const router = useRouter();
 
   const handleLogout = () => {
-    // console.log('- LOGOUT -');
     removeCookies('token');
     router.push('/');
   }
 
   return (
     <Layout>
-      <div>
-        <Logo />
-        <button onClick={() => router.push('/jobs')}>{t('jobs')}</button>
-        <button onClick={() => router.push('/company')}>{t('companies')}</button>
-        <button onClick={() => router.push(userState === 'recruiter' ? '/dashboard' : '/profil')}>
-          {userState === 'recruiter' ? t('dashboard') : t('profil')}
-        </button>
+      <div className='sign-online-lb'>
+        <div className='sign-online-logo'>
+          <Logo />
+        </div>
+
+        <div className='sign-online-lb-m'>
+          <button className={`sign-online-lb-mbtn${router.pathname === '/jobs' ? ` -active` : ``}`} onClick={() => router.push('/jobs')}>{t('jobs')}</button>
+          <button className={`sign-online-lb-mbtn${router.pathname === '/companies' ? ` -active` : ``}`} onClick={() => router.push('/companies')}>{t('companies')}</button>
+          <button className={`sign-online-lb-mbtn${router.pathname === '/dashboard' || router.pathname === '/profil' ? ` -active` : ``}`} onClick={() => router.push(userState === 'recruiter' ? '/dashboard' : '/profil')}>
+            {userState === 'recruiter' ? t('dashboard') : t('profil')}
+          </button>
+        </div>
       </div>
 
       <div>
-        <LangButton />
-        <Button onClick={handleLogout}>{t('logout')}</Button>
+        {
+          userState ?
+          <NavCandidate logout={handleLogout} t={t} /> :
+          <NavRecruiter logout={handleLogout} t={t} />
+        }
       </div>
     </Layout>
   );

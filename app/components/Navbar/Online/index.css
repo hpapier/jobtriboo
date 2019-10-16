@@ -1,0 +1,36 @@
+.sign-online-lb {
+  display: flex;
+}
+
+.sign-online-logo {
+  margin-left: 50px;
+}
+
+.sign-online-lb-m {
+  margin-left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-online-lb-mbtn {
+  all: unset;
+  border: none;
+  border-bottom: 3px solid rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  height: 60px;
+  padding: 0px 15px;
+  text-align: center;
+  color: rgba(64, 70, 96, .6);
+  cursor: pointer;
+  transition: .2s;
+}
+
+.sign-online-lb-mbtn:hover {
+  color: rgba(64, 70, 96, 1);
+}
+
+.-active {
+  border-bottom: 3px solid #6B5AED;
+  color: rgba(64, 70, 96, 1);
+}

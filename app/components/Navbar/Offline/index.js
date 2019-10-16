@@ -1,15 +1,14 @@
 // @module import
-import { Button } from '@material-ui/core'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+
 
 // @local import
-import LangButton from '../LangButton'
-import Layout from '../Layout'
-import Logo from '../Logo'
-import Feather from '../../../static/assets/feather_icon.svg'
-import Arrow from '../../../static/assets/arrow_icon_0.svg'
-import { SSignInBtn, SSignUpBtn, SRecruiterBtn, SRightButtonDiv } from './style'
-import './index.css'
+import LangButton from '../LangButton';
+import Layout from '../Layout';
+import Logo from '../Logo';
+import Feather from '../../../static/assets/feather_icon.svg';
+import Arrow from '../../../static/assets/arrow_icon_0.svg';
+import './index.css';
 
 
 // @component
@@ -21,22 +20,30 @@ const Offline = ({ t }) => {
         <Logo/>
       </div>
 
-      <div style={SRightButtonDiv}>
+      <div className='navbar-offline-rbox'>
         <LangButton />
 
-        <button style={SSignInBtn} onClick={() => router.push('/signin')}>
+        {
+          router.pathname === '/recruiter' ?
+          (<button className='navbar-offline-rbox-text' onClick={() => router.push('/signin')}>
+            {t('pricing')}
+          </button>)
+          : null
+        }
+
+        <button className='navbar-offline-rbox-text' onClick={() => router.push('/signin')}>
           {t('login')}
         </button>
 
-        <Button style={SSignUpBtn} onClick={() => router.push('/signup')}>
+        <button className='navbar-offline-rbox-signup' onClick={() => router.push('/signup')}>
           {t('register')}
           <img src={Feather} />
-        </Button>
+        </button>
 
-        <Button style={SRecruiterBtn}>
-          {t('recruiter')}
+        <button className='navbar-offline-rbox-personna' onClick={() => router.push(router.pathname === '/recruiter' ? '/' : '/recruiter')}>
+          { (router.pathname === '/recruiter') ? t('candidate') : t('recruiter') }
           <img src={Arrow} />
-        </Button>
+        </button>
       </div>
     </Layout>
   )

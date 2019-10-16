@@ -14,6 +14,14 @@ const Profil = ({ logInfo }) => {
     <div>
       <Navbar logInfo={logInfo} />
       Profil page
+
+      <style jsx global>{`
+          body {
+            padding: 0;
+            margin: 0;
+            background-color: #f2f3ff !important;
+          }
+      `}</style>
     </div>
   );
 };
@@ -29,6 +37,14 @@ Profil.getInitialProps = async (ctx) => {
       ctx.res.end()
     } else {
       document.location.pathname = '/'
+    }
+  }
+  else if (logInfo.userState === 'recruiter') {
+    if (ctx.res) {
+      ctx.res.writeHead(302, { Location: '/dashboard' })
+      ctx.res.end()
+    } else {
+      document.location.pathname = '/dashboard'
     }
   }
 

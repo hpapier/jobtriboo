@@ -33,7 +33,8 @@
   "emptyOrTooLongError": "Champs vide ou trop long.",
   "emailError": "Champs vide, format invalide ou email déjà pris.",
   "emptyOrInvalidFormatError": "Champs vide ou format invalide.",
-  "jobs": "jobs",
-  "company": "entreprises",
-  "profil": "profil"
+  "jobs": "Jobs",
+  "companies": "Entreprises",
+  "profil": "Profil",
+  "pricing": "Tarification"
 }

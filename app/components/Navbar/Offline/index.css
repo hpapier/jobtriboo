@@ -1,3 +1,65 @@
 .navbar-offline-logo {
   margin-left: 50px;
 }
+
+.navbar-offline-rbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-offline-rbox-text {
+  all: unset;
+  color: #404660;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 0px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+  margin: 0px 10px;
+  cursor: pointer;
+}
+
+.navbar-offline-rbox-signup {
+  all: unset;
+  color: #404660;
+  background-color: rgba(0, 0, 0, 0);
+  width: 125px;
+  height: 40px;
+  border-radius: 1px;
+  border: 1px solid #404660;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  box-sizing: border-box;
+  margin: 0px 10px;
+  cursor: pointer;
+}
+
+.navbar-offline-rbox-personna {
+  all: unset;
+  color: #fff;
+  background-color: #6B5AED;
+  width: 125px;
+  height: 40px;
+  border-radius: 1px;
+  display: flex;
+  justify-content: space-around;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  align-items: center;
+  margin: 0px 10px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.navbar-offline-rbox-personna:hover {
+  box-shadow: 0px 0px 5px 0px rgb(107, 90, 237, 0.5) ;
+}
