@@ -1,11 +1,11 @@
 // @module imports
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 
 
 // @local imports
 import { checkAuth } from "../utils/auth";
 import Navbar from '../components/Navbar';
+import ProfilComponent from '../components/Profil'
 
 
 // @page
@@ -13,7 +13,7 @@ const Profil = ({ logInfo }) => {
   return (
     <div>
       <Navbar logInfo={logInfo} />
-      Profil page
+      <ProfilComponent />
 
       <style jsx global>{`
           body {

@@ -1,9 +1,15 @@
-import style from './style'
+// @module import
+// @local import
+import './index.css';
 
-const HeaderLayout = props => (
-  <div style={style}>
+
+// @component
+const NavbarLayout = props => (
+  <div className='navbar-layout-root'>
     {props.children}
   </div>
 );
 
-export default HeaderLayout;
+
+// @export
+export default NavbarLayout;
