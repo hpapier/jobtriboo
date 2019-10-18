@@ -1,0 +1,36 @@
+.qualification-root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0px;
+}
+
+.qualification-title {
+  color: #404660;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.qualification-box {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.qualification-box-triboo {
+  margin: 20px 25px;
+  min-width: 550px;
+}
+
+.qualification-box-triboo-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: .875em;
+  font-weight: 500;
+  color: rgba(64, 70, 96, .7);
+  text-transform: uppercase;
+  margin: 0px;
+}

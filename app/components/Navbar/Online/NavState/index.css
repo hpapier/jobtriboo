@@ -6,7 +6,7 @@
 
 .nav-state-logout {
   all: unset;
-  width: 130px;
+  padding: 0px 15px;
   height: 35px;
   border: 1px solid rgba(64, 70, 96, 0.7);
   background-color: rgba(64, 70, 96, 0);

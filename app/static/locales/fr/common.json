@@ -38,5 +38,24 @@
   "profil": "Profil",
   "pricing": "Tarification",
   "informations": "Informations",
-  "messages": "Messages"
+  "messages": "Messages",
+  "picture": "Photo",
+  "description": "Description",
+  "coordinates": "Coordonnées",
+  "qualifications": "Qualifications",
+  "profilPictureBoxTitle": "Importe ton plus beau profil",
+  "profilPictureBoxDescription": "Quelques petits conseils, prenez une photo de face, avec un arrière-plan neutre et une bonne luminosité, évitez les effets et surtout souriez !",
+  "import": "Importer",
+  "pictureFormat": "Format: JPEG, PNG",
+  "weight": "Poids: 2Mo maximum",
+  "descriptionBoxLabel": "Décris-toi en quelques mots",
+  "phDescription": "Ex: Autodidacte ambitieux, ...",
+
+  "phAge": "Votre âge",
+  "phCountry": "Votre pays de résidence",
+  "phSearch": "Rechercher...",
+  "phJobName": "Entrez le nom de votre métier",
+  "year": "an",
+  "years": "ans",
+  "studyLvl": "Niveau d'études"
 }

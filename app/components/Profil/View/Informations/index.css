@@ -1,0 +1,7 @@
+.information-root {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 930px;
+  margin-top: 70px;
+  justify-content: space-between;
+}

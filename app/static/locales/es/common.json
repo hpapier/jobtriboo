@@ -38,5 +38,24 @@
   "profil": "Profil",
   "pricing": "Pricing",
   "information": "Informations",
-  "message": "Messages"
+  "message": "Messages",
+  "picture": "Picture",
+  "description": "Description",
+  "coordinates": "Coordinates",
+  "qualifications": "Qualifications",
+  "profilPictureBoxTitle": "Import your most beautiful profile",
+  "profilPictureBoxDescription": "Some tips, take a picture from the front, with a neutral background and good brightness, avoid the effects and especially smile!",
+  "import": "Import",
+  "pictureFormat": "Format: JPEG, PNG",
+  "weight": "Weight: 2Mo maximum",
+  "descriptionBoxLabel": "Describe in a few words",
+  "phDescription": "Ex: Ambitious self-learner, ...",
+
+  "phAge": "Your age",
+  "phCountry": "Your residence country",
+  "phSearch": "Search...",
+  "phJobName": "Your job name",
+  "year": "year",
+  "years": "years",
+  "studyLvl": "Studies level"
 }

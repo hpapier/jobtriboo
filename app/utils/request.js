@@ -12,7 +12,7 @@ export const request = async (path, options = null) => {
       serverURL + path,
       {
         method: options.method,
-        body: JSON.stringify(options.body),
+        body: (options.method !== 'GET') ? JSON.stringify(options.body) : null,
         headers: options.headers
       }
     );

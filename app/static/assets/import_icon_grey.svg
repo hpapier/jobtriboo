@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="20px" viewBox="0 0 18 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-10.0%" y="-40.0%" width="120.0%" height="180.0%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.176828578 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PROFIL_INFO_CD" transform="translate(-465.000000, -275.000000)" fill="#404660" stroke="#404660" stroke-width="0.5">
+            <g id="INFORMATION" transform="translate(280.000000, 113.000000)">
+                <g id="Picture">
+                    <g id="SignUp_BTN-Copy" filter="url(#filter-1)" transform="translate(162.000000, 154.000000)">
+                        <g id="Upload_logo" transform="translate(27.000000, 9.000000)">
+                            <g id="Group" transform="translate(5.000000, 6.000000) rotate(-90.000000) translate(-5.000000, -6.000000) translate(-1.000000, 1.000000)">
+                                <path d="M2.13782,4.99999989 C2.13782,5.06089455 2.17186197,5.14174972 2.20640258,5.18098651 L4.15231625,7.41786535 C4.2431678,7.51948365 4.3903546,7.53125995 4.4962751,7.4281285 C4.5909699,7.33593124 4.59332936,7.15611567 4.50576161,7.05599737 L2.94371093,5.26321009 L10.8945762,5.26321009 C11.0289198,5.26321009 11.13782,5.14539445 11.13782,5.00005252 C11.13782,4.85471059 11.0289198,4.73688179 10.8945762,4.73688179 L2.94371093,4.73688179 L4.50576161,2.94410109 C4.5933172,2.84399595 4.58710232,2.66860143 4.4962751,2.57198313 C4.40037624,2.46998325 4.24178131,2.47906219 4.15231625,2.58224627 L2.20640258,4.81910537 C2.14922813,4.87977635 2.13878081,4.93821049 2.13782,4.99999989 Z" id="Path"></path>
+                                <path d="M3.13631849,9.27091541 C3.12219418,9.40339681 3.01218294,9.50280593 2.88286861,9.49993956 L0.387369876,9.49993956 C0.249552071,9.49992536 0.137832478,9.38480657 0.13782,9.24279686 L0.13782,0.757166099 C0.137833856,0.615157387 0.249553046,0.50004017 0.387369876,0.500025967 L2.88286861,0.500025967 C2.97286753,0.498710836 3.05658154,0.547431805 3.10195347,0.627531825 C3.1473254,0.707631846 3.1473254,0.806700351 3.10195347,0.886800372 C3.05658154,0.966900392 2.97286753,1.01562136 2.88286861,1.01430623 L0.636919728,1.01430623 L0.636919728,8.98565415 L2.88286861,8.98565415 C2.95473746,8.98405881 3.02378383,9.01447257 3.07232524,9.06910658 C3.12086666,9.1237406 3.14418863,9.19728866 3.13631849,9.27091541 Z" id="Path"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

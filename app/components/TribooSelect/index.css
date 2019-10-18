@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:300,400,500,600&display=swap');
+
+.triboo-select-root {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.triboo-select-box {
+  width: 150px;
+  height: 150px;
+  border-radius: 4px;
+  background-color: #fafbff;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .1);
+  color: rgba(64, 70, 96, 0.35);
+  cursor: pointer;
+}
+
+.triboo-select-box:hover {
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .12);
+  color: rgba(64, 70, 96, 0.5);
+}
+
+.triboo-select-img {
+  width: 50%;
+  height: 50%;
+}
+
+.triboo-select-title {
+  font-family: 'Dosis', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.-triboo-active {
+  background: linear-gradient(135deg, #D1CCFB, #6B5AED);
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .20);
+  color: #fff !important;
+}
+
+.-triboo-small {
+  width: 125px;
+  height: 125px;
+}

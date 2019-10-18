@@ -299,8 +299,44 @@ app.post('/api/register', async (req, res) => {
     }
   }
 
-
   return;
+});
+
+
+/*
+  @route:  /api/userInfo
+  @method: GET
+*/
+const tokenVerification = async (req, res, next) => {
+  console.log("==> token verification <==");
+
+  // Get the token passed via authorization header.
+  const token = req.headers.authorization;
+  
+  // Check the token content and return 401 error if it's equal to null.
+  if (token === null)
+    res.status(401).send();
+  
+  // Verify the token.
+  try {
+    const data = jwt.verify(token, jwtSecret);
+    req.body.email = data.email;
+    next();
+  } catch (e) {
+    res.status(401).send();
+  }
+}
+
+
+app.get('/api/userInfo', tokenVerification, async (req, res) => {
+  console.log("--> /api/userInfo <--");
+
+  try {
+    const data = await userAccountModel.find({ email: req.body.email }, { _id: 0, password: 0, creationDate: 0 });
+    res.status(200).send({ data: data[0] });
+  } catch (e) {
+    res.status(500).send();
+  }
 });
 
 // Run the server.
