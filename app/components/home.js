@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab'
 import { Card, CardContent, Button } from '@material-ui/core'
 
-const Triboo = ({ selected, switchTriboo, triboo }) => {
+const Triboo = ({ selected, switchTriboo, triboo = []}) => {
   const triboos = triboo.map((item, index) => <ToggleButton key={index} value={item}>{item}</ToggleButton>);
   return (
     <div style={{ display: 'flex', justifyContent: 'center', margin: 20 }}>
@@ -20,7 +20,7 @@ const Triboo = ({ selected, switchTriboo, triboo }) => {
   );
 }
 
-const SampleData = ({ selected, data }) => {
+const SampleData = ({ selected, data = []}) => {
   const sample = data
                   .filter((item) => (item.triboo === selected))
                   .map((item, index) => (

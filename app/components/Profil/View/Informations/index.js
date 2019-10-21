@@ -22,6 +22,8 @@ const Informations = () => {
   const [cookies, _, __] = useCookies();
   const componentIsMounted = useRef(true);
 
+
+
   const fetchUserData = async () => {
     try {
       const res = await request('/api/userInfo', { method: 'GET', headers: { 'Authorization': cookies.token }}  );
@@ -51,7 +53,7 @@ const Informations = () => {
         loading ?
         <div>loading</div> :
         <div className='information-root'>
-          <ProfilPicture link={userData.picture} />
+          <ProfilPicture link={userData.picture} updateLink={ndata => setUserData({ ...userData, picture: ndata })} />
           <Description data={userData.description} />
           <Coordinates
             data={{

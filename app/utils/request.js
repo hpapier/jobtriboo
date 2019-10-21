@@ -6,8 +6,7 @@ export const request = async (path, options = null) => {
   try {
     if (options === null)
       return await fetch(serverURL + path);
-    
-    console.log(serverURL + path);
+
     const response = await fetch(
       serverURL + path,
       {

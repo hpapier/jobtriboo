@@ -57,5 +57,6 @@
   "phJobName": "Your job name",
   "year": "year",
   "years": "years",
-  "studyLvl": "Studies level"
+  "studyLvl": "Studies level",
+  "ppSizeError": "Picture size too big."
 }

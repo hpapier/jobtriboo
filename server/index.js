@@ -1,5 +1,8 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const fs = require('fs');
+const randomize = require('randomatic');
+
 const { handleInputText, handleInputEmail, handleInputPrefix, handleInputNumber } = require('./utils/input');
 
 const bcrypt = require('bcrypt');
@@ -25,7 +28,11 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 /* Middleware */
 app.use(cors(corsOptions));
-app.use(express.json());
+app.use(express.json({
+  limit: '2000001'
+}));
+
+app.use(express.static('files'));
 
 /* Database schemas & models */
 
@@ -310,6 +317,7 @@ app.post('/api/register', async (req, res) => {
 const tokenVerification = async (req, res, next) => {
   console.log("==> token verification <==");
 
+  // console.log(req.body);
   // Get the token passed via authorization header.
   const token = req.headers.authorization;
   
@@ -335,6 +343,61 @@ app.get('/api/userInfo', tokenVerification, async (req, res) => {
     const data = await userAccountModel.find({ email: req.body.email }, { _id: 0, password: 0, creationDate: 0 });
     res.status(200).send({ data: data[0] });
   } catch (e) {
+    res.status(500).send();
+  }
+});
+
+
+/*
+  @route:  /api/userInfo
+  @method: PUT
+  @params:
+    @string picture
+    @string type
+*/
+app.put('/api/profil/picture', tokenVerification, async (req, res) => {
+  // console.log(req.body);
+
+  try {
+    const data = await candidateAccountModel.find({ email: req.body.email }, { _id: 1, picture: 1 });
+    if (data.length === 0)
+      throw 'No account found';
+
+
+    const userDirPath = __dirname + '/files/' + data[0]._id;
+    fs.mkdir(userDirPath, async function(err) {
+      if (err === null || (err && err.code === 'EEXIST')) {
+        // Format the data
+        let base64data = req.body.picture.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+
+
+        // Format the name
+        const rd = randomize('Aa0', 15);
+        const dbPicturePath = `/pp-${rd}.${req.body.type}`;
+        const servPicturePath = userDirPath + dbPicturePath;
+
+        // Remove the old img
+        console.log(__dirname + '/files' + data[0].picture)
+        fs.unlink(__dirname + '/files' + data[0].picture, e => console.log(e));
+
+        // Create the new img
+        fs.writeFile(servPicturePath, base64data, 'base64', async (e) => {
+          if (e) throw e;
+          else
+          {
+            const resData = await candidateAccountModel.updateOne({ email: req.body.email }, { picture: '/' + data[0]._id +  dbPicturePath });
+            if (resData.n === 1 && resData.ok === 1) {
+              res.status(200).send({ path: '/' + data[0]._id +  dbPicturePath })
+              return;
+            }
+          }
+        });
+      }
+      else
+        throw 'syscall error';
+    });
+  } catch (e) {
+    console.log(e);
     res.status(500).send();
   }
 });

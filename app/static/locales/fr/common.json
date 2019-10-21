@@ -57,5 +57,6 @@
   "phJobName": "Entrez le nom de votre métier",
   "year": "an",
   "years": "ans",
-  "studyLvl": "Niveau d'études"
+  "studyLvl": "Niveau d'études",
+  "ppSizeError": "Poids de l'image trop grande."
 }
