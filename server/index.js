@@ -2,6 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const fs = require('fs');
 const randomize = require('randomatic');
+const tokenVerification = require('./verification');
 
 const { handleInputText, handleInputEmail, handleInputPrefix, handleInputNumber } = require('./utils/input');
 
@@ -17,6 +18,7 @@ const cors = require('cors');
 const corsOptions = {
   origin: 'http://localhost:3000'
 }
+
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://0.0.0.0:12345/jobTriboo', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -35,52 +37,7 @@ app.use(express.json({
 app.use(express.static('files'));
 
 /* Database schemas & models */
-
-const basicAccountSchema = new mongoose.Schema({
-  state: String,
-  firstName: String,
-  lastName: String,
-  email: String,
-  password: String,
-  prefixPhoneNumber: String,
-  phoneNumber: String,
-  creationDate: { type: Date, default: Date.now }
-});
-
-const accountInformationSchema = new mongoose.Schema({
-  picture: { type: String, default: '' },
-  description: { type: String, default: '' },
-  country: { type: String, default: '' },
-  age: { type: Number, default: 18 },
-  triboo: { type: String, default: 'commercial' },
-  jobName: { type: String, default: '' },
-  skills: { type: [{ name: String, xp: Number }], default: [] },
-  studyLvl: { type: String, default: '' },
-  cv: { type: String, default: '' },
-  desiredContract: { type: String, default: 'indifferent' },
-  salaryExpected: { 
-    min: { type: Number, default: 15 },
-    max: { type: Number, default: 100 }
-  },
-  availability: { type: String, default: 'now' },
-  updated: { type: Date, default: Date.now }
-});
-
-const userAccountModel = mongoose.model('BasicUserAccount', basicAccountSchema, 'userAccount');
-
-const candidateAccountSchema = new mongoose.Schema();
-candidateAccountSchema.add(basicAccountSchema).add(accountInformationSchema);
-const candidateAccountModel = mongoose.model('CandidateAccount', candidateAccountSchema, 'userAccount');
-
-const announceSchema = new mongoose.Schema({
-  company: String,
-  salary: { min: Number, max: Number },
-  title: String,
-  triboo: String,
-  publicId: Number
-});
-
-const announceModel = mongoose.model('announce', announceSchema);
+const { candidateAccountModel, userAccountModel } = require('./database/models');
 
 
 // Basic route
@@ -197,25 +154,14 @@ app.get('/api/sample', async (req, res) => {
 });
 
 
+
+
 // "/api/auth" route check the validity of a token passed via authorization header.
-app.get('/api/auth', async (req, res) => {
+app.get('/api/auth', tokenVerification, (req, res) => {
   console.log("==>   /api/auth   <==");
 
-  // Get the token passed via authorization header.
-  const token = req.headers.authorization;
-  
-  // Check the token content and return 401 error if it's equal to null.
-  if (token === null)
-    res.status(401).send();
-  
-    // Verify the token.
-    try {
-      const verifTk = await jwt.verify(token, jwtSecret);
-      res.status(200).send({ userState: verifTk.userState });
-    } catch (e) {
-      res.status(401).send();
-    }
-
+  const { email, userState } = req.body;
+  res.status(200).send({ email, userState });
 });
 
 
@@ -243,6 +189,8 @@ app.post('/api/authentication', async (req, res) => {
 
   return;
 });
+
+
 
 
 /*
@@ -310,32 +258,12 @@ app.post('/api/register', async (req, res) => {
 });
 
 
+
+
 /*
   @route:  /api/userInfo
   @method: GET
 */
-const tokenVerification = async (req, res, next) => {
-  console.log("==> token verification <==");
-
-  // console.log(req.body);
-  // Get the token passed via authorization header.
-  const token = req.headers.authorization;
-  
-  // Check the token content and return 401 error if it's equal to null.
-  if (token === null)
-    res.status(401).send();
-  
-  // Verify the token.
-  try {
-    const data = jwt.verify(token, jwtSecret);
-    req.body.email = data.email;
-    next();
-  } catch (e) {
-    res.status(401).send();
-  }
-}
-
-
 app.get('/api/userInfo', tokenVerification, async (req, res) => {
   console.log("--> /api/userInfo <--");
 
@@ -348,8 +276,10 @@ app.get('/api/userInfo', tokenVerification, async (req, res) => {
 });
 
 
+
+
 /*
-  @route:  /api/userInfo
+  @route:  /api/profil/picture
   @method: PUT
   @params:
     @string picture
@@ -361,7 +291,7 @@ app.put('/api/profil/picture', tokenVerification, async (req, res) => {
   try {
     const data = await candidateAccountModel.find({ email: req.body.email }, { _id: 1, picture: 1 });
     if (data.length === 0)
-      throw 'No account found';
+      throw 'Account not found';
 
 
     const userDirPath = __dirname + '/files/' + data[0]._id;
@@ -376,9 +306,11 @@ app.put('/api/profil/picture', tokenVerification, async (req, res) => {
         const dbPicturePath = `/pp-${rd}.${req.body.type}`;
         const servPicturePath = userDirPath + dbPicturePath;
 
+
         // Remove the old img
-        console.log(__dirname + '/files' + data[0].picture)
-        fs.unlink(__dirname + '/files' + data[0].picture, e => console.log(e));
+        if (data[0].picture !== '')
+          fs.unlink(__dirname + '/files' + data[0].picture, e => console.log(e));
+
 
         // Create the new img
         fs.writeFile(servPicturePath, base64data, 'base64', async (e) => {
@@ -401,6 +333,166 @@ app.put('/api/profil/picture', tokenVerification, async (req, res) => {
     res.status(500).send();
   }
 });
+
+
+
+
+/*
+  @route:   /api/profil/description
+  @method:  PUT
+  @params:
+    @string description
+*/
+app.put('/api/profil/description', tokenVerification, async (req, res) => {
+  console.log('\n--> /api/profil/description');
+  try {
+    const { description } = req.body;
+    const resData = await candidateAccountModel.updateOne({ email: req.body.email }, { description })
+    if (resData.n === 1 && resData.ok === 1)
+      res.status(200).send();
+    else
+      throw 'Update error';
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+/*
+  @route:   /api/profil/email
+  @method:  PUT
+  @param:
+    @string data
+*/
+app.put('/api/profil/email', tokenVerification, async (req, res) => {
+  console.log('--> EMAIL API ')
+
+  const { email, data, userState } = req.body;
+  try {
+    const resData = await candidateAccountModel.updateOne({ email }, { email: data });
+    console.log(resData);
+    const token = jwt.sign({ email: data, userState }, jwtSecret, { expiresIn: 1000 * 60 * 60 * 24 });
+    res.status(200).send({ token })
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+
+  return;
+})
+
+
+
+
+/*
+  @route:   /api/profil/skills/add
+  @method:  PUT
+  @param:
+    @object data
+*/
+app.put('/api/profil/skills/add', tokenVerification, async (req, res) => {
+  console.log('--> /api/profil/skills/add');
+
+  const { data, email } = req.body;
+
+  try {
+    const rdata = await candidateAccountModel.findOneAndUpdate({ email }, { $push: { skills: data }, updated: new Date() }, { new: true });
+    if (rdata)
+      res.status(200).send(rdata.skills[rdata.skills.length - 1]);
+    else
+      throw 'account error (/skill/add)';
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+/*
+  @route:   /api/profil/skills/remove
+  @method:  PUT
+  @param:
+    @object data
+*/
+app.put('/api/profil/skills/remove', tokenVerification, async (req, res) => {
+  const { data, email } = req.body;
+
+  console.log('-> SKILLS REMOVE')
+  try {
+    const rdata = await candidateAccountModel.updateOne({ email }, { $pull: { skills: { _id: data._id }}, updated: new Date() });
+
+    if (rdata.nModified === 1 && rdata.ok === 1 && rdata.n === 1)
+      res.status(200).send();
+    else
+      throw 'account error (/skill/remove)';
+  } catch (e) {
+    console.log(e)
+    res.status(500).send();
+  }
+});
+
+
+
+
+/*
+  @route:   /api/profil/skills/update
+  @method:  PUT
+  @param:
+    @object data
+*/
+app.put('/api/profil/skills/update', tokenVerification, async (req, res) => {
+  const { data, email } = req.body;
+
+  try {
+    const rdata = await candidateAccountModel.findOneAndUpdate(
+      { email, skills: { $elemMatch: { _id: data._id, name: data.name, xp: data.xp }}},
+      { $set: { "skills.$.xp": data.updatedXp }, updated: new Date() },
+      { new: true }
+    );
+
+    if (rdata)
+      res.status(200).send(rdata.skills);
+    else
+      throw 'account error (/skill/update)';
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
+
+
+
+/*
+  @route:   /api/profil/:info
+  @method:  PUT
+  @param:
+    @string data
+*/
+app.put('/api/profil/:info', tokenVerification, async(req, res) => {
+  const { info } = req.params;
+  const { data, email } = req.body;
+  
+  console.log('--> /api/profil/' + info);
+  console.log(data)
+  try {
+    const resData = await candidateAccountModel.updateOne({ email }, { [info]: (info === 'age' || info === 'prefixPhoneNumber' || info === 'phoneNumber') ? parseInt(data) : data, updated: new Date() });
+    if (resData.nModified === 1)
+      res.status(200).send();
+    else
+      throw 'User Update Error';
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
 
 // Run the server.
 app.listen(port, () => console.log(`Server running on port:${port}`));

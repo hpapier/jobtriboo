@@ -1,23 +1,20 @@
 // @module import
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 
 // @local import
 import { withTranslation } from '../../../../i18n';
 import './index.css';
 import Input, { InputPhone } from '../Input';
+import {
+  candidateInformationUpdate
+} from '../../../../../utils/request/informations';
 
 
 // @component
-const Coordinates = ({ t, data }) => {
-  const [firstName, setFirstName] = useState(data.firstName);
-  const [lastName, setLastName] = useState(data.lastName);
-  const [country, setCountry] = useState(data.country);
-  const [age, setAge] = useState(data.age);
-  const [email, setEmail] = useState(data.email);
-  const [prefix, setPrefix] = useState(data.prefix);
-  const [phone, setPhone] = useState(data.phone);
-
+const Coordinates = ({ t, data, updateData }) => {
+  const [cookies, _, __] = useCookies();
   return (
     <div className='coordinates-root'>
       <h2 className='coordinates-title'>{t('coordinates')}</h2>
@@ -25,49 +22,65 @@ const Coordinates = ({ t, data }) => {
         <Input
           label={t('firstName')}
           placeholder={t('phFirstName')}
-          value={firstName}
-          setValue={setFirstName}
+          data={data.firstName}
+          token={cookies.token}
+          updateReq={{ req: candidateInformationUpdate, endpoint: '/firstName' }}
+          updateData={nd => updateData({ ...data, firstName: nd })}
           type='text'
         />
+
         <Input
           label={t('lastName')}
           placeholder={t('phLastName')}
-          value={lastName}
-          setValue={setLastName}
+          data={data.lastName}
+          token={cookies.token}
+          updateReq={{ req: candidateInformationUpdate, endpoint: '/lastName' }}
+          updateData={nd => updateData({ ...data, lastName: nd })}
           type='text'
         />
+
         <Input
           label={t('country')}
           placeholder={t('phCountry')}
-          value={country}
-          setValue={setCountry}
+          data={data.country}
+          token={cookies.token}
+          updateReq={{ req: candidateInformationUpdate, endpoint: '/country' }}
+          updateData={nd => updateData({ ...data, country: nd })}
           type='text'
         />
+
         <Input
           label={t('age')}
           placeholder={t('phAge')}
-          value={age}
-          setValue={setAge}
+          data={data.age}
+          token={cookies.token}
+          updateReq={{ req: candidateInformationUpdate, endpoint: '/age' }}
+          updateData={nd => updateData({ ...data, age: nd })}
           type='text'
         />
+
         <Input
           label={t('email')}
           placeholder={t('phEmail')}
-          value={email}
-          setValue={setEmail}
+          data={data.email}
+          token={cookies.token}
+          updateReq={{ req: candidateInformationUpdate, endpoint: '/email' }}
+          updateData={nd => updateData({ ...data, email: nd })}
           type='email'
         />
 
         <InputPhone
           label={t('phoneNumber')}
 
-          prefixValue={prefix}
-          prefixSetValue={setPrefix}
+          prefixData={data.prefix}
           prefixPlaceholder={'+33'}
-
-          phoneValue={phone}
-          phoneSetValue={setPhone}
+          prefixUpdateData={nd => updateData({ ...data, prefixPhoneNumber: nd })}
+          
+          phoneData={data.phone}
           phonePlaceholder={t('phPhoneNumber')}
+          phoneUpdateData={nd => updateData({ ...data, phoneNumber: nd })}
+
+          updateReq={{ req: candidateInformationUpdate, endpoint: { prefix: '/prefixPhoneNumber', phone: '/phoneNumber' }}}
         />
       </div>
     </div>

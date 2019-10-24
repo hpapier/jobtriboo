@@ -52,11 +52,52 @@
   "phDescription": "Ex: Autodidacte ambitieux, ...",
 
   "phAge": "Votre âge",
+  "country": "Pays",
   "phCountry": "Votre pays de résidence",
   "phSearch": "Rechercher...",
+  "jobName": "Métier",
   "phJobName": "Entrez le nom de votre métier",
   "year": "an",
   "years": "ans",
+  "ppSizeError": "Poids de l'image trop grande.",
+  "skills": "Compétences",
+  
   "studyLvl": "Niveau d'études",
-  "ppSizeError": "Poids de l'image trop grande."
+  "stdLvl": {
+    "selfLearner": "Autodidacte",
+    "postBac": "Post-bac",
+    "bac": "Bac",
+    "licence": "Licence",
+    "master": "Master",
+    "phd": "Doctorat"
+  },
+
+  "desiredContract": "Contrat désiré",
+  "dsrCt": {
+    "indifferent": "Indifférent",
+    "internship": "Stage",
+    "cdd": "CDD",
+    "cdi": "CDI",
+    "contractor": "Freelance"
+  },
+
+  "legalAvailability": "Disponibilité légal",
+  "lglAvb": {
+    "now": "Disponible",
+    "short": "15 jours à 1 mois",
+    "mid": "1 mois à 3 mois",
+    "long": "3 mois à 6 mois",
+    "xlong": "6+ mois"
+  },
+
+  "expectedSalary": "Salaire attendu",
+  "expSalary": {
+    "esclave": "Entre 15k et 20k",
+    "demiEsclave": "Entre 20k et 30k",
+    "richEsclave": "Entre 30k et 45k",
+    "littleDignity": "Entre 45k et 75k",
+    "respectBeginning": "Plus de 75k"
+  },
+
+  "cv": "Curriculum Vitae"
 }

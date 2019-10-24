@@ -54,7 +54,7 @@ const Informations = () => {
         <div>loading</div> :
         <div className='information-root'>
           <ProfilPicture link={userData.picture} updateLink={ndata => setUserData({ ...userData, picture: ndata })} />
-          <Description data={userData.description} />
+          <Description data={userData.description} updateDesc={ndata => setUserData({ ...userData, description: ndata})} />
           <Coordinates
             data={{
               firstName: userData.firstName,
@@ -65,6 +65,7 @@ const Informations = () => {
               prefix: userData.prefixPhoneNumber,
               phone: userData.phoneNumber
             }}
+            updateData={ndata => setUserData({ ...userData, ...ndata })}
           />
           <Qualification
             data={{
@@ -77,6 +78,7 @@ const Informations = () => {
               salaryExpected: userData.salaryExpected,
               availability: userData.availability
             }}
+            updateData={ndata => setUserData({ ...userData, ...ndata })}
           />
         </div>
       }

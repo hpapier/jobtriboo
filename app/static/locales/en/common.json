@@ -53,11 +53,52 @@
   "phDescription": "Ex: Ambitious self-learner, ...",
 
   "phAge": "Your age",
+  "country": "Country",
   "phCountry": "Your residence country",
   "phSearch": "Search...",
+  "jobName": "Job",
   "phJobName": "Your job name",
   "year": "year",
   "years": "years",
+  "ppSizeError": "Picture size too big.",
+  "skills": "Skills",
+  
   "studyLvl": "Studies level",
-  "ppSizeError": "Picture size too big."
+  "stdLvl": {
+    "selfLearner": "Self learner",
+    "postBac": "Post-bac",
+    "bac": "Bac",
+    "licence": "Licence",
+    "master": "Master",
+    "phd": "PhD"
+  },
+
+  "desiredContract": "Desired Contract",
+  "dsrCt": {
+    "indifferent": "Indifferent",
+    "internship": "Internship",
+    "cdd": "CDD",
+    "cdi": "CDI",
+    "contractor": "Contractor"
+  },
+
+  "legalAvailability": "Legal Availability",
+  "lglAvb": {
+    "now": "Now",
+    "short": "15 days to 1 month",
+    "mid": "1 month to 3 month",
+    "long": "3 month to 6 month",
+    "xlong": "6+ month"
+  },
+
+  "expectedSalary": "Expected Salary",
+  "expSalary": {
+    "esclave": "Between 15k and 20k",
+    "demiEsclave": "Between 20k and 30k",
+    "richEsclave": "Between 30k and 45k",
+    "littleDignity": "Between 45k and 75k",
+    "respectBeginning": "More than 75k"
+  },
+
+  "cv": "Curriculum Vitae"
 }
