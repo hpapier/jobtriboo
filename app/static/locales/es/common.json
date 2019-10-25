@@ -31,6 +31,8 @@
   "error500": "Oops ! A server error occurred.",
   "alreadyAnAccount": "Already an account ?",
   "emptyOrTooLongError": "Empty or too long.",
+  "tooLong": "Too much characters.",
+  "notCorrectAge": "Oh, this is not a valid age.",
   "emailError": "Empty, Invalid format or already taken.",
   "emptyOrInvalidFormatError": "Empty or invalid format.",
   "jobs": "Jobs",

@@ -19,9 +19,22 @@ export const handleInputEmail = input => {
 
 // Check if there is only number in the input.
 export const handleInputNumber = input => {
-  const regExp = /\d+/;
+  const regExp = /^\d+$/;
 
   if (input.match(regExp) === null || input.length < 10)
+    return false;
+
+  return true;
+}
+
+
+// Check if there is only number in the input.
+export const handleInputInt = (input, max, min) => {
+  const regExp = /^\d+$/;
+
+  if (input.match(regExp) === null)
+    return false;
+  else if (parseInt(input) > max || parseInt(input) < min)
     return false;
 
   return true;

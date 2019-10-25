@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 // @local import
 import { withTranslation } from '../../../../i18n';
-import Input, { InputSelect, InputSkills, InputCv } from '../Input';
+import Input, { InputSelect, InputSkills } from '../Input';
 import TribooSelect from '../../../../TribooSelect';
 import { candidateInformationUpdate } from '../../../../../utils/request/informations';
 import './index.css';
@@ -21,8 +21,8 @@ const Qualification = ({ t, data, updateData }) => {
       <h2 className='qualification-title'>{t('qualifications')}</h2>
       <div className='qualification-box'>
         <div className='qualification-box-triboo'>
-          <h2 className='qualification-box-triboo-title'>Triboo</h2>
           <TribooSelect
+            label={true}
             size='small'
             updateTriboo={updateData}
             selectedTriboo={data.triboo}
@@ -39,6 +39,7 @@ const Qualification = ({ t, data, updateData }) => {
             updateReq={{ req: candidateInformationUpdate, endpoint: '/jobName' }}
             updateData={nd => updateData({ jobName: nd })}
             type='text'
+            checkFormat={null}
           />
         </div>
 
@@ -55,7 +56,7 @@ const Qualification = ({ t, data, updateData }) => {
 
         <InputSelect
           width={260}
-          margin='20px 0px 0px 35px'
+          margin='20px 0px 20px 35px'
           list={[
             { value: 'selflearner', label: t('stdLvl.selfLearner') },
             { value: 'post-bac', label: t('stdLvl.postBac') },
@@ -76,7 +77,7 @@ const Qualification = ({ t, data, updateData }) => {
         /> */}
         <InputSelect
           width={260}
-          margin='20px 0px 0px 35px'
+          margin='20px 0px 20px 35px'
           list={[
             { value: 'indifferent', label: t('dsrCt.indifferent') },
             { value: 'internship', label: t('dsrCt.internship') },
@@ -92,7 +93,7 @@ const Qualification = ({ t, data, updateData }) => {
 
         <InputSelect
           width={260}
-          margin='20px 0px 0px 35px'
+          margin='20px 0px 20px 35px'
           list={[
             { value: 'now', label: t('lglAvb.now') },
             { value: 'short', label: t('lglAvb.short') },
@@ -108,7 +109,7 @@ const Qualification = ({ t, data, updateData }) => {
 
         <InputSelect
           width={260}
-          margin='20px 0px 0px 35px'
+          margin='20px 0px 20px 35px'
           list={[
             { value: 'esclave', label: t('expSalary.esclave') },
             { value: 'demiEsclave', label: t('expSalary.demiEsclave') },

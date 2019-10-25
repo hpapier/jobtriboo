@@ -42,6 +42,7 @@
   font-size: .875em;
   font-weight: 400;
   color: #404660;
+  transition: .1s;
 }
 
 .description-box-input::placeholder {
@@ -51,4 +52,56 @@
   font-style: italic;
   color: #404660;
   opacity: .5;
+}
+
+.description-box-input:hover {
+  border-color: rgba(64, 70, 96, .3);
+}
+
+.description-box-input:focus {
+  border-color: rgba(107, 90, 237, .5);
+}
+
+.description-box-input:disabled {
+  opacity: .5;
+}
+
+.description-box-error {
+  color: red;
+  font-family: 'Roboto', sans-serif;
+  font-size: .875em;
+  font-weight: 400;
+  margin-left: 25px;;
+}
+
+.-input-error {
+  border-color: rgba(255, 0, 0, 0.5) !important;
+}
+
+.desc-label-box {
+  display: flex;
+}
+
+@keyframes desc-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.desc-loading-el {
+  border: 4px solid rgba(0, 0, 0, 0);
+  border-left: 4px solid rgba(107, 90, 237, 1);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation-name: desc-loading;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  margin: 20px 0px 10px 10px;
 }

@@ -10,59 +10,83 @@ import EngineersIconGrey from '../../static/assets/triboo_engineers_icon_grey.sv
 import RetailIconGrey from '../../static/assets/triboo_retail_icon_grey.svg';
 import { withTranslation } from '../i18n';
 import './index.css';
-import { useState } from 'react';
-import { useCookies } from 'react-cookie';
+import { useState, useRef, useEffect } from 'react';
 
 
 // @component
-const TribooSelect = ({ t, size = 'regular', updateTriboo, selectedTriboo, req = null }) => {
+const TribooSelect = ({ t, size = 'regular', updateTriboo, selectedTriboo, req = null, label }) => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(0);
+  const [error, setError] = useState(null);
+  const isUnmounted = useRef(false);
+
+  useEffect(() => () => { isUnmounted.current = true }, []);
 
   const handleChange = async triboo => {
-    if (triboo === selectedTriboo)
+    if (triboo === selectedTriboo) {
+      if (error !== null && !isUnmounted.current)
+        setError(null);
       return;
+    }
 
     if (req === null) {
-      updateTriboo(triboo)
+      if (!isUnmounted.current)
+        updateTriboo(triboo);
       return;
     }
 
     try {
-      setLoading(true);
-      const res = await req.req(req.endpoint, triboo, req.token);
-      if (res.status === 200) {
-        setLoading(false);
-        updateTriboo({ triboo });
-      } else {
-        setError(res.status);
+      if (!isUnmounted.current) {
+        setLoading(true);
+        if (error !== null)
+          setError(null);
       }
+
+      const res = await req.req(req.endpoint, triboo, req.token);
+
+      if (res.status === 200) {
+        if (!isUnmounted.current) {
+          setLoading(false);
+          updateTriboo({ triboo });
+        }
+      }
+      else
+        throw res.status;
+
     } catch (e) {
       console.log(e);
-      setError(500)
+      if (!isUnmounted.current) {
+        setError(500)
+        setLoading(false);
+      }
     }
   }
 
   return (
-    <div className='triboo-select-root'>
-      <div className={`triboo-select-box${size === 'small' ? ` -triboo-small` : ``}${selectedTriboo === 'commercial' ? ' -triboo-active' : ``}`} onClick={() => handleChange('commercial')}>
-        <img className='triboo-select-img' src={selectedTriboo === 'commercial' ? CommercialIconWhite : CommercialIconGrey} alt='commercial' />
-        <h3 className='triboo-select-title'>{t('commercial')}</h3>
+    <div>
+      <div style={{ display: 'flex' }}>
+        { label ? <h2 className='triboo-select-label'>Triboo</h2> : '' }
+        { loading ? <div className='triboo-select-loading'></div> : null }
       </div>
+      <div className='triboo-select-root'>
+        <div className={`triboo-select-box${size === 'small' ? ` -triboo-small` : ``}${selectedTriboo === 'commercial' ? ' -triboo-active' : ``}`} onClick={() => handleChange('commercial')}>
+          <img className='triboo-select-img' src={selectedTriboo === 'commercial' ? CommercialIconWhite : CommercialIconGrey} alt='commercial' />
+          <h3 className='triboo-select-title'>{t('commercial')}</h3>
+        </div>
 
-      <div className={`triboo-select-box${size === 'small' ? ` -triboo-small` : ``}${selectedTriboo === 'tech' ? ' -triboo-active' : ``}`} onClick={() => handleChange('tech')}>
-        <img className='triboo-select-img' src={selectedTriboo === 'tech' ? TechIconWhite : TechIconGrey} alt='tech' />
-        <h3 className='triboo-select-title'>{t('tech')}</h3>
-      </div>
+        <div className={`triboo-select-box${size === 'small' ? ` -triboo-small` : ``}${selectedTriboo === 'tech' ? ' -triboo-active' : ``}`} onClick={() => handleChange('tech')}>
+          <img className='triboo-select-img' src={selectedTriboo === 'tech' ? TechIconWhite : TechIconGrey} alt='tech' />
+          <h3 className='triboo-select-title'>{t('tech')}</h3>
+        </div>
 
-      <div className={`triboo-select-box${size === 'small' ? ` -triboo-small` : ``}${selectedTriboo === 'engineering' ? ' -triboo-active' : ``}`} onClick={() => handleChange('engineering')}>
-        <img className='triboo-select-img' src={selectedTriboo === 'engineering' ? EngineersIconWhite : EngineersIconGrey} alt='engineers' />
-        <h3 className='triboo-select-title'>{t('engineering')}</h3>
-      </div>
+        <div className={`triboo-select-box${size === 'small' ? ` -triboo-small` : ``}${selectedTriboo === 'engineering' ? ' -triboo-active' : ``}`} onClick={() => handleChange('engineering')}>
+          <img className='triboo-select-img' src={selectedTriboo === 'engineering' ? EngineersIconWhite : EngineersIconGrey} alt='engineers' />
+          <h3 className='triboo-select-title'>{t('engineering')}</h3>
+        </div>
 
-      <div className={`triboo-select-box${size === 'small' ? ` -triboo-small` : ``}${selectedTriboo === 'retail' ? ' -triboo-active' : ``}`} onClick={() => handleChange('retail')}>
-        <img className='triboo-select-img' className={`triboo-select-img${selectedTriboo === 'retail' ? ' -icon-triboo-active' : ``}`} src={selectedTriboo === 'retail' ? RetailIconWhite : RetailIconGrey} alt='retail' />
-        <h3 className='triboo-select-title'>{t('retail')}</h3>
+        <div className={`triboo-select-box${size === 'small' ? ` -triboo-small` : ``}${selectedTriboo === 'retail' ? ' -triboo-active' : ``}`} onClick={() => handleChange('retail')}>
+          <img className='triboo-select-img' className={`triboo-select-img${selectedTriboo === 'retail' ? ' -icon-triboo-active' : ``}`} src={selectedTriboo === 'retail' ? RetailIconWhite : RetailIconGrey} alt='retail' />
+          <h3 className='triboo-select-title'>{t('retail')}</h3>
+        </div>
       </div>
     </div>
   );

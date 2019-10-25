@@ -31,6 +31,8 @@
   "error500": "Oups ! Une error serveur est survenue.",
   "alreadyAnAccount": "Déjà un compte ?",
   "emptyOrTooLongError": "Champs vide ou trop long.",
+  "tooLong": "Trop de caractères.",
+  "notCorrectAge": "Oh, ce n'est pas un âge valide.",
   "emailError": "Champs vide, format invalide ou email déjà pris.",
   "emptyOrInvalidFormatError": "Champs vide ou format invalide.",
   "jobs": "Jobs",

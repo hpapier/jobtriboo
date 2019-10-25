@@ -10,6 +10,7 @@ import Input, { InputPhone } from '../Input';
 import {
   candidateInformationUpdate
 } from '../../../../../utils/request/informations';
+import { handleInputText, handleInputEmail, handleInputNumber, handleInputPrefix, handleInputInt } from '../../../../../utils/input';
 
 
 // @component
@@ -27,6 +28,8 @@ const Coordinates = ({ t, data, updateData }) => {
           updateReq={{ req: candidateInformationUpdate, endpoint: '/firstName' }}
           updateData={nd => updateData({ ...data, firstName: nd })}
           type='text'
+          checkFormat={handleInputText}
+          formatErrorMsg={t('emptyOrTooLongError')}
         />
 
         <Input
@@ -37,6 +40,8 @@ const Coordinates = ({ t, data, updateData }) => {
           updateReq={{ req: candidateInformationUpdate, endpoint: '/lastName' }}
           updateData={nd => updateData({ ...data, lastName: nd })}
           type='text'
+          checkFormat={handleInputText}
+          formatErrorMsg={t('emptyOrTooLongError')}
         />
 
         <Input
@@ -57,6 +62,8 @@ const Coordinates = ({ t, data, updateData }) => {
           updateReq={{ req: candidateInformationUpdate, endpoint: '/age' }}
           updateData={nd => updateData({ ...data, age: nd })}
           type='text'
+          checkFormat={n => handleInputInt(n, 100, 0)}
+          formatErrorMsg={t('notCorrectAge')}
         />
 
         <Input
@@ -67,6 +74,8 @@ const Coordinates = ({ t, data, updateData }) => {
           updateReq={{ req: candidateInformationUpdate, endpoint: '/email' }}
           updateData={nd => updateData({ ...data, email: nd })}
           type='email'
+          checkFormat={handleInputEmail}
+          formatErrorMsg={t('emailError')}
         />
 
         <InputPhone
@@ -75,12 +84,15 @@ const Coordinates = ({ t, data, updateData }) => {
           prefixData={data.prefix}
           prefixPlaceholder={'+33'}
           prefixUpdateData={nd => updateData({ ...data, prefixPhoneNumber: nd })}
-          
+          prefixCheck={handleInputPrefix}
+
           phoneData={data.phone}
           phonePlaceholder={t('phPhoneNumber')}
           phoneUpdateData={nd => updateData({ ...data, phoneNumber: nd })}
+          phoneCheck={handleInputNumber}
 
           updateReq={{ req: candidateInformationUpdate, endpoint: { prefix: '/prefixPhoneNumber', phone: '/phoneNumber' }}}
+          formatErrorMsg={t('emptyOrInvalidFormatError')}
         />
       </div>
     </div>
