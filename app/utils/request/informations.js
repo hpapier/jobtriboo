@@ -12,3 +12,7 @@ export const candidateDescriptionUpdate = async (description, token) => {
 export const candidateInformationUpdate = async (endpoint, data, token) => {
   return await request('/api/profil' + endpoint, { method: 'PUT', body: { data }, headers: { 'Authorization': token, 'Content-Type': 'application/json' }});
 }
+
+export const getCandidateSettings = async token => {
+  return await request('/api/candidate/settings', { method: 'GET', headers: { 'Authorization': token }});
+}

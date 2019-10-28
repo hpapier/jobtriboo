@@ -101,5 +101,7 @@
     "respectBeginning": "Plus de 75k"
   },
 
-  "cv": "Curriculum Vitae"
+  "cv": "Curriculum Vitae",
+
+  "emailOnMsg": "Recevoir un email à la reception d'un message."
 }

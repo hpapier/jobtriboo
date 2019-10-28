@@ -1,0 +1,35 @@
+.checkbox-root {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.checkbox-btn {
+  all: unset;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #404660;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0);
+  margin: 20px 0px;
+  cursor: pointer;
+  margin-left: 20px;
+  transition: .1s;
+}
+
+.-checked {
+  background-color: #404660;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .1s;
+}
+
+.checkbox-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #404660;
+  margin-left: 15px;
+}

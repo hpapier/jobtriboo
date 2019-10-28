@@ -31,7 +31,10 @@ const accountInformationSchema = new mongoose.Schema({
   desiredContract: { type: String, default: 'indifferent' },
   salaryExpected: { type: String, default: 'littleDignity' },
   availability: { type: String, default: 'now' },
-  updated: { type: Date, default: new Date() }
+  updated: { type: Date, default: new Date() },
+  settings: {
+    emailOnMsg: { type: Boolean, default: true }
+  }
 });
 
 const candidateAccountSchema = new mongoose.Schema();

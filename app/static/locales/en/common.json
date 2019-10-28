@@ -102,5 +102,7 @@
     "respectBeginning": "More than 75k"
   },
 
-  "cv": "Curriculum Vitae"
+  "cv": "Curriculum Vitae",
+
+  "emailOnMsg": "Send an email on message."
 }

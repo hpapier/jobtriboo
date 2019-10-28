@@ -494,5 +494,29 @@ app.put('/api/profil/:info', tokenVerification, async(req, res) => {
 
 
 
+/*
+  @route:   /api/candidate/settings
+  @method:  GET
+*/
+app.get('/api/candidate/settings', tokenVerification, async (req, res) => {
+  console.log('-> /api/candidate/settings');
+  const { email } = req.body;
+  try {
+    const udata = await candidateAccountModel.find({ email }, { settings: 1 });
+    if (udata.length === 0) {
+      res.status(401).send();
+      return;
+    }
+
+    res.status(200).send(udata[0].settings);
+  }
+  catch (e) {
+    res.status(500).send();
+  }
+});
+
+
+
+
 // Run the server.
 app.listen(port, () => console.log(`Server running on port:${port}`));

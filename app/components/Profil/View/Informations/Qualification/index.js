@@ -1,5 +1,6 @@
 // @module import
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 
 // @local import
@@ -8,7 +9,6 @@ import Input, { InputSelect, InputSkills } from '../Input';
 import TribooSelect from '../../../../TribooSelect';
 import { candidateInformationUpdate } from '../../../../../utils/request/informations';
 import './index.css';
-import { useCookies } from 'react-cookie';
 
 
 // @component

@@ -28,7 +28,6 @@ const Informations = () => {
     try {
       const res = await request('/api/userInfo', { method: 'GET', headers: { 'Authorization': cookies.token }}  );
       const { data } = await res.json();
-      console.log(data);
 
       if (componentIsMounted.current) {
         setUserData(data);
@@ -48,11 +47,11 @@ const Informations = () => {
   }, []);
 
   return (
-    <div>
+    <div className='information-root'>
       {
         loading ?
-        <div>loading</div> :
-        <div className='information-root'>
+        <div className='information-root-loading'></div> :
+        <div className='information-root-box'>
           <ProfilPicture link={userData.picture} updateLink={ndata => setUserData({ ...userData, picture: ndata })} />
           <Description data={userData.description} updateDesc={ndata => setUserData({ ...userData, description: ndata})} />
           <Coordinates
