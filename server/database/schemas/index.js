@@ -49,10 +49,30 @@ const announceSchema = new mongoose.Schema({
   publicId: Number
 });
 
+const companiesSchema = new mongoose.Schema({
+  logo: { type: String, default: '' },
+  cover: { type: String, default: '' },
+  description: { type: String, default: '' },
+  name: { type: String, default: '' },
+  email: { type: String, default: '' },
+  phone: { type: String, default: '' },
+  address: { type: String, default: '' },
+  country: { type: String, default: '' },
+  employeesNumber: { type: String, default: '' },
+  activityArea: [String],
+  link: { type: String, default: '' },
+});
+
+const recruiterDataSchema = new mongoose.Schema({
+  companies: [companiesSchema],
+  announces: [announceSchema]
+})
+
+const recruiterAccountSchema = new mongoose.Schema();
+recruiterAccountSchema.add(basicAccountSchema).add(recruiterDataSchema);
 
 module.exports = {
-  basicAccountSchema,
-  accountInformationSchema,
+  recruiterAccountSchema,
   candidateAccountSchema,
-  announceSchema
+  basicAccountSchema
 }

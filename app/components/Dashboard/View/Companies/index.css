@@ -1,0 +1,14 @@
+.companies-root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.companies-root-title {
+  color: #404660;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+}

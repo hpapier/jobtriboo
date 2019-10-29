@@ -1,4 +1,4 @@
-.profil-menu-root {
+.menu-root {
   min-height: calc(100vh - 60px);
   background-color: #fff;
   min-width: 215px;
@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 
-.profil-menu-box {
+.menu-box {
   width: 100%;
   display: flex;
   flex-direction: column;

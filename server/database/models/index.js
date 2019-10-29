@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-const { basicAccountSchema, candidateAccountSchema, announceSchema } = require('../schemas');
+const { recruiterAccountSchema, candidateAccountSchema, basicAccountSchema } = require('../schemas');
 
 const userAccountModel = mongoose.model('BasicUserAccount', basicAccountSchema, 'userAccount');
 
+const recruiterAccountModel = mongoose.model('RecruiterAccount', recruiterAccountSchema, 'userAccount');
+
 const candidateAccountModel = mongoose.model('CandidateAccount', candidateAccountSchema, 'userAccount');
 
-const announceModel = mongoose.model('announce', announceSchema);
 
-module.exports = { userAccountModel, candidateAccountModel, announceModel };
+module.exports = { userAccountModel, recruiterAccountModel, candidateAccountModel };

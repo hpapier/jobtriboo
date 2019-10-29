@@ -41,6 +41,7 @@
   "pricing": "Pricing",
   "informations": "Informations",
   "messages": "Messages",
+  "announces": "Announces",
 
   "picture": "Picture",
   "description": "Description",
@@ -53,6 +54,8 @@
   "weight": "Weight: 2Mo maximum",
   "descriptionBoxLabel": "Describe in a few words",
   "phDescription": "Ex: Ambitious self-learner, ...",
+  "noFileSelected": "No file selected.",
+  "companyAlreadyExist": "Company already exist",
 
   "phAge": "Your age",
   "country": "Country",
@@ -63,6 +66,7 @@
   "year": "year",
   "years": "years",
   "ppSizeError": "Picture size too big.",
+  "fileEmptyError": "You need to import a file",
   "skills": "Skills",
   
   "studyLvl": "Studies level",
@@ -104,5 +108,49 @@
 
   "cv": "Curriculum Vitae",
 
-  "emailOnMsg": "Send an email on message."
+  "emailOnMsg": "Send an email on message.",
+
+
+  "commercial": "Commercial",
+  "tech": "Tech/It",
+  "engineering": "Engineering",
+  "retail": "Retail",
+
+  "myCompanies": "My companies",
+  "newCompany": "New company",
+
+
+  "newCompanyLogo": "Your company logo",
+  "newCompanyCover": "Your cover picture",
+  "companyName": "Name",
+  "phCompanyName": "Enter your company name",
+  "fmeCompanyName": "",
+  "companyEmail": "Email",
+  "phCompanyEmail": "Enter a contact email",
+  "fmeCompanyEmail": "",
+  "companyPhone": "Phone",
+  "phCompanyPhone": "Contact phone number",
+  "fmeCompanyPhone": "",
+  "companyAddress": "Address",
+  "phCompanyAddress": "Enter your company address",
+  "fmeCompanyAddress": "",
+  "companyCountry": "Country",
+  "phCompanyCountry": "Your company country",
+  "fmeCompanyCountry": "",
+  "companyEmployeesNumber": "Employees Number",
+  "companyEmployeesNumberTiny": "< 5 employees",
+  "companyEmployeesNumberSmall": "Between 5 and 25 employees",
+  "companyEmployeesNumberMid": "Between 25 and 250 employees",
+  "companyEmployeesNumberBig": "Between 250 and 1000 employees",
+  "companyEmployeesNumberHuge": "+ 1000 employees",
+
+  "companyDescription": "Description",
+  "phCompanyDescription": "Enter a company description...",
+  "companyActivityArea": "Activity Area",
+  "companyNIF": "SIF/NIF",
+  "phCompanyNIF": "Enter your company SIF/NIF",
+  "fmeCompanyNIF": "",
+  "companyLink": "Link",
+  "phCompanyLink": "Your company link",
+  "fmeCompanyLink": ""
 }

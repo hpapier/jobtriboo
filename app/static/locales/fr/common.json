@@ -41,6 +41,8 @@
   "pricing": "Tarification",
   "informations": "Informations",
   "messages": "Messages",
+  "announces": "Annonces",
+
   "picture": "Photo",
   "description": "Description",
   "coordinates": "Coordonnées",
@@ -52,6 +54,8 @@
   "weight": "Poids: 2Mo maximum",
   "descriptionBoxLabel": "Décris-toi en quelques mots",
   "phDescription": "Ex: Autodidacte ambitieux, ...",
+  "noFileSelected": "Aucun fichier sélectionné.",
+  "companyAlreadyExist": "Cette entreprise existe déjà",
 
   "phAge": "Votre âge",
   "country": "Pays",
@@ -62,6 +66,7 @@
   "year": "an",
   "years": "ans",
   "ppSizeError": "Poids de l'image trop grande.",
+  "fileEmptyError": "You need to import a file",
   "skills": "Compétences",
   
   "studyLvl": "Niveau d'études",
@@ -103,5 +108,47 @@
 
   "cv": "Curriculum Vitae",
 
-  "emailOnMsg": "Recevoir un email à la reception d'un message."
+  "emailOnMsg": "Recevoir un email à la reception d'un message.",
+
+  "commercial": "Commercial",
+  "tech": "Tech/It",
+  "engineering": "Ingénierie",
+  "retail": "Retail",
+
+  "myCompanies": "Mes entreprises",
+  "newCompany": "Nouvelle entreprise",
+
+  "newCompanyLogo": "Logo de votre entreprise",
+  "newCompanyCover": "Photo de couverture",
+  "companyName": "Nom",
+  "phCompanyName": "Nom de votre entreprise",
+  "fmeCompanyName": "",
+  "companyEmail": "Email",
+  "phCompanyEmail": "Email de contact",
+  "fmeCompanyEmail": "",
+  "companyPhone": "Téléphone",
+  "phCompanyPhone": "Entrez le numéro de votre entreprise",
+  "fmeCompanyPhone": "",
+  "companyAddress": "Adresse",
+  "phCompanyAddress": "Entrez l'adresse de votre entreprise",
+  "fmeCompanyAddress": "",
+  "companyCountry": "Pays",
+  "phCompanyCountry": "Le pays de votre entreprise",
+  "fmeCompanyCountry": "",
+  "companyEmployeesNumber": "Nombre de salariés",
+  "companyEmployeesNumberTiny": "< 5 salariés",
+  "companyEmployeesNumberSmall": "Entre 5 et 25 salariés",
+  "companyEmployeesNumberMid": "Entre 25 et 250 salariés",
+  "companyEmployeesNumberBig": "Entre 250 et 1000 salariés",
+  "companyEmployeesNumberHuge": "+ 1000 salariés",
+
+  "companyDescription": "Description",
+  "phCompanyDescription": "Décrivez votre entreprise...",
+  "companyActivityArea": "Secteur d'activités",
+  "companyNIF": "SIF/NIF",
+  "phCompanyNIF": "Entrez votre SIF/NIF",
+  "fmeCompanyNIF": "",
+  "companyLink": "Lien",
+  "phCompanyLink": "Lien vers votre entreprise",
+  "fmeCompanyLink": ""
 }

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 // @local import
 import './index.css';
-import Menu from './Menu';
+import Menu from '../Menu/profil';
 import View from './View';
 
 

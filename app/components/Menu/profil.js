@@ -5,7 +5,7 @@ import MenuItem from './MenuItem';
 import InformationsIcon from '../../../static/assets/informations_icon_grey.svg';
 import MessagesIcon from '../../../static/assets/messages_icon_grey.svg';
 import SettingsIcon from '../../../static/assets/settings_icon_grey.svg';
-import { withTranslation } from '../../i18n';
+import { withTranslation } from '../i18n';
 
 
 

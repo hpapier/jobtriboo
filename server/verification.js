@@ -2,7 +2,7 @@ const { userAccountModel } = require('./database/models');
 const jwt = require('jsonwebtoken');
 const jwtSecret = "qkslfkjdsq123RESFRZ2sdsdf";
 
-const tokenVerification = async (req, res, next) => {
+const tokenVerification = async (req, res) => {
   console.log("==> token verification <==");
 
   // Get the token passed via authorization header.
@@ -25,7 +25,6 @@ const tokenVerification = async (req, res, next) => {
 
     req.body.email = data.email;
     req.body.userState = udata[0].state;
-    next();
   } catch (e) {
     console.log(e);
     res.status(401).send();
@@ -33,4 +32,37 @@ const tokenVerification = async (req, res, next) => {
   }
 }
 
-module.exports = tokenVerification;
+const recruiterTokenCheck = async (req, res, next) => {
+  await tokenVerification(req, res);
+  const { userState } = req.body;
+
+  if (userState !== 'recruiter') {
+    res.status(401).send();
+    return;
+  }
+  else
+    next();
+}
+
+const candidateTokenCheck = async (req, res, next) => {
+  await tokenVerification(req, res);
+  const { userState } = req.body;
+
+  if (userState !== 'candidate') {
+    res.status(401).send();
+    return;
+  }
+  else
+    next();
+}
+
+const basicTokenCheck = async (req, res, next) => {
+  await tokenVerification(req, res);
+  next();
+}
+
+module.exports = {
+  recruiterTokenCheck,
+  candidateTokenCheck,
+  basicTokenCheck
+};

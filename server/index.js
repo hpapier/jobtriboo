@@ -2,7 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const fs = require('fs');
 const randomize = require('randomatic');
-const tokenVerification = require('./verification');
+const { recruiterTokenCheck, candidateTokenCheck, basicTokenCheck } = require('./verification');
 
 const { handleInputText, handleInputEmail, handleInputPrefix, handleInputNumber } = require('./utils/input');
 
@@ -21,7 +21,7 @@ const corsOptions = {
 
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://0.0.0.0:12345/jobTriboo', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://0.0.0.0:12345/jobTriboo', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true });
 
 const db = mongoose.connection;
 db.once('open', () => console.log('Connected to mongodb'));
@@ -31,13 +31,13 @@ db.on('error', console.error.bind(console, 'connection error:'));
 /* Middleware */
 app.use(cors(corsOptions));
 app.use(express.json({
-  limit: '2000001'
+  limit: '5000000'
 }));
 
 app.use(express.static('files'));
 
 /* Database schemas & models */
-const { candidateAccountModel, userAccountModel } = require('./database/models');
+const { candidateAccountModel, recruiterAccountModel, userAccountModel } = require('./database/models');
 
 
 // Basic route
@@ -157,7 +157,7 @@ app.get('/api/sample', async (req, res) => {
 
 
 // "/api/auth" route check the validity of a token passed via authorization header.
-app.get('/api/auth', tokenVerification, (req, res) => {
+app.get('/api/auth', basicTokenCheck, (req, res) => {
   console.log("==>   /api/auth   <==");
 
   const { email, userState } = req.body;
@@ -239,7 +239,7 @@ app.post('/api/register', async (req, res) => {
 
     let newAccount;
     if (userState === 'recruiter')
-      newAccount = new userAccountModel({ state: userState, firstName, lastName, email, password: cryptedPwd, prefixPhoneNumber, phoneNumber });
+      newAccount = new recruiterAccountModel({ state: userState, firstName, lastName, email, password: cryptedPwd, prefixPhoneNumber, phoneNumber });
     else
       newAccount = new candidateAccountModel({ state: userState, firstName, lastName, email, password: cryptedPwd, prefixPhoneNumber, phoneNumber });
 
@@ -264,7 +264,7 @@ app.post('/api/register', async (req, res) => {
   @route:  /api/userInfo
   @method: GET
 */
-app.get('/api/userInfo', tokenVerification, async (req, res) => {
+app.get('/api/userInfo', candidateTokenCheck, async (req, res) => {
   console.log("--> /api/userInfo <--");
 
   try {
@@ -285,7 +285,7 @@ app.get('/api/userInfo', tokenVerification, async (req, res) => {
     @string picture
     @string type
 */
-app.put('/api/profil/picture', tokenVerification, async (req, res) => {
+app.put('/api/profil/picture', candidateTokenCheck, async (req, res) => {
   // console.log(req.body);
 
   try {
@@ -343,7 +343,7 @@ app.put('/api/profil/picture', tokenVerification, async (req, res) => {
   @params:
     @string description
 */
-app.put('/api/profil/description', tokenVerification, async (req, res) => {
+app.put('/api/profil/description', candidateTokenCheck, async (req, res) => {
   console.log('\n--> /api/profil/description');
   try {
     const { description } = req.body;
@@ -367,7 +367,7 @@ app.put('/api/profil/description', tokenVerification, async (req, res) => {
   @param:
     @string data
 */
-app.put('/api/profil/email', tokenVerification, async (req, res) => {
+app.put('/api/profil/email', candidateTokenCheck, async (req, res) => {
   console.log('--> EMAIL API ')
 
   const { email, data, userState } = req.body;
@@ -393,7 +393,7 @@ app.put('/api/profil/email', tokenVerification, async (req, res) => {
   @param:
     @object data
 */
-app.put('/api/profil/skills/add', tokenVerification, async (req, res) => {
+app.put('/api/profil/skills/add', candidateTokenCheck, async (req, res) => {
   console.log('--> /api/profil/skills/add');
 
   const { data, email } = req.body;
@@ -419,7 +419,7 @@ app.put('/api/profil/skills/add', tokenVerification, async (req, res) => {
   @param:
     @object data
 */
-app.put('/api/profil/skills/remove', tokenVerification, async (req, res) => {
+app.put('/api/profil/skills/remove', candidateTokenCheck, async (req, res) => {
   const { data, email } = req.body;
 
   console.log('-> SKILLS REMOVE')
@@ -445,7 +445,7 @@ app.put('/api/profil/skills/remove', tokenVerification, async (req, res) => {
   @param:
     @object data
 */
-app.put('/api/profil/skills/update', tokenVerification, async (req, res) => {
+app.put('/api/profil/skills/update', candidateTokenCheck, async (req, res) => {
   const { data, email } = req.body;
 
   try {
@@ -473,7 +473,7 @@ app.put('/api/profil/skills/update', tokenVerification, async (req, res) => {
   @param:
     @string data
 */
-app.put('/api/profil/:info', tokenVerification, async(req, res) => {
+app.put('/api/profil/:info', candidateTokenCheck, async(req, res) => {
   const { info } = req.params;
   const { data, email } = req.body;
   
@@ -498,7 +498,7 @@ app.put('/api/profil/:info', tokenVerification, async(req, res) => {
   @route:   /api/candidate/settings
   @method:  GET
 */
-app.get('/api/candidate/settings', tokenVerification, async (req, res) => {
+app.get('/api/candidate/settings', candidateTokenCheck, async (req, res) => {
   console.log('-> /api/candidate/settings');
   const { email } = req.body;
   try {
@@ -511,6 +511,117 @@ app.get('/api/candidate/settings', tokenVerification, async (req, res) => {
     res.status(200).send(udata[0].settings);
   }
   catch (e) {
+    res.status(500).send();
+  }
+});
+
+
+
+
+/*
+  @route:   /api/recruiter/companies
+  @method:  GET
+*/
+app.get('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
+  console.log('-> /api/recruiter/companies');
+  const { email, userState } = req.body;
+
+  try {
+    const rdata = await recruiterAccountModel.find({ email }, { companies: 1 });
+    console.log(rdata);
+    if (rdata.length === 0)
+      throw 'account error (/api/recruiter/companies)';
+    else {
+      res.status(200).send(rdata[0].companies);
+      return;
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+/*
+  @route:   /api/recruiter/companies
+  @method:  POST
+*/
+app.post('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
+  const { email, data } = req.body;
+
+  try {
+    const rdata = await recruiterAccountModel.find({ companies: { $elemMatch: { name: data.name }}});
+    console.log(rdata);
+    if (rdata.length > 0) {
+      res.status(200).send({ state: 'already exist' });
+      return;
+    }
+
+    const recruiterData = await recruiterAccountModel.find({ email });
+    console.log(recruiterData);
+    if (recruiterData.length === 0) {
+      res.status(401).send();
+      return;
+    }
+
+    let logoPath;
+    let coverPath;
+
+    const userDirPath = __dirname + '/files/' + recruiterData[0]._id + '/' + data.name.replace(/|s/, '_');
+    fs.mkdir(userDirPath, async function(err) {
+      if (err === null || (err && err.code === 'EEXIST')) {
+        // Format the data
+        let logo64data = req.body.data.logo.data.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+        let cover64data = req.body.data.cover.data.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+
+
+        // Format the name
+        const logoRd = randomize('Aa0', 15);
+        const logoDbPicturePath = `/comp-logo-${logoRd}.${req.body.data.logo.type}`;
+        const logoServPicturePath = userDirPath + logoDbPicturePath;
+
+        // Format the name
+        const coverRd = randomize('Aa0', 15);
+        const coverDbPicturePath = `/comp-cover-${coverRd}.${req.body.data.cover.type}`;
+        const coverServPicturePath = userDirPath + coverDbPicturePath;
+
+
+        // Create the new img
+        fs.writeFile(logoServPicturePath, logo64data, 'base64', async (e) => {
+          if (e) {
+            console.log(e)
+            // throw e;
+          }
+          // else
+            logoPath = '/' + recruiterData[0]._id + logoDbPicturePath;
+        });
+
+        fs.writeFile(coverServPicturePath, cover64data, 'base64', async (e) => {
+          if (e) {
+            console.log(e);
+            // throw e;
+          }
+          // else
+            coverPath = '/' + recruiterData[0]._id + coverDbPicturePath;
+        });
+      }
+      else
+        throw 'syscall error';
+    });
+
+    // Store into 
+    const udata = await recruiterAccountModel.findOneAndUpdate({ email }, { $push: { companies: { ...data, logo: logoPath, cover: coverPath , employeesNumber: data.companyEmployeesNumber }}, updated: new Date() }, { new: true });
+    if (udata !== null)
+      res.status(200).send({ state: 'created' });
+    else
+      throw 'account error';
+
+    return;
+
+  } catch (e) {
+    console.log(e);
     res.status(500).send();
   }
 });

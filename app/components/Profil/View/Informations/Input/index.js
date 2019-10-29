@@ -9,7 +9,7 @@ import RemoveIcon from '../../../../../static/assets/remove_icon_w.svg';
 import SearchIcon from '../../../../../static/assets/search_icon_grey.svg';
 import WhiteDropDownIcon from '../../../../../static/assets/dropdown_icon_w.svg';
 import GreyDropDownIcon from '../../../../../static/assets/bottom_arrow_icon.svg';
-import GreyImportIcon from '../../../../../static/assets/import_icon_grey.svg';
+// import GreyImportIcon from '../../../../../static/assets/import_icon_grey.svg';
 import { withTranslation } from '../../../../i18n';
 
 
