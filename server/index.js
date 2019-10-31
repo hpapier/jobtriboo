@@ -566,11 +566,11 @@ app.post('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
       return;
     }
 
-    let logoPath;
-    let coverPath;
+    const newId = mongoose.Types.ObjectId();
 
-    const userDirPath = __dirname + '/files/' + recruiterData[0]._id + '/' + data.name.replace(/|s/, '_');
-    fs.mkdir(userDirPath, async function(err) {
+    const userDirPath = __dirname + '/files/' + recruiterData[0]._id + '/' + newId;
+    fs.mkdir(userDirPath, { recursive: true }, async function(err) {
+      console.log(err);
       if (err === null || (err && err.code === 'EEXIST')) {
         // Format the data
         let logo64data = req.body.data.logo.data.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
@@ -590,35 +590,181 @@ app.post('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
 
         // Create the new img
         fs.writeFile(logoServPicturePath, logo64data, 'base64', async (e) => {
-          if (e) {
-            console.log(e)
-            // throw e;
-          }
-          // else
-            logoPath = '/' + recruiterData[0]._id + logoDbPicturePath;
+          if (e)
+            throw e;
         });
 
         fs.writeFile(coverServPicturePath, cover64data, 'base64', async (e) => {
-          if (e) {
-            console.log(e);
-            // throw e;
-          }
-          // else
-            coverPath = '/' + recruiterData[0]._id + coverDbPicturePath;
+          if (e)
+          throw e;
         });
+
+        const coverPath = '/' + recruiterData[0]._id + '/' + newId + coverDbPicturePath;
+        const logoPath = '/' + recruiterData[0]._id + '/' + newId +  logoDbPicturePath;
+
+
+        // Store into 
+        const udata = await recruiterAccountModel.findOneAndUpdate({ email }, { $push: { companies: { ...data, _id: newId, logo: logoPath, cover: coverPath , employeesNumber: data.companyEmployeesNumber }}, updated: new Date() }, { new: true });
+        if (udata !== null)
+          res.status(200).send({ state: 'created' });
+        else
+          throw 'account error';
+    
+        return;
       }
       else
         throw 'syscall error';
     });
 
-    // Store into 
-    const udata = await recruiterAccountModel.findOneAndUpdate({ email }, { $push: { companies: { ...data, logo: logoPath, cover: coverPath , employeesNumber: data.companyEmployeesNumber }}, updated: new Date() }, { new: true });
-    if (udata !== null)
-      res.status(200).send({ state: 'created' });
-    else
-      throw 'account error';
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
 
-    return;
+
+
+app.delete('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
+  console.log('-> /api/recruiter/companies (DELETE)');
+
+  const { email, data, userId } = req.body;
+
+  try {
+    const udata = await recruiterAccountModel.findOneAndUpdate({ email }, { $pull: { companies: { _id: data._id }}}, { new: true });
+    if (udata !== null) {
+      fs.unlink(__dirname + '/files' + data.logo, (e) => {
+        console.log(e)
+        fs.unlink(__dirname + '/files' + data.cover, (e) => {
+          console.log(e)
+          fs.rmdir(__dirname + '/files/' + userId + '/' + data._id, e => console.log(e));
+        });
+      });
+
+      res.status(200).send(udata.companies);
+    }
+    else
+      res.status(404).send();
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+app.put('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
+  console.log('-> /api/recruiter/companies (PUT)');
+  const { email, data, userId } = req.body;
+
+  try {
+
+    // Check if the resource exist.
+    const cdata = await recruiterAccountModel.find({ email, companies: { $elemMatch: { _id: data._id }}}, { companies: 1 });
+    if (cdata === null || cdata.length === 0) {
+      res.status(404).send();
+      return;
+    }
+
+    // Check if the name is available.
+    const checkName = await recruiterAccountModel.find({ companies: { $elemMatch: { name: data.name }}});
+    if (checkName.length > 1) {
+      res.status(200).send({ state: 'already exist'});
+      return;
+    } else if (checkName.length === 1) {
+      if (checkName[0]._id.toString() !== userId.toString()) {
+        res.status(200).send({ state: 'already exist'});
+        return;
+      }
+    }
+
+
+    // Update the company.
+    const companyData = cdata[0].companies.filter(item => item._id.toString() === data._id.toString());
+
+
+    // Verify if logo changed
+    // if (companyData[0].name !== data.name) {
+    //   fs.rmdir(__dirname + '/files/' + cdata[0]._id + '/' + companyData[0].name.replace(/\s/gm, '_'), e => console.log(e));
+    //   console.log('delete doc');
+    // }
+
+    const userDirPath = __dirname + '/files/' + cdata[0]._id + '/' + companyData[0]._id;
+    fs.mkdir(userDirPath, { recursive: true }, async function(err) {
+      console.log('mdkir err:', err);
+      if (err === null || (err && err.code === 'EEXIST')) {
+
+        let logoPath = companyData[0].logo;
+        let coverPath = companyData[0].cover;
+
+        if (typeof data.logo === 'object') {
+          fs.unlink(__dirname + '/files' + companyData[0].logo, (e) => console.log(e));
+          const logo64data = data.logo.data.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+          
+          const logoRd = randomize('Aa0', 15);
+          const logoDbPicturePath = `/comp-logo-${logoRd}.${data.logo.type}`;
+          const logoServPicturePath = userDirPath + logoDbPicturePath;
+          
+          fs.writeFile(logoServPicturePath, logo64data, 'base64', async (e) => {
+            if (e)
+            throw e;
+          });
+          
+          logoPath = '/' + cdata[0]._id + '/' + companyData[0]._id +  logoDbPicturePath;
+          console.log('IN LOGO');
+        }
+        
+        if (typeof data.cover === 'object') {
+          fs.unlink(__dirname + '/files' + companyData[0].cover, (e) => console.log(e));
+          const cover64data = data.cover.data.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+          
+          const coverRd = randomize('Aa0', 15);
+          const coverDbPicturePath = `/comp-cover-${coverRd}.${data.cover.type}`;
+          const coverServPicturePath = userDirPath + coverDbPicturePath;
+          
+          fs.writeFile(coverServPicturePath, cover64data, 'base64', async (e) => {
+            if (e)
+            throw e;
+          });
+          
+          coverPath = '/' + cdata[0]._id + '/' + companyData[0]._id + coverDbPicturePath;
+        }
+        
+        // console.log('LOGOPATH: ', logoPath);
+        // console.log('COVERPATH: ', coverPath);
+
+
+        // Store into 
+        const udata = await recruiterAccountModel.findOneAndUpdate(
+          { email, companies: { $elemMatch: { _id: data._id }}},
+          { $set: {
+            "companies.$.logo": logoPath,
+            "companies.$.cover": coverPath,
+            "companies.$.description": data.description,
+            "companies.$.name": data.name,
+            "companies.$.email": data.email,
+            "companies.$.phone": data.phone,
+            "companies.$.address": data.address,
+            "companies.$.country": data.country,
+            "companies.$.employeesNumber": data.employeesNumber,
+            "companies.$.activityArea": data.activityArea,
+            "companies.$.link": data.link,
+            "companies.$.NIF": data.NIF,
+          }},
+          { new: true }
+        );
+
+        if (udata !== null)
+          res.status(200).send({ state: 'updated', data: udata.companies });
+        else
+          throw 'account error';
+    
+        return;
+      }
+      else
+        throw 'syscall error';
+    });
 
   } catch (e) {
     console.log(e);

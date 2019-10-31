@@ -61,6 +61,7 @@ const companiesSchema = new mongoose.Schema({
   employeesNumber: { type: String, default: '' },
   activityArea: [String],
   link: { type: String, default: '' },
+  NIF: { type: String, default: '' }
 });
 
 const recruiterDataSchema = new mongoose.Schema({

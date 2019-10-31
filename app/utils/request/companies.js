@@ -7,3 +7,11 @@ export const getRecruiterCompanies = async token => {
 export const createNewCompany = async (data, token) => {
   return await request('/api/recruiter/companies', { method: 'POST', body: { data }, headers: { 'Authorization': token, 'Content-Type': 'application/json' }});
 };
+
+export const deleteCompany = async (data, token) => {
+  return await request('/api/recruiter/companies', { method: 'DELETE', body: { data }, headers: { 'Authorization': token, 'Content-Type': 'application/json' }});
+}
+
+export const updateCompany = async (data, token) => {
+  return await request('/api/recruiter/companies', { method: 'PUT', body: { data }, headers: { 'Authorization': token, 'Content-Type': 'application/json' }});
+}

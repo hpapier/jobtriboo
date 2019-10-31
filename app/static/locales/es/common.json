@@ -150,5 +150,10 @@
   "fmeCompanyNIF": "",
   "companyLink": "Link",
   "phCompanyLink": "Your company link",
-  "fmeCompanyLink": ""
+  "fmeCompanyLink": "",
+
+  "createCompanies": "Create a company",
+  "noCompaniesYet": "No companies created yet",
+  "fileIsPresent": "A file is selected.",
+  "update": "Update"
 }

@@ -12,3 +12,82 @@
   font-size: 1em;
   font-weight: 500;
 }
+
+.companies-list-box {
+  width: 800px;
+}
+
+.companies-create-btn {
+  all: unset;
+  padding: 0px 20px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: rgba(64, 70, 96, .7);
+
+  background-color: #fff;
+  border: none;
+  border-radius: 3px;
+
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
+  cursor: pointer;
+  transition: .1s;
+}
+
+.companies-create-btn:hover {
+  color: rgba(64, 70, 96, 1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .1);
+}
+
+.companies-create-btn-icon {
+  transform: rotate(45deg);
+  opacity: .2;
+  margin-left: 15px;
+}
+
+.companies-error {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  text-align: center;
+  color: red;
+  margin-top: 20px;
+}
+
+
+@keyframes companies-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.companies-loading {
+  border: 5px solid rgba(0, 0, 0, 0);
+  border-left: 5px solid rgba(107, 90, 237, 1);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  animation-name: companies-loading;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  margin: 50px auto;
+}
+
+.companies-empty {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  text-align: center;
+  color: #404660;
+  margin-top: 20px;
+}

@@ -8,6 +8,7 @@ import { getRecruiterCompanies } from '../../../../utils/request/companies';
 import { withTranslation } from '../../../i18n';
 import CompanyItem from './CompanyItem';
 import NewCompany from './NewCompany';
+import AddIconGrey from '../../../../static/assets/remove_icon_grey.svg'
 import './index.css';
 
 
@@ -18,12 +19,13 @@ const Companies = ({ t }) => {
   const [error, setError] = useState(false);
   const [companies, setCompanies] = useState([]);
   const [cookies, _, __] = useCookies();
-  const [vstate, setvstate] = useState('companies'); 
+  const [vstate, setvstate] = useState('companies');
+  const [up, setUp] = useState(false);
 
   const fetchCompanies = async () => {
     if (!isUnmounted.current)
       setLoading(true);
-
+    
     try {
       const res = await getRecruiterCompanies(cookies.token);
       if (res.status === 200) {
@@ -45,21 +47,22 @@ const Companies = ({ t }) => {
   };
 
   useEffect(() => {
+    isUnmounted.current = false;
     fetchCompanies();
     return () => { isUnmounted.current = true };
-  }, []);
+  }, [up]);
 
   const handleView = () => {
     if (error)
-      return <div>Error</div>;
+      return <div className='companies-error'>{t('error500')}</div>;
     else if (loading)
-      return <div>Loading</div>;
+      return <div className='companies-loading'></div>;
     else
       return (
         <div>
           { companies.length === 0 ? 
-            t('noCompaniesYet') :
-            companies.map((item, index) => <CompanyItem data={item} key={index} />)
+            <div className='companies-empty'>{t('noCompaniesYet')}</div> :
+            companies.map((item, index) => <CompanyItem updateCompaniesList={ndata => setCompanies(ndata)} data={item} key={index} />)
           }
         </div>
       );
@@ -69,9 +72,14 @@ const Companies = ({ t }) => {
     <div className='companies-root'>
       {
         vstate === 'companies' ?
-        <div>
-          <h2 className='companies-root-title'>{t('myCompanies')} ({companies.length})</h2>
-          <button onClick={() => setvstate('new-company')}>{t('createCompanies')}</button>
+        <div className='companies-list-box'>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <h2 className='companies-root-title'>{t('myCompanies')} ({companies.length})</h2>
+            <button className='companies-create-btn' onClick={() => setvstate('new-company')}>
+              {t('createCompanies')}
+              <img src={AddIconGrey} className='companies-create-btn-icon' alt='plus-icon' />
+            </button>
+          </div>
           {handleView()}
         </div> : null
       }
@@ -80,7 +88,11 @@ const Companies = ({ t }) => {
         vstate === 'new-company' ?
         <div>
           <h2 className='companies-root-title'>{t('newCompany')}</h2>
-          <NewCompany closeWindow={() => setvstate('companies')} />
+          <NewCompany closeWindow={() => {
+              setUp(!up);
+              setvstate('companies')
+            }}
+          />
         </div> :
         null
       }

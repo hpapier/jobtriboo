@@ -10,27 +10,27 @@ import RemoveIconGrey from '../../../../../static/assets/remove_icon_grey.svg';
 import ImportIconWhite from '../../../../../static/assets/import_icon_w.svg';
 import { withTranslation } from '../../../../i18n';
 import { handleInputText, handleInputEmail, handleInputNumber } from '../../../../../utils/input';
-import { createNewCompany } from '../../../../../utils/request/companies';
+import { createNewCompany, updateCompany } from '../../../../../utils/request/companies';
 
 
 // @component
-const NewCompany = ({ t, closeWindow }) => {
+const NewCompany = ({ t, closeWindow, update = false }) => {
   const [loading, setLoading] = useState(false);
-  const [logo, setLogo] = useState(null);
+  const [logo, setLogo] = useState(!update ? null : update.logo);
   const [logoFileError, setLogoFileError] = useState(false);
   const [fileLoading, setFileLoading] = useState({ logo: false, cover: false })
-  const [cover, setCover] = useState(null);
+  const [cover, setCover] = useState(!update ? null : update.cover);
   const [coverFileError, setCoverFileError] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [country, setCountry] = useState('');
-  const [companyEmployeesNumber, setCompanyEmployeesNumber] = useState('tiny');
-  const [description, setDescription] = useState('');
-  const [activityArea, setActivityArea] = useState('commercial');
-  const [NIF, setNIF] = useState('');
-  const [link, setLink] = useState('');
+  const [name, setName] = useState(!update ? '' : update.name);
+  const [email, setEmail] = useState(!update ? '' : update.email);
+  const [phone, setPhone] = useState(!update ? '' : update.phone);
+  const [address, setAddress] = useState(!update ? '' : update.address);
+  const [country, setCountry] = useState(!update ? '' : update.country);
+  const [companyEmployeesNumber, setCompanyEmployeesNumber] = useState(!update ? 'tiny' : update.employeesNumber);
+  const [description, setDescription] = useState(!update ? '' : update.description);
+  const [activityArea, setActivityArea] = useState(!update ? 'commercial' : update.activityArea[0]);
+  const [NIF, setNIF] = useState(!update ? '' : update.NIF);
+  const [link, setLink] = useState(!update ? '' : update.link);
   const isUnmounted = useRef(false);
   const [inputError, setInputError] = useState({
     logo: false,
@@ -91,7 +91,6 @@ const NewCompany = ({ t, closeWindow }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log('New Company Submition');
 
     if (!isUnmounted.current)
       setLoading(true);
@@ -106,13 +105,17 @@ const NewCompany = ({ t, closeWindow }) => {
         setCoverFileError(false);
       }
 
-      const res = await createNewCompany({ logo: { data: logo.data, type: logo.type }, cover: { data: cover.data, type: cover.type }, name, email, phone, address, country, companyEmployeesNumber, description, activityArea, NIF, link }, cookies.token);
+      const dataToSend = { logo: (typeof logo === 'object') ? { data: logo.data, type: logo.type } : logo, cover: (typeof cover === 'object') ? { data: cover.data, type: cover.type } : cover, name, email, phone, address, country, companyEmployeesNumber, description, activityArea, NIF, link };
+      const res = await ((update === false) ?
+                        createNewCompany(dataToSend, cookies.token) :
+                        updateCompany({ ...update, ...dataToSend }, cookies.token))
+
       if (res.status === 200) {
         const rdata = await res.json();
-        if (rdata.state === 'created') {
+        if (rdata.state === 'created' || rdata.state === 'updated') {
           if (!isUnmounted.current) {
             setLoading(false);
-            closeWindow();
+            (rdata.state === 'created') ? closeWindow() : closeWindow(rdata.data);
           }
         } else if (rdata.state === 'already exist') {
           if (!isUnmounted.current) {
@@ -128,6 +131,7 @@ const NewCompany = ({ t, closeWindow }) => {
 
     } catch (e) {
       console.log(e);
+      console.log('in catch');
       if (!isUnmounted.current) {
         setLoading(false);
         setError(500);
@@ -181,7 +185,7 @@ const NewCompany = ({ t, closeWindow }) => {
       <div className='new-company-box'>
         <div className='new-company-box-picture'>
           <h2 className='new-company-label'>{t('newCompanyLogo')}</h2>
-          <div className='new-company-fileSelected'>{logo === null ? t('noFileSelected') : logo.name}</div>
+          <div className='new-company-fileSelected'>{logo === null ? t('noFileSelected') : (typeof logo === 'string') ? t('fileIsPresent') : (logo.name.length > 50) ? logo.name.substring(0, 50) + '...' : logo.name}</div>
           <div className='new-company-picbox'>
             <label className='new-company-import' htmlFor='logo_input'>
               <img className='new-company-import-icon' src={ImportIconWhite} alt='import_icon' />
@@ -205,7 +209,7 @@ const NewCompany = ({ t, closeWindow }) => {
         </div>
         <div className='new-company-box-picture'>
           <h2 className='new-company-label'>{t('newCompanyCover')}</h2>
-          <div className='new-company-fileSelected'>{cover === null ? t('noFileSelected') : cover.name}</div>
+          <div className='new-company-fileSelected'>{cover === null ? t('noFileSelected') : ((typeof cover === 'string')) ? t('fileIsPresent') : (cover.name.length > 50) ? cover.name.substring(0, 50) + '...' : cover.name}</div>
           <div className='new-company-picbox'>
             <label className='new-company-import' htmlFor='cover_input'>
               <img className='new-company-import-icon' src={ImportIconWhite} alt='import_icon' />
@@ -229,7 +233,7 @@ const NewCompany = ({ t, closeWindow }) => {
         </div>
       </div>
 
-      <button className='new-company-close' type='button' onClick={closeWindow}>
+      <button className='new-company-close' type='button' onClick={() => (!update) ? closeWindow() : closeWindow('noupdate')}>
         <img src={RemoveIconGrey} alt='' />
       </button>
 
@@ -367,7 +371,7 @@ const NewCompany = ({ t, closeWindow }) => {
       </div>
 
       <button type='submit' className='new-company-btn-validation'>
-        {loading ? <div className='new-company-btn-loading'></div> : t('validate')}
+        {loading ? <div className='new-company-btn-loading'></div> : update === false ? t('validate') : t('update')}
       </button>
       { error === 'already exist' ? <div className='new-company-error'>{t('companyAlreadyExist')}</div> : null }
       { error === 500 ? <div className='new-company-error'>{t('error500')}</div> : null }

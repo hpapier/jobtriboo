@@ -25,6 +25,7 @@ const tokenVerification = async (req, res) => {
 
     req.body.email = data.email;
     req.body.userState = udata[0].state;
+    req.body.userId = udata[0]._id;
   } catch (e) {
     console.log(e);
     res.status(401).send();
