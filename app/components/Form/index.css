@@ -335,3 +335,34 @@
 .text-area-element:focus {
   border: 1px solid rgba(107, 90, 237, .5);
 }
+
+
+/* LIST INPUT */
+.list-input-item {
+  color: #fff;
+  background-color: #6B5AED;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  margin: 5px 0px;
+}
+
+.list-input-rmv-btn {
+  all: unset;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  opacity: .5;
+  transition: .1s;
+  cursor: pointer;
+}
+
+.list-input-rmv-btn:hover {
+  opacity: 1;
+}

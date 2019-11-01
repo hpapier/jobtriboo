@@ -50,3 +50,25 @@ export const handleInputPrefix = input => {
 
   return true;
 }
+
+
+// Check Month
+export const handleInputMonth = input => {
+  if (
+    input === 'january'   ||
+    input === 'february'  ||
+    input === 'march'     ||
+    input === 'april'     ||
+    input === 'may'       ||
+    input === 'june'      ||
+    input === 'july'      ||
+    input === 'august'    ||
+    input === 'september' ||
+    input === 'october'   ||
+    input === 'november'  ||
+    input === 'december'
+  )
+    return true;
+
+  return false;
+}

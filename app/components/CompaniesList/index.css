@@ -1,0 +1,50 @@
+.component-companies-list-root {
+  position: absolute;
+}
+
+.component-companies-list-subroot {
+  position: relative;
+}
+
+.component-companies-list-btn {
+  all: unset;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0px 20px;
+  height: 40px;
+  width: 100%;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .1);
+  background-color: #fff;
+  border-radius: 3px;
+}
+
+.-rotated {
+  transition: .1s;
+  transform: rotate(180deg);
+}
+
+.component-companies-list-box {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  padding: 10px 0px;
+}
+
+.component-companies-list-box-item {
+  z-index: 1;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #404660;
+  background-color: #fff;
+  transition: .1s;
+}
+
+.component-companies-list-box-item:hover {
+  background-color: rgba(0, 0, 0, .1);
+}

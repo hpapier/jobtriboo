@@ -5,6 +5,7 @@ import { useRef, useEffect, useState } from 'react';
 // @local import
 import './index.css';
 import GreyDropDownIcon from '../../static/assets/bottom_arrow_icon.svg'
+import RemoveIconWhite from '../../static/assets/remove_icon_w.svg';
 
 
 // @component: INPUT
@@ -100,5 +101,45 @@ export const TextArea = ({ width, margin, label, value, setValue, placeholder, l
       </textarea>
       { error ? <div className='input-error-msg'>{errMsg}</div> : null }
     </div>
+  );
+};
+
+
+// @component: LIST_INPUT
+export const ListInput = ({ label = '', width, placeholder, objectList, addObjectList, removeObjectList }) => {
+  const [value, setValue] = useState('');
+
+  const handleAdd = e => {
+    e.preventDefault();
+    if (value === '')
+      return;
+
+    addObjectList(value);
+    setValue('');
+  }
+
+  return (
+    <form onSubmit={handleAdd}>
+      <h2 className='info-input-label'>{label}</h2>
+      <input
+        className={`info-input-element`}
+        onChange={e => setValue(e.target.value)}
+        placeholder={placeholder}
+        style={{ width }}
+        value={value}
+      />
+      <div>
+        {
+          objectList.map((item, index) => 
+            <div key={index} style={{ width }} className='list-input-item'>
+              {item}
+              <button className='list-input-rmv-btn' type='button' onClick={() => removeObjectList(item)}>
+                <img src={RemoveIconWhite} alt='remove-icon' />
+              </button>
+            </div>
+            )
+        }
+      </div>
+    </form>
   );
 };

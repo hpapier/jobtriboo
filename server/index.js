@@ -523,8 +523,8 @@ app.get('/api/candidate/settings', candidateTokenCheck, async (req, res) => {
   @method:  GET
 */
 app.get('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
-  console.log('-> /api/recruiter/companies');
-  const { email, userState } = req.body;
+  console.log('-> /api/recruiter/companies (GET)');
+  const { email } = req.body;
 
   try {
     const rdata = await recruiterAccountModel.find({ email }, { companies: 1 });
@@ -685,11 +685,6 @@ app.put('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
 
 
     // Verify if logo changed
-    // if (companyData[0].name !== data.name) {
-    //   fs.rmdir(__dirname + '/files/' + cdata[0]._id + '/' + companyData[0].name.replace(/\s/gm, '_'), e => console.log(e));
-    //   console.log('delete doc');
-    // }
-
     const userDirPath = __dirname + '/files/' + cdata[0]._id + '/' + companyData[0]._id;
     fs.mkdir(userDirPath, { recursive: true }, async function(err) {
       console.log('mdkir err:', err);
@@ -730,9 +725,6 @@ app.put('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
           
           coverPath = '/' + cdata[0]._id + '/' + companyData[0]._id + coverDbPicturePath;
         }
-        
-        // console.log('LOGOPATH: ', logoPath);
-        // console.log('COVERPATH: ', coverPath);
 
 
         // Store into 
@@ -766,6 +758,56 @@ app.put('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
         throw 'syscall error';
     });
 
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+app.get('/api/recruiter/cards', recruiterTokenCheck, async (req, res) => {
+  console.log('-> /api/recruiter/cards (GET):');
+  const { email } = req.body;
+
+  try {
+    const rdata = await recruiterAccountModel.find({ email }, { cards: 1 });
+    console.log(rdata);
+
+    if (rdata.length > 0) {
+      res.status(200).send(rdata[0].cards);
+      return;
+    }
+    else
+      throw 'account error';
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
+
+
+
+app.post('/api/recruiter/cards', recruiterTokenCheck, async (req, res) => {
+  console.log('-> /api/recruiter/cards (POST):');
+  const { email, data } = req.body;
+
+  try {
+    const rdata = await recruiterAccountModel.find({ email, cards: { $elemMatch: { alias: data.alias }}});
+
+    if (rdata.length === 0) {
+      const sdata = await recruiterAccountModel.findOneAndUpdate({ email }, { $push: { cards: { ...data }}}, { new: true });
+
+      if (sdata !== null)
+        res.status(200).send({ state: 'created', data: sdata.cards });
+      else
+        throw 'account error';
+    }
+    else
+      res.status(200).send({ state: 'alreadyExist' });
+
+    return;
   } catch (e) {
     console.log(e);
     res.status(500).send();

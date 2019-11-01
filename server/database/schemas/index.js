@@ -64,10 +64,23 @@ const companiesSchema = new mongoose.Schema({
   NIF: { type: String, default: '' }
 });
 
+
+const cardSchema = new mongoose.Schema({
+  alias: { type: String },
+  number: { type: String },
+  fullName: { type: String },
+  month: { type: String },
+  year: { type: String },
+  CVC: { type: Number }
+});
+
+
 const recruiterDataSchema = new mongoose.Schema({
   companies: [companiesSchema],
-  announces: [announceSchema]
-})
+  announces: [announceSchema],
+  cards: [cardSchema]
+});
+
 
 const recruiterAccountSchema = new mongoose.Schema();
 recruiterAccountSchema.add(basicAccountSchema).add(recruiterDataSchema);
