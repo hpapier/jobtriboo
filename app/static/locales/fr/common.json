@@ -162,8 +162,8 @@
   "contract": "Contrat",
   "title": "Titre",
   "phTitle": "Entrez un titre",
-  "localisation": "Localisation",
-  "phLocalisation": "Entrez une localisation",
+  "location": "Localisation",
+  "phLocation": "Entrez une localisation",
   "level": "Niveau",
   "phLevel": "Entrez le niveau requis pour ce job",
   "startingDate": "Date de début",
@@ -209,5 +209,7 @@
   "september": "Septembre",
   "october": "Octobre",
   "november": "Novembre",
-  "december": "Décembre"
+  "december": "Décembre",
+
+  "noAnnouncesYet": "Aucune annonces créer."
 }

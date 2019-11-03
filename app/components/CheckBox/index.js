@@ -8,11 +8,14 @@ import CheckIcon from '../../static/assets/check-icon-white.svg';
 
 
 // @component
-const CheckBox = ({ label, margin = '0px 0px 0px 20px', size = null, request = null, checked, setCheckState }) => {
+const CheckBox = ({ label, margin = '0px 0px 0px 20px', size = null, request = null, checked, setCheckState, disabled = false }) => {
   const [loading, setLoading] = useState(false);
   const isUnmounted = useRef(false);
 
   const handleClick = async value => {
+    if (disabled)
+      return;
+
     if (request === null) {
       setCheckState(value);
       return;
@@ -40,12 +43,12 @@ const CheckBox = ({ label, margin = '0px 0px 0px 20px', size = null, request = n
   }
 
   return (
-    <div className='checkbox-root' style={{ margin }}>
+    <div className={`checkbox-root${disabled ? ` -disabled` : ``}`} style={{ margin }}>
       { size !== null ? 
-        <button style={{ width: size.width, height: size.height }} disabled={loading} className={`checkbox-btn${checked ? ` -checked` : ``}`} onClick={() => handleClick(!checked)}>
+        <button style={{ width: size.width, height: size.height }} disabled={loading || disabled} className={`checkbox-btn${checked ? ` -checked` : ``}`} onClick={() => handleClick(!checked)}>
           { checked ? <img src={CheckIcon} /> : null }
         </button> :
-        <button disabled={loading} className={`checkbox-btn${checked ? ` -checked` : ``}`} onClick={() => handleClick(!checked)}>
+        <button disabled={loading || disabled} className={`checkbox-btn${checked ? ` -checked` : ``}`} onClick={() => handleClick(!checked)}>
           { checked ? <img src={CheckIcon} /> : null }
         </button>
       }

@@ -58,16 +58,39 @@
   color: #fff;
   width: 170px;
   height: 45px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .2);
+  border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  transition: .2s;
+  box-sizing: border-box;
 }
 
 .-validate {
   background-color: #6B5AED;
+  box-shadow: 0px 0px 10px 0px rgba(107, 90, 237, .3);
+}
+
+.-validate:hover {
+  box-shadow: 0px 0px 10px 0px rgba(107, 90, 237, .5);
 }
 
 .-cancel {
-  background-color: red;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid red;
+  color: red;
+}
+
+.-cancel:hover {
+  background-color: rgba(255, 0, 0, .02);
+}
+
+.new-box-error-msg {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  color: red;
+  text-align: center;
+  margin: 0px 0px 20px 0px;
 }

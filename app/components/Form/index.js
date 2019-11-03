@@ -106,7 +106,7 @@ export const TextArea = ({ width, margin, label, value, setValue, placeholder, l
 
 
 // @component: LIST_INPUT
-export const ListInput = ({ label = '', width, placeholder, objectList, addObjectList, removeObjectList }) => {
+export const ListInput = ({ label = '', width, placeholder, objectList, addObjectList, removeObjectList, loading, error }) => {
   const [value, setValue] = useState('');
 
   const handleAdd = e => {
@@ -122,11 +122,12 @@ export const ListInput = ({ label = '', width, placeholder, objectList, addObjec
     <form onSubmit={handleAdd}>
       <h2 className='info-input-label'>{label}</h2>
       <input
-        className={`info-input-element`}
+        className={`info-input-element${error ? ` -input-error` : ``}`}
         onChange={e => setValue(e.target.value)}
         placeholder={placeholder}
         style={{ width }}
         value={value}
+        disabled={loading}
       />
       <div>
         {

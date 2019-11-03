@@ -12,7 +12,7 @@ import { handleInputInt, handleInputMonth, handleInputText } from '../../utils/i
 
 
 // @component
-const Card = ({ t, setCard, selectedCard }) => {
+const Card = ({ t, setCard, selectedCard, error }) => {
 
   // View, Unmounted, Cookies: State
   const [vstate, setVstate] = useState(true);
@@ -208,7 +208,7 @@ const Card = ({ t, setCard, selectedCard }) => {
         ?
 
         <div className='card-box'>
-          <button type='button' className='card-btn-select -medium' onClick={() => setListOpened(!listOpened)}>
+          <button type='button' className={`card-btn-select -medium ${error ? `-input-error` : ``}`} onClick={() => setListOpened(!listOpened)}>
             {selectedCard === null ? t('phCard') : selectedCard.alias}
             <img src={DropdownIconGrey} alt='dropdown-icon' className={listOpened ? '-rotated' : ''} />
           </button>
