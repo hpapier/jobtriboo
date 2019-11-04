@@ -212,5 +212,8 @@
   "november": "November",
   "december": "December",
 
-  "noAnnouncesYet": "No announces created yet."
+  "noAnnouncesYet": "No announces created yet.",
+  "cards": "Cards",
+  "createNewCard": "Create a new card",
+  "noCardsCreatedYet": "No cards created yet."
 }

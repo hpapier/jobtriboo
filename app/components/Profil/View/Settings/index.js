@@ -14,7 +14,7 @@ import { candidateInformationUpdate, getCandidateSettings } from '../../../../ut
 const Settings = ({ t }) => {
   const [loading, setLoading] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
-  const [cb, setCb] = useState();
+  const [cb, setCb] = useState({});
   const isUnmounted = useRef(false);
   const [cookies, _, __] = useCookies();
 

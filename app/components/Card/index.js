@@ -7,12 +7,12 @@ import { useCookies } from 'react-cookie';
 import './index.css';
 import DropdownIconGrey from '../../static/assets/bottom_arrow_icon.svg';
 import { withTranslation } from '../i18n';
-import { addNewCard, getCards } from '../../utils/request/card';
+import { addNewCard, fetchCards } from '../../utils/request/card';
 import { handleInputInt, handleInputMonth, handleInputText } from '../../utils/input';
 
 
 // @component
-const Card = ({ t, setCard, selectedCard, error }) => {
+const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
 
   // View, Unmounted, Cookies: State
   const [vstate, setVstate] = useState(true);
@@ -139,8 +139,8 @@ const Card = ({ t, setCard, selectedCard, error }) => {
         }
         else if (rdata.state === 'created') {
           if (!isUnmounted.current) {
-            setCard(rdata.card);
-            setVstate('card');
+            setCard(rdata.data);
+            !strictMode ? setVstate('card') : null;
           }
         } else
           throw res.status;
@@ -175,7 +175,7 @@ const Card = ({ t, setCard, selectedCard, error }) => {
 
   const handleGettingCards = async () => {
     try {
-      const res = await getCards(cookies.token);
+      const res = await fetchCards(cookies.token);
       if (res.status === 200) {
         const rdata = await res.json();
         setList(rdata);
@@ -197,13 +197,17 @@ const Card = ({ t, setCard, selectedCard, error }) => {
 
   return (
     <div className='card-root'>
-      <div className='card-label-box'>
-        <h2 className='card-label'>{t('card')}</h2>
-        <button disabled={addLoading && !vstate} className='card-view-btn' onClick={() => handleChangeVState(!vstate)}>{vstate ? t('newCard') : t('cancel')}</button>
-      </div>
+      {
+        !strictMode ?
+        <div className='card-label-box'>
+          <h2 className='card-label'>{t('card')}</h2>
+          <button disabled={addLoading && !vstate} className='card-view-btn' onClick={() => handleChangeVState(!vstate)}>{vstate ? t('newCard') : t('cancel')}</button>
+        </div> :
+        null
+      }
 
       {
-        vstate
+        vstate && !strictMode
         
         ?
 

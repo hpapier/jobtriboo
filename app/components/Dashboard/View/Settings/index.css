@@ -1,0 +1,163 @@
+.settings-root {
+  overflow: scroll;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings-box {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 100px;
+}
+
+.settings-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: #404660;
+  margin: 0px 0px 10px 0px;
+}
+
+.settings-cb-box {
+  width: 500px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+}
+
+.settings-box-head {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-cards-add-btn {
+  all: unset;
+  padding: 0px 20px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: rgba(64, 70, 96, .7);
+
+  background-color: #fff;
+  border: none;
+  border-radius: 3px;
+
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
+  cursor: pointer;
+  transition: .1s;
+}
+
+.settings-cards-add-btn:hover {
+  color: rgba(64, 70, 96, 1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .1);
+}
+
+.icon-add {
+  transform: rotate(45deg);
+  opacity: .2;
+  margin-left: 15px;
+}
+
+.icon-remove {
+  opacity: .2;
+  margin-left: 15px;
+}
+
+.add-card-view-box {
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  padding: 20px 35px 10px 10px;
+}
+
+.settings-cards-list-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.settings-cards-item {
+  width: 390px;
+  height: 120px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  margin: 10px 0px;
+  position: relative;
+}
+
+.settings-cards-item-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #404660;
+  margin: 0px 20px 0px 30px;
+}
+
+.settings-cards-item-subbox {
+  display: flex;
+}
+
+.delete-cards-btn {
+  all: unset;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: .2;
+  cursor: pointer;
+  transition: .1s;
+}
+
+.delete-cards-btn:hover {
+  opacity: .4;
+}
+
+.settings-empty-txt {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  color: #404660;
+  margin: 0px auto;
+  margin-top: 30px;
+}
+
+@keyframes settings-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.settings-loading {
+  animation-name: settings-loading;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  border: 5px solid rgba(0, 0, 0, 0);
+  border-top: 5px solid #6B5AED;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin: 20px auto;
+}
