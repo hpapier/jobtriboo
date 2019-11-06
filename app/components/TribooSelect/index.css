@@ -48,6 +48,11 @@
   height: 125px;
 }
 
+.-triboo-tiny {
+  width: 100px;
+  height: 100px;
+}
+
 .triboo-select-label {
   font-family: 'Roboto', sans-serif;
   font-size: .875em;

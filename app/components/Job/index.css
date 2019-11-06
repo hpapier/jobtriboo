@@ -1,0 +1,233 @@
+.job-root {
+  width: 1050px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  margin: 0px auto;
+  box-sizing: border-box;
+}
+
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  height: 150px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 1px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
+  box-sizing: border-box;
+}
+
+.job-head-ib {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.job-head-logo {
+  width: 115px;
+  height: 115px;
+  object-fit: cover;
+  border-radius: 5px;
+  background-color: #f2f3ff;
+  margin-left: 20px;
+}
+
+.job-head-tbox {
+  height: 115px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 25px;
+}
+
+.job-head-tbox-title {
+  margin: 0px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #404660;
+}
+
+.job-head-tbox-info {
+  display: flex;
+}
+
+.job-head-tbox-info-box {
+  display: flex;
+  padding: 0px 20px;
+  height: 30px;
+  background-color: #f2f3ff;
+  border-radius: 3px;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.job-head-tbox-info-box-icon {
+}
+
+.euro-icon {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: #404660;
+}
+
+.job-head-tbox-info-box-txt {
+  margin: 0px 0px 0px 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #404660;
+}
+
+.job-head-bb {
+  display: flex;
+  align-items: center;
+}
+
+.job-head-bb-button {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  padding: 0px 50px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  color: #fff;
+  background-color: #6B5AED;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .2s;
+  text-transform: uppercase;
+  margin-right: 25px;
+}
+
+.job-head-bb-button:hover, .job-head-bb-button:focus {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .3);
+}
+
+.job-body {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.job-body-left {
+  width: 65%;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
+  height: 100%;
+  padding-bottom: 30px;
+}
+
+.job-body-label-txt {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: #404660;
+  opacity: .3;
+  width: 100%;
+  padding: 0px 20px;
+}
+
+.job-body-label-hr {
+  width: calc(100% - 40px);
+  color: #404660;
+  opacity: .3;
+}
+
+.job-body-left-txt {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: #404660;
+  width: 100%;
+  padding: 0px 20px;
+}
+
+.job-body-right {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.job-body-right-box {
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
+  width: 100%;
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+}
+
+.job-body-right-benefit {
+  margin-top: 20px;
+}
+
+.job-body-left-benefit-item {
+  width: 100%;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5px 0px;
+}
+
+.job-body-left-benefit-item-icon {
+  opacity: .3;
+}
+
+.job-body-left-benefit-item-label {
+  margin: 0px 0px 0px 15px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #404660;
+}
+
+.job-body-company-infobox {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0px 20px;
+  margin: 5px 0px;
+}
+
+.job-body-company-infobox-icon {
+  opacity: .3;
+}
+
+.job-body-company-infobox-txt {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #404660;
+  margin: 0px;
+}
+
+.company-btn {
+  all: unset;
+  height: 50px;
+  padding: 0px 40px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  color: #fff;
+  background-color: #404660;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px auto 0px auto;
+}
+
+.company-btn:hover, .company-btn:focus {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .3);
+}

@@ -1,6 +1,7 @@
 // @module import
 import { useState, useRef } from 'react';
 import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 
 
 // @local import
@@ -14,7 +15,7 @@ import { deleteAnnounce } from '../../../../../utils/request/announces';
 
 
 // @component$
-const AnnounceItem = ({ t, data, updateData }) => {
+const AnnounceItem = ({ t, data, updateData, isPublic = false }) => {
   const [loading, setLoading] = useState(false);
   const [cookies, _, __] = useCookies();
   const isUnmounted = useRef(false);
@@ -22,12 +23,10 @@ const AnnounceItem = ({ t, data, updateData }) => {
   const handleDelete = async () => {
     if (loading)
       return;
-
-    
+   
     if (!isUnmounted.current)
       setLoading(true);
-  
-      
+
     try {
       const res = await deleteAnnounce(data, cookies.token);
       if (res.status === 204) {
@@ -53,13 +52,14 @@ const AnnounceItem = ({ t, data, updateData }) => {
 
   useRef(() => { isUnmounted.current = true },[]);
 
+  const router = useRouter();
+
   return (
     <div className='announce-item-root'>
-      {data.company === null ? <div className='announce-item-company'></div> : <img src={data.company.logo} alt='company-logo' className='announce-item-company' />}
+      {data.company === 'anonymous' ? <div className='announce-item-company'></div> : <img src={data.company.logo} alt='company-logo' className='announce-item-company' />}
       <div className='announce-item-box'>
         <div className='announce-item-box-title'>{data.title}</div>
-        {/* <div className='announce-item-box-cpname'>{data.company !== null ? data.company.name : t('anonymous')}</div> */}
-        <div className='announce-item-box-cpname'>lol</div>
+        <div className='announce-item-box-cpname'>{data.company !== 'anonymous' ? data.company.name : t('anonymous')}</div>
         <div className='announce-item-box-details'>
           <div className='announce-item-box-details-box'>
             <img src={LocationIconGrey} alt='location-icon' />
@@ -78,15 +78,21 @@ const AnnounceItem = ({ t, data, updateData }) => {
         </div>
       </div>
 
-      <div className='announce-item-btn'>
-        <button className='announce-item-btn-el'>
-          <img src={LinkIconGrey} alt='' />
-        </button>
+      {
+        !isPublic ?
+        (
+          <div className='announce-item-btn'>
+            <button className='announce-item-btn-el' onClick={() => router.push(`/job/${data.publicId}`)}>
+              <img src={LinkIconGrey} alt='link-icon' />
+            </button>
 
-        <button className='announce-item-btn-el' onClick={handleDelete}>
-          <img src={DeleteIconGrey} alt='' />
-        </button>
-      </div>
+            <button className='announce-item-btn-el' onClick={handleDelete}>
+              <img src={DeleteIconGrey} alt='remove-icon' />
+            </button>
+          </div>
+        ):
+        null
+      }
     </div>
   );
 }

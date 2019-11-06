@@ -12,6 +12,7 @@ import { withTranslation } from '../../../../i18n';
 import CheckBox from '../../../../CheckBox';
 import Card from '../../../../Card';
 import CompaniesList from '../../../../CompaniesList';
+import TribooSelected from '../../../../TribooSelect';
 import { postAnnounce } from '../../../../../utils/request/announces';
 import { handleInputText } from '../../../../../utils/input';
 
@@ -33,6 +34,7 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
   const isUnmounted = useRef(false);
   const [servError, setServError] = useState(null);
   const [company, setCompany] = useState('anonymous');
+  const [triboo, setTriboo] = useState('commercial');
   const [inputError, setInputError] = useState({
     title: false,
     location: false,
@@ -82,7 +84,7 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
       setLoading(true);
 
     try {
-      const data = { company, title, location, level, description, contractType, salary, benefits, card, sponsoring, startingDate };
+      const data = { triboo, company, title, location, level, description, contractType, salary, benefits, card, sponsoring, startingDate };
       const res = await postAnnounce(data, cookies.token);
       if (res.status === 200) {
         const rdata = await res.json();
@@ -231,6 +233,11 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
           />
         </div>
         <CheckBox disabled={loading} margin='0px 0px 0px 0px' label={t('visaSponsoring')} size={{ width: '20px', height: '20px' }} checked={sponsoring} setCheckState={setSponsoring} />
+      </div>
+
+      <h2 className='new-announces-label'>{t('triboo')}</h2>
+      <div className='new-announces-triboo-box'>
+        <TribooSelected style={{ marginRight: '50px' }} size='small' updateTriboo={setTriboo} selectedTriboo={triboo} />
       </div>
 
       <h2 className='new-announces-label'>{t('divers')}</h2>

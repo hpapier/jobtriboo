@@ -74,7 +74,7 @@ const Announces = ({ t }) => {
                   data={item}
                   key={index}
                   updateData={ddata => {
-                    const ndata = announces.filter(item => item._id !== ddata._id);
+                    const ndata = announces.filter(item => item._id !== ddata);
                     setAnnounces(ndata);
                   }}
                 />

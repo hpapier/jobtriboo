@@ -214,5 +214,11 @@
   "noAnnouncesYet": "Aucune annonces créer.",
   "cards": "Cartes",
   "createNewCard": "Créer une carte",
-  "noCardsCreatedYet": "Aucunes cartes créées."
+  "noCardsCreatedYet": "Aucunes cartes créées.",
+  "findYourDreamJobs": "Trouvez le jobs de vos rêves.",
+  "announcesNumber": "offres trouvées.",
+  "announceNumber": "offre trouvée.",
+  
+  "anonymous": "Anonyme (aucune entreprise spécifiée)",
+  "triboo": "Triboo"
 }
