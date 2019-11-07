@@ -63,8 +63,7 @@
   margin-right: 10px;
 }
 
-.job-head-tbox-info-box-icon {
-}
+.job-head-tbox-info-box-icon {}
 
 .euro-icon {
   font-family: 'Roboto', sans-serif;
@@ -133,6 +132,7 @@
   opacity: .3;
   width: 100%;
   padding: 0px 20px;
+  text-transform: uppercase;
 }
 
 .job-body-label-hr {

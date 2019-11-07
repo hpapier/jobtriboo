@@ -244,20 +244,20 @@
   text-align: center;
 }
 
-.jobs-item {
+.companies-item {
+  width: 325px;
   cursor: pointer;
   transition: .2s;
 }
 
-.jobs-item:hover {
+.companies-item:hover {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.08);
 }
 
-.jobs-msg-error {
+.companies-error-msg {
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 400;
-  color: red;
+  color:red;
   text-align: center;
-  margin-top: 20px;
 }

@@ -221,5 +221,16 @@
   "announceNumber": "offer found.",
 
   "anonymous": "Anonymous (no company specified)",
-  "triboo": "Triboo"
+  "triboo": "Triboo",
+  "postDescription": "Post Description",
+  "knowMore": "See more",
+  "theCompany": "The company",
+  "apply": "Apply",
+
+  "findYourDreamCompany": "Find the clan of your dreams.",
+  "companiesNumber": "companies found.",
+  "companyNumber": "company found.",
+
+  "discover": "Discover",
+  "anonymousLabel": "Anonymous"
 }

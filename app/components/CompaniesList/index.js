@@ -10,7 +10,7 @@ import { getRecruiterCompanies } from '../../utils/request/companies';
 
 
 // @component
-const CompaniesList = ({ t, token, rootStyle }) => {
+const CompaniesList = ({ t, token, rootStyle, updateData }) => {
   const [list, setList] = useState(['anonymous']);
   const [listOpened, setListOpened] = useState(false);
   const [selected, setSelected] = useState('anonymous');
@@ -25,7 +25,7 @@ const CompaniesList = ({ t, token, rootStyle }) => {
         const data = await res.json();
         if (!isUnmounted.current) {
           console.log(data);
-          setList(data);
+          setList([ ...list, ...data ]);
           setLoading(false);
         }
       } else
@@ -41,22 +41,24 @@ const CompaniesList = ({ t, token, rootStyle }) => {
     return () => { isUnmounted.current = true };
   }, [])
 
-
   return (
     <div style={rootStyle} className='component-companies-list-root'>
       <div className='component-companies-list-subroot'>
         <button disabled={loading} className='component-companies-list-btn' onClick={() => setListOpened(!listOpened)}>
-          {selected === 'anonymous' ? t('anonymous') : selected.name }
+          {selected === 'anonymous' ? t('anonymousLabel') : selected.name }
           <img src={DropdownIconGrey} alt='dropdown-icon' className={listOpened ? '-rotated' : ''} />
         </button>
-        <div className='component-companies-list-box'>
+        <div style={{ display: listOpened ? 'block' : 'none' }} className='component-companies-list-box'>
           {
             listOpened ? 
-            list.map((item, index) => {
-              <div className='component-companies-list-box-item' key={index} onClick={() => setSelected(item)}>
-                { (item === 'anonymous') ? t('anonymous') : item.name }
+            list.map((item, index) => (
+              <div
+                className='component-companies-list-box-item'
+                key={index}
+                onClick={() => { setSelected(item); updateData(item); setListOpened(false); }}>
+                { (item === 'anonymous') ? t('anonymousLabel') : item.name }
               </div>
-            }) :
+            )) :
             null
           }
         </div>

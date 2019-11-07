@@ -54,12 +54,14 @@ const AnnounceItem = ({ t, data, updateData, isPublic = false }) => {
 
   const router = useRouter();
 
+
+  // console.log(data);
   return (
     <div className='announce-item-root'>
-      {data.company === 'anonymous' ? <div className='announce-item-company'></div> : <img src={data.company.logo} alt='company-logo' className='announce-item-company' />}
+      {data.company === null ? <div className='announce-item-company'></div> : <img src={`http://localhost:3001${data.companyInfo[0].logo}`} alt='company-logo' className='announce-item-company' />}
       <div className='announce-item-box'>
         <div className='announce-item-box-title'>{data.title}</div>
-        <div className='announce-item-box-cpname'>{data.company !== 'anonymous' ? data.company.name : t('anonymous')}</div>
+        <div className='announce-item-box-cpname'>{data.company !== null ? data.companyInfo[0].name : t('anonymous')}</div>
         <div className='announce-item-box-details'>
           <div className='announce-item-box-details-box'>
             <img src={LocationIconGrey} alt='location-icon' />

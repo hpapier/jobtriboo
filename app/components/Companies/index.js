@@ -12,16 +12,18 @@ import DropdownIconGrey from '../../static/assets/bottom_arrow_icon.svg';
 import RemoveIconGrey from '../../static/assets/remove_icon_grey.svg';
 import TribooSelect from '../TribooSelect';
 import CheckBox from '../CheckBox';
-import AnnounceItem from '../Dashboard/View/Announces/AnnounceItem'
-import { getJobs } from '../../utils/request/jobs';
+import CompanyItem from './CompanyItem'
+import { getCompanies } from '../../utils/request/companies';
 
 
 // @component
-const JobsComponent = ({ t, data }) => {
+const CompaniesComponent = ({ t, data }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const isUnmounted = useRef(false);
-  const [jobs, setJobs] = useState(data.announces);
+  const router = useRouter();
+
+  const [companies, setCompanies] = useState(data.companies);
   const [count, setCount] = useState(data.count);
   const [offset, setOffset] = useState(0);
 
@@ -36,18 +38,21 @@ const JobsComponent = ({ t, data }) => {
 
 
   /* Contract State */
-  const [contractMenuOpened, setContractMenuOpened] = useState(false);
-  const contracts = [
-    { value: 'internship', label: t('dsrCt.internship') },
-    { value: 'cdd', label: t('dsrCt.cdd') },
-    { value: 'cdi', label: t('dsrCt.cdi') },
-    { value: 'contractor', label: t('dsrCt.contractor') }
+  const [sizeMenuOpened, setSizeMenuOpened] = useState(false);
+  // const [contractSelected, setContractSelected] = useState(false);
+  const sizes = [
+    { label: t('companyEmployeesNumberTiny'), value: 'tiny' },
+    { label: t('companyEmployeesNumberSmall'), value: 'small' },
+    { label: t('companyEmployeesNumberMid'), value: 'mid' },
+    { label: t('companyEmployeesNumberBig'), value: 'big' },
+    { label: t('companyEmployeesNumberHuge'), value: 'huge' }
   ];
-  const [contractCheckBox, setContractCheckBox] = useState({
-    internship: false,
-    cdd: false,
-    cdi: false,
-    contractor: false
+  const [sizeCheckBox, setSizeCheckBox] = useState({
+    tiny: false,
+    small: false,
+    mid: false,
+    big: false,
+    huge: false
   });
 
 
@@ -57,22 +62,18 @@ const JobsComponent = ({ t, data }) => {
   const [locationList, setLocationList] = useState([]);
 
 
-  /* Salary State */
-  const [salaryMenuOpened, setSalaryMenuOpened] = useState(false);
-  const [salary, setSalary] = useState({ min: 15, max: 100 });
-
 
   /* Handle the menu change */
   const handleMenu = (value, fn)=> {
     setTribooMenuOpened(false);
-    setContractMenuOpened(false);
     setLocationMenuOpened(false);
-    setSalaryMenuOpened(false);
+    setSizeMenuOpened(false);
 
     fn(value)
   }
 
 
+  /* Location Mechanism */
   const handleLocationSubmit = e => {
     e.preventDefault();
     if (locationList.filter(item => item === location).length !== 0)
@@ -91,7 +92,7 @@ const JobsComponent = ({ t, data }) => {
   }
 
 
-  /* Fetch jobs with the new conditions. */
+  /* Fetch companies with the new conditions. */
   const handleUpdateMechanism = async (qdata, ndata, fn, add = false) => {
     if (!isUnmounted.current) {
       if (!add) {
@@ -102,21 +103,20 @@ const JobsComponent = ({ t, data }) => {
     }
 
     try {
-      const res = await getJobs(qdata);
+      const res = await getCompanies(qdata);
       if (res.status === 200) {
         const rdata = await res.json();
         if (!isUnmounted.current) {
           if (add) {
             if (rdata.announces > 0) {
-              setJobs([...jobs, ...rdata.announces]);
+              setCompanies([...companies, ...rdata.companies]);
               setCount(rdata.count + count);
             }
           } else {
-            setJobs(rdata.announces);
+            setCompanies(rdata.companies);
             setCount(rdata.count);
           }
 
-          // setCount(rdata.count);
           setLoading(false);
           setError(false);
         }
@@ -132,18 +132,24 @@ const JobsComponent = ({ t, data }) => {
     }
   }
 
+
+  /* Search Mechanism */
   const handleSearch = (qdata, inputValue) => {
     handleUpdateMechanism({ ...qdata, search: inputValue }, null, () => null);
     setSearch(inputValue);
   }
-  
-  const qdata = { offset, search, triboo: tribooSelected, contractsType: contractCheckBox, location: locationList, salary };
 
+
+  /* Query data */
+  const qdata = { offset, search, triboo: tribooSelected, country: locationList, size: sizeCheckBox };
+
+
+  /* Mount/Unmount handling */
   useEffect(() => {
 
     window.addEventListener('scroll', (e) => {
       if ((document.body.clientHeight - window.scrollY) === window.innerHeight)
-        handleUpdateMechanism({ ...qdata, offset: jobs.length + 20 }, null, () => null, true);
+        handleUpdateMechanism({ ...qdata, offset: companies.length + 20 }, null, () => null, true);
     });
 
     return () => {
@@ -153,12 +159,10 @@ const JobsComponent = ({ t, data }) => {
 
   }, []);
 
-  const router = useRouter();
-
   return (
     <div className='jobs-root'>
       <div className='jobs-box'>
-        <h2 className='jobs-box-label'>{t('findYourDreamJobs')}</h2>
+        <h2 className='jobs-box-label'>{t('findYourDreamCompany')}</h2>
         <div className='jobs-box-menu'>
           <div className='jobs-box-menu-input'> 
             <img src={SearchIconGrey} alt='search-icon' className='jobs-box-menu-input-icon' />
@@ -172,7 +176,7 @@ const JobsComponent = ({ t, data }) => {
           </div>
 
           <div className='jobs-box-m'>
-            <div className='jobs-box-menu-box' style={{ width: '120px' }} onClick={() => handleMenu(!tribooMenuOpened, setTribooMenuOpened)}>
+            <div className='jobs-box-menu-box' style={{ width: '150px' }} onClick={() => handleMenu(!tribooMenuOpened, setTribooMenuOpened)}>
               {t('triboo')}
               <img
                 src={DropdownIconGrey}
@@ -194,20 +198,30 @@ const JobsComponent = ({ t, data }) => {
           </div>
 
           <div className='jobs-box-m'>
-            <div className='jobs-box-menu-box' style={{ width: '120px' }} onClick={() => handleMenu(!contractMenuOpened, setContractMenuOpened)}>
-              {t('contract')}
+            <div className='jobs-box-menu-box' style={{ width: '150px' }} onClick={() => handleMenu(!sizeMenuOpened, setSizeMenuOpened)}>
+              {t('size')}
               <img
                 src={DropdownIconGrey}
                 alt='menu-icon'
-                className={`jobs-box-menu-box-icon ${contractMenuOpened ? `-icon-opened` : ``}`} />
+                className={`jobs-box-menu-box-icon ${sizeMenuOpened ? `-icon-opened` : ``}`} />
             </div>
-            <div style={{ width: '150px', borderRadius: '5px', padding: '10px 0px' }} className={`jobs-box-menu-box-list ${!contractMenuOpened ? `-closed` : ``}`}>
-              {contracts.map((item, index) => <CheckBox key={index} label={item.label} size={{ width: '20px', height: '20px' }} checked={contractCheckBox[item.value]} setCheckState={ndata => handleUpdateMechanism({ ...qdata, contractsType: { ...contractCheckBox, [item.value]: !contractCheckBox[item.value] }}, ndata, () => setContractCheckBox({ ...contractCheckBox, [item.value]: !contractCheckBox[item.value]}))} />)}
+            <div style={{ width: '280px', borderRadius: '5px', padding: '10px 0px' }} className={`jobs-box-menu-box-list ${!sizeMenuOpened ? `-closed` : ``}`}>
+              {
+                sizes.map((item, index) => 
+                  <CheckBox
+                    key={index}
+                    label={item.label}
+                    size={{ width: '20px', height: '20px' }}
+                    checked={sizeCheckBox[item.value]}
+                    setCheckState={ndata => handleUpdateMechanism({ ...qdata, size: { ...sizeCheckBox, [item.value]: !sizeCheckBox[item.value] }}, ndata, () => setSizeCheckBox({ ...sizeCheckBox, [item.value]: !sizeCheckBox[item.value]}))}
+                  />
+                )
+              }
             </div>
           </div>
 
-          <div className='jobs-box-m'>
-            <div className='jobs-box-menu-box' style={{ width: '140px' }} onClick={() => handleMenu(!locationMenuOpened, setLocationMenuOpened)}>
+          <div className='jobs-box-m' style={{ justifyContent: 'flex-end' }}>
+            <div className='jobs-box-menu-box' style={{ width: '200px' }} onClick={() => handleMenu(!locationMenuOpened, setLocationMenuOpened)}>
               {t('location')}
               <img
                 src={DropdownIconGrey}
@@ -240,45 +254,11 @@ const JobsComponent = ({ t, data }) => {
             </div>
           </div>
 
-          <div className='jobs-box-m' style={{ justifyContent: 'flex-end' }}>
-            <div className='jobs-box-menu-box' style={{ width: '120px' }} onClick={() => handleMenu(!salaryMenuOpened, setSalaryMenuOpened)}>
-              {t('salary')}
-              <img
-                src={DropdownIconGrey}
-                alt='menu-icon'
-                className={`jobs-box-menu-box-icon ${salaryMenuOpened ? `-icon-opened` : ``}`} />
-            </div>
-            <div style={{ width: '300px', display: 'flex', justifyContent: 'center', paddingBottom: '20px', borderRadius: '5px' }} className={`jobs-box-menu-box-list ${!salaryMenuOpened ? `-closed` : ``}`}>
-              <div style={{ margin: '0px 10px' }}>
-                <h2 className='jbmb-label'>{t('minimum')}</h2>
-                <input
-                  value={salary.min}
-                  type='number'
-                  placeholder={15}
-                  className='jobs-box-menu-box-list-input'
-                  onChange={e => setSalary({ ...salary, min: e.target.value })}
-                  onBlur={e => handleUpdateMechanism(qdata, null, () => null)}
-                />
-              </div>
-
-              <div style={{ margin: '0px 10px' }}>
-                <h2 className='jbmb-label'>{t('maximum')}</h2>
-                <input
-                  value={salary.max}
-                  type='number'
-                  placeholder={100}
-                  className='jobs-box-menu-box-list-input'
-                  onChange={e => setSalary({ ...salary, max: e.target.value })}
-                  onBlur={e => handleUpdateMechanism(qdata, null, () => null)}
-                />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
       <div className='jobs-box' style={{ marginTop: '50px' }}>
-        <h3 className='jobs-box-label -l-small'>{count} {count > 1 ? t('announceNumber') : t('announcesNumber')}</h3>
+        <h3 className='jobs-box-label -l-small'>{count} {count > 1 ? t('companiesNumber') : t('companyNumber')}</h3>
         <div>
           {
             loading ?
@@ -288,13 +268,13 @@ const JobsComponent = ({ t, data }) => {
                 <div className='jobs-box-loading-txt'>{t('fetchingNewData')}</div>
               </div>
             ) :
-              error ?
-              <div className='jobs-msg-error'>{t('error500')}</div> :
-              jobs.map((item, index) => (
-                <div key={index} className='jobs-item' onClick={() => router.push(`/jobs/${item.publicId}`)}>
-                  <AnnounceItem data={item} updateData={null} isPublic />
-                </div>
-              ))
+            error ?
+            <div className='companies-error-msg'>{t('error500')}</div> :
+            companies.map((item, index) => (
+              <div key={index} className='companies-item' onClick={() => router.push(`/companies/${item.name}`)}>
+                <CompanyItem data={item} />
+              </div>
+            ))
           }
         </div>
       </div>
@@ -304,4 +284,4 @@ const JobsComponent = ({ t, data }) => {
 
 
 // @export
-export default withTranslation('common')(JobsComponent);
+export default withTranslation('common')(CompaniesComponent);

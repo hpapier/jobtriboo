@@ -92,7 +92,7 @@ const Announces = ({ t }) => {
         (
           <div className='announces-box'>
             <h2 className='announces-title'>{t('newAnnounces')}</h2>
-            <NewAnnounces changeView={() => setView('list')} addAnnounce={newAnnounce => setAnnounces([...announces, newAnnounce])} />
+            <NewAnnounces changeView={() => setView('list')} addAnnounce={newAnnounce => setAnnounces([...announces, ...newAnnounce])} />
           </div>
         ) :
         null

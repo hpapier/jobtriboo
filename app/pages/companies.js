@@ -3,16 +3,18 @@ import React from 'react';
 
 
 // @local imports
-import { checkAuth } from "../utils/auth";
+import { checkAuth } from '../utils/auth';
 import Navbar from '../components/Navbar';
+import { getCompanies } from '../utils/request/companies';
+import CompaniesComponent from '../components/Companies';
 
 
 // @page
-const Companies = ({ logInfo }) => {
+const Companies = ({ logInfo, companies }) => {
   return (
     <div>
       <Navbar logInfo={logInfo} />
-      Companies page
+      <CompaniesComponent data={companies} />
 
       <style jsx global>{`
           body {
@@ -29,9 +31,14 @@ const Companies = ({ logInfo }) => {
 // @request
 Companies.getInitialProps = async (ctx) => {
   const logInfo = await checkAuth(ctx);
+  const companiesRes = await getCompanies({ offset: 0, search: '', triboo: '', country: [], size: [] });
+  let companies = [];
+  if (companiesRes.status === 200)
+    companies = await companiesRes.json();
 
   return {
     logInfo,
+    companies,
     namespacesRequired: ['common']
   }
 }
