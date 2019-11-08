@@ -34,7 +34,8 @@ const accountInformationSchema = new mongoose.Schema({
   updated: { type: Date, default: new Date() },
   settings: {
     emailOnMsg: { type: Boolean, default: true }
-  }
+  },
+  publicId: String
 });
 
 const candidateAccountSchema = new mongoose.Schema();
@@ -42,11 +43,19 @@ candidateAccountSchema.add(basicAccountSchema).add(accountInformationSchema);
 
 
 const announceSchema = new mongoose.Schema({
-  company: String,
+  company: { type: mongoose.Types.ObjectId, default: null },
   salary: { min: Number, max: Number },
   title: String,
+  location: String,
+  level: String,
+  description: String,
+  contractType: String,
+  benefits: [String],
+  card: mongoose.Types.ObjectId,
+  sponsoring: Boolean,
+  startingDate: Date,
   triboo: String,
-  publicId: Number
+  publicId: String
 });
 
 const companiesSchema = new mongoose.Schema({
@@ -61,7 +70,8 @@ const companiesSchema = new mongoose.Schema({
   employeesNumber: { type: String, default: '' },
   activityArea: [String],
   link: { type: String, default: '' },
-  NIF: { type: String, default: '' }
+  NIF: { type: String, default: '' },
+  createdBy: mongoose.Types.ObjectId
 });
 
 
@@ -76,9 +86,12 @@ const cardSchema = new mongoose.Schema({
 
 
 const recruiterDataSchema = new mongoose.Schema({
-  companies: [companiesSchema],
-  announces: [announceSchema],
-  cards: [cardSchema]
+  companies: [mongoose.Types.ObjectId],
+  announces: [mongoose.Types.ObjectId],
+  cards: [cardSchema],
+  settings: {
+    emailOnMsg: { type: Boolean, default: true }
+  }
 });
 
 
@@ -88,5 +101,7 @@ recruiterAccountSchema.add(basicAccountSchema).add(recruiterDataSchema);
 module.exports = {
   recruiterAccountSchema,
   candidateAccountSchema,
-  basicAccountSchema
+  basicAccountSchema,
+  announceSchema,
+  companiesSchema
 }

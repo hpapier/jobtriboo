@@ -1,5 +1,6 @@
 // @module import
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 
 
 // @local import
@@ -14,7 +15,7 @@ import Coordinates from './Coordinates';
 
 
 // @component
-const Informations = () => {
+const Informations = ({ t }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(0);
   const [userData, setUserData] = useState();
@@ -41,6 +42,8 @@ const Informations = () => {
     }
   }
 
+  const router = useRouter();
+
   useEffect(() => {
     fetchUserData();
     return () => { componentIsMounted.current = false };
@@ -52,6 +55,12 @@ const Informations = () => {
         loading ?
         <div className='information-root-loading'></div> :
         <div className='information-root-box'>
+          <div className='information-root-box-btn'>
+            <button className='information-see-public-profil' onClick={() => router.push(`/candidate/${userData.publicId}`)}>
+              {t('seeMyProfil')}
+            </button>
+          </div>
+
           <ProfilPicture link={userData.picture} updateLink={ndata => setUserData({ ...userData, picture: ndata })} />
           <Description data={userData.description} updateDesc={ndata => setUserData({ ...userData, description: ndata})} />
           <Coordinates

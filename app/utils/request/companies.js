@@ -19,3 +19,7 @@ export const updateCompany = async (data, token) => {
 export const getCompanies = async data => {
   return await request('/api/companies', { method: 'POST', body: { data }, headers: { 'Content-Type': 'application/json' }});
 }
+
+export const getCompany = async name => {
+  return await request(`/api/company/${name}`, { method: 'GET', headers: {} });
+}

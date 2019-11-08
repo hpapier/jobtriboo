@@ -16,21 +16,35 @@ import TribeIconGrey from '../../static/assets/tribe_icon_g.svg';
 const JobComponent = ({ t, data }) => {
 
   const router = useRouter();
+
   const contracts = [
     { value: 'internship', label: t('dsrCt.internship') },
     { value: 'cdd', label: t('dsrCt.cdd') },
     { value: 'cdi', label: t('dsrCt.cdi') },
     { value: 'contractor', label: t('dsrCt.contractor') }
   ]
+  const triboo = [
+    { label: t('commercial'), value: 'commercial' },
+    { label: t('tech'), value: 'tech' },
+    { label: t('engineering'), value: 'engineering' },
+    { label: t('retail'), value: 'retail' },
+  ];
+  const employeesNumber = [
+    { label: t('companyEmployeesNumberTiny'), value: 'tiny' },
+    { label: t('companyEmployeesNumberSmall'), value: 'small' },
+    { label: t('companyEmployeesNumberMid'), value: 'mid' },
+    { label: t('companyEmployeesNumberBig'), value: 'big' },
+    { label: t('companyEmployeesNumberHuge'), value: 'huge' }
+  ];
 
   return (
     <div className='job-root'>
       <div className='job-head'>
         <div className='job-head-ib'>
-          { data.company === 'anonymous' ? <div className='job-head-logo'></div> : <img className='job-head-logo' src={data.company.logo} /> }
+          { data.company === null ? <div className='job-head-logo'></div> : <img className='job-head-logo' src={`http://localhost:3001${data.companyInfo[0].logo}`} /> }
           <div className='job-head-tbox'>
             <div>
-              <h3 className='job-head-tbox-title' style={{ opacity: 0.5, fontSize: '1em' }}>{ data.company === 'anonymous' ? t('anonymous') : data.company.name }</h3>
+              <h3 className='job-head-tbox-title' style={{ opacity: 0.5, fontSize: '1em' }}>{ data.company === null ? t('anonymous') : data.companyInfo[0].name }</h3>
               <h2 className='job-head-tbox-title' style={{ opacity: 1, fontSize: '1.5em' }}>{ data.title }</h2>
             </div>
             <div className='job-head-tbox-info'>
@@ -81,26 +95,26 @@ const JobComponent = ({ t, data }) => {
           </div>
 
           {
-            data.company !== 'anonymous' ?
+            data.company !== null ?
             <div className='job-body-right-box'>
               <h3 className='job-body-label-txt'>{ t('theCompany') }</h3>
               <hr className='job-body-label-hr' style={{ marginBottom: '20px' }} />
               <div className='job-body-company-infobox'>
                 <img src={TotemIconGrey} alt='triboo-icon' className='job-body-company-infobox-icon' />
-                <p className='job-body-company-infobox-txt' style={{ marginLeft: '15px'}} >{ data.company.triboo }</p>
+                <p className='job-body-company-infobox-txt' style={{ marginLeft: '15px'}} >{ triboo.filter(item => data.companyInfo[0].activityArea[0] === item.value)[0].label }</p>
               </div>
 
               <div className='job-body-company-infobox'>
                 <img src={LocationIconGrey} alt='location-icon' style={{ marginLeft: '2px'}} className='job-body-company-infobox-icon' />
-                <p className='job-body-company-infobox-txt' style={{ marginLeft: '16px'}} >{ data.company.location }</p>
+                <p className='job-body-company-infobox-txt' style={{ marginLeft: '16px'}} >{ data.companyInfo[0].country }, { data.companyInfo[0].address }</p>
               </div>
 
               <div className='job-body-company-infobox'>
                 <img src={TribeIconGrey} alt='employeesNumber-icon' style={{ marginLeft: '2px'}} className='job-body-company-infobox-icon' />
-                <p className='job-body-company-infobox-txt' style={{ marginLeft: '17px'}} >{ data.company.employeesNumber }</p>
+                <p className='job-body-company-infobox-txt' style={{ marginLeft: '17px'}} >{ employeesNumber.filter(item => data.companyInfo[0].employeesNumber === item.value)[0].label }</p>
               </div>
 
-              <button className='company-btn' onClick={() => router.push(`/company/${data.company.name}`)}>{ t('knowMore') }</button>
+              <button className='company-btn' onClick={() => router.push(`/companies/${data.companyInfo[0].name}`)}>{ t('knowMore') }</button>
             </div> :
             null
           }

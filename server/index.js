@@ -37,7 +37,13 @@ app.use(express.json({
 app.use(express.static('files'));
 
 /* Database schemas & models */
-const { candidateAccountModel, recruiterAccountModel, userAccountModel } = require('./database/models');
+const {
+  candidateAccountModel,
+  recruiterAccountModel,
+  userAccountModel,
+  announcesModel,
+  companiesModel
+} = require('./database/models');
 
 
 // Basic route
@@ -240,8 +246,10 @@ app.post('/api/register', async (req, res) => {
     let newAccount;
     if (userState === 'recruiter')
       newAccount = new recruiterAccountModel({ state: userState, firstName, lastName, email, password: cryptedPwd, prefixPhoneNumber, phoneNumber });
-    else
-      newAccount = new candidateAccountModel({ state: userState, firstName, lastName, email, password: cryptedPwd, prefixPhoneNumber, phoneNumber });
+    else {
+      const publicId = randomize('Aa0', 15);
+      newAccount = new candidateAccountModel({ state: userState, firstName, lastName, email, password: cryptedPwd, prefixPhoneNumber, phoneNumber, publicId });
+    }
 
     try {
       await newAccount.save();
@@ -528,13 +536,16 @@ app.get('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
 
   try {
     const rdata = await recruiterAccountModel.find({ email }, { companies: 1 });
-    console.log(rdata);
-    if (rdata.length === 0)
-      throw 'account error (/api/recruiter/companies)';
-    else {
-      res.status(200).send(rdata[0].companies);
+    if (rdata.length === 0) {
+      res.status(401).send();
       return;
     }
+
+    const companies = await companiesModel.find({ _id: { $in: rdata[0].companies }});
+    console.log(companies);
+
+    res.status(200).send(companies);
+    return;
   } catch (e) {
     console.log(e);
     res.status(500).send();
@@ -549,26 +560,26 @@ app.get('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
   @method:  POST
 */
 app.post('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
-  const { email, data } = req.body;
+  const { email, data, userId } = req.body;
 
   try {
-    const rdata = await recruiterAccountModel.find({ companies: { $elemMatch: { name: data.name }}});
-    console.log(rdata);
-    if (rdata.length > 0) {
+    // Check if company doesn't exist
+    const checkCompany = await companiesModel.find({ name: data.name });
+    if (checkCompany.length !== 0) {
       res.status(200).send({ state: 'already exist' });
       return;
     }
 
+    // Check the recruiter account
     const recruiterData = await recruiterAccountModel.find({ email });
-    console.log(recruiterData);
     if (recruiterData.length === 0) {
       res.status(401).send();
       return;
     }
 
     const newId = mongoose.Types.ObjectId();
-
     const userDirPath = __dirname + '/files/' + recruiterData[0]._id + '/' + newId;
+
     fs.mkdir(userDirPath, { recursive: true }, async function(err) {
       console.log(err);
       if (err === null || (err && err.code === 'EEXIST')) {
@@ -604,7 +615,10 @@ app.post('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
 
 
         // Store into 
-        const udata = await recruiterAccountModel.findOneAndUpdate({ email }, { $push: { companies: { ...data, _id: newId, logo: logoPath, cover: coverPath , employeesNumber: data.companyEmployeesNumber }}, updated: new Date() }, { new: true });
+        const company = new companiesModel({ ...data, _id: newId, logo: logoPath, cover: coverPath , employeesNumber: data.companyEmployeesNumber, createdBy: userId });
+        const savedCompany = await company.save();
+
+        const udata = await recruiterAccountModel.findOneAndUpdate({ email }, { $push: { companies: savedCompany._id }, updated: new Date() }, { new: true });
         if (udata !== null)
           res.status(200).send({ state: 'created' });
         else
@@ -661,27 +675,28 @@ app.put('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
   try {
 
     // Check if the resource exist.
-    const cdata = await recruiterAccountModel.find({ email, companies: { $elemMatch: { _id: data._id }}}, { companies: 1 });
+    const cdata = await recruiterAccountModel.find({ email, companies: { $elemMatch: data._id }}, { companies: 1 });
+    console.log(cdata);
     if (cdata === null || cdata.length === 0) {
       res.status(404).send();
       return;
     }
 
     // Check if the name is available.
-    const checkName = await recruiterAccountModel.find({ companies: { $elemMatch: { name: data.name }}});
-    if (checkName.length > 1) {
+    const companyData = await companiesModel.find({ name: data.name });
+    if (companyData.length === 1 && (companyData[0].createdBy.toString() !== userId.toString())) {
       res.status(200).send({ state: 'already exist'});
       return;
-    } else if (checkName.length === 1) {
-      if (checkName[0]._id.toString() !== userId.toString()) {
-        res.status(200).send({ state: 'already exist'});
-        return;
-      }
+    }
+
+    if (companyData.length === 0) {
+      res.status(404).send();
+      return;
     }
 
 
     // Update the company.
-    const companyData = cdata[0].companies.filter(item => item._id.toString() === data._id.toString());
+    // const companyData = cdata[0].companies.filter(item => item._id.toString() === data._id.toString());
 
 
     // Verify if logo changed
@@ -728,8 +743,8 @@ app.put('/api/recruiter/companies', recruiterTokenCheck, async (req, res) => {
 
 
         // Store into 
-        const udata = await recruiterAccountModel.findOneAndUpdate(
-          { email, companies: { $elemMatch: { _id: data._id }}},
+        const udata = await companiesModel.findOneAndUpdate(
+          { name: data.name },
           { $set: {
             "companies.$.logo": logoPath,
             "companies.$.cover": coverPath,
@@ -816,6 +831,408 @@ app.post('/api/recruiter/cards', recruiterTokenCheck, async (req, res) => {
 
 
 
+app.get('/api/recruiter/announces', recruiterTokenCheck, async (req, res) => {
+  console.log('-> /api/recruiter/announces (GET):');
+  const { email, userId } = req.body;
 
+  try {
+    const adata = await recruiterAccountModel.find({ email }, { announces: 1 });
+    if (adata.length === 0) {
+      res.status(401).send();
+      return;
+    }
+
+    if (adata[0].announces.length === 0) {
+      res.status(200).send([]);
+      return;
+    }
+
+    const announces = await announcesModel.aggregate([
+      { $match: { _id: { $in: adata[0].announces }}},
+      { $lookup: {
+        from: 'companies',
+        localField: 'company',
+        foreignField: '_id',
+        as: 'companyInfo'
+      }}
+    ]);
+
+    res.status(200).send(announces);
+    return;
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+
+app.post('/api/recruiter/announces', recruiterTokenCheck, async (req, res) => {
+  console.log('-> /api/recruiter/announces (POST):');
+  const {email, data} = req.body;
+  console.log(data);
+
+  try {
+    const publicId = randomize('Aa0', 15);
+    const newAnnounce = new announcesModel({ ...data, publicId, card: data.card._id, company: (data.company !== 'anonymous') ? data.company._id : null });
+    const rdata = await newAnnounce.save();
+
+    if (rdata === null)
+      throw 'db error';
+
+    const recData = await recruiterAccountModel.findOneAndUpdate({ email }, { $push: { announces: rdata._id }});
+    if (recData === null) {
+      res.status(401).send();
+      return;
+    }
+
+    const announces = await announcesModel.aggregate([
+      { $match: { _id: rdata._id }},
+      { $lookup: {
+        from: 'companies',
+        localField: 'company',
+        foreignField: '_id',
+        as: 'companyInfo'
+      }}
+    ]);
+
+    res.status(200).send(announces);
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+app.delete('/api/recruiter/announces', recruiterTokenCheck, async (req, res) => {
+  console.log('-> /api/recruiter/announces (DELETE):');
+  const {email, data} = req.body;
+
+  try {
+    await recruiterAccountModel.findOneAndUpdate({ email }, { $pull: { announces: data._id } });
+    const ddata = await announcesModel.deleteOne({ _id: data._id });
+
+    if (ddata.deletedCount === 1)
+      res.status(204).send();
+    else
+      res.status(404).send();
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+app.get('/api/recruiter/settings', recruiterTokenCheck, async (req, res) => {
+  console.log('/api/recruiter/settings (GET):');
+  const { email } = req.body;
+
+  try {
+    const settings = await recruiterAccountModel.find({ email }, { settings: 1 });
+    if (settings.length === 0) {
+      res.status(404).send();
+      return;
+    }
+
+    res.status(200).send(settings[0].settings);
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+app.put('/api/recruiter/settings', recruiterTokenCheck, async (req, res) => {
+  console.log('/api/recruiter/settings (PUT):')
+  const { email, data } = req.body;
+
+  try {
+    const settings = await recruiterAccountModel.findOneAndUpdate({ email }, { settings: data });
+    if (settings === null) {
+      res.status(404).send();
+      return;
+    }
+
+    res.status(200).send();
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+app.get('/api/recruiter/cards', recruiterTokenCheck, async (req, res) => {
+  console.log('/api/recruiter/cards (GET):');
+  const { email } = req.body;
+
+  try {
+    const settings = await recruiterAccountModel.find({ email }, { cards: 1 });
+    if (settings.length === 0) {
+      res.status(404).send();
+      return;
+    }
+
+    res.status(200).send(settings[0].cards);
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+})
+
+
+
+
+app.delete('/api/recruiter/cards', recruiterTokenCheck, async (req, res) => {
+  console.log('/api/recruiter/cards (DELETE):');
+  const { email, data } = req.body;
+
+  try {
+    const rdata = await recruiterAccountModel.findOneAndUpdate({ email }, { $pull: { cards: { _id: data._id }}});
+    console.log(rdata);
+    if (rdata === null) {
+      res.status(404).send();
+      return;
+    }
+
+    res.status(204).send();
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+app.post('/api/jobs', async (req, res) => {
+  console.log('/api/jobs (POST -> GET with params):');
+  const { data } = req.body;
+  console.log(data);
+
+  let query = {};
+  (data.search !== '') ? query.title = { $regex: data.search, $options: 'i' } : null;
+  (data.triboo === '') ? query.triboo = { $in: ['commercial', 'tech', 'engineering', 'retail']} : query.triboo = data.triboo;
+  (data.location.length !== 0) ? query.location = { $in: data.location } : null;
+
+  const { internship, cdd, cdi, contractor } = data.contractsType;
+  let contractArray = [];
+  internship  ? contractArray.push('internship')  : null;
+  cdd         ? contractArray.push('cdd')         : null;
+  cdi         ? contractArray.push('cdi')         : null;
+  contractor  ? contractArray.push('contractor')  : null;
+  (contractArray.length !== 0) ? query.contractType = { $in: contractArray } : null;
+
+  query['salary.min'] = { $gte: data.salary.min };
+  query['salary.max'] = { $lte: data.salary.max };
+  console.log(query);
+
+  // const triboo = (data.triboo === '') ? { $in: ['commercial, tech, engineering, retail']} : data.triboo;
+
+  try {
+    // const announces = await announcesModel.find(query, null, { limit: 30, skip: data.offset });
+    const count = await announcesModel.countDocuments(query);
+    const announces = await announcesModel.aggregate([
+      { $match: query },
+      { $limit: 20 },
+      { $skip: data.offset },
+      { 
+        $lookup: {
+          from: 'companies',
+          localField: 'company',
+          foreignField: '_id',
+          as: 'companyInfo'
+        }
+      }
+    ]);
+
+    console.log(count);
+
+    let ann = [];
+    if (announces.length > 0) {
+      for (let i = 0; i < 5; i++)
+        ann.push(announces[0]);
+    }
+    
+    res.status(200).send({ count, announces: ann });
+    // res.status(200).send({ count, announces });
+  } catch (e) {
+    console.log(e);
+    res.status(500).send({ count: 0, announces: [] });
+  }
+});
+
+
+
+
+app.get('/api/job/:publicId', async (req, res) => {
+  console.log('/api/job/:publicId (GET)');
+  const { publicId } = req.params;
+  console.log(publicId);
+  
+  try {
+    const announce = await announcesModel.aggregate([
+      { $match: { publicId: publicId } },
+      { 
+        $lookup: {
+          from: 'companies',
+          localField: 'company',
+          foreignField: '_id',
+          as: 'companyInfo'
+        }
+      }
+    ]);
+
+    console.log(announce)
+
+    if (announce.length === 0) {
+      res.status(404).send();
+      return;
+    }
+
+    res.status(200).send(announce[0]);
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+})
+
+
+
+
+app.post('/api/companies', async (req, res) => {
+  console.log('/api/companies (POST -> GET):');
+  const { data } = req.body;
+
+  let query = {};
+  data.search !== '' ? query.name = { $regex: data.search, $options: 'i' } : null;
+  data.triboo === '' ? query.activityArea = { $in: ['commercial', 'tech', 'engineering', 'retail'] } : query.activityArea = data.triboo;
+  data.country.length > 0 ? query.country = { $in: data.country } : null;
+
+  const { tiny, small, mid, big, huge } = data.size;
+  let sizeArray = [];
+  tiny  ? sizeArray.push('tiny')  : null;
+  small ? sizeArray.push('small') : null;
+  mid   ? sizeArray.push('mid')   : null;
+  big   ? sizeArray.push('big')   : null;
+  huge  ? sizeArray.push('huge')  : null;
+  sizeArray.length !== 0 ? query.employeesNumber = { $in: sizeArray } : query.employeesNumber = { $in: ['tiny', 'small', 'mid', 'big','huge'] };
+
+  try {
+    const count = await companiesModel.countDocuments(query);
+    const companies = await companiesModel.aggregate([
+      { $match: query },
+      { $limit: 24 },
+      { $skip: data.offset },
+      { 
+        $lookup: {
+          from: 'announces',
+          localField: '_id',
+          foreignField: 'company',
+          as: 'announces'
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          logo: 1,
+          cover: 1,
+          description: 1,
+          name: 1,
+          email: 1,
+          phone: 1,
+          address: 1,
+          country: 1,
+          employeesNumber: 1,
+          activityArea: 1,
+          link: 1,
+          NIF: 1,
+          createdBy: 1,
+          announcesNumber: { $size: "$announces" }
+        }
+      }
+    ]);
+
+    console.log(companies)
+    res.status(200).send({ count, companies });
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send({ count: 0, companies: [] });
+  }
+});
+
+
+
+
+app.get('/api/company/:name', async (req, res) => {
+  console.log('/api/company/:name (GET):');
+  const { name } = req.params;
+
+  try {
+    const company = await companiesModel.aggregate([
+      { $match: { name } },
+      {
+        $lookup: {
+          from: 'announces',
+          localField: '_id',
+          foreignField: 'company',
+          as: 'announces'
+        }
+      }
+    ]);
+
+    if (company.length === 0) {
+      res.status(404).send();
+      return;
+    }
+
+    res.status(200).send(company[0]);
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+app.get('/api/candidate/:publicId', async (req, res) => {
+  console.log('/api/candidate/:publicId (GET)');
+  const { publicId } = req.params;
+
+  try {
+    const candidate = await candidateAccountModel.find({ publicId });
+    if (candidate.length === 0) {
+      res.status(404).send();
+      return;
+    }
+
+    res.status(200).send(candidate[0]);
+    return;
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+})
 // Run the server.
 app.listen(port, () => console.log(`Server running on port:${port}`));

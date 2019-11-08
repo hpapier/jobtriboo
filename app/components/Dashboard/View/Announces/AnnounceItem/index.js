@@ -84,7 +84,7 @@ const AnnounceItem = ({ t, data, updateData, isPublic = false }) => {
         !isPublic ?
         (
           <div className='announce-item-btn'>
-            <button className='announce-item-btn-el' onClick={() => router.push(`/job/${data.publicId}`)}>
+            <button className='announce-item-btn-el' onClick={() => router.push(`/jobs/${data.publicId}`)}>
               <img src={LinkIconGrey} alt='link-icon' />
             </button>
 

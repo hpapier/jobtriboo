@@ -1,4 +1,4 @@
-.job-root {
+.candidate-root {
   width: 1050px;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-.job-head {
+.candidate-head {
   display: flex;
   justify-content: space-between;
   height: 150px;
@@ -19,13 +19,13 @@
   box-sizing: border-box;
 }
 
-.job-head-ib {
+.candidate-head-ib {
   display: flex;
   height: 100%;
   align-items: center;
 }
 
-.job-head-logo {
+.candidate-head-logo {
   width: 115px;
   height: 115px;
   object-fit: cover;
@@ -34,7 +34,7 @@
   margin-left: 20px;
 }
 
-.job-head-tbox {
+.candidate-head-tbox {
   height: 115px;
   display: flex;
   flex-direction: column;
@@ -42,18 +42,18 @@
   margin-left: 25px;
 }
 
-.job-head-tbox-title {
+.candidate-head-tbox-title {
   margin: 0px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   color: #404660;
 }
 
-.job-head-tbox-info {
+.candidate-head-tbox-info {
   display: flex;
 }
 
-.job-head-tbox-info-box {
+.candidate-head-tbox-info-box {
   display: flex;
   padding: 0px 20px;
   height: 30px;
@@ -63,7 +63,7 @@
   margin-right: 10px;
 }
 
-.job-head-tbox-info-box-icon {}
+.candidate-head-tbox-info-box-icon {}
 
 .euro-icon {
   font-family: 'Roboto', sans-serif;
@@ -72,7 +72,7 @@
   color: #404660;
 }
 
-.job-head-tbox-info-box-txt {
+.candidate-head-tbox-info-box-txt {
   margin: 0px 0px 0px 10px;
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
@@ -80,12 +80,12 @@
   color: #404660;
 }
 
-.job-head-bb {
+.candidate-head-bb {
   display: flex;
   align-items: center;
 }
 
-.job-head-bb-button {
+.candidate-head-bb-button {
   all: unset;
   display: flex;
   justify-content: center;
@@ -105,18 +105,18 @@
   margin-right: 25px;
 }
 
-.job-head-bb-button:hover, .job-head-bb-button:focus {
+.candidate-head-bb-button:hover, .candidate-head-bb-button:focus {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .3);
 }
 
-.job-body {
+.candidate-body {
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
 }
 
-.job-body-left {
+.candidate-body-left {
   width: 65%;
   background-color: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
@@ -124,7 +124,7 @@
   padding-bottom: 30px;
 }
 
-.job-body-label-txt {
+.candidate-body-label-txt {
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 500;
@@ -135,13 +135,13 @@
   text-transform: uppercase;
 }
 
-.job-body-label-hr {
+.candidate-body-label-hr {
   width: calc(100% - 40px);
   color: #404660;
   opacity: .3;
 }
 
-.job-body-left-txt {
+.candidate-body-left-txt {
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 400;
@@ -150,13 +150,13 @@
   padding: 0px 20px;
 }
 
-.job-body-right {
+.candidate-body-right {
   width: 30%;
   display: flex;
   flex-direction: column;
 }
 
-.job-body-right-box {
+.candidate-body-right-box {
   background-color: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
   width: 100%;
@@ -164,11 +164,11 @@
   padding-bottom: 30px;
 }
 
-.job-body-right-benefit {
+.candidate-body-right-benefit {
   margin-top: 20px;
 }
 
-.job-body-left-benefit-item {
+.candidate-body-left-benefit-item {
   width: 100%;
   padding: 0px 20px;
   display: flex;
@@ -177,11 +177,11 @@
   margin: 5px 0px;
 }
 
-.job-body-left-benefit-item-icon {
+.candidate-body-left-benefit-item-icon {
   opacity: .3;
 }
 
-.job-body-left-benefit-item-label {
+.candidate-body-left-benefit-item-label {
   margin: 0px 0px 0px 15px;
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
@@ -189,7 +189,7 @@
   color: #404660;
 }
 
-.job-body-company-infobox {
+.candidate-body-company-infobox {
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -197,11 +197,11 @@
   margin: 5px 0px;
 }
 
-.job-body-company-infobox-icon {
+.candidate-body-company-infobox-icon {
   opacity: .3;
 }
 
-.job-body-company-infobox-txt {
+.candidate-body-company-infobox-txt {
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 400;
@@ -230,4 +230,12 @@
 
 .company-btn:hover, .company-btn:focus {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .3);
+}
+
+.candidate-unknow {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #404660;
 }

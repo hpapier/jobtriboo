@@ -116,12 +116,19 @@
   margin-top: 20px;
 }
 
-.job-body-left {
+.job-body-l {
   width: 65%;
+  display: flex;
+  flex-direction: column;
+}
+
+.company-body-left {
+  width: 100%;
   background-color: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
   height: 100%;
   padding-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .job-body-label-txt {
@@ -230,4 +237,13 @@
 
 .company-btn:hover, .company-btn:focus {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .3);
+}
+
+
+.company-job-item {
+  cursor: pointer;
+}
+
+.company-job-item:hover {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
 }

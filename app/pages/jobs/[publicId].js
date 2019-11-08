@@ -32,6 +32,14 @@ Job.getInitialProps = async (ctx) => {
     console.log(job);
   }
 
+  if (job === null) {
+    if (ctx.res) {
+      ctx.res.writeHead(302, { Location: '/jobs' })
+      ctx.res.end()
+    } else {
+      document.location.pathname = '/jobs'
+    }
+  }
 
   return {
     logInfo,
