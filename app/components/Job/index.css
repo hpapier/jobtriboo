@@ -82,7 +82,8 @@
 
 .job-head-bb {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .job-head-bb-button {
@@ -103,6 +104,24 @@
   transition: .2s;
   text-transform: uppercase;
   margin-right: 25px;
+}
+
+.job-head-bb-button:disabled {
+  opacity: .5;
+  font-style: italic;
+  cursor: initial;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05) !important;
+}
+
+.job-head-bb-msg {
+  font-family: 'Roboto', sans-serif;
+  font-size: .875em;
+  font-weight: 300;
+  color: #404660;
+  font-style: italic;
+  max-width: 150px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .job-head-bb-button:hover, .job-head-bb-button:focus {
@@ -230,4 +249,60 @@
 
 .company-btn:hover, .company-btn:focus {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .3);
+}
+
+.job-head-bb-button-errormsg {
+  font-family: 'Roboto', sans-serif;
+  font-size: .875em;
+  font-weight: 400;
+  color: red;
+  max-width: 150px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+@keyframes job-head-bb-button-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.job-head-bb-button-loading {
+  border: 5px solid rgba(0, 0, 0, 0);
+  border-left: 5px solid #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation-name: job-head-bb-button-loading;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  margin: 0px auto;
+}
+
+.job-head-bb-button-alreadyapplied {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  padding: 0px 50px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  font-style: italic;
+  background-color: #fff;
+  color: #6B5AED;
+  border: 1px solid #6B5AED;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
+  border-radius: 5px;
+  transition: .2s;
+  text-transform: uppercase;
+  margin-right: 25px;
+  opacity: .5;
 }

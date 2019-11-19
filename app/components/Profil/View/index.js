@@ -7,11 +7,11 @@ import Settings from './Settings';
 
 
 // @component
-const View = ({ section }) => {
+const View = ({ section, logInfo }) => {
   return (
     <div className='view-root'>
       { section === 'informations'  ? <Informations />  : null }
-      { section === 'messages'      ? <Messages />      : null }
+      { section === 'messages'      ? <Messages logInfo={logInfo} />      : null }
       { section === 'settings'      ? <Settings />      : null }
     </div>
   );

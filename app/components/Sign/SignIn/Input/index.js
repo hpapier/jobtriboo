@@ -47,7 +47,7 @@ const Input = ({ t }) => {
       if (res.status === 200) {
         try {
           const data = await res.json();
-          setCookie('token', data.token);
+          setCookie('token', data.token, { path: '/' });
           router.push(data.userState === 'candidate' ? '/profil' : '/dashboard');
         } catch (e) {
           console.log(e);

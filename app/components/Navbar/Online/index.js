@@ -17,7 +17,7 @@ const Online = ({ t, setLoginState, userState }) => {
   const router = useRouter();
 
   const handleLogout = () => {
-    removeCookies('token');
+    removeCookies('token', { path: '/' });
     router.push('/');
   }
 
@@ -29,7 +29,7 @@ const Online = ({ t, setLoginState, userState }) => {
         </div>
 
         <div className='sign-online-lb-m'>
-          <button className={`sign-online-lb-mbtn${router.pathname === '/jobs' ? ` -active` : ``}`} onClick={() => router.push('/jobs')}>{t('jobs')}</button>
+          <button className={`sign-online-lb-mbtn${router.pathname === '/jobs' ? ` -active` : ``}`} onClick={() => { console.log('gotojobs'); router.push('/jobs')}}>{t('jobs')}</button>
           <button className={`sign-online-lb-mbtn${router.pathname === '/companies' ? ` -active` : ``}`} onClick={() => router.push('/companies')}>{t('companies')}</button>
           <button className={`sign-online-lb-mbtn${router.pathname === '/dashboard' || router.pathname === '/profil' ? ` -active` : ``}`} onClick={() => router.push(userState === 'recruiter' ? '/dashboard' : '/profil')}>
             {userState === 'recruiter' ? t('dashboard') : t('profil')}

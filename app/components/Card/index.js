@@ -139,7 +139,7 @@ const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
         }
         else if (rdata.state === 'created') {
           if (!isUnmounted.current) {
-            setCard(rdata.data);
+            setCard(rdata.data[rdata.data.length - 1]);
             !strictMode ? setVstate('card') : null;
           }
         } else
@@ -194,6 +194,9 @@ const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
     return () => { isUnmounted.current = true };
   }, []);
 
+
+  console.log('°°°° selected card °°°°°');
+  console.log(selectedCard);
 
   return (
     <div className='card-root'>

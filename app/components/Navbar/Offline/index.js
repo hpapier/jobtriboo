@@ -25,7 +25,7 @@ const Offline = ({ t }) => {
 
         {
           router.pathname === '/recruiter' ?
-          (<button className='navbar-offline-rbox-text' onClick={() => router.push('/signin')}>
+          (<button className='navbar-offline-rbox-text' onClick={() => console.log('go to pricing section')}>
             {t('pricing')}
           </button>)
           : null

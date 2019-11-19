@@ -30,7 +30,7 @@ const Jobs = ({ logInfo, jobs }) => {
 // @request
 Jobs.getInitialProps = async (ctx) => {
   const logInfo = await checkAuth(ctx);
-  const jobRequest = await getJobs({ offset: 0, search: '', triboo: 'commercial', contractsType: { internship: false, cdd: false, cdi: false, contractor: false }, location: [], salary: { min: 15, max: 100 }});
+  const jobRequest = await getJobs({ offset: 0, search: '', triboo: '', contractsType: { internship: false, cdd: false, cdi: false, contractor: false }, location: [], salary: { min: 0, max: 1000 }});
   const jobs = await jobRequest.json();
 
   return {

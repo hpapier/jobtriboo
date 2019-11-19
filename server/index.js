@@ -2,6 +2,8 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const fs = require('fs');
 const randomize = require('randomatic');
+const app = express();
+
 const { recruiterTokenCheck, candidateTokenCheck, basicTokenCheck } = require('./verification');
 
 const { handleInputText, handleInputEmail, handleInputPrefix, handleInputNumber } = require('./utils/input');
@@ -10,7 +12,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const jwtSecret = "qkslfkjdsq123RESFRZ2sdsdf";
-const app = express();
 
 const port = 3001;
 
@@ -18,7 +19,6 @@ const cors = require('cors');
 const corsOptions = {
   origin: 'http://localhost:3000'
 }
-
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://0.0.0.0:12345/jobTriboo', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true });
@@ -36,13 +36,62 @@ app.use(express.json({
 
 app.use(express.static('files'));
 
+
+
+const server = require('http').Server(app);
+const io = require('socket.io')(server, {
+  pingTimeout: 60000,
+});
+io.set('origins', '*:*');
+
+// const MSG_NSP_SOCKET = io.of('/msg');
+// let MSG_NSP = null;
+
+// MSG_NSP.on('connection', socket => {
+//   // MSG_NSP = socket;
+//   // MSG_NSP.on()
+// });
+
+
+io.on('connection', (socket) => {
+  console.log('connection');
+
+  socket.on('join-room', roomId => {
+    socket.join(roomId);
+  });
+
+  socket.on('leave-room', roomId => {
+    socket.leave(roomId);
+  })
+
+  socket.on('join-inbox', inboxId => {
+    socket.join(`inbox-${inboxId}`);
+  });
+
+  socket.on('leave-inbox', inboxId => {
+    socket.leave(`inbox-${inboxId}`);
+  });
+
+  socket.on('message-received', async userId => {
+    console.log('message-received event for: ', userId);
+    try {
+      await msgModel.updateMany({ to: mongoose.Types.ObjectId(userId), readed: false }, { readed: true });
+    } catch (e) {
+      console.log(e);
+    }
+  });
+});
+
 /* Database schemas & models */
 const {
   candidateAccountModel,
   recruiterAccountModel,
   userAccountModel,
   announcesModel,
-  companiesModel
+  companiesModel,
+  roomModel,
+  msgModel,
+  applyModel
 } = require('./database/models');
 
 
@@ -166,8 +215,11 @@ app.get('/api/sample', async (req, res) => {
 app.get('/api/auth', basicTokenCheck, (req, res) => {
   console.log("==>   /api/auth   <==");
 
-  const { email, userState } = req.body;
-  res.status(200).send({ email, userState });
+  if (req.body.email === undefined)
+    return;
+
+  const { email, userState, userId } = req.body;
+  res.status(200).send({ email, userState, userId });
 });
 
 
@@ -1004,7 +1056,6 @@ app.delete('/api/recruiter/cards', recruiterTokenCheck, async (req, res) => {
 
   try {
     const rdata = await recruiterAccountModel.findOneAndUpdate({ email }, { $pull: { cards: { _id: data._id }}});
-    console.log(rdata);
     if (rdata === null) {
       res.status(404).send();
       return;
@@ -1024,7 +1075,6 @@ app.delete('/api/recruiter/cards', recruiterTokenCheck, async (req, res) => {
 app.post('/api/jobs', async (req, res) => {
   console.log('/api/jobs (POST -> GET with params):');
   const { data } = req.body;
-  console.log(data);
 
   let query = {};
   (data.search !== '') ? query.title = { $regex: data.search, $options: 'i' } : null;
@@ -1041,12 +1091,8 @@ app.post('/api/jobs', async (req, res) => {
 
   query['salary.min'] = { $gte: data.salary.min };
   query['salary.max'] = { $lte: data.salary.max };
-  console.log(query);
-
-  // const triboo = (data.triboo === '') ? { $in: ['commercial, tech, engineering, retail']} : data.triboo;
 
   try {
-    // const announces = await announcesModel.find(query, null, { limit: 30, skip: data.offset });
     const count = await announcesModel.countDocuments(query);
     const announces = await announcesModel.aggregate([
       { $match: query },
@@ -1062,15 +1108,14 @@ app.post('/api/jobs', async (req, res) => {
       }
     ]);
 
-    console.log(count);
 
-    let ann = [];
-    if (announces.length > 0) {
-      for (let i = 0; i < 5; i++)
-        ann.push(announces[0]);
-    }
+    // let ann = [];
+    // if (announces.length > 0) {
+    //   for (let i = 0; i < 5; i++)
+    //     ann.push(announces[0]);
+    // }
     
-    res.status(200).send({ count, announces: ann });
+    res.status(200).send({ count, announces });
     // res.status(200).send({ count, announces });
   } catch (e) {
     console.log(e);
@@ -1084,7 +1129,6 @@ app.post('/api/jobs', async (req, res) => {
 app.get('/api/job/:publicId', async (req, res) => {
   console.log('/api/job/:publicId (GET)');
   const { publicId } = req.params;
-  console.log(publicId);
   
   try {
     const announce = await announcesModel.aggregate([
@@ -1098,8 +1142,6 @@ app.get('/api/job/:publicId', async (req, res) => {
         }
       }
     ]);
-
-    console.log(announce)
 
     if (announce.length === 0) {
       res.status(404).send();
@@ -1170,7 +1212,6 @@ app.post('/api/companies', async (req, res) => {
       }
     ]);
 
-    console.log(companies)
     res.status(200).send({ count, companies });
     return;
   } catch (e) {
@@ -1215,6 +1256,87 @@ app.get('/api/company/:name', async (req, res) => {
 
 
 
+app.get('/api/candidate/rooms', candidateTokenCheck, async (req, res) => {
+  console.log('/api/candidate/rooms (GET):');
+  const { userId } = req.body;
+
+  try {
+    const rooms = await roomModel.aggregate([
+      { $match: { candidate: userId } },
+      { 
+        $lookup: {
+          from: 'userAccount',
+          localField: 'candidate',
+          foreignField: '_id',
+          as: 'candidateInfo'
+        }
+      },
+      { 
+        $lookup: {
+          from: 'userAccount',
+          localField: 'recruiter',
+          foreignField: '_id',
+          as: 'recruiterInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'messages',
+          localField: 'lastMessage',
+          foreignField: '_id',
+          as: 'messagesInfo'
+        }
+      },
+      { $unwind: '$messagesInfo'},
+      {
+        $lookup: {
+          from: 'companies',
+          localField: 'messagesInfo.apply.companyId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.companyInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'announces',
+          localField: 'messagesInfo.apply.announceId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.announceInfo'
+        }
+      },
+      {
+        $project: {
+          accepted: 1,
+          candidate: 1,
+          recruiter: 1,
+          lastMessageInfo: {
+            _id: "$messagesInfo._id",
+            from: "$messagesInfo.from",
+            to: "$messagesInfo.to",
+            readed: "$messagesInfo.readed",
+            dateTime: "$messagesInfo.dateTime",
+            content: "$messagesInfo.content",
+            type: "$messagesInfo.type",
+            apply: "$messagesInfo.apply"
+          },
+          candidateInfo: 1,
+          recruiterInfo: 1
+        }
+      }
+    ]);
+
+
+    res.status(200).send(rooms);
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
 app.get('/api/candidate/:publicId', async (req, res) => {
   console.log('/api/candidate/:publicId (GET)');
   const { publicId } = req.params;
@@ -1233,6 +1355,612 @@ app.get('/api/candidate/:publicId', async (req, res) => {
     console.log(e);
     res.status(500).send();
   }
+});
+
+
+
+
+app.post('/api/candidate/apply', candidateTokenCheck, async (req, res) => {
+  console.log('/api/candidate/apply (POST):');
+
+  const { candidateId, offerId, companyId } = req.body.data;
+
+  console.log('** DATA APPLY **');
+  console.log(req.body.data);
+
+  try {
+    const announce = await announcesModel.findOneAndUpdate({ _id: offerId }, { $push: { candidates: candidateId }}, { new: true });
+    if (announce.length === 0) {
+      res.status(404).send();
+      return;
+    }
+
+    const apply = new applyModel({ candidateId, announceId: offerId, companyId });
+    await apply.save();
+
+    
+    const recruiter = await recruiterAccountModel.find({ announces: offerId });
+    if (recruiter.length === 0) {
+      res.status(404).send();
+      return;
+    }
+    
+    const msg = new msgModel({
+      from: candidateId,
+      to: recruiter[0]._id,
+      type: 'Application',
+      apply: {
+        candidateId,
+        companyId,
+        announceId: offerId
+      }
+    });
+    const msgSaved = await msg.save();
+
+    const checkRoom = await roomModel.find({ candidate: candidateId, recruiter: recruiter[0]._id });
+    if (checkRoom.length === 0) {
+      const room = new roomModel({ candidate: candidateId, recruiter: recruiter[0]._id });
+      await room.save();
+    }
+
+    const uRoom = await roomModel.findOneAndUpdate({ candidate: candidateId, recruiter: recruiter[0]._id }, { $push: { messages: {  $each: [msgSaved._id], $position: 0 } }, lastMessage: msgSaved._id }, { new: true });
+    res.status(200).send(announce);
+
+    const nRoom = await roomModel.aggregate([
+      { $match: { _id: mongoose.Types.ObjectId(uRoom._id) } },
+      { 
+        $lookup: {
+          from: 'userAccount',
+          localField: 'candidate',
+          foreignField: '_id',
+          as: 'candidateInfo'
+        }
+      },
+      { 
+        $lookup: {
+          from: 'userAccount',
+          localField: 'recruiter',
+          foreignField: '_id',
+          as: 'recruiterInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'messages',
+          localField: 'lastMessage',
+          foreignField: '_id',
+          as: 'messagesInfo'
+        }
+      },
+      { $unwind: '$messagesInfo'},
+      {
+        $lookup: {
+          from: 'companies',
+          localField: 'messagesInfo.apply.companyId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.companyInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'announces',
+          localField: 'messagesInfo.apply.announceId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.announceInfo'
+        }
+      },
+      {
+        $project: {
+          accepted: 1,
+          candidate: 1,
+          recruiter: 1,
+          lastMessageInfo: {
+            _id: "$messagesInfo._id",
+            from: "$messagesInfo.from",
+            to: "$messagesInfo.to",
+            readed: "$messagesInfo.readed",
+            dateTime: "$messagesInfo.dateTime",
+            content: "$messagesInfo.content",
+            type: "$messagesInfo.type",
+            apply: "$messagesInfo.apply",
+          },
+          candidateInfo: 1,
+          recruiterInfo: 1
+        }
+      }
+    ]);
+
+    io.sockets.in(`inbox-${recruiter[0]._id}`).emit('inbox', nRoom[0]);
+
+
+    const appliedMsg = await msgModel.aggregate([
+      { $match: { _id: mongoose.Types.ObjectId(msgSaved._id) } },
+      {
+        $lookup: {
+          from: 'companies',
+          localField: 'apply.companyId',
+          foreignField: '_id',
+          as: 'apply.companyInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'announces',
+          localField: 'apply.announceId',
+          foreignField: '_id',
+          as: 'apply.announceInfo'
+        }
+      },
+      {
+        $project: {
+          from: 1,
+          to: 1,
+          readed: 1,
+          dateTime: 1,
+          content: 1,
+          type: 1,
+          apply: 1
+        }
+      }
+    ]);
+
+    console.log(appliedMsg);
+
+    io.sockets.in(uRoom._id).emit('message', appliedMsg[0]);
+    return;
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+
+});
+
+
+
+
+app.get('/api/recruiter/rooms', recruiterTokenCheck, async (req, res) => {
+  console.log('/api/recruiter/rooms (GET):');
+  const { userId } = req.body;
+
+  try {
+    const rooms = await roomModel.aggregate([
+      { $match: { recruiter: userId } },
+      { 
+        $lookup: {
+          from: 'userAccount',
+          localField: 'candidate',
+          foreignField: '_id',
+          as: 'candidateInfo'
+        }
+      },
+      { 
+        $lookup: {
+          from: 'userAccount',
+          localField: 'recruiter',
+          foreignField: '_id',
+          as: 'recruiterInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'messages',
+          localField: 'lastMessage',
+          foreignField: '_id',
+          as: 'messagesInfo'
+        }
+      },
+      { $unwind: '$messagesInfo'},
+      {
+        $lookup: {
+          from: 'companies',
+          localField: 'messagesInfo.apply.companyId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.companyInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'announces',
+          localField: 'messagesInfo.apply.announceId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.announceInfo'
+        }
+      },
+      {
+        $project: {
+          accepted: 1,
+          candidate: 1,
+          recruiter: 1,
+          lastMessageInfo: {
+            _id: "$messagesInfo._id",
+            from: "$messagesInfo.from",
+            to: "$messagesInfo.to",
+            readed: "$messagesInfo.readed",
+            dateTime: "$messagesInfo.dateTime",
+            content: "$messagesInfo.content",
+            type: "$messagesInfo.type",
+            apply: "$messagesInfo.apply"
+          },
+          candidateInfo: 1,
+          recruiterInfo: 1
+        }
+      }
+    ]);
+
+    console.log(rooms);
+
+    res.status(200).send(rooms);
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+app.get('/api/room/recruiter/:roomId/:offset', recruiterTokenCheck, async (req, res) => {
+  console.log('/api/room/recruiter/:roomId/:offset (GET):');
+
+  const { roomId, offset } = req.params;
+  const { userId } = req.body;
+
+  // console.log(roomId, offset);
+  try {
+    const msg = await roomModel.aggregate([
+      { $match: { _id: mongoose.Types.ObjectId(roomId) } },
+      { 
+        $project: {
+          "messagesArray": { $slice: ["$messages", parseInt(offset), 20] }
+        }
+      },
+      { $unwind: '$messagesArray' },
+      { 
+        $lookup: {
+          from: 'messages',
+          localField: 'messagesArray',
+          foreignField: '_id',
+          as: 'messagesInfo'
+        }
+      },
+      { $unwind: '$messagesInfo'},
+      {
+        $lookup: {
+          from: 'companies',
+          localField: 'messagesInfo.apply.companyId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.companyInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'announces',
+          localField: 'messagesInfo.apply.announceId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.announceInfo'
+        }
+      },
+      {
+        $project: {
+          _id: "$messagesInfo._id",
+          from: "$messagesInfo.from",
+          to: "$messagesInfo.to",
+          readed: "$messagesInfo.readed",
+          dateTime: "$messagesInfo.dateTime",
+          content: "$messagesInfo.content",
+          type: "$messagesInfo.type",
+          apply: "$messagesInfo.apply"
+        }
+      }
+    ]);
+
+    res.status(200).send(msg);
+
+    // Mark recruiter msg as readed
+    await msgModel.updateMany({ to: mongoose.Types.ObjectId(userId), readed: false }, { readed: true });
+
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
 })
+
+
+
+
+app.put('/api/room/recruiter/:roomId/accept', recruiterTokenCheck, async (req, res) => {
+  console.log('/api/room/recruiter/:roomId/accept (PUT):')
+  const { roomId } = req.params;
+  
+  try {
+    const r = await roomModel.findOneAndUpdate({ _id: roomId }, { accepted: true });
+    if (r === null) {
+      res.status(404).send();
+      return;
+    }
+
+    res.status(204).send();
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+})
+
+
+
+
+app.put('/api/room/recruiter/message', recruiterTokenCheck, async (req, res) => {
+  console.log('/api/room/recruiter/message (PUT):');
+  const { from, to, content, roomId } = req.body.data;
+
+  try {
+    const msg = new msgModel({ from, to, content });
+    const msgSaved = await msg.save();
+  
+    const room = await roomModel.findOneAndUpdate(
+      { _id: roomId },
+      { $push: { messages: { $each: [msgSaved._id], $position: 0 }}, lastMessage: msgSaved._id },
+      { new: true }
+    );
+
+    if (room === null) {
+      res.status(404).send();
+      return;
+    }
+
+
+    io.sockets.in(roomId).emit('message', msgSaved);
+    res.status(200).send(msgSaved);
+
+
+    const nRoom = await roomModel.aggregate([
+      { $match: { _id: mongoose.Types.ObjectId(room._id) } },
+      { 
+        $lookup: {
+          from: 'userAccount',
+          localField: 'candidate',
+          foreignField: '_id',
+          as: 'candidateInfo'
+        }
+      },
+      { 
+        $lookup: {
+          from: 'userAccount',
+          localField: 'recruiter',
+          foreignField: '_id',
+          as: 'recruiterInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'messages',
+          localField: 'lastMessage',
+          foreignField: '_id',
+          as: 'messagesInfo'
+        }
+      },
+      { $unwind: '$messagesInfo'},
+      {
+        $lookup: {
+          from: 'companies',
+          localField: 'messagesInfo.apply.companyId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.companyInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'announces',
+          localField: 'messagesInfo.apply.announceId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.announceInfo'
+        }
+      },
+      {
+        $project: {
+          accepted: 1,
+          candidate: 1,
+          recruiter: 1,
+          lastMessageInfo: {
+            _id: "$messagesInfo._id",
+            from: "$messagesInfo.from",
+            to: "$messagesInfo.to",
+            readed: "$messagesInfo.readed",
+            dateTime: "$messagesInfo.dateTime",
+            content: "$messagesInfo.content",
+            type: "$messagesInfo.type",
+            apply: "$messagesInfo.apply",
+          },
+          candidateInfo: 1,
+          recruiterInfo: 1
+        }
+      }
+    ]);
+
+    io.sockets.in(`inbox-${to}`).emit('inbox', nRoom[0]);
+    return;
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+app.put('/api/room/candidate/message', candidateTokenCheck, async (req, res) => {
+  console.log('/api/room/recruiter/message (PUT):');
+  const { from, to, content, roomId } = req.body.data;
+
+  try {
+    const msg = new msgModel({ from, to, content });
+    const msgSaved = await msg.save();
+  
+    const room = await roomModel.findOneAndUpdate(
+      { _id: roomId },
+      { $push: { messages: { $each: [msgSaved._id], $position: 0 }}, lastMessage: msgSaved._id },
+      { new: true }
+    );
+
+    if (room === null) {
+      res.status(404).send();
+      return;
+    }
+
+    io.sockets.in(roomId).emit('message', msgSaved);
+    res.status(200).send(msgSaved);
+
+    const nRoom = await roomModel.aggregate([
+      { $match: { _id: mongoose.Types.ObjectId(room._id) } },
+      { 
+        $lookup: {
+          from: 'userAccount',
+          localField: 'candidate',
+          foreignField: '_id',
+          as: 'candidateInfo'
+        }
+      },
+      { 
+        $lookup: {
+          from: 'userAccount',
+          localField: 'recruiter',
+          foreignField: '_id',
+          as: 'recruiterInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'messages',
+          localField: 'lastMessage',
+          foreignField: '_id',
+          as: 'messagesInfo'
+        }
+      },
+      { $unwind: '$messagesInfo'},
+      {
+        $lookup: {
+          from: 'companies',
+          localField: 'messagesInfo.apply.companyId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.companyInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'announces',
+          localField: 'messagesInfo.apply.announceId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.announceInfo'
+        }
+      },
+      {
+        $project: {
+          accepted: 1,
+          candidate: 1,
+          recruiter: 1,
+          lastMessageInfo: {
+            _id: "$messagesInfo._id",
+            from: "$messagesInfo.from",
+            to: "$messagesInfo.to",
+            readed: "$messagesInfo.readed",
+            dateTime: "$messagesInfo.dateTime",
+            content: "$messagesInfo.content",
+            type: "$messagesInfo.type",
+            apply: "$messagesInfo.apply",
+          },
+          candidateInfo: 1,
+          recruiterInfo: 1
+        }
+      }
+    ]);
+
+    io.sockets.in(`inbox-${to}`).emit('inbox', nRoom[0]);
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
+
+
+
+
+app.get('/api/room/candidate/:roomId/:offset', candidateTokenCheck, async (req, res) => {
+  console.log('/api/room/candidate/:roomId/:offset (GET):');
+
+  const { roomId, offset } = req.params;
+  const { userId } = req.body;
+
+
+  try {
+    const msg = await roomModel.aggregate([
+      { $match: { _id: mongoose.Types.ObjectId(roomId) } },
+      { 
+        $project: {
+          "messagesArray": { $slice: ["$messages", parseInt(offset), 20] }
+        }
+      },
+      { $unwind: '$messagesArray' },
+      { 
+        $lookup: {
+          from: 'messages',
+          localField: 'messagesArray',
+          foreignField: '_id',
+          as: 'messagesInfo'
+        }
+      },
+      { $unwind: '$messagesInfo'},
+      {
+        $lookup: {
+          from: 'companies',
+          localField: 'messagesInfo.apply.companyId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.companyInfo'
+        }
+      },
+      {
+        $lookup: {
+          from: 'announces',
+          localField: 'messagesInfo.apply.announceId',
+          foreignField: '_id',
+          as: 'messagesInfo.apply.announceInfo'
+        }
+      },
+      {
+        $project: {
+          _id: "$messagesInfo._id",
+          from: "$messagesInfo.from",
+          to: "$messagesInfo.to",
+          readed: "$messagesInfo.readed",
+          dateTime: "$messagesInfo.dateTime",
+          content: "$messagesInfo.content",
+          type: "$messagesInfo.type",
+          apply: "$messagesInfo.apply"
+        }
+      }
+    ]);
+
+    // console.log(msg);
+    res.status(200).send(msg);
+
+
+    // Mark receivded message as readed.
+    await msgModel.updateMany({ to: mongoose.Types.ObjectId(userId), readed: false }, { readed: true });
+
+    return;
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+})
+
+
+
+
 // Run the server.
-app.listen(port, () => console.log(`Server running on port:${port}`));
+server.listen(port, () => console.log(`Server running on port:${port}`));

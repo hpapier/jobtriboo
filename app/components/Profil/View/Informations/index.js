@@ -56,7 +56,7 @@ const Informations = ({ t }) => {
         <div className='information-root-loading'></div> :
         <div className='information-root-box'>
           <div className='information-root-box-btn'>
-            <button className='information-see-public-profil' onClick={() => router.push(`/candidate/${userData.publicId}`)}>
+            <button className='information-see-public-profil' onClick={() => router.push(`/candidate/${userData.publicId}`)}>
               {t('seeMyProfil')}
             </button>
           </div>

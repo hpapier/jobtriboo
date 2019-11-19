@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const basicAccountSchema = new mongoose.Schema({
   state: String,
   firstName: String,
@@ -10,6 +11,7 @@ const basicAccountSchema = new mongoose.Schema({
   phoneNumber: String,
   creationDate: { type: Date, default: new Date() }
 });
+
 
 const accountInformationSchema = new mongoose.Schema({
   picture: { type: String, default: '' },
@@ -38,6 +40,7 @@ const accountInformationSchema = new mongoose.Schema({
   publicId: String
 });
 
+
 const candidateAccountSchema = new mongoose.Schema();
 candidateAccountSchema.add(basicAccountSchema).add(accountInformationSchema);
 
@@ -55,8 +58,10 @@ const announceSchema = new mongoose.Schema({
   sponsoring: Boolean,
   startingDate: Date,
   triboo: String,
-  publicId: String
+  publicId: String,
+  candidates: [mongoose.Types.ObjectId]
 });
+
 
 const companiesSchema = new mongoose.Schema({
   logo: { type: String, default: '' },
@@ -95,13 +100,50 @@ const recruiterDataSchema = new mongoose.Schema({
 });
 
 
+const msgSchema = new mongoose.Schema({
+  from: mongoose.Types.ObjectId,
+  to: mongoose.Types.ObjectId,
+  readed: { type: Boolean, default: false },
+  dateTime: { type: Date, default: new Date() },
+  content: { type: String, default: '' },
+  type: { type: String, default: 'Message' },
+  apply: {
+    candidateId: { type: mongoose.Types.ObjectId, default: null },
+    companyId: { type: mongoose.Types.ObjectId, default: null },
+    announceId: { type: mongoose.Types.ObjectId, default: null },
+    date: { type: Date, default: new Date() }
+  }
+});
+
+
+const roomSchema = new mongoose.Schema({
+  candidate: mongoose.Types.ObjectId,
+  recruiter: mongoose.Types.ObjectId,
+  accepted: { type: Boolean, default: false },
+  lastMessage: { type: mongoose.Types.ObjectId, default: null },
+  messages: [mongoose.Types.ObjectId]
+});
+
+
+const applySchema = new mongoose.Schema({
+  candidateId: mongoose.Types.ObjectId,
+  companyId: mongoose.Types.ObjectId,
+  announceId: mongoose.Types.ObjectId,
+  date: { type: Date, default: new Date() }
+});
+
+
 const recruiterAccountSchema = new mongoose.Schema();
 recruiterAccountSchema.add(basicAccountSchema).add(recruiterDataSchema);
+
 
 module.exports = {
   recruiterAccountSchema,
   candidateAccountSchema,
   basicAccountSchema,
   announceSchema,
-  companiesSchema
+  companiesSchema,
+  roomSchema,
+  msgSchema,
+  applySchema
 }

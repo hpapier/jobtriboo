@@ -26,7 +26,7 @@ const LoginTab = withTranslation('common')(({ t, setLoginState }) => {
 
       if (response.status === 200) {
         // Set the new cookie.
-        setCookies('token', data.token)
+        setCookies('token', data.token, { path: '/' });
 
         // Login user.
         setConnectionBtnStatus(false);

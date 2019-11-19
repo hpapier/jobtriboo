@@ -66,7 +66,7 @@
   "year": "an",
   "years": "ans",
   "ppSizeError": "Poids de l'image trop grande.",
-  "fileEmptyError": "You need to import a file",
+  "fileEmptyError": "Vous devez importer un fichier",
   "skills": "Compétences",
   
   "studyLvl": "Niveau d'études",
@@ -232,5 +232,20 @@
 
   "discover": "Découvrir",
   "anonymousLabel": "Anonyme",
-  "seeMyProfil": "Voir mon profil"
+  "seeMyProfil": "Voir mon profil",
+  "youNeedToBeConnectedToApply": "Vous devez être connecté pour postuler.",
+  "alreadyApplied": "Déjà postuler",
+
+  "inboxLabel": "Messages",
+  "backToRoom": "Retour",
+  "noMsgYet": "Aucun message pour le moment.",
+  "newMessage": "Nouveau message",
+  "candidateIsInterestedAbout": "est intéressé par l'offre de job:",
+  "fromTheCompany": "pour l'entreprise:",
+
+  "seeProfil": "Voir son profil",
+  "recruiterFor": "Recruteur",
+  "WriteSomething": "Écrivez un message...",
+  "sendMsg": "Envoyer",
+  "acceptAndStartChatting": "Accepter pour commencer à discuter"
 }

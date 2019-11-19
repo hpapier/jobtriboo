@@ -114,7 +114,7 @@ const ModalConnexion = ({ t, modalOpen, modalWindowLogin, setModalOpenState, set
         if (res.status === 201) {
           const data = await res.json();
 
-          setCookies('token', data.token);
+          setCookies('token', data.token, { path: '/' });
           storeUserInfo({ firstName, lastName, email, password, birthDate });
 
           setValidationStatus(201);

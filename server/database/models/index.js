@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
-const { recruiterAccountSchema, candidateAccountSchema, basicAccountSchema, announceSchema, companiesSchema } = require('../schemas');
+const {
+  recruiterAccountSchema,
+  candidateAccountSchema,
+  basicAccountSchema,
+  announceSchema,
+  companiesSchema,
+  roomSchema,
+  msgSchema,
+  applySchema
+} = require('../schemas');
 
 const userAccountModel = mongoose.model('BasicUserAccount', basicAccountSchema, 'userAccount');
 
@@ -11,4 +20,19 @@ const announcesModel = mongoose.model('AnnounceModel', announceSchema, 'announce
 
 const companiesModel = mongoose.model('Companies', companiesSchema, 'companies')
 
-module.exports = { userAccountModel, recruiterAccountModel, candidateAccountModel, announcesModel, companiesModel };
+const roomModel = mongoose.model('Room', roomSchema, 'rooms');
+
+const msgModel = mongoose.model('Message', msgSchema, 'messages');
+
+const applyModel = mongoose.model('Apply', applySchema, 'apply');
+
+module.exports = { 
+  userAccountModel,
+  recruiterAccountModel,
+  candidateAccountModel,
+  announcesModel,
+  companiesModel,
+  roomModel,
+  msgModel,
+  applyModel
+};

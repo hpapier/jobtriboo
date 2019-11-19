@@ -8,12 +8,12 @@ import './index.css';
 
 
 // @component
-const View = ({ section }) => {
+const View = ({ section, logInfo }) => {
   return (
     <div className='view-root'>
       { section === 'companies' ? <Companies /> : null }
       { section === 'announces' ? <Announces /> : null }
-      { section === 'messages' ? <Messages /> : null }
+      { section === 'messages' ? <Messages logInfo={logInfo} /> : null }
       { section === 'settings' ? <Settings /> : null }
     </div>
   );

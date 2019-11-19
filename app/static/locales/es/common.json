@@ -231,5 +231,20 @@
 
   "discover": "Discover",
   "anonymousLabel": "Anonymous",
-  "seeMyProfil": "See my profil"
+  "seeMyProfil": "See my profil",
+  "youNeedToBeConnectedToApply": "You need to be connected to apply.",
+  "alreadyApplied": "Already applied",
+
+  "inboxLabel": "Messages",
+  "backToRoom": "Back",
+  "noMsgYet": "No messages yet.",
+  "newMessage": "New message",
+  "candidateIsInterestedAbout": "is interested about the job offer:",
+  "fromTheCompany": "from the company: ",
+
+  "seeProfil": "See his profil",
+  "recruiterFor": "Recruiter",
+  "WriteSomething": "Write a message...",
+  "sendMsg": "Send",
+  "acceptAndStartChatting": "Accept to start discussing"
 }

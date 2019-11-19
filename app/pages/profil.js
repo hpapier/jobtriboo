@@ -13,7 +13,7 @@ const Profil = ({ logInfo }) => {
   return (
     <div>
       <Navbar logInfo={logInfo} />
-      <ProfilComponent />
+      <ProfilComponent logInfo={logInfo} />
 
       <style jsx global>{`
           body {

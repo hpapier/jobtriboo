@@ -58,7 +58,7 @@ const Input = ({ label, placeholder, data, token, updateReq: { req, endpoint }, 
       if (res.status === 200) {
         if (endpoint === '/email') {
           const rdata = await res.json();
-          setCookie('token', rdata.token);
+          setCookie('token', data.token, { path: '/' });
         }
 
         if (!isUnmounted.current)

@@ -8,8 +8,8 @@ const tokenVerification = async (req, res) => {
   // Get the token passed via authorization header.
   const token = req.headers.authorization;
   
-  // Check the token content and return 401 error if it's equal to null.
-  if (token === null) {
+  // Check the token content and return 401 error if it's equal to null or undefined.
+  if (token === null || token === 'undefined' || token === undefined) {
     res.status(401).send();
     return;
   }

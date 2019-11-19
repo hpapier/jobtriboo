@@ -21,6 +21,7 @@
   cursor: pointer;
   margin: 0px 10px;
   cursor: pointer;
+  transition: .1s;
 }
 
 .navbar-offline-rbox-signup {
@@ -40,6 +41,12 @@
   box-sizing: border-box;
   margin: 0px 10px;
   cursor: pointer;
+  transition: .1s;
+}
+
+.navbar-offline-rbox-signup:hover {
+  background-color: rgba(64, 70, 96, .03);
+  box-shadow: 0px 0px 10px 0px rgba(64, 70, 96, .1);
 }
 
 .navbar-offline-rbox-personna {

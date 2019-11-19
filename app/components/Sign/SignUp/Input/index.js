@@ -89,7 +89,7 @@ const Input = ({ t, setFlow }) => {
         try {
           const data = await res.json();
 
-          setCookie('token', data.token);
+          setCookie('token', data.token, { path: '/' });
 
           if (data.userState === 'candidate')
             setFlow(true);

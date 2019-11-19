@@ -9,7 +9,7 @@ const Job = ({ job, logInfo }) => {
   return (
     <div>
       <Navbar logInfo={logInfo} />
-      <JobComponent data={job} />
+      <JobComponent data={job} logInfo={logInfo} />
 
       <style jsx global>{`
           body {

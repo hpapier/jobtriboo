@@ -9,12 +9,12 @@ import View from './View';
 
 
 // @component
-const ProfilComponent = () => {
+const ProfilComponent = ({ logInfo }) => {
   const [section, setSection] = useState('informations');
   return (
     <div className='profilcp-root'>
       <Menu section={section} switchSection={setSection} />
-      <View section={section} />
+      <View section={section} logInfo={logInfo} />
     </div>
   );
 }

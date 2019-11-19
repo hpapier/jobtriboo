@@ -1,6 +1,7 @@
 // @module import
 import { useState, useEffect, useRef } from 'react';
 import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 
 
 // @local import
@@ -34,6 +35,7 @@ const CompanyItem = ({ data, t, updateCompaniesList }) => {
   ];
   const [cookies, _, __] = useCookies();
   const isUnmounted = useRef(false);
+  const router = useRouter();
 
   const activityArea = listActivityArea.filter(item => item.value === data.activityArea[0])
   const employeesNumber = listEmployeesNumber.filter(item => item.value === data.employeesNumber);
@@ -74,6 +76,8 @@ const CompanyItem = ({ data, t, updateCompaniesList }) => {
   const handleSetItemUpdateClick = e => {
     if (e.target.id === 'delete-btn')
       return;
+    else if (e.target.id === 'link-btn')
+      return;
     else {
       if (!isUnmounted.current)
         setUpdateState(true);
@@ -111,8 +115,8 @@ const CompanyItem = ({ data, t, updateCompaniesList }) => {
             </div>
     
             <div className='comp-item-left-icons'>
-              <button disabled={loading} className='comp-item-left-btn'>
-                <img src={LinkIconGrey} alt='link-icon' />
+              <button disabled={loading} className='comp-item-left-btn' id='link-btn' onClick={() => router.push(`/companies/${data.name}`)}>
+                <img src={LinkIconGrey} alt='link-icon' id='link-btn' />
               </button>
     
               <button disabled={loading} className='comp-item-left-btn' id='delete-btn' onClick={() => handleDelete()}>

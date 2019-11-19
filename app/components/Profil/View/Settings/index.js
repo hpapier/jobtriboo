@@ -55,7 +55,7 @@ const Settings = ({ t }) => {
   }, []);
 
   return (
-    <div className='settings-root'>
+    <div className='profil-settings-root'>
       <div>
         {
           loading ?

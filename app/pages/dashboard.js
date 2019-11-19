@@ -10,7 +10,7 @@ const Dashboard = ({ logInfo }) => {
   return (
     <div>
       <Navbar logInfo={logInfo} />
-      <DashboardComponent />
+      <DashboardComponent logInfo={logInfo} />
       <style jsx global>{`
           body {
             padding: 0;

@@ -9,12 +9,12 @@ import View from './View';
 
 
 // @component
-const Dashboard = () => {
+const Dashboard = ({ logInfo }) => {
   const [section, setSection] = useState('companies');
   return (
     <div className='dashb-root'>
       <MenuDashboard section={section} switchSection={setSection} />
-      <View section={section} />
+      <View logInfo={logInfo} section={section} />
     </div>
   );
 }
