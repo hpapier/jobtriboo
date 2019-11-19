@@ -7,19 +7,27 @@ import { useCookies } from 'react-cookie';
 import { withTranslation } from '../../i18n';
 import { getRoomData } from '../../../utils/request/room';
 import './chat.css';
+import Loading from '../../Loading';
 
 // @component
-const Chat = ({ t, data, loading, moreLloading, fetchMore, owner, candidate }) => {
+const Chat = ({ t, data, loading, moreLoading, fetchMore, owner, candidate }) => {
   const isUnmounted = useRef(false);
   const element = useRef(null);
 
   useEffect(() => {
     // return () => { isUnmounted.current = true };
-    element.current.scrollTop = element.current.scrollHeight;
-  });
-  
+    element.current.addEventListener('scroll', e => {
+      if (e.srcElement.scrollTop === 0)
+        fetchMore(true);
+    });
 
-  // let sortedData = data.reverse();
+    return () => { isUnmounted.current = true };
+  }, []);
+
+
+  useEffect(() => {
+    element.current.scrollTop = element.current.scrollHeight;
+  }, [loading]);
 
   return (
     <div ref={element} className={`chat-root ${loading ? ` -loading` : ` -msg`}`}>
@@ -38,6 +46,7 @@ const Chat = ({ t, data, loading, moreLloading, fetchMore, owner, candidate }) =
               </div>
             ))
           }
+          { moreLoading ? <Loading /> : null }
         </div>
       }
     </div>

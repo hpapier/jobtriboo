@@ -1,0 +1,48 @@
+@keyframes loading-component-root-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-component-root {
+  border: 5px solid rgba(0, 0, 0, 0);
+  margin: 10px auto;
+  border-radius: 50%;
+  animation-name: loading-component-root-animation;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.--size-tiny {
+  width: 10px;
+  height: 10px;
+}
+
+.--size-small {
+  width: 20px;
+  height: 20px;
+}
+
+.--size-medium {
+  width: 30px;
+  height: 30px;
+}
+
+.--size-big {
+  width: 40px;
+  height: 40px;
+}
+
+.--color-purple {
+  border-left: 5px solid #6B5AED;
+}
+
+.--color-white {
+  border-left: 5px solid #fff;
+}

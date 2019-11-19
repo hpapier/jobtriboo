@@ -140,6 +140,10 @@
   color: #404660;
 }
 
+.room-input-el::placeholder {
+  color: rgba(64, 70, 96, 0.5);
+}
+
 .room-input-send {
   all: unset;
   font-family: 'Roboto', sans-serif;

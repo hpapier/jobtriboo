@@ -1896,6 +1896,8 @@ app.get('/api/room/candidate/:roomId/:offset', candidateTokenCheck, async (req, 
   const { roomId, offset } = req.params;
   const { userId } = req.body;
 
+  console.log(offset);
+
 
   try {
     const msg = await roomModel.aggregate([
