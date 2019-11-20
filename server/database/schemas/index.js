@@ -137,7 +137,13 @@ const recruiterAccountSchema = new mongoose.Schema();
 recruiterAccountSchema.add(basicAccountSchema).add(recruiterDataSchema);
 
 
+const newspaperSchema = new mongoose.Schema({
+  email: String
+});
+
+
 module.exports = {
+  newspaperSchema,
   recruiterAccountSchema,
   candidateAccountSchema,
   basicAccountSchema,

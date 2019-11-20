@@ -84,6 +84,7 @@ io.on('connection', (socket) => {
 
 /* Database schemas & models */
 const {
+  newspaperModel,
   candidateAccountModel,
   recruiterAccountModel,
   userAccountModel,
@@ -94,11 +95,6 @@ const {
   applyModel
 } = require('./database/models');
 
-
-// Basic route
-app.get('/', (req, res) => res.send("Hello Server."));
-
-
 //
 app.get('/api/sample', async (req, res) => {
   // try {
@@ -108,107 +104,394 @@ app.get('/api/sample', async (req, res) => {
   // }
 
   res.status(200).send({
-    triboo: ['commercial', 'tech', 'ingénieurie', 'scientifique'],
-    sample: [{
-      id: 0,
-      triboo: 'commercial',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    }, 
-    {
-      id: 1,
-      triboo: 'commercial',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },
-    {
-      id: 2,
-      triboo: 'commercial',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },
-    {
-      id: 4,
-      triboo: 'commercial',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },
-    {
-      id: 5,
-      triboo: 'tech',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    }, 
-    {
-      id: 6,
-      triboo: 'tech',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },
-    {
-      id: 7,
-      triboo: 'tech',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },
-    {
-      id: 8,
-      triboo: 'tech',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },
-    {
-      id: 9,
-      triboo: 'ingénieurie',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    }, 
-    {
-      id: 10,
-      triboo: 'ingénieurie',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },
-    {
-      id: 11,
-      triboo: 'ingénieurie',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },
-    {
-      id: 12,
-      triboo: 'ingénieurie',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },
-    {
-      id: 13,
-      triboo: 'scientifique',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    }, 
-    {
-      id: 14,
-      triboo: 'scientifique',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },
-    {
-      id: 15,
-      triboo: 'scientifique',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },
-    {
-      id: 16,
-      triboo: 'scientifique',
-      title: 'Sample title',
-      body: 'Sample text lorem ipsum lorem ipsum lorem ipsum.'
-    },]
+    announces: [
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Sales operator',
+        location: 'Barcelone',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'commercial',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Country Sales manager',
+        location: 'Paris',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'commercial',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Sales assistent',
+        location: 'New-York',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'commercial',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Store manager',
+        location: 'Londre',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'commercial',
+        publicId: null,
+        candidates: []
+      },
+
+
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Devops',
+        location: 'Londre',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'tech',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Full stack developer',
+        location: 'Paris',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'tech',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Sys admin',
+        location: 'Londre',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'tech',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Chief Technical Officer',
+        location: 'Helsinki',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'tech',
+        publicId: null,
+        candidates: []
+      },
+
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Scientist generalist',
+        location: 'Londre',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'engineering',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Ref engineer',
+        location: 'Paris',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'engineering',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Electronic engineer',
+        location: 'Londre',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'engineering',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Topology searcher',
+        location: 'Helsinki',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'engineering',
+        publicId: null,
+        candidates: []
+      },
+
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Floor manager',
+        location: 'Londre',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'retail',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Store manager',
+        location: 'Paris',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'retail',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'HR Officer',
+        location: 'Londre',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'retail',
+        publicId: null,
+        candidates: []
+      },
+      {
+        company: null,
+        salary: { min: 55, max: 75 },
+        title: 'Payroll officer',
+        location: 'Helsinki',
+        level: 'junior',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        contractType: 'cdi',
+        benefits: [],
+        card: null,
+        sponsoring: false,
+        startingDate: new Date(),
+        triboo: 'retail',
+        publicId: null,
+        candidates: []
+      },
+    ],
+    companies: [
+      {
+        logo: null,
+        cover: null,
+        description: '',
+        name: 'Uber',
+        email: '',
+        phone: '',
+        address: '9 Rue Grande',
+        country: 'France',
+        employeesNumber: 'tiny',
+        activityArea: ['commercial'],
+        link: '',
+        NIF: '',
+        createdBy: null
+      },
+      {
+        logo: null,
+        cover: null,
+        description: '',
+        name: 'Facebook',
+        email: '',
+        phone: '',
+        address: '9 Rue Grande',
+        country: 'France',
+        employeesNumber: 'big',
+        activityArea: ['commercial'],
+        link: '',
+        NIF: '',
+        createdBy: null
+      },
+      {
+        logo: null,
+        cover: null,
+        description: '',
+        name: 'Google',
+        email: '',
+        phone: '',
+        address: '9 Rue Grande',
+        country: 'France',
+        employeesNumber: 'small',
+        activityArea: ['commercial'],
+        link: '',
+        NIF: '',
+        createdBy: null
+      },
+      {
+        logo: null,
+        cover: null,
+        description: '',
+        name: 'The Family',
+        email: '',
+        phone: '',
+        address: '9 Rue Grande',
+        country: 'France',
+        employeesNumber: 'mid',
+        activityArea: ['engineering'],
+        link: '',
+        NIF: '',
+        createdBy: null
+      },
+      {
+        logo: null,
+        cover: null,
+        description: '',
+        name: 'Universal',
+        email: '',
+        phone: '',
+        address: '9 Rue Grande',
+        country: 'France',
+        employeesNumber: 'huge',
+        activityArea: ['retail'],
+        link: '',
+        NIF: '',
+        createdBy: null
+      },
+      {
+        logo: null,
+        cover: null,
+        description: '',
+        name: 'JobTriboo',
+        email: '',
+        phone: '',
+        address: '9 Rue Grande',
+        country: 'France',
+        employeesNumber: 'mid',
+        activityArea: ['tech'],
+        link: '',
+        NIF: '',
+        createdBy: null
+      }
+    ]
   })
 });
 
 
+
+
+
+app.post('/api/nws/subscription', async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // NEED TO CHECK THE EMAIL FORMAT
+    if (!handleInputEmail(email)) {
+      res.status(200).send({ status: 'invalidFormat' });
+      return;
+    }
+
+    const check = await newspaperModel.find({ email });
+    if (check.length !== 0) {
+      res.status(200).send({ status: 'alreadyExist' });
+      return;
+    }
+
+    const nnws = new newspaperModel({ email });
+    await nnws.save();
+
+    res.status(200).send({ status: 'success' });
+    return;
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
 
 
 // "/api/auth" route check the validity of a token passed via authorization header.

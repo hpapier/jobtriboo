@@ -246,5 +246,17 @@
   "recruiterFor": "Recruiter",
   "WriteSomething": "Write a message...",
   "sendMsg": "Send",
-  "acceptAndStartChatting": "Accept to start discussing"
+  "acceptAndStartChatting": "Accept to start discussing",
+
+  "joinYourTriboo": "Join your triboo",
+  "seeMoreAnnounces": "See more jobs offer",
+  "findYourClan": "Find your clan.",
+  "discoverMoreClan": "Discover more clans",
+  "subToNewsLabel": "Stay informed and receive the news about Jobtriboo",
+  "subscribe": "Subscribe",
+  "newsPh": "Enter your email",
+
+  "invalidEmailFormat": "Please enter a correct email format.",
+  "alreadyEmailExist": "Oh ! This email is already taken !",
+  "successNwsEmail": "Thanks for the subscription ! See you soon !"
 }

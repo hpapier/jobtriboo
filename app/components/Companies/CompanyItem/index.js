@@ -28,8 +28,8 @@ const CompanyItem = ({ t, data }) => {
   return (
     <div className='company-item-root'>
       <div className='company-item-root-cover-fill'></div>
-      <img src={`http://localhost:3001${data.cover}`} className='company-item-root-cover' />
-      <img src={`http://localhost:3001${data.logo}`} className='company-item-root-logo' />
+      { data.cover !== null ? <img src={`http://localhost:3001${data.cover}`} className='company-item-root-cover' /> : <div className='company-item-root-cover'></div>}
+      { data.logo !== null ? <img src={`http://localhost:3001${data.logo}`} className='company-item-root-logo' /> : <div className='company-item-root-logo'></div> }
 
       <div className='company-item-root-ibox'>
         <h3 className='company-item-root-ibox-name'>{data.name}</h3>

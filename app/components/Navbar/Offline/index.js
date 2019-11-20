@@ -37,12 +37,12 @@ const Offline = ({ t }) => {
 
         <button className='navbar-offline-rbox-signup' onClick={() => router.push('/signup')}>
           {t('register')}
-          <img src={Feather} />
+          <img className='navbar-offline-icon' src={Feather} />
         </button>
 
         <button className='navbar-offline-rbox-personna' onClick={() => router.push(router.pathname === '/recruiter' ? '/' : '/recruiter')}>
           { (router.pathname === '/recruiter') ? t('candidate') : t('recruiter') }
-          <img src={Arrow} />
+          <img className='navbar-offline-icon' src={Arrow} />
         </button>
       </div>
     </Layout>

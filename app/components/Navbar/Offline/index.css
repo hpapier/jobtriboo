@@ -70,3 +70,55 @@
 .navbar-offline-rbox-personna:hover {
   box-shadow: 0px 0px 5px 0px rgb(107, 90, 237, 0.5) ;
 }
+
+@media screen and (max-width: 600px) {
+  .navbar-offline-logo {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .navbar-offline-logo {
+    margin-left: 10px;
+  }
+
+  .navbar-offline-icon {
+    display: none;
+  }
+
+  .navbar-offline-rbox-signup {
+    width: auto;
+    padding: 0px 10px;
+    margin: 0px;
+  }
+
+  .navbar-offline-rbox-personna {
+    width: auto;
+    padding: 0px 10px;
+    /* margin: 0px; */
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+  .navbar-offline-logo {
+    margin-left: 10px;
+  }
+
+  .navbar-offline-rbox-signup {
+    width: auto;
+    padding: 0px 10px;
+    margin: 0px;
+  }
+
+  .navbar-offline-rbox-personna {
+    width: auto;
+    padding: 0px 10px;
+    margin: 0px 2px;
+  }
+
+  .navbar-offline-rbox-text {
+    margin: 0px 3px 0px 0px;
+    width: auto;
+  }
+}

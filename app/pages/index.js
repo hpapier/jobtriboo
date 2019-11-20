@@ -1,6 +1,6 @@
 // @module import
 import Navbar from '../components/Navbar';
-import Home from '../components/home'
+import Home from '../components/Home'
 
 
 // @local import
@@ -20,6 +20,7 @@ const App = ({ logInfo, sampleData }) => {
           body {
             padding: 0;
             margin: 0;
+            background-color: #f2f3ff !important;
           }
       `}</style>
     </div>

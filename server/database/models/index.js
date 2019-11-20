@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const {
+  newspaperSchema,
   recruiterAccountSchema,
   candidateAccountSchema,
   basicAccountSchema,
@@ -9,6 +10,9 @@ const {
   msgSchema,
   applySchema
 } = require('../schemas');
+
+
+const newspaperModel = mongoose.model('Newspaper', newspaperSchema, 'newspaper');
 
 const userAccountModel = mongoose.model('BasicUserAccount', basicAccountSchema, 'userAccount');
 
@@ -27,6 +31,7 @@ const msgModel = mongoose.model('Message', msgSchema, 'messages');
 const applyModel = mongoose.model('Apply', applySchema, 'apply');
 
 module.exports = { 
+  newspaperModel,
   userAccountModel,
   recruiterAccountModel,
   candidateAccountModel,

@@ -3,6 +3,7 @@
 .triboo-select-root {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .triboo-select-box {
@@ -35,6 +36,7 @@
   font-size: 1em;
   font-weight: 500;
   text-transform: uppercase;
+  /* margin: 0px; */
 }
 
 .-triboo-active {
@@ -46,11 +48,18 @@
 .-triboo-small {
   width: 125px;
   height: 125px;
+  object-fit: cover;
 }
 
 .-triboo-tiny {
+  box-sizing: border-box;
   width: 100px;
   height: 100px;
+  object-fit: cover;
+}
+
+.-triboo-tiny h3 {
+  margin: 5px 0px 10px 0px;
 }
 
 .triboo-select-label {
@@ -85,3 +94,6 @@
   animation-timing-function: ease-in-out;
   margin: 5px;
 }
+
+
+@media (max-)

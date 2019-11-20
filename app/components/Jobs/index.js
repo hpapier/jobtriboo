@@ -278,7 +278,7 @@ const JobsComponent = ({ t, data }) => {
       </div>
 
       <div className='jobs-box' style={{ marginTop: '50px' }}>
-        <h3 className='jobs-box-label -l-small'>{count} {count > 1 ? t('announceNumber') : t('announcesNumber')}</h3>
+        <h3 className='jobs-box-label -l-small'>{count} {count > 1 ? t('announcesNumber') : t('announceNumber')}</h3>
         <div>
           {
             loading ?
