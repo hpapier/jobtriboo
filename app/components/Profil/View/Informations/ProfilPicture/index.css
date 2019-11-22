@@ -108,3 +108,30 @@
   font-size: .75em;
   font-weight: 400;
 }
+
+@media screen and (max-width: 1174px) {
+  .pp-root {
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .pp-root {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .pp-box {
+    padding: 15px 0px;
+    height: 100%;
+  }
+
+  .pp-tbox-btn-txt {
+    height: 100%;
+  }
+
+  .pp-tbox {
+    height: 100%;
+  }
+}

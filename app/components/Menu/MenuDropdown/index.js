@@ -27,10 +27,10 @@ const MenuDropdown = ({ section, switchSection, t, logInfo, menuState, setMenuSt
   });
 
   useEffect(() => {
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', e => {
       let clickedOutside = true;
 
-      e.path.forEach((item) => {
+      e.path.forEach(item => {
         if (!clickedOutside)
           return;
 
@@ -42,8 +42,15 @@ const MenuDropdown = ({ section, switchSection, t, logInfo, menuState, setMenuSt
         setMenuState(false);
     });
 
-    return () => { rootRef.current.removeEventListener('click', () => console.log('listener removed'))}
+    return () => { document.removeEventListener('click', () => console.log('listener removed')) }
   }, []);
+
+  const handleSwitch = to => {
+    if (menuStateRef.current)
+      setMenuState(false);
+
+    switchSection(to);
+  }
 
   return (
     <div className='menu-dropdown-root' ref={rootRef}>
@@ -61,15 +68,15 @@ const MenuDropdown = ({ section, switchSection, t, logInfo, menuState, setMenuSt
         menuState ?
           logInfo.userState === 'candidate' ?
           <div className='menu-dropdown-box'>
-            <MenuItem label={t('informations')} icon={InformationsIcon} isActive={section === 'informations'} switchSection={() => switchSection('informations')} />
-            <MenuItem label={t('messages')} icon={MessagesIcon} isActive={section === 'messages'} switchSection={() => switchSection('messages')} />
-            <MenuItem label={t('settings')} icon={SettingsIcon} isActive={section === 'settings'} switchSection={() => switchSection('settings')} />
+            <MenuItem label={t('informations')} icon={InformationsIcon} isActive={section === 'informations'} switchSection={() => handleSwitch('informations')} />
+            <MenuItem label={t('messages')} icon={MessagesIcon} isActive={section === 'messages'} switchSection={() => handleSwitch('messages')} />
+            <MenuItem label={t('settings')} icon={SettingsIcon} isActive={section === 'settings'} switchSection={() => handleSwitch('settings')} />
           </div> :
           <div className='menu-dropdown-box'>
-            <MenuItem label={t('companies')} icon={CompaniesIcon} isActive={section === 'companies'} switchSection={() => switchSection('companies')} />
-            <MenuItem label={t('announces')} icon={AnnouncesIcon} isActive={section === 'announces'} switchSection={() => switchSection('announces')} />
-            <MenuItem label={t('messages')} icon={MessagesIcon} isActive={section === 'messages'} switchSection={() => switchSection('messages')} />
-            <MenuItem label={t('settings')} icon={SettingsIcon} isActive={section === 'settings'} switchSection={() => switchSection('settings')} />
+            <MenuItem label={t('companies')} icon={CompaniesIcon} isActive={section === 'companies'} switchSection={() => handleSwitch('companies')} />
+            <MenuItem label={t('announces')} icon={AnnouncesIcon} isActive={section === 'announces'} switchSection={() => handleSwitch('announces')} />
+            <MenuItem label={t('messages')} icon={MessagesIcon} isActive={section === 'messages'} switchSection={() => handleSwitch('messages')} />
+            <MenuItem label={t('settings')} icon={SettingsIcon} isActive={section === 'settings'} switchSection={() => handleSwitch('settings')} />
           </div>
         : null
       }

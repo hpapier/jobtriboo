@@ -1,8 +1,11 @@
+.qualification-root {}
+
 .qualification-root {
   width: 930px;
   display: flex;
   flex-direction: column;
   margin: 15px 0px 150px 0px;
+  box-sizing: border-box;
 }
 
 .qualification-title {
@@ -19,13 +22,22 @@
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .qualification-box-triboo {
   margin: 20px 25px;
-  min-width: 550px;
 }
 
+.qualification-box-jobname {
+  margin-left: 25px;
+  margin-top: 20px;
+}
+
+.qualification-box-skills {
+  width: calc(100% - 50px);
+  margin-left: 25px;
+}
 
 /* MEDIA */
 @media (max-width: 1174px) {
@@ -34,5 +46,16 @@
     display: flex;
     flex-direction: column;
     /* margin: 0px auto; */
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .qualification-root {
+    width: 100%;
+    margin: 25px 15px 150px 15px;
+  }
+
+  .qualification-box-triboo {
+    width: 100% !important;
   }
 }

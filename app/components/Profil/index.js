@@ -14,7 +14,7 @@ const ProfilComponent = ({ logInfo }) => {
   return (
     <div className='profilcp-root'>
       <Menu section={section} switchSection={setSection} logInfo={logInfo} />
-      <View section={section} logInfo={logInfo} />
+      <View section={section} logInfo={logInfo} />
     </div>
   );
 }

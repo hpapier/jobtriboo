@@ -10,12 +10,12 @@ import SearchIcon from '../../../../../static/assets/search_icon_grey.svg';
 import WhiteDropDownIcon from '../../../../../static/assets/dropdown_icon_w.svg';
 import GreyDropDownIcon from '../../../../../static/assets/bottom_arrow_icon.svg';
 // import GreyImportIcon from '../../../../../static/assets/import_icon_grey.svg';
-import { withTranslation } from '../../../../i18n';
+import { withTranslation } from '../../../../i18n';
 
 
 
 // @component INPUT
-const Input = ({ label, placeholder, data, token, updateReq: { req, endpoint }, updateData, checkFormat, formatErrorMsg, type }) => {
+const Input = ({ label, placeholder, data, token, updateReq: { req, endpoint }, updateData, checkFormat = null, formatErrorMsg, type }) => {
   const [value, setValue] = useState(data);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -279,7 +279,7 @@ const InputSkillsComponent = ({ t, token, loadSkillsFn, requestFn, currentSkills
         setError(null);
       return;
     }
-    
+
     const ndata = { name: inputValue, xp: 0.5 };
     try {
       if (!isUnmounted.current) {
@@ -327,7 +327,7 @@ const InputSkillsComponent = ({ t, token, loadSkillsFn, requestFn, currentSkills
       const res = await requestFn('/skills/remove', item, token);
       if (res.status === 200) {
         const nData = currentSkills.filter(fitem => fitem._id !== item._id);
-        
+
         if (!isUnmounted.current) {
           setLoading(false);
           updateData(nData);
@@ -406,7 +406,7 @@ const InputSkillsComponent = ({ t, token, loadSkillsFn, requestFn, currentSkills
         currentSkills.map((item, index) => (
           <div key={index} className='info-input-skill-item'>
             <div className='info-input-skill-item-box'>
-              {item.name}
+              <div className='info-input-skill-item-box-txt'>{item.name}</div>
               <button className='info-input-skill-item-box-icon' onClick={() => handleRemove(item)}>
                 <img src={RemoveIcon} alt='remove-icon' />
               </button>

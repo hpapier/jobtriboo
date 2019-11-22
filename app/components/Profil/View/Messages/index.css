@@ -61,3 +61,18 @@
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 1175px) {
+  .dh-msg-root {
+    width: calc(100% - 30px);
+    margin: 100px 15px;
+  }
+}
+
+
+@media screen and (max-width: 850px) {
+  .dh-msg-root {
+    width: calc(100% - 30px);
+    margin: 10px 15px 100px 15px;
+  }
+}

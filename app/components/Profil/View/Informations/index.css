@@ -41,12 +41,15 @@
 
 .information-root-box-btn {
   width: 930px;
-  position: absolute;
+  /* position: absolute; */
+  display: flex;
+
+  justify-content: flex-end;
 }
 
 .information-see-public-profil {
   all: unset;
-  position: absolute;
+  /* position: absolute; */
   right: 0px;
   padding: 7px 20px;
   background-color: #fff;
@@ -63,4 +66,27 @@
 
 .information-see-public-profil:hover {
   opacity: 1;
+}
+
+@media screen and (max-width: 850px) {
+  .information-root {
+    overflow: inherit;
+  }
+
+  .information-root-box  {
+    padding-top: 0px;
+  }
+}
+
+@media screen and (max-width: 1174px) {
+  .information-root-box-btn {
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .information-root-box-btn {
+    width: 100%;
+    margin: 0px 15px;
+  }
 }

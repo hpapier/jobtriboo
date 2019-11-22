@@ -30,7 +30,7 @@ const Qualification = ({ t, data, updateData }) => {
           />
         </div>
 
-        <div style={{ marginTop: '20px' }}>
+        <div className='qualification-box-jobname'>
           <Input
             label={t('jobName')}
             placeholder={t('phJobName')}
@@ -43,7 +43,7 @@ const Qualification = ({ t, data, updateData }) => {
           />
         </div>
 
-        <div style={{ width: '860px', margin: '10px auto' }}>
+        <div className='qualification-box-skills'>
           <InputSkills
             label={t('skills')}
             token={cookies.token}
@@ -56,7 +56,7 @@ const Qualification = ({ t, data, updateData }) => {
 
         <InputSelect
           width={260}
-          margin='20px 0px 20px 35px'
+          margin='20px 0px 20px 25px'
           list={[
             { value: 'selflearner', label: t('stdLvl.selfLearner') },
             { value: 'post-bac', label: t('stdLvl.postBac') },
@@ -70,14 +70,10 @@ const Qualification = ({ t, data, updateData }) => {
           updateData={nd => updateData({ studyLvl: nd })}
           currentData={data.studyLvl}
         />
-        {/* <InputCv
-          margin='20px 0px 0px 35px'
-          label={t('cv')}
-          updateData={data.cv}
-        /> */}
+
         <InputSelect
           width={260}
-          margin='20px 0px 20px 35px'
+          margin='20px 0px 20px 25px'
           list={[
             { value: 'indifferent', label: t('dsrCt.indifferent') },
             { value: 'internship', label: t('dsrCt.internship') },
@@ -93,7 +89,7 @@ const Qualification = ({ t, data, updateData }) => {
 
         <InputSelect
           width={260}
-          margin='20px 0px 20px 35px'
+          margin='20px 0px 20px 25px'
           list={[
             { value: 'now', label: t('lglAvb.now') },
             { value: 'short', label: t('lglAvb.short') },
@@ -109,7 +105,7 @@ const Qualification = ({ t, data, updateData }) => {
 
         <InputSelect
           width={260}
-          margin='20px 0px 20px 35px'
+          margin='20px 0px 20px 25px'
           list={[
             { value: 'esclave', label: t('expSalary.esclave') },
             { value: 'demiEsclave', label: t('expSalary.demiEsclave') },

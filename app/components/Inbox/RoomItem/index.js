@@ -23,8 +23,8 @@ const RoomItem = ({ userState, data, open, t, logInfo = null }) => {
       { userState === 'recruiter' || <div className='room-item-root-picture'></div> }
       <div className='room-item-body'>
         <div className='room-item-body-title'>
-          { userState !== 'recruiter' || <div className='room-item-body-title-txt'>{candidate.firstName}</div> }
-          { userState !== 'candidate' || <div className='room-item-body-title-txt'>{recruiter.firstName}</div> }
+          { userState !== 'recruiter' || <div className='room-item-body-title-txt'>{candidate.firstName}</div> }
+          { userState !== 'candidate' || <div className='room-item-body-title-txt'>{recruiter.firstName}</div> }
           { isReceiver && !lastMessageInfo.readed ? <div className='room-item-body-nmsg'>{t('newMessage')}</div> : null}
         </div>
 

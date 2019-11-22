@@ -23,7 +23,7 @@ const Description = ({ t, data, updateDesc }) => {
         setError(null)
 
       return;
-    } 
+    }
 
     if (description.length >= 1000) {
       setError('formatError');
@@ -53,7 +53,7 @@ const Description = ({ t, data, updateDesc }) => {
         setError(500);
       }
     }
-    
+
   }
 
   useEffect(() => () => { isUnmounted.current = true }, []);
@@ -64,7 +64,7 @@ const Description = ({ t, data, updateDesc }) => {
       <div className='description-box'>
         <div className='desc-label-box'>
           <h3 className='description-box-label'>{t('descriptionBoxLabel')}</h3>
-          { loading ? <div className='desc-loading-el'></div> : null }
+          { loading ? <div className='desc-loading-el'></div> : null }
         </div>
         <textarea
           disabled={loading}

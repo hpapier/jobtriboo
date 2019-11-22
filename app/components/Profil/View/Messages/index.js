@@ -98,11 +98,11 @@ const Messages = ({ t, logInfo }) => {
         <div>
           {
             selectedRoom === null ?
-            rooms.map((room, index) => <RoomItem logInfo={logInfo} userState='candidate' data={room} key={index} open={() => setSelectedRoom(room)} />) :
+            rooms.map((room, index) => <RoomItem logInfo={logInfo} userState='candidate' data={room} key={index} open={() => setSelectedRoom(room)} />) :
             <Room userState='candidate' logInfo={logInfo} data={selectedRoom} />
           }
         </div>
-      }    
+      }
     </div>
   );
 }

@@ -722,7 +722,7 @@ app.put('/api/profil/picture', candidateTokenCheck, async (req, res) => {
 
     const userDirPath = __dirname + '/files/' + data[0]._id;
     fs.mkdir(userDirPath, async function(err) {
-      if (err === null || (err && err.code === 'EEXIST')) {
+      if (err === null || (err && err.code === 'EEXIST')) {
         // Format the data
         let base64data = req.body.picture.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
 
