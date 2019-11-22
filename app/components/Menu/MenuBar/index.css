@@ -1,0 +1,25 @@
+.menu-bar-root {
+  min-height: calc(100vh - 60px);
+  background-color: #fff;
+  min-width: 215px;
+  margin: 0px;
+  overflow: hidden;
+}
+
+.menu-bar-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 90px;
+}
+
+.menu-bar-box-sw-btn {
+  display: none;
+}
+
+@media screen and (max-width: 850px) {
+  .menu-bar-root {
+    display: none;
+  }
+}

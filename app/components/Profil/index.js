@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 // @local import
 import './index.css';
-import Menu from '../Menu/profil';
+import Menu from '../Menu';
 import View from './View';
 
 
@@ -13,7 +13,7 @@ const ProfilComponent = ({ logInfo }) => {
   const [section, setSection] = useState('informations');
   return (
     <div className='profilcp-root'>
-      <Menu section={section} switchSection={setSection} />
+      <Menu section={section} switchSection={setSection} logInfo={logInfo} />
       <View section={section} logInfo={logInfo} />
     </div>
   );

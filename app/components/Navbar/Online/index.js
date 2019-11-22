@@ -6,8 +6,11 @@ import { useRouter } from 'next/router';
 // @local import
 import Layout from '../Layout';
 import Logo from '../Logo';
-import NavCandidate from './NavState/NavCandidate';
-import NavRecruiter from './NavState/NavRecruiter';
+import LangButton from '../LangButton';
+import AnnounceIcon from '../../../static/assets/announces_icon_grey.svg';
+import CompaniesIcon from '../../../static/assets/companies_icon_grey.svg';
+import ProfilIcon from '../../../static/assets/profil_icon_g.svg';
+import ArrowIcon from '../../../static/assets/arrow_icon_0.svg';
 import './index.css';
 
 
@@ -29,20 +32,29 @@ const Online = ({ t, setLoginState, userState }) => {
         </div>
 
         <div className='sign-online-lb-m'>
-          <button className={`sign-online-lb-mbtn${router.pathname === '/jobs' ? ` -active` : ``}`} onClick={() => { console.log('gotojobs'); router.push('/jobs')}}>{t('jobs')}</button>
-          <button className={`sign-online-lb-mbtn${router.pathname === '/companies' ? ` -active` : ``}`} onClick={() => router.push('/companies')}>{t('companies')}</button>
-          <button className={`sign-online-lb-mbtn${router.pathname === '/dashboard' || router.pathname === '/profil' ? ` -active` : ``}`} onClick={() => router.push(userState === 'recruiter' ? '/dashboard' : '/profil')}>
-            {userState === 'recruiter' ? t('dashboard') : t('profil')}
+          <button className={`sign-online-lb-mbtn${router.pathname === '/jobs' ? ` -navbar-element-active` : ``}`} onClick={() => { console.log('gotojobs'); router.push('/jobs')}}>
+            <div className='sign-online-lb-label'>{t('jobs')}</div>
+            <img className='sign-online-lb-icon' src={AnnounceIcon} />
+          </button>
+
+          <button className={`sign-online-lb-mbtn${router.pathname === '/companies' ? ` -navbar-element-active` : ``}`} onClick={() => router.push('/companies')}>
+            <div className='sign-online-lb-label'>{t('companies')}</div>
+            <img className='sign-online-lb-icon' src={CompaniesIcon} />
+          </button>
+          
+          <button className={`sign-online-lb-mbtn${router.pathname === '/dashboard' || router.pathname === '/profil' ? ` -navbar-element-active` : ``}`} onClick={() => router.push(userState === 'recruiter' ? '/dashboard' : '/profil')}>
+            <div className='sign-online-lb-label'>{userState === 'recruiter' ? t('dashboard') : t('profil')}</div>
+            <img className='sign-online-lb-icon' src={ProfilIcon} />
           </button>
         </div>
       </div>
 
-      <div>
-        {
-          userState ?
-          <NavCandidate logout={handleLogout} t={t} /> :
-          <NavRecruiter logout={handleLogout} t={t} />
-        }
+      <div className='nav-state-root'>
+        <LangButton />
+        <button className='nav-state-logout' onClick={handleLogout}>
+          <div className='sign-online-lb-label'>{t('logout')}</div>
+          <img className='sign-online-lb-icon' src={ArrowIcon} />
+        </button>
       </div>
     </Layout>
   );

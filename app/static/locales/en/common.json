@@ -262,5 +262,18 @@
 
   "invalidEmailFormat": "Please enter a correct email format.",
   "alreadyEmailExist": "Oh ! This email is already taken !",
-  "successNwsEmail": "Thanks for the subscription ! See you soon !"
+  "successNwsEmail": "Thanks for the subscription ! See you soon !",
+
+
+  "growthYourClan": "Expand your Clan.",
+  "descrRecruiterPage": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa.",
+  "openRecruiterAccount": "Open a recruiter account",
+  "basicPricing": "Basic",
+  "pricingOfferDuration": "12 month",
+  "pricingOfferQualifiedCandidate": "Qualified Candidate",
+  "pricingOfferMatchingPerso": "Personnalised matching",
+  "pricingOfferNoMoreFees": "No more fees",
+  "postAnAnnounce": "Post an announce",
+
+  "unknow": "Unspecified"
 }

@@ -259,5 +259,18 @@
 
   "invalidEmailFormat": "Veuillez entrez un email correct",
   "alreadyEmailExist": "Oh ! Cet email est déjà pris !",
-  "successNwsEmail": "Merci de vous être abonné ! À bientôt !"
+  "successNwsEmail": "Merci de vous être abonné ! À bientôt !",
+
+
+  "growthYourClan": "Agrandissez votre Clan.",
+  "descrRecruiterPage": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa.",
+  "openRecruiterAccount": "Ouvrir un compte recruteur",
+  "basicPricing": "Basique",
+  "pricingOfferDuration": "12 mois",
+  "pricingOfferQualifiedCandidate": "Candidats Qualifiés",
+  "pricingOfferMatchingPerso": "Matching Personnalisé",
+  "pricingOfferNoMoreFees": "Aucun frais supplémentaire",
+  "postAnAnnounce": "Poster une annonce",
+
+  "unknow": "Non spécifié"
 }

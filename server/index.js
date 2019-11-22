@@ -84,7 +84,7 @@ io.on('connection', (socket) => {
 
 /* Database schemas & models */
 const {
-  newspaperModel,
+  newsletterModel,
   candidateAccountModel,
   recruiterAccountModel,
   userAccountModel,
@@ -457,6 +457,89 @@ app.get('/api/sample', async (req, res) => {
         NIF: '',
         createdBy: null
       }
+    ],
+    candidates: [
+      {
+        state: 'candidate',
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'johndoe@gmail.com',
+        password: 'pwd1',
+        prefixPhoneNumber: '+33',
+        phoneNumber: '0698251015',
+        creationDate: new Date(),
+        picture: '',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        country: 'France',
+        age: 35,
+        triboo: 'commercial',
+        jobName: 'Business Developer',
+        skills: [],
+        studyLvl: 'selflearner',
+        cv: '',
+        desiredContract: 'cdi',
+        salaryExpected: 'littleDignity',
+        availability: 'now',
+        updated: new Date(),
+        settings: {
+          emailOnMsg: true
+        },
+        publicId: 'johndoe'
+      },
+      {
+        state: 'candidate',
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'johndoe@gmail.com',
+        password: 'pwd1',
+        prefixPhoneNumber: '+33',
+        phoneNumber: '0698251015',
+        creationDate: new Date(),
+        picture: '',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        country: 'France',
+        age: 35,
+        triboo: 'commercial',
+        jobName: 'Business Developer',
+        skills: [],
+        studyLvl: 'selflearner',
+        cv: '',
+        desiredContract: 'cdi',
+        salaryExpected: 'littleDignity',
+        availability: 'now',
+        updated: new Date(),
+        settings: {
+          emailOnMsg: true
+        },
+        publicId: 'johndoe'
+      },
+      {
+        state: 'candidate',
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'johndoe@gmail.com',
+        password: 'pwd1',
+        prefixPhoneNumber: '+33',
+        phoneNumber: '0698251015',
+        creationDate: new Date(),
+        picture: '',
+        description: 'Lorem ispum lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem lorem ipsum lorem.',
+        country: 'France',
+        age: 35,
+        triboo: 'commercial',
+        jobName: 'Business Developer',
+        skills: [],
+        studyLvl: 'selflearner',
+        cv: '',
+        desiredContract: 'cdi',
+        salaryExpected: 'littleDignity',
+        availability: 'now',
+        updated: new Date(),
+        settings: {
+          emailOnMsg: true
+        },
+        publicId: 'johndoe'
+      }
     ]
   })
 });
@@ -475,13 +558,13 @@ app.post('/api/nws/subscription', async (req, res) => {
       return;
     }
 
-    const check = await newspaperModel.find({ email });
+    const check = await newsletterModel.find({ email });
     if (check.length !== 0) {
       res.status(200).send({ status: 'alreadyExist' });
       return;
     }
 
-    const nnws = new newspaperModel({ email });
+    const nnws = new newsletterModel({ email });
     await nnws.save();
 
     res.status(200).send({ status: 'success' });

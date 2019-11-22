@@ -26,11 +26,68 @@
   transition: .2s;
 }
 
+.sign-online-lb-mbtn img {
+  opacity: .5;
+}
+
 .sign-online-lb-mbtn:hover {
   color: rgba(64, 70, 96, 1);
 }
 
-.-active {
+.-navbar-element-active {
   border-bottom: 3px solid #6B5AED;
   color: rgba(64, 70, 96, 1);
+}
+
+.-navbar-element-active img {
+  opacity: 1;
+}
+
+.sign-online-lb-icon  {
+  display: none;
+}
+
+.nav-state-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-state-logout {
+  all: unset;
+  padding: 0px 15px;
+  height: 35px;
+  border: 1px solid rgba(64, 70, 96, 0.7);
+  background-color: rgba(64, 70, 96, 0);
+  border-radius: 1px;
+  color: #404660;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  text-align: center;
+  margin-right: 10px;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.nav-state-logout:hover {
+  border: 1px solid rgba(64, 70, 96, 1);
+}
+
+@media screen and (max-width: 650px) {
+  .sign-online-lb-icon  {
+    display: block;
+  }
+
+  .sign-online-lb-label {
+    display: none;
+  }
+
+  .sign-online-logo {
+    margin-left: 10px;
+  }
+
+  .nav-state-logout {
+    background-color: rgba(64, 70, 96, 1);
+  }
 }

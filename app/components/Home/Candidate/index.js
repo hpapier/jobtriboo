@@ -4,16 +4,16 @@ import { useRouter } from 'next/router'
 
 
 // @local import
-import TribooSelect from '../TribooSelect';
-import { withTranslation } from '../i18n';
-import WaveImg0 from '../../static/assets/wave_0.svg'
-import WaveImg1 from '../../static/assets/wave_1.svg'
-import LocationIconGrey from '../../static/assets/localization_icon_g.svg';
-import ContractIconGrey from '../../static/assets/contract_icon_g.svg';
-import CompanyItem from '../Companies/CompanyItem'
-import { handleInputEmail } from '../../utils/input';
-import { subscribeToNewspaper } from '../../utils/request/home'
-import './index.css'
+import TribooSelect from '../../TribooSelect';
+import { withTranslation } from '../../i18n';
+import WaveImg0 from '../../../static/assets/wave_0.svg'
+import WaveImg1 from '../../../static/assets/wave_1.svg'
+import LocationIconGrey from '../../../static/assets/localization_icon_g.svg';
+import ContractIconGrey from '../../../static/assets/contract_icon_g.svg';
+import CompanyItem from '../../Companies/CompanyItem'
+import { handleInputEmail } from '../../../utils/input';
+import { subscribeToNewspaper } from '../../../utils/request/home'
+import '../index.css'
 
 
 // @component
@@ -175,7 +175,11 @@ const Home = ({ t, data }) => {
         <h1 className='home--title' id='title-sb'>{t('findYourClan')}</h1>
         <div className='home-sb-companies'>
           {
-            filtredCompanies.map((item, index) => <div key={index} style={{ margin: '10px' }}><CompanyItem data={item} /></div>)
+            filtredCompanies.map((item, index) =>
+              <div key={index} style={{ margin: '10px', position: 'relative' }}>
+                <CompanyItem data={item} />
+              </div>
+            )
           }
         </div>
         <button className='home-sb-btn' onClick={() => router.push('/companies')}>{t('discoverMoreClan')}</button>

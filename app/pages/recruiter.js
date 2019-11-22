@@ -1,5 +1,5 @@
 import Navbar from '../components/Navbar';
-import Home from '../components/homeRecruiter'
+import Home from '../components/Home/Recruiter'
 
 import { checkAuth } from '../utils/auth'
 import { getSampleData } from '../utils/query'
@@ -15,6 +15,7 @@ const App = ({ logInfo, sampleData }) => {
           body {
             padding: 0;
             margin: 0;
+            background-color: #f2f3ff !important;
           }
       `}</style>
     </div>

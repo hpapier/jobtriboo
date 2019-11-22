@@ -23,13 +23,13 @@ const Offline = ({ t }) => {
       <div className='navbar-offline-rbox'>
         <LangButton />
 
-        {
+        {/* {
           router.pathname === '/recruiter' ?
-          (<button className='navbar-offline-rbox-text' onClick={() => console.log('go to pricing section')}>
+          (<button className='navbar-offline-rbox-text' id='navbar-offline-pricing-btn' onClick={() => console.log('go to pricing section')}>
             {t('pricing')}
           </button>)
           : null
-        }
+        } */}
 
         <button className='navbar-offline-rbox-text' onClick={() => router.push('/signin')}>
           {t('login')}

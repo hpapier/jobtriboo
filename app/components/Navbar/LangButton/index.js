@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core'
 // @local import
 import { languages } from '../../../utils/lang'
 import { i18n } from '../../i18n'
-import './style.css'
+import './index.css'
 import BottomArrowIcon from '../../../static/assets/bottom_arrow_icon.svg'
 
 

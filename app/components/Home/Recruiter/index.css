@@ -1,0 +1,81 @@
+.home-recruiter-subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #404660;
+  margin: 0px;
+  text-align: center;
+  width: 90%;
+}
+
+
+.home-recruiter-sb-pricingb {
+  width: 375px;
+  height: 600px;
+  background: linear-gradient(135deg, #8F75DA 20%, #727CF5);
+  border-radius: 15px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, .1);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  position: relative;
+}
+
+.home-recruiter-sb-pricingb-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #fff;
+  margin: 0px;
+  margin-top: 20px;
+}
+
+.home-recruiter-sb-pricingb-priceTxt {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3em;
+  font-weight: 600;
+  color: #fff;
+  margin: 0px;
+  margin-top: 150px;
+}
+
+.home-recruiter-sb-pricingb-offerbox {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+  margin-top: 70px;
+}
+
+.home-recruiter-sb-pricingb-offertxt {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  color: #fff;
+  margin: 5px 0px 0px 0px;
+  font-style: italic;
+}
+
+.home-recruiter-sb-pricing-btn {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: #fff;
+
+  height: 65px;
+  border-radius: 1px;
+  border: 1px solid #fff;
+
+  padding: 0px 30px;
+  background-color: rgba(255, 255, 255, .1);
+  position: absolute;
+  bottom: 50px;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.home-recruiter-sb-pricing-btn:hover {
+  background-color: rgba(255, 255, 255, .15);
+}
