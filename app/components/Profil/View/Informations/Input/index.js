@@ -500,7 +500,7 @@ export const InputSelectComponent = ({ currentData, updateData, updateReq: {req,
   }
 
   return (
-    <div style={{ width: `${width}px`, margin }} className='info-input-select-root'>
+    <div style={{ width, margin }} className='info-input-select-root'>
       <div style={{ display: 'flex' }}>
         <h2 style={{ margin: '5px 10px 5px 10px'}} className='info-input-label'>{label}</h2>
         { loading ? <div style={{ margin: '5px 0px 0px 0px'}} className='input-loading-box'></div> : null }
@@ -520,7 +520,7 @@ export const InputSelectComponent = ({ currentData, updateData, updateReq: {req,
 
       {
         listOpened ?
-        <div style={{ width: `${width}px`, bottom: '-120px'}} className='info-input-select-list'>
+        <div style={{ bottom: '-120px'}} className='info-input-select-list'>
           {
             list.map((item, index) =>
               <div

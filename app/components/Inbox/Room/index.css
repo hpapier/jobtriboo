@@ -40,12 +40,14 @@
 
 .room-candidate-profil-seeprofil {
   all: unset;
+  display: block;
   margin-top: 10px;
   background-color: #404660;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: .875em;
+  padding: 2px 15px;
   display: flex;
   justify-content: center;
   align-items: center;

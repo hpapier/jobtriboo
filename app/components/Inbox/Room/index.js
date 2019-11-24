@@ -175,12 +175,12 @@ const Room = ({ logInfo, data, t, userState }) => {
       <div className='room-candidate-profil'>
         { userState !== 'recruiter' || (candidate.picture === '' ? <div className='room-candidate-profil-picture'></div> : <img className='room-candidate-profil-picture' src={`http://localhost:3001${candidate.picture}`} />)}
         { userState !== 'candidate' || <div className='room-candidate-profil-picture'></div> }
-        <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '15px' }}>
+        <div style={{ marginLeft: '15px' }}>
           {
             userState === 'recruiter' ?
             <>
               <h3 className='room-candidate-profil-fullname'>{ candidate.firstName } { candidate.lastName }</h3>
-              <h3 className='room-candidate-profil-jobname'>{ candidate.jobName }sqdfqsdfqds</h3>
+              <h3 className='room-candidate-profil-jobname'>{ candidate.jobName }</h3>
               <button className='room-candidate-profil-seeprofil' onClick={() => router.push(`/candidate/${candidate.publicId}`)}>{t('seeProfil')}</button>
             </> :
             <>

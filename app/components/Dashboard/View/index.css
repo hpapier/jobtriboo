@@ -3,3 +3,10 @@
   height: calc(100vh - 60px);
   overflow: scroll;
 }
+
+@media screen and (max-width: 850px) {
+  .view-root {
+    height: 100%;
+    overflow: inherit;
+  }
+}

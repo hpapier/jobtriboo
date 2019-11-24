@@ -16,7 +16,7 @@ import './index.css';
 const Announces = ({ t }) => {
   const [view, setView] = useState('list');
   const [announces, setAnnounces] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [cookies, _, __] = useCookies();
   const isUnmounted = useRef(false);
@@ -69,7 +69,7 @@ const Announces = ({ t }) => {
             {
               announces.length === 0 ?
               <div className='announces-empty'>{t('noAnnouncesYet')}</div> :
-              announces.map((item, index) => 
+              announces.map((item, index) =>
                 <AnnounceItem
                   data={item}
                   key={index}
@@ -78,7 +78,7 @@ const Announces = ({ t }) => {
                     setAnnounces(ndata);
                   }}
                 />
-              ) 
+              )
             }
             { error !== null ? <div className='announces-box-error-msg'>{t('error500')}</div> : null }
             { loading ? <div className='announces-loading'></div> : null }

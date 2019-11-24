@@ -62,7 +62,7 @@ const TribooSelect = ({ t, size = 'regular', updateTriboo, selectedTriboo, req =
   }
 
   return (
-    <div>
+    <div style={{ display: 'table' }}>
       <div style={{ display: 'flex' }}>
         { label ? <h2 className='triboo-select-label'>Triboo</h2> : '' }
         { loading ? <div className='triboo-select-loading'></div> : null }

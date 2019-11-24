@@ -1,8 +1,13 @@
-.information-root {
-  width: 100%;
-  height: calc(100vh - 60px);
+.information-comp {
   overflow: scroll;
+  width: 100%;
+}
+
+.information-root {
+  width: 1000px;
+  height: calc(100vh - 60px);
   position: relative;
+  margin: 0px auto;
 }
 
 .information-root-box {
@@ -68,19 +73,24 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1174px) {
   .information-root {
+    width: 100%;
+  }
+
+  .information-root-box-btn {
+    width: 600px;
+  }
+}
+
+
+@media screen and (max-width: 850px) {
+  .information-comp {
     overflow: inherit;
   }
 
   .information-root-box  {
     padding-top: 0px;
-  }
-}
-
-@media screen and (max-width: 1174px) {
-  .information-root-box-btn {
-    width: 600px;
   }
 }
 

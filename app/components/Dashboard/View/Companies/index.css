@@ -13,6 +13,11 @@
   font-weight: 500;
 }
 
+.companies-n-box {
+  width: 100%;
+  padding: 0px 20px;
+}
+
 .companies-list-box {
   width: 800px;
 }
@@ -90,4 +95,22 @@
   text-align: center;
   color: #404660;
   margin-top: 20px;
+}
+
+
+@media screen and (max-width: 1050px) {
+  .companies-root {
+    justify-content: flex-start;
+  }
+
+  .companies-list-box {
+    width: calc(100% - 30px);
+    margin-left: 15px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .companies-root {
+    padding-top: 10px;
+  }
 }

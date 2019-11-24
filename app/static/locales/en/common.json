@@ -275,5 +275,10 @@
   "pricingOfferNoMoreFees": "No more fees",
   "postAnAnnounce": "Post an announce",
 
-  "unknow": "Unspecified"
+  "unknow": "Unspecified",
+
+
+  "myAnnounces": "My announces",
+  "createAnnounces": "Create an announce",
+  "newAnnounces": "New announce"
 }

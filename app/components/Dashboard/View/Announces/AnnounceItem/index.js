@@ -23,7 +23,7 @@ const AnnounceItem = ({ t, data, updateData, isPublic = false }) => {
   const handleDelete = async () => {
     if (loading)
       return;
-   
+
     if (!isUnmounted.current)
       setLoading(true);
 

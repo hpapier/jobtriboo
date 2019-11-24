@@ -12,7 +12,7 @@ import { withTranslation } from '../../../../i18n';
 import CheckBox from '../../../../CheckBox';
 import Card from '../../../../Card';
 import CompaniesList from '../../../../CompaniesList';
-import TribooSelected from '../../../../TribooSelect';
+import TribooSelect from '../../../../TribooSelect';
 import { postAnnounce } from '../../../../../utils/request/announces';
 import { handleInputText } from '../../../../../utils/input';
 
@@ -107,8 +107,8 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
     return (
       <div onClick={onClick} ref={ref}>
         <Input
-            width={350}
-            margin='10px 0px'
+            width='100%'
+            margin='0px'
             error={false}
             label={t('startingDate')}
             placeholder={t('phStartingDate')}
@@ -130,118 +130,142 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
       <CompaniesList token={cookies.token} updateData={ndata => setCompany(ndata)} rootStyle={{ minWidth: '200px', top: 20, right: 25 }} />
       <h2 className='new-announces-label'>{t('information')}</h2>
       <div className='new-announces-box'>
-        <Input
-          width={350}
-          margin='10px 0px'
-          error={inputError.title}
-          label={t('title')}
-          placeholder={t('phTitle')}
-          value={title}
-          setValue={setTitle}
-          formatErrorMsg={t('emptyOrTooLongError')}
-          type='text'
-          loading={loading}
-        />
-        <Input
-          width={350}
-          margin='10px 0px'
-          error={inputError.location}
-          label={t('location')}
-          placeholder={t('phLocation')}
-          value={location}
-          setValue={setLocation}
-          formatErrorMsg={t('emptyOrTooLongError')}
-          type='text'
-          loading={loading}
-        />
-        <Select
-          label={t('level')}
-          optionList={[
-            { value: 'student', label: t('lvl.student') },
-            { value: 'junior', label: t('lvl.junior') },
-            { value: 'mid', label: t('lvl.mid') },
-            { value: 'senior', label: t('lvl.senior') }
-          ]}
-          width={350}
-          margin='10px 0px'
-          value={level}
-          setValue={setLevel}
-          loading={loading}
-        />
-        <Datepicker
-          selected={startingDate}
-          onChange={date => setStartingDate(date)}
-          dateFormat='dd/MM/yyyy'
-          minDate={new Date()}
-          disabled={loading}
-          customInput={<CustomInputDate />}
-        />
+        <div className='new-announces-box-item'>
+          <Input
+            width='calc(100% - 40px)'
+            margin='10px 0px'
+            error={inputError.title}
+            label={t('title')}
+            placeholder={t('phTitle')}
+            value={title}
+            setValue={setTitle}
+            formatErrorMsg={t('emptyOrTooLongError')}
+            type='text'
+            loading={loading}
+          />
+        </div>
 
-        <TextArea
-          width={750}
-          margin='30px 0px 0px 0px'
-          label={t('description')}
-          value={description}
-          setValue={setDescription}
-          placeholder={t('phDescription')}
-          loading={loading}
-          error={inputError.description}
-          errMsg={t('emptyOrTooLongError')}
-        />
+        <div className='new-announces-box-item'>
+          <Input
+            width='calc(100% - 40px)'
+            margin='10px 0px'
+            error={inputError.location}
+            label={t('location')}
+            placeholder={t('phLocation')}
+            value={location}
+            setValue={setLocation}
+            formatErrorMsg={t('emptyOrTooLongError')}
+            type='text'
+            loading={loading}
+          />
+        </div>
+
+        <div className='new-announces-box-item'>
+          <Select
+            label={t('level')}
+            optionList={[
+              { value: 'student', label: t('lvl.student') },
+              { value: 'junior', label: t('lvl.junior') },
+              { value: 'mid', label: t('lvl.mid') },
+              { value: 'senior', label: t('lvl.senior') }
+            ]}
+            width='calc(100% - 40px)'
+            margin='10px 0px'
+            value={level}
+            setValue={setLevel}
+            loading={loading}
+          />
+        </div>
+
+        <div className='new-announces-box-item'>
+          <Datepicker
+            selected={startingDate}
+            onChange={date => setStartingDate(date)}
+            dateFormat='dd/MM/yyyy'
+            minDate={new Date()}
+            disabled={loading}
+            customInput={<CustomInputDate />}
+          />
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%'}}>
+          <TextArea
+            width='calc(100% - 40px)'
+            margin='30px 0px 0px 0px'
+            label={t('description')}
+            value={description}
+            setValue={setDescription}
+            placeholder={t('phDescription')}
+            loading={loading}
+            error={inputError.description}
+            errMsg={t('emptyOrTooLongError')}
+          />
+        </div>
       </div>
 
       <h2 className='new-announces-label'>{t('contract')}</h2>
       <div className='new-announces-box'>
-        <Select
-          label={t('type')}
-          optionList={[
-            { value: 'internship', label: t('dsrCt.internship') },
-            { value: 'cdd', label: t('dsrCt.cdd') },
-            { value: 'cdi', label: t('dsrCt.cdi') },
-            { value: 'contractor', label: t('dsrCt.contractor') }
-          ]}
-          width={350}
-          margin='10px 0px'
-          value={contractType}
-          setValue={setContractType}
-          loading={loading}
-        />
-        <div style={{ display: 'flex'}}>
-          <Input
-            width={175}
-            margin='10px 10px 0px 0px'
-            error={false}
-            label={t('salary')}
-            placeholder={t('minimum')}
-            value={salary.min}
-            setValue={nd => setSalary({ ...salary, min: nd })}
-            formatErrorMsg={t('')}
-            type='number'
-            loading={loading}
-          />
-          <Input
-            width={175}
+
+        <div className='new-announces-box-item'>
+          <Select
+            label={t('type')}
+            optionList={[
+              { value: 'internship', label: t('dsrCt.internship') },
+              { value: 'cdd', label: t('dsrCt.cdd') },
+              { value: 'cdi', label: t('dsrCt.cdi') },
+              { value: 'contractor', label: t('dsrCt.contractor') }
+            ]}
+            width='calc(100% - 40px)'
             margin='10px 0px'
-            error={false}
-            label={t('salary')}
-            placeholder={t('maximum')}
-            value={salary.max}
-            setValue={nd => setSalary({ ...salary, max: nd })}
-            formatErrorMsg={t('')}
-            type='number'
+            value={contractType}
+            setValue={setContractType}
             loading={loading}
           />
         </div>
-        <CheckBox disabled={loading} margin='0px 0px 0px 0px' label={t('visaSponsoring')} size={{ width: '20px', height: '20px' }} checked={sponsoring} setCheckState={setSponsoring} />
+
+
+        <div className='new-announces-box-item'>
+          <div className='new-announces-box-item'>
+            <Input
+              width='calc(100% - 30px)'
+              margin='10px 0px 0px 10px'
+              error={false}
+              label={t('salary')}
+              placeholder={t('minimum')}
+              value={salary.min}
+              setValue={nd => setSalary({ ...salary, min: nd })}
+              formatErrorMsg={t('')}
+              type='number'
+              loading={loading}
+            />
+          </div>
+
+          <div className='new-announces-box-item'>
+            <Input
+              width='calc(100% - 30px)'
+              margin='10px 10px 0px 0px'
+              error={false}
+              label={t('salary')}
+              placeholder={t('maximum')}
+              value={salary.max}
+              setValue={nd => setSalary({ ...salary, max: nd })}
+              formatErrorMsg={t('')}
+              type='number'
+              loading={loading}
+            />
+          </div>
+        </div>
+
+        <CheckBox disabled={loading} margin='0px 0px 0px 20px' label={t('visaSponsoring')} size={{ width: '20px', height: '20px' }} checked={sponsoring} setCheckState={setSponsoring} />
       </div>
 
       <h2 className='new-announces-label'>{t('triboo')}</h2>
       <div className='new-announces-triboo-box'>
-        <TribooSelected style={{ marginRight: '50px' }} size='small' updateTriboo={setTriboo} selectedTriboo={triboo} />
+        <TribooSelect size='small' updateTriboo={setTriboo} selectedTriboo={triboo} />
       </div>
 
       <h2 className='new-announces-label'>{t('divers')}</h2>
-      <div className='new-announces-box'>
+      <div className='new-announces-box' style={{ justifyContent: 'center' }}>
         <ListInput
           label={t('benefits')}
           placeholder={t('phBenefits')}
@@ -252,19 +276,26 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
             setBenefits(nObjList);
           }}
           error={inputError.benefits}
-          width='500px'
+          width='calc(100% - 40px)'
           loading={loading}
         />
       </div>
 
       <h2 className='new-announces-label'>{t('payement')}</h2>
-      <Card setCard={setCard} selectedCard={card} error={inputError.paiement} />
+      <div className='new-announces-box-item'>
+        <Card width='calc(100% - 40px)' setCard={setCard} selectedCard={card} error={inputError.paiement} />
+      </div>
 
       <div className='new-announces-btn-box'>
-        <div className='new-announces-btn-box-price'>500€</div>
-        <div className='new-announces-btn-box-b'>
-          <button disabled={loading} className='new-announces-btn-box-btn -validate' onClick={handleValidation}>{t('validate')}</button>
-          <button disabled={loading} className='new-announces-btn-box-btn -cancel' onClick={changeView}>{t('cancel')}</button>
+        <div className='new-announces-box-item'>
+          <div className='new-announces-btn-box-price'>500€</div>
+        </div>
+
+        <div className='new-announces-box-item'>
+          <div className='new-announces-btn-box-b'>
+            <button disabled={loading} className='new-announces-btn-box-btn -validate' onClick={handleValidation}>{t('validate')}</button>
+            <button disabled={loading} className='new-announces-btn-box-btn -cancel' onClick={changeView}>{t('cancel')}</button>
+          </div>
         </div>
       </div>
 

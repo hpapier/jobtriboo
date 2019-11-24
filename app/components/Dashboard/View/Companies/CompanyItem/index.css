@@ -84,3 +84,14 @@
   margin: 10px 0px;
   transition: .2s;
 }
+
+
+@media screen and (max-width: 450px) {
+  .comp-item-left-icons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+}

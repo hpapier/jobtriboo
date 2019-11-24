@@ -12,7 +12,7 @@ import { handleInputInt, handleInputMonth, handleInputText } from '../../utils/i
 
 
 // @component
-const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
+const Card = ({ t, setCard, selectedCard, error, strictMode = false, width = '100%'}) => {
 
   // View, Unmounted, Cookies: State
   const [vstate, setVstate] = useState(true);
@@ -28,14 +28,14 @@ const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
     CVC: false
   });
   const [addErrorReq, setAddErrorReq] = useState(null);
-  
+
   const [alias, setAlias] = useState('');
   const [number, setNumber] = useState('');
   const [fullName, setFullName] = useState('');
   const [CVC, setCVC] = useState('');
-  
+
   const [list, setList] = useState([]);
-  
+
   const [monthOpened, setMonthOpened] = useState(false);
   const [yearOpened, setYearOpened] = useState(false);
   const [year, setYear] = useState(null);
@@ -93,7 +93,7 @@ const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
     (!handleInputMonth(month)) ? NOE.month = true : null ;
     (year !== null && year > 2018) ? null : NOE.year = true;
 
-    if (NOE.alias || NOE.number || NOE.fullName || NOE.month || NOE.year || NOE.CVC) {
+    if (NOE.alias || NOE.number || NOE.fullName || NOE.month || NOE.year || NOE.CVC) {
       if (!isUnmounted.current)
         setAddError(NOE);
 
@@ -144,7 +144,7 @@ const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
           }
         } else
           throw res.status;
-        
+
         if (!isUnmounted.current) {
           setAddLoading(false);
         }
@@ -195,11 +195,8 @@ const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
   }, []);
 
 
-  console.log('°°°° selected card °°°°°');
-  console.log(selectedCard);
-
   return (
-    <div className='card-root'>
+    <div className='card-root' style={{ width }}>
       {
         !strictMode ?
         <div className='card-label-box'>
@@ -211,11 +208,11 @@ const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
 
       {
         vstate && !strictMode
-        
+
         ?
 
         <div className='card-box'>
-          <button type='button' className={`card-btn-select -medium ${error ? `-input-error` : ``}`} onClick={() => setListOpened(!listOpened)}>
+          <button type='button' className={`card-btn-select ${error ? `-input-error` : ``}`} onClick={() => setListOpened(!listOpened)}>
             {selectedCard === null ? t('phCard') : selectedCard.alias}
             <img src={DropdownIconGrey} alt='dropdown-icon' className={listOpened ? '-rotated' : ''} />
           </button>
@@ -228,22 +225,22 @@ const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
             null
           }
         </div>
-        
+
         :
 
         <form className='card-box' onSubmit={handleAddNewCard} className='card-input-form'>
           <input
             autoComplete='new-alias'
-            className={`card-input -medium ${addError.alias ? ` -input-error` : ``}`}
+            className={`card-input ${addError.alias ? ` -input-error` : ``}`}
             type='text'
             placeholder={t('phCardAlias')}
             value={alias}
             onChange={e => setAlias(e.target.value)}
             disabled={addLoading}
           />
-          <input 
+          <input
             autoComplete='new-number'
-            className={`card-input -medium ${addError.number ? ` -input-error` : ``}`}
+            className={`card-input ${addError.number ? ` -input-error` : ``}`}
             type='text'
             placeholder={t('phCardNumber')}
             value={number}
@@ -252,7 +249,7 @@ const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
           />
           <input
             autoComplete='new-full-name'
-            className={`card-input -medium ${addError.fullName ? ` -input-error` : ``}`}
+            className={`card-input ${addError.fullName ? ` -input-error` : ``}`}
             type='text'
             placeholder={t('phCardFullName')}
             value={fullName}
@@ -262,16 +259,16 @@ const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
 
           <div className='card-date-box'>
 
-            <div className='card-box -small'>
-              <button disabled={addLoading} type='button' className={`card-btn-select -small ${addError.alias ? ` -input-error` : ``}`} onClick={() => setMonthOpened(!monthOpened)}>
+            <div className='card-date-box-mid'>
+              <button disabled={addLoading} type='button' className={`card-btn-select ${addError.alias ? ` -input-error` : ``}`} onClick={() => setMonthOpened(!monthOpened)}>
                 {month === null ? t('cardMonth') : getMonthLabel()}
                 <img src={DropdownIconGrey} alt='dropdown-icon' className={monthOpened ? '-rotated' : ''} />
               </button>
               {monthOpened ? <div className='card-input-list'>{listMonth.map((item, index) => <div key={index} className='card-input-list-item' onClick={() => handleMonthSelection(item.value)}>{item.label}</div>)}</div> : null}
             </div>
 
-            <div className='card-box -small'>
-              <button disabled={addLoading} type='button' className={`card-btn-select -small ${addError.alias ? ` -input-error` : ``}`} onClick={() => setYearOpened(!yearOpened)}>
+            <div className='card-date-box-mid'>
+              <button disabled={addLoading} type='button' className={`card-btn-select ${addError.alias ? ` -input-error` : ``}`} onClick={() => setYearOpened(!yearOpened)}>
                 {year === null ? t('cardYear') : year}
                 <img src={DropdownIconGrey} alt='dropdown-icon' className={yearOpened ? '-rotated' : ''}/>
               </button>
@@ -281,7 +278,7 @@ const Card = ({ t, setCard, selectedCard, error, strictMode = false }) => {
           </div>
 
           <input
-            className={`card-input -medium ${addError.CVC ? ` -input-error` : ``}`}
+            className={`card-input ${addError.CVC ? ` -input-error` : ``}`}
             type='password'
             autoComplete='new-password'
             placeholder={t('CVC')}

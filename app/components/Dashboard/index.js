@@ -11,6 +11,7 @@ import View from './View';
 // @component
 const Dashboard = ({ logInfo }) => {
   const [section, setSection] = useState('companies');
+
   return (
     <div className='dashb-root'>
       <MenuDashboard section={section} switchSection={setSection} logInfo={logInfo} />

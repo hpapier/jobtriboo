@@ -61,3 +61,16 @@
   display: flex;
   justify-content: center;
 }
+
+
+@media screen and (max-width: 1174px) {
+  .dh-msg-root {
+    width: calc(100% - 40px);
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .dh-msg-root {
+    margin: 10px auto 0px auto;
+  }
+}

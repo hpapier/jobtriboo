@@ -207,6 +207,7 @@
 .info-input-select-root {
   width: 100%;
   position: relative;
+  box-sizing: border-box;
 }
 
 .-select-element {

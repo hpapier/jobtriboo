@@ -16,6 +16,12 @@
   justify-content: space-between;
 }
 
+.new-company-box-el {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
 .new-company-box-picture {
   width: 50%;
   box-sizing: border-box;
@@ -163,4 +169,32 @@
   font-weight: 400;
   font-size: .875em;
   color: red;
+}
+
+
+@media screen and (max-width: 1050px) {
+  .new-company-root {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 809px) {
+  .new-company-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .new-company-box-el {
+    width: 100%;
+  }
+
+  .new-company-box-picture {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    margin-top: 10px;
+  }
 }

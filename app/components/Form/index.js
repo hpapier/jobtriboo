@@ -11,7 +11,7 @@ import RemoveIconWhite from '../../static/assets/remove_icon_w.svg';
 // @component: INPUT
 export const Input = ({ width, margin, error, label, placeholder, value, setValue, formatErrorMsg, type, loading }) => {
   return (
-    <div className='info-input-root' style={{ width: `${width}px`, margin }}>
+    <div className='info-input-root' style={{ width: `${width}`, margin }}>
       <label className='info-input-label'>{label}</label>
       <input
         disabled={loading}
@@ -27,7 +27,7 @@ export const Input = ({ width, margin, error, label, placeholder, value, setValu
           { error ? formatErrorMsg : '' }
         </div>
         : null
-      } 
+      }
     </div>
   );
 };
@@ -52,7 +52,7 @@ export const Select = ({ label, value, optionList, width, margin, loading, setVa
   }
 
   return (
-    <div style={{ width: `${width}px`, margin }} className='info-input-select-root'>
+    <div style={{ width: `${width}`, margin }} className='info-input-select-root'>
       <h2 className='info-input-label'>{label}</h2>
       <button
         type='button'
@@ -66,7 +66,7 @@ export const Select = ({ label, value, optionList, width, margin, loading, setVa
 
       {
         listOpened && !loading ?
-        <div style={{ width: `${width}px`, bottom: '-120px'}} className='info-input-select-list'>
+        <div style={{ width: `100%`, bottom: '-120px'}} className='info-input-select-list'>
           {
             optionList.map((item, index) =>
               <div
@@ -89,11 +89,11 @@ export const Select = ({ label, value, optionList, width, margin, loading, setVa
 // @component: TEXTAREA
 export const TextArea = ({ width, margin, label, value, setValue, placeholder, loading, error, errMsg }) => {
   return (
-    <div className='text-area-root' style={{ width: `${width}px`, margin }}>
+    <div className='text-area-root' style={{ width: `${width}`, margin }}>
       <h2 className='info-input-label'>{label}</h2>
       <textarea
         value={value}
-        onChange={e => setValue(e.target.value)} 
+        onChange={e => setValue(e.target.value)}
         placeholder={placeholder}
         disabled={loading}
         className={`text-area-element${error ? ` -input-error` : ``}`}
@@ -119,20 +119,19 @@ export const ListInput = ({ label = '', width, placeholder, objectList, addObjec
   }
 
   return (
-    <form onSubmit={handleAdd}>
+    <form onSubmit={handleAdd} style={{ width }}>
       <h2 className='info-input-label'>{label}</h2>
       <input
         className={`info-input-element${error ? ` -input-error` : ``}`}
         onChange={e => setValue(e.target.value)}
         placeholder={placeholder}
-        style={{ width }}
         value={value}
         disabled={loading}
       />
       <div>
         {
-          objectList.map((item, index) => 
-            <div key={index} style={{ width }} className='list-input-item'>
+          objectList.map((item, index) =>
+            <div key={index} className='list-input-item'>
               {item}
               <button className='list-input-rmv-btn' type='button' onClick={() => removeObjectList(item)}>
                 <img src={RemoveIconWhite} alt='remove-icon' />

@@ -82,3 +82,16 @@
   animation-timing-function: ease-in-out;
   margin: 50px auto;
 }
+
+@media screen and (max-width: 1050px) {
+  .announces-box {
+    width: 100%;
+    padding: 0px 20px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .announces-root {
+    padding-top: 10px;
+  }
+}

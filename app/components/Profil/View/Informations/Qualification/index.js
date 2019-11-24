@@ -53,71 +53,78 @@ const Qualification = ({ t, data, updateData }) => {
           />
         </div>
 
+        <div className='qualification-box-element'>
+          <InputSelect
+            width='calc(100% - 40px)'
+            margin='0px'
+            list={[
+              { value: 'selflearner', label: t('stdLvl.selfLearner') },
+              { value: 'post-bac', label: t('stdLvl.postBac') },
+              { value: 'bac', label: t('stdLvl.bac') },
+              { value: 'licence', label: t('stdLvl.licence') },
+              { value: 'master', label: t('stdLvl.master') },
+              { value: 'phd', label: t('stdLvl.phd') }
+            ]}
+            label={t('studyLvl')}
+            updateReq={{ req: candidateInformationUpdate, endpoint: '/studyLvl', token: cookies.token }}
+            updateData={nd => updateData({ studyLvl: nd })}
+            currentData={data.studyLvl}
+          />
+        </div>
 
-        <InputSelect
-          width={260}
-          margin='20px 0px 20px 25px'
-          list={[
-            { value: 'selflearner', label: t('stdLvl.selfLearner') },
-            { value: 'post-bac', label: t('stdLvl.postBac') },
-            { value: 'bac', label: t('stdLvl.bac') },
-            { value: 'licence', label: t('stdLvl.licence') },
-            { value: 'master', label: t('stdLvl.master') },
-            { value: 'phd', label: t('stdLvl.phd') }
-          ]}
-          label={t('studyLvl')}
-          updateReq={{ req: candidateInformationUpdate, endpoint: '/studyLvl', token: cookies.token }}
-          updateData={nd => updateData({ studyLvl: nd })}
-          currentData={data.studyLvl}
-        />
+        <div className='qualification-box-element'>
+          <InputSelect
+            width='calc(100% - 40px)'
+            margin='0px'
+            list={[
+              { value: 'indifferent', label: t('dsrCt.indifferent') },
+              { value: 'internship', label: t('dsrCt.internship') },
+              { value: 'cdd', label: t('dsrCt.cdd') },
+              { value: 'cdi', label: t('dsrCt.cdi') },
+              { value: 'contractor', label: t('dsrCt.contractor') }
+            ]}
+            label={t('desiredContract')}
+            updateReq={{ req: candidateInformationUpdate, endpoint: '/desiredContract', token: cookies.token }}
+            updateData={nd => updateData({ desiredContract: nd })}
+            currentData={data.desiredContract}
+          />
+        </div>
 
-        <InputSelect
-          width={260}
-          margin='20px 0px 20px 25px'
-          list={[
-            { value: 'indifferent', label: t('dsrCt.indifferent') },
-            { value: 'internship', label: t('dsrCt.internship') },
-            { value: 'cdd', label: t('dsrCt.cdd') },
-            { value: 'cdi', label: t('dsrCt.cdi') },
-            { value: 'contractor', label: t('dsrCt.contractor') }
-          ]}
-          label={t('desiredContract')}
-          updateReq={{ req: candidateInformationUpdate, endpoint: '/desiredContract', token: cookies.token }}
-          updateData={nd => updateData({ desiredContract: nd })}
-          currentData={data.desiredContract}
-        />
+        <div className='qualification-box-element'>
+          <InputSelect
+            width='calc(100% - 40px)'
+            margin='0px'
+            list={[
+              { value: 'now', label: t('lglAvb.now') },
+              { value: 'short', label: t('lglAvb.short') },
+              { value: 'mid', label: t('lglAvb.mid') },
+              { value: 'long', label: t('lglAvb.long') },
+              { value: 'xlong', label: t('lglAvb.xlong') }
+            ]}
+            label={t('legalAvailability')}
+            updateReq={{ req: candidateInformationUpdate, endpoint: '/availability', token: cookies.token }}
+            updateData={nd => updateData({ availability: nd })}
+            currentData={data.availability}
+          />
+        </div>
 
-        <InputSelect
-          width={260}
-          margin='20px 0px 20px 25px'
-          list={[
-            { value: 'now', label: t('lglAvb.now') },
-            { value: 'short', label: t('lglAvb.short') },
-            { value: 'mid', label: t('lglAvb.mid') },
-            { value: 'long', label: t('lglAvb.long') },
-            { value: 'xlong', label: t('lglAvb.xlong') }
-          ]}
-          label={t('legalAvailability')}
-          updateReq={{ req: candidateInformationUpdate, endpoint: '/availability', token: cookies.token }}
-          updateData={nd => updateData({ availability: nd })}
-          currentData={data.availability}
-        />
-
-        <InputSelect
-          width={260}
-          margin='20px 0px 20px 25px'
-          list={[
-            { value: 'esclave', label: t('expSalary.esclave') },
-            { value: 'demiEsclave', label: t('expSalary.demiEsclave') },
-            { value: 'richEsclave', label: t('expSalary.richEsclave') },
-            { value: 'littleDignity', label: t('expSalary.littleDignity') },
-            { value: 'respectBeginning', label: t('expSalary.respectBeginning')}
-          ]}
-          label={t('expectedSalary')}
-          updateReq={{ req: candidateInformationUpdate, endpoint: '/salaryExpected', token: cookies.token }}
-          updateData={nd => updateData({ salaryExpected: nd })}
-          currentData={data.salaryExpected}
-        />
+        <div className='qualification-box-element'>
+          <InputSelect
+            width='calc(100% - 40px)'
+            margin='0px'
+            list={[
+              { value: 'esclave', label: t('expSalary.esclave') },
+              { value: 'demiEsclave', label: t('expSalary.demiEsclave') },
+              { value: 'richEsclave', label: t('expSalary.richEsclave') },
+              { value: 'littleDignity', label: t('expSalary.littleDignity') },
+              { value: 'respectBeginning', label: t('expSalary.respectBeginning')}
+            ]}
+            label={t('expectedSalary')}
+            updateReq={{ req: candidateInformationUpdate, endpoint: '/salaryExpected', token: cookies.token }}
+            updateData={nd => updateData({ salaryExpected: nd })}
+            currentData={data.salaryExpected}
+          />
+        </div>
       </div>
     </div>
   );

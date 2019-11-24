@@ -27,6 +27,7 @@
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  padding: 20px 0px;
 }
 
 .settings-box-head {
@@ -79,7 +80,8 @@
   background-color: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
   margin: 20px auto;
-  padding: 20px 35px 10px 10px;
+  width: 50%;
+  padding: 20px 20px;
 }
 
 .settings-cards-list-box {
@@ -90,7 +92,7 @@
 }
 
 .settings-cards-item {
-  width: 390px;
+  width: calc(50% - 10px);
   height: 120px;
   background-color: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
@@ -160,4 +162,41 @@
   width: 20px;
   height: 20px;
   margin: 20px auto;
+}
+
+@media screen and (max-width: 1050px) {
+  .settings-box {
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .settings-root {
+    overflow: inherit;
+  }
+
+  .settings-box {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .settings-cards-item {
+    width: calc(100%);
+  }
+
+  .settings-cb-box {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .add-card-view-box {
+    width: 100%;
+    padding: 20px 20px;
+  }
 }

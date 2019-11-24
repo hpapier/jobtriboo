@@ -30,7 +30,7 @@ const Chat = ({ t, data, loading, moreLoading, fetchMore, owner, candidate }) =>
   }, [loading]);
 
   return (
-    <div ref={element} className={`chat-root ${loading ? ` -loading` : ` -msg`}`}>
+    <div ref={element} className={`chat-root ${loading ? ` -loading` : ` -msg`}`}>
       {
         loading ?
         <div className='chat-loading'></div> :

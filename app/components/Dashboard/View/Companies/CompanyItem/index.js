@@ -102,23 +102,23 @@ const CompanyItem = ({ data, t, updateCompaniesList }) => {
                 <img src={TotemIconGrey} className='comp-item-icon' alt='totem-icon' />
                 <p className='comp-item-info-box-txt'>{activityArea[0].label}</p>
               </div>
-    
+
               <div className='comp-item-info-box'>
                 <img src={LocalizationIconGrey} style={{ marginLeft: '3px', marginRight: '12px' }} className='comp-item-icon' alt='localization-icon' />
                 <p className='comp-item-info-box-txt'>{data.country}</p>
               </div>
-    
+
               <div className='comp-item-info-box'>
                 <img src={TribeIconGrey} style={{ marginLeft: '3px', marginRight: '14px' }} className='comp-item-icon' alt='tribe-icon' />
                 <p className='comp-item-info-box-txt'>{employeesNumber[0].label}</p>
               </div>
             </div>
-    
+
             <div className='comp-item-left-icons'>
               <button disabled={loading} className='comp-item-left-btn' id='link-btn' onClick={() => router.push(`/companies/${data.name}`)}>
                 <img src={LinkIconGrey} alt='link-icon' id='link-btn' />
               </button>
-    
+
               <button disabled={loading} className='comp-item-left-btn' id='delete-btn' onClick={() => handleDelete()}>
                 <img id='delete-btn' src={DeleteIconGrey} alt='delete-icon' />
               </button>

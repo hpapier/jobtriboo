@@ -25,7 +25,7 @@ const Companies = ({ t }) => {
   const fetchCompanies = async () => {
     if (!isUnmounted.current)
       setLoading(true);
-    
+
     try {
       const res = await getRecruiterCompanies(cookies.token);
       if (res.status === 200) {
@@ -60,7 +60,7 @@ const Companies = ({ t }) => {
     else
       return (
         <div>
-          { companies.length === 0 ? 
+          { companies.length === 0 ?
             <div className='companies-empty'>{t('noCompaniesYet')}</div> :
             companies.map((item, index) => <CompanyItem updateCompaniesList={ndata => setCompanies(ndata)} data={item} key={index} />)
           }
@@ -86,7 +86,7 @@ const Companies = ({ t }) => {
 
       {
         vstate === 'new-company' ?
-        <div>
+        <div className='companies-list-box'>
           <h2 className='companies-root-title'>{t('newCompany')}</h2>
           <NewCompany closeWindow={() => {
               setUp(!up);

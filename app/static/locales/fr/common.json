@@ -272,5 +272,10 @@
   "pricingOfferNoMoreFees": "Aucun frais supplémentaire",
   "postAnAnnounce": "Poster une annonce",
 
-  "unknow": "Non spécifié"
+  "unknow": "Non spécifié",
+
+
+  "myAnnounces": "Mes annonces",
+  "createAnnounces": "Créer une annonce",
+  "newAnnounces": "Nouvelle annonce"
 }

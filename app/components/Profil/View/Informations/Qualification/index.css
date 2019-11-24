@@ -23,6 +23,7 @@
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
+  padding-bottom: 40px;
 }
 
 .qualification-box-triboo {
@@ -35,8 +36,16 @@
 }
 
 .qualification-box-skills {
-  width: calc(100% - 50px);
-  margin-left: 25px;
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.qualification-box-element {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0px;
 }
 
 /* MEDIA */
@@ -57,5 +66,18 @@
 
   .qualification-box-triboo {
     width: 100% !important;
+  }
+
+  .qualification-box-jobname {
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .qualification-box-element {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }

@@ -10,11 +10,22 @@
 }
 
 .new-announces-box {
-  width: 750px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0px auto;
+}
+
+.new-announces-box-item {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.react-datepicker-wrapper {
+  width: calc(100% - 40px);
+  margin: 10px 0px;
 }
 
 .new-announces-triboo-box {
@@ -31,10 +42,11 @@
 }
 
 .new-announces-btn-box {
-  width: 750px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   justify-items: center;
+  flex-wrap: wrap;
   margin: 40px auto;
 }
 
@@ -43,7 +55,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 350px;
+  width: calc(100% - 40px);
   height: 50px;
 }
 
@@ -51,7 +63,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 350px;
+  width: 100%
 }
 
 .new-announces-btn-box-btn {
@@ -60,7 +72,7 @@
   font-size: 1em;
   font-weight: 500;
   color: #fff;
-  width: 170px;
+  width: calc(50% - 25px);
   height: 45px;
   border-radius: 3px;
   display: flex;
@@ -74,6 +86,7 @@
 .-validate {
   background-color: #6B5AED;
   box-shadow: 0px 0px 10px 0px rgba(107, 90, 237, .3);
+  margin: 0px 0px 0px 20px;
 }
 
 .-validate:hover {
@@ -84,6 +97,7 @@
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid red;
   color: red;
+  margin: 0px 20px 0px 0px ;
 }
 
 .-cancel:hover {
@@ -97,4 +111,36 @@
   color: red;
   text-align: center;
   margin: 0px 0px 20px 0px;
+}
+
+@media screen and (max-width: 600px) {
+  .new-announces-triboo-box {
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .new-announces-box-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .new-announces-btn-box-btn {
+    width: calc(50% - 30px);
+  }
+
+  .new-announces-btn-box-b  {
+    justify-content: center;
+  }
+
+  .-validate {
+    margin: 10px 10px;
+  }
+  .-cancel {
+    margin: 10px 10px;
+  }
 }

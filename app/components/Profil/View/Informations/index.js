@@ -50,46 +50,48 @@ const Informations = ({ t }) => {
   }, []);
 
   return (
-    <div className='information-root'>
-      {
-        loading ?
-        <div className='information-root-loading'></div> :
-        <div className='information-root-box'>
-          <div className='information-root-box-btn'>
-            <button className='information-see-public-profil' onClick={() => router.push(`/candidate/${userData.publicId}`)}>
-              {t('seeMyProfil')}
-            </button>
-          </div>
+    <div className='information-comp'>
+      <div className='information-root'>
+        {
+          loading ?
+          <div className='information-root-loading'></div> :
+          <div className='information-root-box'>
+            <div className='information-root-box-btn'>
+              <button className='information-see-public-profil' onClick={() => router.push(`/candidate/${userData.publicId}`)}>
+                {t('seeMyProfil')}
+              </button>
+            </div>
 
-          <ProfilPicture link={userData.picture} updateLink={ndata => setUserData({ ...userData, picture: ndata })} />
-          <Description data={userData.description} updateDesc={ndata => setUserData({ ...userData, description: ndata})} />
-          <Coordinates
-            data={{
-              firstName: userData.firstName,
-              lastName: userData.lastName,
-              country: userData.country,
-              age: userData.age,
-              email: userData.email,
-              prefix: userData.prefixPhoneNumber,
-              phone: userData.phoneNumber
-            }}
-            updateData={ndata => setUserData({ ...userData, ...ndata })}
-          />
-          <Qualification
-            data={{
-              triboo: userData.triboo,
-              jobName: userData.jobName,
-              skills: userData.skills,
-              studyLvl: userData.studyLvl,
-              cv: userData.cv,
-              desiredContract: userData.desiredContract,
-              salaryExpected: userData.salaryExpected,
-              availability: userData.availability
-            }}
-            updateData={ndata => setUserData({ ...userData, ...ndata })}
-          />
-        </div>
-      }
+            <ProfilPicture link={userData.picture} updateLink={ndata => setUserData({ ...userData, picture: ndata })} />
+            <Description data={userData.description} updateDesc={ndata => setUserData({ ...userData, description: ndata})} />
+            <Coordinates
+              data={{
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+                country: userData.country,
+                age: userData.age,
+                email: userData.email,
+                prefix: userData.prefixPhoneNumber,
+                phone: userData.phoneNumber
+              }}
+              updateData={ndata => setUserData({ ...userData, ...ndata })}
+            />
+            <Qualification
+              data={{
+                triboo: userData.triboo,
+                jobName: userData.jobName,
+                skills: userData.skills,
+                studyLvl: userData.studyLvl,
+                cv: userData.cv,
+                desiredContract: userData.desiredContract,
+                salaryExpected: userData.salaryExpected,
+                availability: userData.availability
+              }}
+              updateData={ndata => setUserData({ ...userData, ...ndata })}
+            />
+          </div>
+        }
+      </div>
     </div>
   );
 };

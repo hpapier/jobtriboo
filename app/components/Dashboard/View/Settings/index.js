@@ -15,7 +15,7 @@ import './index.css';
 
 // @component
 const Settings = ({ t }) => {
-  
+
   /* Settings state. */
   const [settings, setSettings] = useState({});
   const [settingsLoading, setSettingsLoading] = useState(true);
@@ -40,7 +40,7 @@ const Settings = ({ t }) => {
       setSettingsLoading(true);
       setSettingsError(false);
     }
-    
+
     try {
 
       const res = await fetchSettings('recruiter', cookies.token);
@@ -72,7 +72,7 @@ const Settings = ({ t }) => {
       setCardsLoading(true);
       setCardsError(false);
     }
-    
+
     try {
 
       const res = await fetchCards(cookies.token);
@@ -100,7 +100,7 @@ const Settings = ({ t }) => {
 
   const convertMonthStringToIntFormated = month => {
     let number = 1;
-  
+
     (month === 'january')   ? number === 1  : null;
     (month === 'february')  ? number === 2  : null;
     (month === 'march')     ? number === 3  : null;
@@ -124,7 +124,7 @@ const Settings = ({ t }) => {
     getCards();
     return () => { isUnmounted.current = true }
   }, []);
-  
+
 
   const handleDeleteCard = async item => {
     try {
@@ -140,7 +140,7 @@ const Settings = ({ t }) => {
 
 
   const handleNewCard = ndata => {
-    setCards(ndata);
+    setCards([ ...cards, ndata]);
     setCardsView('list');
   }
 

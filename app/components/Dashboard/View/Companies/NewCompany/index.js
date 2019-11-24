@@ -112,7 +112,7 @@ const NewCompany = ({ t, closeWindow, update = false }) => {
 
       if (res.status === 200) {
         const rdata = await res.json();
-        if (rdata.state === 'created' || rdata.state === 'updated') {
+        if (rdata.state === 'created' || rdata.state === 'updated') {
           if (!isUnmounted.current) {
             setLoading(false);
             (rdata.state === 'created') ? closeWindow() : closeWindow(rdata.data);
@@ -131,7 +131,6 @@ const NewCompany = ({ t, closeWindow, update = false }) => {
 
     } catch (e) {
       console.log(e);
-      console.log('in catch');
       if (!isUnmounted.current) {
         setLoading(false);
         setError(500);
@@ -141,7 +140,7 @@ const NewCompany = ({ t, closeWindow, update = false }) => {
 
   // Handle the imported file.
   const handleFileChange = (e, item) => {
-    if (e.target.files.length === 0 || e.target.files === undefined)
+    if (e.target.files.length === 0 || e.target.files === undefined)
       return;
 
     const file = e.target.files[0];
@@ -207,6 +206,7 @@ const NewCompany = ({ t, closeWindow, update = false }) => {
           { inputError.logo ? <div className='new-company-label-error'>{t('fileEmptyError')}</div> : null}
           { logoFileError ? <div className='new-company-label-error'>{t('ppSizeError')}</div> : null }
         </div>
+
         <div className='new-company-box-picture'>
           <h2 className='new-company-label'>{t('newCompanyCover')}</h2>
           <div className='new-company-fileSelected'>{cover === null ? t('noFileSelected') : ((typeof cover === 'string')) ? t('fileIsPresent') : (cover.name.length > 50) ? cover.name.substring(0, 50) + '...' : cover.name}</div>
@@ -238,81 +238,98 @@ const NewCompany = ({ t, closeWindow, update = false }) => {
       </button>
 
       <div className='new-company-box'>
-        <Input
-          error={inputError.name}
-          label={t('companyName')}
-          placeholder={t('phCompanyName')}
-          value={name}
-          setValue={setName}
-          formatErrorMsg={t('emptyOrTooLongError')}
-          type='text'
-          loading={loading}
-          width={350}
-          margin='10px 20px'
-        />
-        <Input
-          error={inputError.email}
-          label={t('companyEmail')}
-          placeholder={t('phCompanyEmail')}
-          value={email}
-          setValue={setEmail}
-          formatErrorMsg={t('emptyOrInvalidFormatError')}
-          type='email'
-          loading={loading}
-          width={350}
-          margin='10px 20px'
-        />
-        <Input
-          error={inputError.phone}
-          label={t('companyPhone')}
-          placeholder={t('phCompanyPhone')}
-          value={phone}
-          setValue={setPhone}
-          formatErrorMsg={t('emptyOrInvalidFormatError')}
-          type='text'
-          loading={loading}
-          width={350}
-          margin='10px 20px'
-        />
-        <Input
-          error={inputError.address}
-          label={t('companyAddress')}
-          placeholder={t('phCompanyAddress')}
-          value={address}
-          setValue={setAddress}
-          formatErrorMsg={t('emptyOrTooLongError')}
-          type='text'
-          loading={loading}
-          width={350}
-          margin='10px 20px'
-        />
-        <Input
-          error={inputError.country}
-          label={t('companyCountry')}
-          placeholder={t('phCompanyCountry')}
-          value={country}
-          setValue={setCountry}
-          formatErrorMsg={t('emptyOrTooLongError')}
-          type='text'
-          loading={loading}
-          width={350}
-          margin='10px 20px'
-        />
-        <Select
-          label={t('companyEmployeesNumber')}
-          value={companyEmployeesNumber}
-          setValue={setCompanyEmployeesNumber}
-          optionList={[
-            { label: t('companyEmployeesNumberTiny'), value: 'tiny' },
-            { label: t('companyEmployeesNumberSmall'), value: 'small' },
-            { label: t('companyEmployeesNumberMid'), value: 'mid' },
-            { label: t('companyEmployeesNumberBig'), value: 'big' },
-            { label: t('companyEmployeesNumberHuge'), value: 'huge' }
-          ]}
-          loading={loading}
-          width={350}
-          margin='10px 20px'
-        />
+        <div className='new-company-box-el'>
+          <Input
+            error={inputError.name}
+            label={t('companyName')}
+            placeholder={t('phCompanyName')}
+            value={name}
+            setValue={setName}
+            formatErrorMsg={t('emptyOrTooLongError')}
+            type='text'
+            loading={loading}
+            width='100%'
+            margin='10px 20px'
+          />
+        </div>
+
+        <div className='new-company-box-el'>
+          <Input
+            error={inputError.email}
+            label={t('companyEmail')}
+            placeholder={t('phCompanyEmail')}
+            value={email}
+            setValue={setEmail}
+            formatErrorMsg={t('emptyOrInvalidFormatError')}
+            type='email'
+            loading={loading}
+            width='100%'
+            margin='10px 20px'
+          />
+        </div>
+
+        <div className='new-company-box-el'>
+          <Input
+            error={inputError.phone}
+            label={t('companyPhone')}
+            placeholder={t('phCompanyPhone')}
+            value={phone}
+            setValue={setPhone}
+            formatErrorMsg={t('emptyOrInvalidFormatError')}
+            type='text'
+            loading={loading}
+            width='100%'
+            margin='10px 20px'
+          />
+        </div>
+
+        <div className='new-company-box-el'>
+          <Input
+            error={inputError.address}
+            label={t('companyAddress')}
+            placeholder={t('phCompanyAddress')}
+            value={address}
+            setValue={setAddress}
+            formatErrorMsg={t('emptyOrTooLongError')}
+            type='text'
+            loading={loading}
+            width='100%'
+            margin='10px 20px'
+          />
+        </div>
+
+        <div className='new-company-box-el'>
+          <Input
+            error={inputError.country}
+            label={t('companyCountry')}
+            placeholder={t('phCompanyCountry')}
+            value={country}
+            setValue={setCountry}
+            formatErrorMsg={t('emptyOrTooLongError')}
+            type='text'
+            loading={loading}
+            width='100%'
+            margin='10px 20px'
+          />
+        </div>
+
+        <div className='new-company-box-el'>
+          <Select
+            label={t('companyEmployeesNumber')}
+            value={companyEmployeesNumber}
+            setValue={setCompanyEmployeesNumber}
+            optionList={[
+              { label: t('companyEmployeesNumberTiny'), value: 'tiny' },
+              { label: t('companyEmployeesNumberSmall'), value: 'small' },
+              { label: t('companyEmployeesNumberMid'), value: 'mid' },
+              { label: t('companyEmployeesNumberBig'), value: 'big' },
+              { label: t('companyEmployeesNumberHuge'), value: 'huge' }
+            ]}
+            loading={loading}
+            width='calc(100% - 40px)'
+            margin='10px 20px'
+          />
+        </div>
       </div>
 
       <div className='new-company-box'>
@@ -323,51 +340,59 @@ const NewCompany = ({ t, closeWindow, update = false }) => {
           placeholder={t('phCompanyDescription')}
           loading={loading}
           error={inputError.description}
-          width={760}
-          margin='40px 0px 40px 20px'
+          width='100%'
+          margin='40px 20px 40px 20px'
           errMsg={t('emptyOrTooLongError')}
         />
       </div>
 
       <div className='new-company-box'>
-        <Select
-          label={t('companyActivityArea')}
-          value={activityArea}
-          setValue={setActivityArea}
-          optionList={[
-            { label: t('commercial'), value: 'commercial' },
-            { label: t('tech'), value: 'tech' },
-            { label: t('engineering'), value: 'engineering' },
-            { label: t('retail'), value: 'retail' },
-          ]}
-          loading={loading}
-          width={350}
-          margin='10px 20px'
-        />
-        <Input
-          error={inputError.NIF}
-          label={t('companyNIF')}
-          placeholder={t('phCompanyNIF')}
-          value={NIF}
-          setValue={setNIF}
-          formatErrorMsg={t('emptyOrTooLongError')}
-          type='text'
-          loading={loading}
-          width={350}
-          margin='10px 20px'
-        />
-        <Input
-          error={inputError.link}
-          label={t('companyLink')}
-          placeholder={t('phCompanyLink')}
-          value={link}
-          setValue={setLink}
-          formatErrorMsg={t('emptyOrTooLongError')}
-          type='text'
-          loading={loading}
-          width={350}
-          margin='10px 20px'
-        />
+        <div className='new-company-box-el'>
+          <Select
+            label={t('companyActivityArea')}
+            value={activityArea}
+            setValue={setActivityArea}
+            optionList={[
+              { label: t('commercial'), value: 'commercial' },
+              { label: t('tech'), value: 'tech' },
+              { label: t('engineering'), value: 'engineering' },
+              { label: t('retail'), value: 'retail' },
+            ]}
+            loading={loading}
+            width='calc(100% - 40px)'
+            margin='10px 20px'
+          />
+        </div>
+
+        <div className='new-company-box-el'>
+          <Input
+            error={inputError.NIF}
+            label={t('companyNIF')}
+            placeholder={t('phCompanyNIF')}
+            value={NIF}
+            setValue={setNIF}
+            formatErrorMsg={t('emptyOrTooLongError')}
+            type='text'
+            loading={loading}
+            width='100%'
+            margin='10px 20px'
+          />
+        </div>
+
+        <div className='new-company-box-el'>
+          <Input
+            error={inputError.link}
+            label={t('companyLink')}
+            placeholder={t('phCompanyLink')}
+            value={link}
+            setValue={setLink}
+            formatErrorMsg={t('emptyOrTooLongError')}
+            type='text'
+            loading={loading}
+            width='100%'
+            margin='10px 20px'
+          />
+        </div>
       </div>
 
       <button type='submit' className='new-company-btn-validation'>

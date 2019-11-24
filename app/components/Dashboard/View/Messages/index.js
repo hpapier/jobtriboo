@@ -21,7 +21,7 @@ const Messages = ({ t, logInfo }) => {
   const [cookies, _, __] = useCookies();
 
   const socket = useRef(null);
-  const roomsRef = useRef([]); 
+  const roomsRef = useRef([]);
 
   const [selectedRoom, setSelectedRoom] = useState(null);
 
@@ -98,7 +98,7 @@ const Messages = ({ t, logInfo }) => {
             <Room userState='recruiter' logInfo={logInfo} data={selectedRoom} />
           }
         </div>
-      }    
+      }
     </div>
   );
 }

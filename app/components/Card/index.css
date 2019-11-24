@@ -1,8 +1,5 @@
 .card-root {
-  width: 350px;
-  margin-left: 25px;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  width: 100%;
 }
 
 .card-label-box {
@@ -103,6 +100,7 @@
 .-medium {
   width: 350px;
 }
+
 .-small {
   width: 170px !important;
 }
@@ -156,6 +154,11 @@
 .card-date-box {
   display: flex;
   justify-content: space-between;
+}
+
+.card-date-box-mid {
+  width: calc(50% - 5px);
+  position: relative;
 }
 
 .card-empty-list {
