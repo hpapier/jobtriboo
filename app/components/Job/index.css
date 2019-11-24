@@ -11,18 +11,17 @@
 .job-head {
   display: flex;
   justify-content: space-between;
-  height: 150px;
   width: 100%;
   background-color: #fff;
   border-radius: 1px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
   box-sizing: border-box;
+  padding: 10px 0px;
 }
 
 .job-head-ib {
   display: flex;
   height: 100%;
-  align-items: center;
 }
 
 .job-head-logo {
@@ -32,14 +31,16 @@
   border-radius: 5px;
   background-color: #f2f3ff;
   margin-left: 20px;
+  margin-top: 15px;
 }
 
 .job-head-tbox {
-  height: 115px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-left: 25px;
+  padding: 20px 0px;
 }
 
 .job-head-tbox-title {
@@ -51,16 +52,18 @@
 
 .job-head-tbox-info {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .job-head-tbox-info-box {
   display: flex;
-  padding: 0px 20px;
-  height: 30px;
+  padding: 5px 20px;
   background-color: #f2f3ff;
   border-radius: 3px;
   align-items: center;
   margin-right: 10px;
+  margin-bottom: 5px;
+  min-height: 45px;
 }
 
 .job-head-tbox-info-box-icon {}
@@ -305,4 +308,64 @@
   text-transform: uppercase;
   margin-right: 25px;
   opacity: .5;
+}
+
+
+@media screen and (max-width: 1050px) {
+  .job-root {
+    width: calc(100% - 40px);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .job-body {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .job-body-left {
+    width: 100%;
+  }
+
+  .job-body-right {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .job-body-right-box {
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
+    width: calc(50% - 5px);
+    margin-bottom: 20px;
+    padding-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .job-head {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+
+  .job-body-right {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .job-body-right-box {
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .05);
+    width: 100%;
+    margin-bottom: 10px;
+    padding-bottom: 30px;
+  }
 }

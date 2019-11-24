@@ -1,4 +1,4 @@
-.jobs-root {
+.companies-comp-root {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -6,13 +6,13 @@
   padding-top: 100px;
 }
 
-.jobs-box {
+.companies-comp-box {
   width: 1000px;
   display: flex;
   flex-direction: column;
 }
 
-.jobs-box-label {
+.companies-comp-box-label {
   font-family: 'Roboto', sans-serif;
   font-size: 1.2em;
   font-weight: 500;
@@ -24,27 +24,37 @@
   font-size: 1em;
 }
 
-.jobs-box-menu {
+.companies-comp-box-menu {
   width: 100%;
   display: flex;
   height: 60px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
 }
 
-.jobs-box-menu-input {
+.companies-comp-box-menu-input {
   display: flex;
-  width: 500px;
+  width: 50%;
   height: 100%;
   border-right: 1px solid rgba(64, 70, 96, 0.1);
   box-sizing: border-box;
   background-color: #fff;
 }
 
-.jobs-box-menu-input-icon {
+.companies-comp-box-menu-element {
+  width: 50%;
+  display: flex;
+}
+
+.companies-comp-box-menu-btn {
+  width: 50%;
+  display: flex;
+}
+
+.companies-comp-box-menu-input-icon {
   margin: 0px 15px 0px 25px;
 }
 
-.jobs-box-menu-input-el {
+.companies-comp-box-menu-input-el {
   all: unset;
   width: 100%;
   height: 100%;
@@ -54,15 +64,16 @@
   color: #404660;
 }
 
-.jobs-box-menu-input-el::placeholder {
+.companies-comp-box-menu-input-el::placeholder {
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 400;
   color: #404660;
   opacity: .5;
+  width: 50%;
 }
 
-.jobs-box-menu-box {
+.companies-comp-box-menu-box {
   background-color: #fff;
   height: 100%;
   display: flex;
@@ -77,15 +88,17 @@
   position: relative;
   cursor: pointer;
   transition: .1s;
+  width: 100%;
+  height: 60px;
 }
 
-.jobs-box-menu-box-icon {
+.companies-comp-box-menu-box-icon {
   width: 8px;
   height: 8px;
   opacity: .3;
 }
 
-.jobs-box-menu-box-list {
+.companies-comp-box-menu-box-list {
   position: absolute;
   background-color: red;
   top: 61px;
@@ -94,8 +107,9 @@
   z-index: 1;
 }
 
-.jobs-box-menu-box:hover {
-  color: rgba(64, 70, 96, .9);
+.companies-comp-box-menu-box:hover {
+  /* color: rgba(64, 70, 96, .9); */
+  color: #6B5AED;
 }
 
 .-closed {
@@ -107,13 +121,14 @@
   transform: rotate(180deg);
 }
 
-.jobs-box-m {
+.companies-comp-box-m {
   display: flex;
   justify-content: center;
   position: relative;
+  width: calc(100% / 3);
 }
 
-.jobs-box-menu-box-list-input {
+.companies-comp-box-menu-box-list-input {
   all: unset;
   width: 110px;
   height: 40px;
@@ -128,16 +143,16 @@
   padding: 0px 5px;
 }
 
-.jobs-box-menu-box-list-input::placeholder {
+.companies-comp-box-menu-box-list-input::placeholder {
   font-weight: 300;
 }
 
-.jobs-box-menu-box-list-input:focus {
+.companies-comp-box-menu-box-list-input:focus {
   border-color: #6B5AED !important;
   transition: .2s;
 }
 
-.jobs-box-menu-box-list-input:hover {
+.companies-comp-box-menu-box-list-input:hover {
   border-color: rgba(64, 70, 96, .4);
   transition: .2s;
 }
@@ -222,7 +237,7 @@
   }
 }
 
-.jobs-box-loading {
+.companies-comp-box-loading {
   animation-name: jb-loading;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -235,7 +250,7 @@
   margin: 50px auto 20px auto;
 }
 
-.jobs-box-loading-txt {
+.companies-comp-box-loading-txt {
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 400;
@@ -244,20 +259,92 @@
   text-align: center;
 }
 
-.companies-item {
-  width: 325px;
+.companies-comp-item {
   cursor: pointer;
   transition: .2s;
 }
 
-.companies-item:hover {
+.companies-comp-item:hover {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.08);
 }
 
-.companies-error-msg {
+.companies-comp-msg-error {
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 400;
-  color:red;
+  color: red;
   text-align: center;
+  margin-top: 20px;
+}
+
+
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1050px) {
+  .companies-comp-box {
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .companies-comp-box {
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .companies-comp-box-menu-input {
+    width: 100%;
+    height: 60px;
+  }
+
+  .companies-comp-box-menu-element {
+    width: 100%;
+  }
+
+  .companies-comp-box-menu-btn {
+    width: 100%;
+    height: 60px;
+  }
+
+  .companies-comp-box-menu {
+    width: 100%;
+    flex-wrap: wrap;
+    height: 100%;
+  }
+
+  .companies-comp-box-menu-box {
+    border-top: 1px solid rgba(64, 70, 96, 0.1);
+  }
+
+  .jbmbl-triboo {
+    left: 0px;
+  }
+
+  .jbmbl-contract {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .companies-comp-box-menu-btn {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .companies-comp-box-m {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 50%;
+    height: 60px;
+  }
+
+  .jbmbl-location {
+    left: 0px;
+  }
 }

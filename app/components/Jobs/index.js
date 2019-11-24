@@ -24,6 +24,7 @@ const JobsComponent = ({ t, data }) => {
   const [jobs, setJobs] = useState(data.announces);
   const [count, setCount] = useState(data.count);
   const [offset, setOffset] = useState(0);
+  const [windowSize, setWindowSize] = useState(0);
 
 
   /* Search State */
@@ -136,7 +137,7 @@ const JobsComponent = ({ t, data }) => {
     handleUpdateMechanism({ ...qdata, search: inputValue }, null, () => null);
     setSearch(inputValue);
   }
-  
+
   const qdata = { offset, search, triboo: tribooSelected, contractsType: contractCheckBox, location: locationList, salary };
 
   useEffect(() => {
@@ -146,12 +147,25 @@ const JobsComponent = ({ t, data }) => {
         handleUpdateMechanism({ ...qdata, offset: jobs.length + 20 }, null, () => null, true);
     });
 
+    window.addEventListener('resize', e => {
+      if (!isUnmounted.current)
+        setWindowSize(e.srcElement.innerWidth)
+    })
+
+    setWindowSize(window.innerWidth);
+
     return () => {
       isUnmounted.current = true
       window.removeEventListener('scroll', (e) => console.log(e))
+      window.removeEventListener('resize', (e) => console.log(e))
     };
 
   }, []);
+
+  useEffect(() => {
+    const tribeElement = document.getElementsByClassName('jbmbl-triboo');
+    tribeElement[0].style.width = (windowSize > 640 || windowSize === 0 ? '600px' : `${windowSize - 40}px`);
+  });
 
   const router = useRouter();
 
@@ -160,7 +174,7 @@ const JobsComponent = ({ t, data }) => {
       <div className='jobs-box'>
         <h2 className='jobs-box-label'>{t('findYourDreamJobs')}</h2>
         <div className='jobs-box-menu'>
-          <div className='jobs-box-menu-input'> 
+          <div className='jobs-box-menu-input'>
             <img src={SearchIconGrey} alt='search-icon' className='jobs-box-menu-input-icon' />
             <input
               value={search}
@@ -171,106 +185,109 @@ const JobsComponent = ({ t, data }) => {
             />
           </div>
 
-          <div className='jobs-box-m'>
-            <div className='jobs-box-menu-box' style={{ width: '120px' }} onClick={() => handleMenu(!tribooMenuOpened, setTribooMenuOpened)}>
-              {t('triboo')}
-              <img
-                src={DropdownIconGrey}
-                alt='menu-icon'
-                className={`jobs-box-menu-box-icon ${tribooMenuOpened ? `-icon-opened` : ``}`} />
-            </div>
-            <div
-              className={`jobs-box-menu-box-list ${!tribooMenuOpened ? `-closed` : ``}`}
-              style={{
-                width: '600px',
-                display: 'flex',
-                justifyContent: 'center',
-                padding: '20px 0px',
-                borderRadius: '5px'
-              }}
-            >
-              <TribooSelect isPublic size='small' updateTriboo={ndata => handleUpdateMechanism({ ...qdata, triboo: (ndata === tribooSelected) ? '' : ndata }, ((ndata === tribooSelected) ? '' : ndata), setTribooSelected)} selectedTriboo={tribooSelected} />
-            </div>
-          </div>
+          <div className='jobs-box-menu-btn'>
 
-          <div className='jobs-box-m'>
-            <div className='jobs-box-menu-box' style={{ width: '120px' }} onClick={() => handleMenu(!contractMenuOpened, setContractMenuOpened)}>
-              {t('contract')}
-              <img
-                src={DropdownIconGrey}
-                alt='menu-icon'
-                className={`jobs-box-menu-box-icon ${contractMenuOpened ? `-icon-opened` : ``}`} />
-            </div>
-            <div style={{ width: '150px', borderRadius: '5px', padding: '10px 0px' }} className={`jobs-box-menu-box-list ${!contractMenuOpened ? `-closed` : ``}`}>
-              {contracts.map((item, index) => <CheckBox key={index} label={item.label} size={{ width: '20px', height: '20px' }} checked={contractCheckBox[item.value]} setCheckState={ndata => handleUpdateMechanism({ ...qdata, contractsType: { ...contractCheckBox, [item.value]: !contractCheckBox[item.value] }}, ndata, () => setContractCheckBox({ ...contractCheckBox, [item.value]: !contractCheckBox[item.value]}))} />)}
-            </div>
-          </div>
-
-          <div className='jobs-box-m'>
-            <div className='jobs-box-menu-box' style={{ width: '140px' }} onClick={() => handleMenu(!locationMenuOpened, setLocationMenuOpened)}>
-              {t('location')}
-              <img
-                src={DropdownIconGrey}
-                alt='menu-icon'
-                className={`jobs-box-menu-box-icon ${locationMenuOpened ? `-icon-opened` : ``}`} />
-            </div>
-            <div style={{ width: '280px', borderRadius: '5px', display: 'flex', alignItems: 'center', paddingBottom: '10px', flexDirection: 'column' }} className={`jobs-box-menu-box-list ${!locationMenuOpened ? `-closed` : ``}`}>
-              <form className='jbmbl-location-ibox' onSubmit={handleLocationSubmit}>
-                <img src={LocationIconGrey} alt='search-icon' style={{ margin: '0px 10px 0px 15px', opacity: .7 }} />
-                <input
-                  value={location}
-                  onChange={e => setLocation(e.target.value)}
-                  type='text'
-                  className='jbmbl-location-input'
-                  placeholder={t('phLocation')}
-                />
-              </form>
-              <div className='jbmbl-location-item-box'>
-                {
-                  locationList.map((item, index) => 
-                    <div key={index} className='jbmbl-location-item-box-el'>
-                      {item}
-                      <button className='jbmbl-location-item-box-el-btn' onClick={() => handleDeleteLocation(item)}>
-                        <img src={RemoveIconGrey} alt='remove-icon' />
-                      </button>
-                    </div>
-                  )
-                }
+            <div className='jobs-box-m'>
+              <div className='jobs-box-menu-box' onClick={() => handleMenu(!tribooMenuOpened, setTribooMenuOpened)}>
+                {t('triboo')}
+                <img
+                  src={DropdownIconGrey}
+                  alt='menu-icon'
+                  className={`jobs-box-menu-box-icon ${tribooMenuOpened ? `-icon-opened` : ``}`} />
+              </div>
+              <div
+                className={`jobs-box-menu-box-list jbmbl-triboo ${!tribooMenuOpened ? `-closed` : ``}`}
+                style={{
+                  // width: process.browser ? (windowSize > 640 ? '600px' : `${windowSize - 40}px`) : '600px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  padding: '20px 0px',
+                  borderRadius: '5px'
+                }}
+              >
+                <TribooSelect isPublic size='small' updateTriboo={ndata => handleUpdateMechanism({ ...qdata, triboo: (ndata === tribooSelected) ? '' : ndata }, ((ndata === tribooSelected) ? '' : ndata), setTribooSelected)} selectedTriboo={tribooSelected} />
               </div>
             </div>
-          </div>
 
-          <div className='jobs-box-m' style={{ justifyContent: 'flex-end' }}>
-            <div className='jobs-box-menu-box' style={{ width: '120px' }} onClick={() => handleMenu(!salaryMenuOpened, setSalaryMenuOpened)}>
-              {t('salary')}
-              <img
-                src={DropdownIconGrey}
-                alt='menu-icon'
-                className={`jobs-box-menu-box-icon ${salaryMenuOpened ? `-icon-opened` : ``}`} />
-            </div>
-            <div style={{ width: '300px', display: 'flex', justifyContent: 'center', paddingBottom: '20px', borderRadius: '5px' }} className={`jobs-box-menu-box-list ${!salaryMenuOpened ? `-closed` : ``}`}>
-              <div style={{ margin: '0px 10px' }}>
-                <h2 className='jbmb-label'>{t('minimum')}</h2>
-                <input
-                  value={salary.min}
-                  type='number'
-                  placeholder={15}
-                  className='jobs-box-menu-box-list-input'
-                  onChange={e => setSalary({ ...salary, min: e.target.value })}
-                  onBlur={e => handleUpdateMechanism(qdata, null, () => null)}
-                />
+            <div className='jobs-box-m'>
+              <div className='jobs-box-menu-box' onClick={() => handleMenu(!contractMenuOpened, setContractMenuOpened)}>
+                {t('contract')}
+                <img
+                  src={DropdownIconGrey}
+                  alt='menu-icon'
+                  className={`jobs-box-menu-box-icon ${contractMenuOpened ? `-icon-opened` : ``}`} />
               </div>
+              <div style={{ width: '150px', borderRadius: '5px', padding: '10px 0px' }} className={`jobs-box-menu-box-list jbmbl-contract ${!contractMenuOpened ? `-closed` : ``}`}>
+                {contracts.map((item, index) => <CheckBox key={index} label={item.label} size={{ width: '20px', height: '20px' }} checked={contractCheckBox[item.value]} setCheckState={ndata => handleUpdateMechanism({ ...qdata, contractsType: { ...contractCheckBox, [item.value]: !contractCheckBox[item.value] }}, ndata, () => setContractCheckBox({ ...contractCheckBox, [item.value]: !contractCheckBox[item.value]}))} />)}
+              </div>
+            </div>
 
-              <div style={{ margin: '0px 10px' }}>
-                <h2 className='jbmb-label'>{t('maximum')}</h2>
-                <input
-                  value={salary.max}
-                  type='number'
-                  placeholder={100}
-                  className='jobs-box-menu-box-list-input'
-                  onChange={e => setSalary({ ...salary, max: e.target.value })}
-                  onBlur={e => handleUpdateMechanism(qdata, null, () => null)}
-                />
+            <div className='jobs-box-m'>
+              <div className='jobs-box-menu-box' onClick={() => handleMenu(!locationMenuOpened, setLocationMenuOpened)}>
+                {t('location')}
+                <img
+                  src={DropdownIconGrey}
+                  alt='menu-icon'
+                  className={`jobs-box-menu-box-icon ${locationMenuOpened ? `-icon-opened` : ``}`} />
+              </div>
+              <div style={{ width: '280px', borderRadius: '5px', display: 'flex', alignItems: 'center', paddingBottom: '10px', flexDirection: 'column' }} className={`jobs-box-menu-box-list jbmbl-location ${!locationMenuOpened ? `-closed` : ``}`}>
+                <form className='jbmbl-location-ibox' onSubmit={handleLocationSubmit}>
+                  <img src={LocationIconGrey} alt='search-icon' style={{ margin: '0px 10px 0px 15px', opacity: .7 }} />
+                  <input
+                    value={location}
+                    onChange={e => setLocation(e.target.value)}
+                    type='text'
+                    className='jbmbl-location-input'
+                    placeholder={t('phLocation')}
+                  />
+                </form>
+                <div className='jbmbl-location-item-box'>
+                  {
+                    locationList.map((item, index) =>
+                      <div key={index} className='jbmbl-location-item-box-el'>
+                        {item}
+                        <button className='jbmbl-location-item-box-el-btn' onClick={() => handleDeleteLocation(item)}>
+                          <img src={RemoveIconGrey} alt='remove-icon' />
+                        </button>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div className='jobs-box-m' style={{ justifyContent: 'flex-end' }}>
+              <div className='jobs-box-menu-box' onClick={() => handleMenu(!salaryMenuOpened, setSalaryMenuOpened)}>
+                {t('salary')}
+                <img
+                  src={DropdownIconGrey}
+                  alt='menu-icon'
+                  className={`jobs-box-menu-box-icon ${salaryMenuOpened ? `-icon-opened` : ``}`} />
+              </div>
+              <div style={{ width: '300px', display: 'flex', justifyContent: 'center', paddingBottom: '20px', borderRadius: '5px' }} className={`jobs-box-menu-box-list ${!salaryMenuOpened ? `-closed` : ``}`}>
+                <div style={{ margin: '0px 10px' }}>
+                  <h2 className='jbmb-label'>{t('minimum')}</h2>
+                  <input
+                    value={salary.min}
+                    type='number'
+                    placeholder={15}
+                    className='jobs-box-menu-box-list-input'
+                    onChange={e => setSalary({ ...salary, min: e.target.value })}
+                    onBlur={e => handleUpdateMechanism(qdata, null, () => null)}
+                  />
+                </div>
+
+                <div style={{ margin: '0px 10px' }}>
+                  <h2 className='jbmb-label'>{t('maximum')}</h2>
+                  <input
+                    value={salary.max}
+                    type='number'
+                    placeholder={100}
+                    className='jobs-box-menu-box-list-input'
+                    onChange={e => setSalary({ ...salary, max: e.target.value })}
+                    onBlur={e => handleUpdateMechanism(qdata, null, () => null)}
+                  />
+                </div>
               </div>
             </div>
           </div>

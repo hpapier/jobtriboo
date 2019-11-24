@@ -44,11 +44,11 @@ const CheckBox = ({ label, margin = '0px 0px 0px 20px', size = null, request = n
 
   return (
     <div className={`checkbox-root${disabled ? ` -disabled` : ``}`} style={{ margin }}>
-      { size !== null ? 
-        <button style={{ width: size.width, height: size.height }} disabled={loading || disabled} className={`checkbox-btn${checked ? ` -checked` : ``}`} onClick={() => handleClick(!checked)}>
+      { size !== null ?
+        <button style={{ width: size.width, height: size.height }} disabled={loading || disabled} className={`checkbox-btn${checked ? ` -checked` : ``}`} onClick={() => handleClick(!checked)}>
           { checked ? <img src={CheckIcon} /> : null }
         </button> :
-        <button disabled={loading || disabled} className={`checkbox-btn${checked ? ` -checked` : ``}`} onClick={() => handleClick(!checked)}>
+        <button disabled={loading || disabled} className={`checkbox-btn${checked ? ` -checked` : ``}`} onClick={() => handleClick(!checked)}>
           { checked ? <img src={CheckIcon} /> : null }
         </button>
       }

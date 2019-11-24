@@ -26,6 +26,7 @@ const CompaniesComponent = ({ t, data }) => {
   const [companies, setCompanies] = useState(data.companies);
   const [count, setCount] = useState(data.count);
   const [offset, setOffset] = useState(0);
+  const [windowSize, setWindowSize] = useState(0);
 
 
   /* Search State */
@@ -144,6 +145,11 @@ const CompaniesComponent = ({ t, data }) => {
   const qdata = { offset, search, triboo: tribooSelected, country: locationList, size: sizeCheckBox };
 
 
+  useEffect(() => {
+    const tribeElement = document.getElementsByClassName('jbmbl-triboo');
+    tribeElement[0].style.width = (windowSize > 640 || windowSize === 0 ? '600px' : `${windowSize - 40}px`);
+  });
+
   /* Mount/Unmount handling */
   useEffect(() => {
 
@@ -152,120 +158,132 @@ const CompaniesComponent = ({ t, data }) => {
         handleUpdateMechanism({ ...qdata, offset: companies.length + 20 }, null, () => null, true);
     });
 
+    window.addEventListener('resize', e => {
+      if (!isUnmounted.current)
+        setWindowSize(e.srcElement.innerWidth)
+    })
+
+    setWindowSize(window.innerWidth);
+
     return () => {
       isUnmounted.current = true
       window.removeEventListener('scroll', (e) => console.log(e))
+      window.removeEventListener('resize', (e) => console.log(e))
     };
 
   }, []);
 
   return (
-    <div className='jobs-root'>
-      <div className='jobs-box'>
-        <h2 className='jobs-box-label'>{t('findYourDreamCompany')}</h2>
-        <div className='jobs-box-menu'>
-          <div className='jobs-box-menu-input'> 
-            <img src={SearchIconGrey} alt='search-icon' className='jobs-box-menu-input-icon' />
+    <div className='companies-comp-root'>
+      <div className='companies-comp-box'>
+        <h2 className='companies-comp-box-label'>{t('findYourDreamCompany')}</h2>
+        <div className='companies-comp-box-menu'>
+          <div className='companies-comp-box-menu-input'>
+            <img src={SearchIconGrey} alt='search-icon' className='companies-comp-box-menu-input-icon' />
             <input
               value={search}
               onChange={e => handleSearch(qdata, e.target.value)}
-              className='jobs-box-menu-input-el'
+              className='companies-comp-box-menu-input-el'
               type='text'
               placeholder={t('phSearch')}
             />
           </div>
 
-          <div className='jobs-box-m'>
-            <div className='jobs-box-menu-box' style={{ width: '150px' }} onClick={() => handleMenu(!tribooMenuOpened, setTribooMenuOpened)}>
-              {t('triboo')}
-              <img
-                src={DropdownIconGrey}
-                alt='menu-icon'
-                className={`jobs-box-menu-box-icon ${tribooMenuOpened ? `-icon-opened` : ``}`} />
+          <div className='companies-comp-box-menu-element'>
+            <div className='companies-comp-box-m'>
+              <div className='companies-comp-box-menu-box' onClick={() => handleMenu(!tribooMenuOpened, setTribooMenuOpened)}>
+                {t('triboo')}
+                <img
+                  src={DropdownIconGrey}
+                  alt='menu-icon'
+                  className={`companies-comp-box-menu-box-icon ${tribooMenuOpened ? `-icon-opened` : ``}`} />
+              </div>
+              <div
+                className={`companies-comp-box-menu-box-list jbmbl-triboo ${!tribooMenuOpened ? `-closed` : ``}`}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  padding: '20px 0px',
+                  borderRadius: '5px'
+                }}
+              >
+                <TribooSelect isPublic size='small' updateTriboo={ndata => handleUpdateMechanism({ ...qdata, triboo: (ndata === tribooSelected) ? '' : ndata }, ((ndata === tribooSelected) ? '' : ndata), setTribooSelected)} selectedTriboo={tribooSelected} />
+              </div>
             </div>
-            <div
-              className={`jobs-box-menu-box-list ${!tribooMenuOpened ? `-closed` : ``}`}
-              style={{
-                width: '600px',
-                display: 'flex',
-                justifyContent: 'center',
-                padding: '20px 0px',
-                borderRadius: '5px'
-              }}
-            >
-              <TribooSelect isPublic size='small' updateTriboo={ndata => handleUpdateMechanism({ ...qdata, triboo: (ndata === tribooSelected) ? '' : ndata }, ((ndata === tribooSelected) ? '' : ndata), setTribooSelected)} selectedTriboo={tribooSelected} />
-            </div>
-          </div>
 
-          <div className='jobs-box-m'>
-            <div className='jobs-box-menu-box' style={{ width: '150px' }} onClick={() => handleMenu(!sizeMenuOpened, setSizeMenuOpened)}>
-              {t('size')}
-              <img
-                src={DropdownIconGrey}
-                alt='menu-icon'
-                className={`jobs-box-menu-box-icon ${sizeMenuOpened ? `-icon-opened` : ``}`} />
-            </div>
-            <div style={{ width: '280px', borderRadius: '5px', padding: '10px 0px' }} className={`jobs-box-menu-box-list ${!sizeMenuOpened ? `-closed` : ``}`}>
-              {
-                sizes.map((item, index) => 
-                  <CheckBox
-                    key={index}
-                    label={item.label}
-                    size={{ width: '20px', height: '20px' }}
-                    checked={sizeCheckBox[item.value]}
-                    setCheckState={ndata => handleUpdateMechanism({ ...qdata, size: { ...sizeCheckBox, [item.value]: !sizeCheckBox[item.value] }}, ndata, () => setSizeCheckBox({ ...sizeCheckBox, [item.value]: !sizeCheckBox[item.value]}))}
-                  />
-                )
-              }
-            </div>
-          </div>
-
-          <div className='jobs-box-m' style={{ justifyContent: 'flex-end' }}>
-            <div className='jobs-box-menu-box' style={{ width: '200px' }} onClick={() => handleMenu(!locationMenuOpened, setLocationMenuOpened)}>
-              {t('location')}
-              <img
-                src={DropdownIconGrey}
-                alt='menu-icon'
-                className={`jobs-box-menu-box-icon ${locationMenuOpened ? `-icon-opened` : ``}`} />
-            </div>
-            <div style={{ width: '280px', borderRadius: '5px', display: 'flex', alignItems: 'center', paddingBottom: '10px', flexDirection: 'column' }} className={`jobs-box-menu-box-list ${!locationMenuOpened ? `-closed` : ``}`}>
-              <form className='jbmbl-location-ibox' onSubmit={handleLocationSubmit}>
-                <img src={LocationIconGrey} alt='search-icon' style={{ margin: '0px 10px 0px 15px', opacity: .7 }} />
-                <input
-                  value={location}
-                  onChange={e => setLocation(e.target.value)}
-                  type='text'
-                  className='jbmbl-location-input'
-                  placeholder={t('phLocation')}
-                />
-              </form>
-              <div className='jbmbl-location-item-box'>
+            <div className='companies-comp-box-m'>
+              <div className='companies-comp-box-menu-box' onClick={() => handleMenu(!sizeMenuOpened, setSizeMenuOpened)}>
+                {t('size')}
+                <img
+                  src={DropdownIconGrey}
+                  alt='menu-icon'
+                  className={`companies-comp-box-menu-box-icon ${sizeMenuOpened ? `-icon-opened` : ``}`} />
+              </div>
+              <div style={{ width: '280px', borderRadius: '5px', padding: '10px 0px' }} className={`companies-comp-box-menu-box-list ${!sizeMenuOpened ? `-closed` : ``}`}>
                 {
-                  locationList.map((item, index) => 
-                    <div key={index} className='jbmbl-location-item-box-el'>
-                      {item}
-                      <button className='jbmbl-location-item-box-el-btn' onClick={() => handleDeleteLocation(item)}>
-                        <img src={RemoveIconGrey} alt='remove-icon' />
-                      </button>
-                    </div>
+                  sizes.map((item, index) =>
+                    <CheckBox
+                      key={index}
+                      label={item.label}
+                      size={{ width: '20px', height: '20px' }}
+                      checked={sizeCheckBox[item.value]}
+                      setCheckState={ndata => handleUpdateMechanism({ ...qdata, size: { ...sizeCheckBox, [item.value]: !sizeCheckBox[item.value] }}, ndata, () => setSizeCheckBox({ ...sizeCheckBox, [item.value]: !sizeCheckBox[item.value]}))}
+                    />
                   )
                 }
               </div>
             </div>
+
+            <div className='companies-comp-box-m'>
+              <div className='companies-comp-box-menu-box' onClick={() => handleMenu(!locationMenuOpened, setLocationMenuOpened)}>
+                {t('location')}
+                <img
+                  src={DropdownIconGrey}
+                  alt='menu-icon'
+                  className={`companies-comp-box-menu-box-icon ${locationMenuOpened ? `-icon-opened` : ``}`} />
+              </div>
+              <div style={{ width: '280px', right: '0px', borderRadius: '5px', display: 'flex', alignItems: 'center', paddingBottom: '10px', flexDirection: 'column' }} className={`companies-comp-box-menu-box-list ${!locationMenuOpened ? `-closed` : ``}`}>
+                <form className='jbmbl-location-ibox' onSubmit={handleLocationSubmit}>
+                  <img src={LocationIconGrey} alt='search-icon' style={{ margin: '0px 10px 0px 15px', opacity: .7 }} />
+                  <input
+                    value={location}
+                    onChange={e => setLocation(e.target.value)}
+                    type='text'
+                    className='jbmbl-location-input'
+                    placeholder={t('phLocation')}
+                  />
+                </form>
+                <div className='jbmbl-location-item-box'>
+                  {
+                    locationList.map((item, index) =>
+                      <div key={index} className='jbmbl-location-item-box-el'>
+                        {item}
+                        <button className='jbmbl-location-item-box-el-btn' onClick={() => handleDeleteLocation(item)}>
+                          <img src={RemoveIconGrey} alt='remove-icon' />
+                        </button>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+            </div>
+
           </div>
+
+
 
         </div>
       </div>
 
-      <div className='jobs-box' style={{ marginTop: '50px' }}>
-        <h3 className='jobs-box-label -l-small'>{count} {count > 1 ? t('companiesNumber') : t('companyNumber')}</h3>
+      <div className='companies-comp-box' style={{ marginTop: '50px' }}>
+        <h3 className='companies-comp-box-label -l-small'>{count} {count > 1 ? t('companiesNumber') : t('companyNumber')}</h3>
         <div>
           {
             loading ?
             (
               <div>
-                <div className='jobs-box-loading'></div>
-                <div className='jobs-box-loading-txt'>{t('fetchingNewData')}</div>
+                <div className='companies-comp-box-loading'></div>
+                <div className='companies-comp-box-loading-txt'>{t('fetchingNewData')}</div>
               </div>
             ) :
             error ?
