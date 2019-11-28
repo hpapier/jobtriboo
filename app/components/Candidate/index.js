@@ -50,7 +50,7 @@ const JobComponent = ({ t, data }) => {
     <div className='candidate-comp-root'>
       <div className='candidate-comp-head'>
         <div className='candidate-comp-head-ib'>
-          { data.picture === "" ? <div className='candidate-comp-head-logo'></div> : <img className='candidate-comp-head-logo' src={`${serverURL}/${data.picture}`} /> }
+          { data.picture === "" ? <div className='candidate-comp-head-logo'></div> : <img className='candidate-comp-head-logo' src={`${serverURL}${data.picture}`} /> }
           <div className='candidate-comp-head-tbox'>
             <div>
               <h3 className='candidate-comp-head-tbox-title' style={{ opacity: 1, fontWeight: 600, fontSize: '2em' }}>{ data.firstName }</h3>
