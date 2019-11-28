@@ -13,7 +13,7 @@ import { useCookies } from 'react-cookie';
 
 
 // @component
-const Input = ({ t, setFlow }) => {
+const Input = ({ t }) => {
   const [userState, setUserState] = useState('candidate');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -45,7 +45,7 @@ const Input = ({ t, setFlow }) => {
     const CPPN = handleInputPrefix(prefixPhoneNumber);
     const CPN = handleInputNumber(phoneNumber);
 
-    if (!CFN || !CLN || !CE || !CPW || !CPPN || !CPN) {
+    if (!CFN || !CLN || !CE || !CPW || !CPPN || !CPN) {
       setError({
         firstName: !CFN,
         lastName: !CLN,
@@ -92,7 +92,7 @@ const Input = ({ t, setFlow }) => {
           setCookie('token', data.token, { path: '/' });
 
           if (data.userState === 'candidate')
-            setFlow(true);
+            router.push('/profil');
           else if (data.userState === 'recruiter')
             router.push('/dashboard');
 
@@ -223,8 +223,8 @@ const Input = ({ t, setFlow }) => {
             {/* <button className='signup-input-body-fields-btn-pwdFg'>Accept the C.G.U</button> */}
           </div>
 
-          { error.reqRes === 403 ? <div className='signup-input-error'>{t('badId')}</div> : null}  
-          { error.reqRes === 500 ? <div className='signup-input-error'>{t('error500')}</div> : null}  
+          { error.reqRes === 403 ? <div className='signup-input-error'>{t('badId')}</div> : null}
+          { error.reqRes === 500 ? <div className='signup-input-error'>{t('error500')}</div> : null}
 
         </div>
 

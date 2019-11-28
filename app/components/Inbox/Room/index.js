@@ -13,6 +13,8 @@ import { withTranslation } from '../../i18n';
 import Chat from './chat';
 import Loading from '../../Loading';
 
+import { serverURL, socketURL } from '../../../utils/config';
+
 
 // @component
 const Room = ({ logInfo, data, t, userState }) => {
@@ -142,7 +144,7 @@ const Room = ({ logInfo, data, t, userState }) => {
   useEffect(() => {
     fetchData();
 
-    socket.current = io('localhost:3001');
+    socket.current = io(socketURL);
 
     socket.current.on('connect', () => {
       socket.current.emit('join-room', roomData._id);
@@ -173,7 +175,7 @@ const Room = ({ logInfo, data, t, userState }) => {
   return (
     <div className='room-root'>
       <div className='room-candidate-profil'>
-        { userState !== 'recruiter' || (candidate.picture === '' ? <div className='room-candidate-profil-picture'></div> : <img className='room-candidate-profil-picture' src={`http://localhost:3001${candidate.picture}`} />)}
+        { userState !== 'recruiter' || (candidate.picture === '' ? <div className='room-candidate-profil-picture'></div> : <img className='room-candidate-profil-picture' src={`${serverURL}${candidate.picture}`} />)}
         { userState !== 'candidate' || <div className='room-candidate-profil-picture'></div> }
         <div style={{ marginLeft: '15px' }}>
           {

@@ -277,5 +277,9 @@
 
   "myAnnounces": "Mes annonces",
   "createAnnounces": "Créer une annonce",
-  "newAnnounces": "Nouvelle annonce"
+  "newAnnounces": "Nouvelle annonce",
+
+  "fetchingNewData": "Recherche de jobs..",
+
+  "notValidCard": "Oups, carte non-valide ou solde insuffisant!"
 }

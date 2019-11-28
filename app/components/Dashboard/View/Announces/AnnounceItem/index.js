@@ -12,6 +12,7 @@ import LinkIconGrey from '../../../../../static/assets/link_icon_g.svg';
 import DeleteIconGrey from '../../../../../static/assets/delete_icon_g.svg';
 import { withTranslation } from '../../../../i18n';
 import { deleteAnnounce } from '../../../../../utils/request/announces';
+import { serverURL } from '../../../../../utils/config';
 
 
 // @component$
@@ -58,7 +59,7 @@ const AnnounceItem = ({ t, data, updateData, isPublic = false }) => {
   // console.log(data);
   return (
     <div className='announce-item-root'>
-      {data.company === null ? <div className='announce-item-company'></div> : <img src={`http://localhost:3001${data.companyInfo[0].logo}`} alt='company-logo' className='announce-item-company' />}
+      {data.company === null ? <div className='announce-item-company'></div> : <img src={`${serverURL}${data.companyInfo[0].logo}`} alt='company-logo' className='announce-item-company' />}
       <div className='announce-item-box'>
         <div className='announce-item-box-title'>{data.title}</div>
         <div className='announce-item-box-cpname'>{data.company !== null ? data.companyInfo[0].name : t('anonymous')}</div>
@@ -70,7 +71,7 @@ const AnnounceItem = ({ t, data, updateData, isPublic = false }) => {
 
           <div className='announce-item-box-details-box'>
             <p style={{ margin: 0, fontWeight: 500, fontSize: '1em' }} className='announce-item-box-details-txt'>€</p>
-            <p className='announce-item-box-details-txt' style={{ marginTop: '2px' }}>{data.salary.min} - {data.salary.max}</p>
+            <p className='announce-item-box-details-txt' style={{ marginTop: '2px' }}>{data.salary.min}k - {data.salary.max}k</p>
           </div>
 
           <div className='announce-item-box-details-box'>

@@ -83,6 +83,16 @@
   box-sizing: border-box;
 }
 
+.new-announces-btn-box-btn:disabled {
+  opacity: .5;
+  cursor: default;
+}
+
+.new-announces-box-item-cardsection {
+  width: calc(50% - 40px);
+  margin-left: 20px;
+}
+
 .-validate {
   background-color: #6B5AED;
   box-shadow: 0px 0px 10px 0px rgba(107, 90, 237, .3);
@@ -111,6 +121,13 @@
   color: red;
   text-align: center;
   margin: 0px 0px 20px 0px;
+}
+
+@media screen and (max-width: 800px) {
+  .new-announces-box-item-cardsection {
+    width: calc(100% - 40px);
+    margin-left: 20px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -142,5 +159,12 @@
   }
   .-cancel {
     margin: 10px 10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .new-announces-box-item-cardsection {
+    width: calc(100% - 20px);
+    margin-left: 10px;
   }
 }

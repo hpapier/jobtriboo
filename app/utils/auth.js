@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-unfetch'
 import { Cookies } from 'react-cookie'
+import { serverURL } from './config';
 
 const cookie = new Cookies();
-const serverUrl = "http://localhost:3001";
 
 export const checkAuth = async ctx => {
   let token = null;
@@ -18,7 +18,8 @@ export const checkAuth = async ctx => {
 
     token = tk[1];
   }
-  // // Client Side 
+
+  // Client Side 
   else {
     console.log('-> CLIENT SIDE AUTH.')
     token = cookie.get('token');
@@ -29,7 +30,7 @@ export const checkAuth = async ctx => {
   }
 
   try {
-    const res = await fetch(serverUrl + "/api/auth", { method: "GET", headers: { "Authorization": token }});
+    const res = await fetch(serverURL + "/api/auth", { method: "GET", headers: { "Authorization": token }});
 
     if (res.status === 200) {
       try {

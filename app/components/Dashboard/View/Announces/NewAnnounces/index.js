@@ -3,6 +3,7 @@ import { useState, forwardRef, useRef, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import Datepicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { injectStripe } from 'react-stripe-elements'
 
 
 // @local import
@@ -10,15 +11,16 @@ import './index.css';
 import { Input, TextArea, Select, ListInput } from '../../../../Form';
 import { withTranslation } from '../../../../i18n';
 import CheckBox from '../../../../CheckBox';
-import Card from '../../../../Card';
+// import Card from '../../../../Card';
+import CardSection from './CardSection';
 import CompaniesList from '../../../../CompaniesList';
 import TribooSelect from '../../../../TribooSelect';
-import { postAnnounce } from '../../../../../utils/request/announces';
+import { postAnnounce, getPaymentIntent } from '../../../../../utils/request/announces';
 import { handleInputText } from '../../../../../utils/input';
-
+import Loading from '../../../../Loading';
 
 // @component
-const NewAnnounces = ({ t, changeView, addAnnounce }) => {
+const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');
   const [level, setLevel] = useState('junior');
@@ -56,15 +58,12 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
     !handleInputText(location, 100) ? NEO.location = true : null;
     !handleInputText(description, 1000) ? NEO.description = true : null;
     benefits.length === 0 ? NEO.benefits = true : null;
-    card === null ? NEO.paiement = true : null;
-
 
     if (
       NEO.title ||
       NEO.location ||
       NEO.description ||
-      NEO.benefits ||
-      NEO.paiement
+      NEO.benefits
     ) {
       if (!isUnmounted.current)
         setInputError(NEO);
@@ -76,6 +75,7 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
   }
 
   const handleValidation = async () => {
+
     // Check each input
     if (!checkInputs())
       return;
@@ -84,15 +84,40 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
       setLoading(true);
 
     try {
-      const data = { triboo, company, title, location, level, description, contractType, salary, benefits, card, sponsoring, startingDate };
-      const res = await postAnnounce(data, cookies.token);
-      if (res.status === 200) {
-        const rdata = await res.json();
-        addAnnounce(rdata);
-        changeView();
+
+      // Proceed to payment
+      try {
+        const res = await getPaymentIntent(cookies.token);
+        if (res.status === 200) {
+          const { clientSecret } = await res.json();
+          const resObject = await stripe.handleCardPayment(clientSecret.client_secret);
+          console.log(resObject);
+          if (resObject.paymentIntent !== undefined) {
+            // If the payment succeed, push the announce to the server
+            const data = { triboo, company, title, location, level, description, contractType, salary, benefits, sponsoring, startingDate };
+            const res = await postAnnounce(data, cookies.token);
+            if (res.status === 200) {
+              const rdata = await res.json();
+              addAnnounce(rdata);
+              changeView();
+            }
+            else
+              throw res.status;
+          }
+          else {
+            if (!isUnmounted.current) {
+              setLoading(false);
+              setInputError({ ...inputError, paiement: true });
+            }
+          }
+        }
+        else
+          throw res.status;
+      } catch (e) {
+        console.log(e);
+        return;
       }
-      else
-        throw res.status;
+
     } catch (e) {
       console.log(e);
       if (!isUnmounted.current) {
@@ -282,9 +307,13 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
       </div>
 
       <h2 className='new-announces-label'>{t('payement')}</h2>
-      <div className='new-announces-box-item'>
-        <Card width='calc(100% - 40px)' setCard={setCard} selectedCard={card} error={inputError.paiement} />
+      <div className='new-announces-box-item-cardsection'>
+      {/* <div className='new-announces-box-item'> */}
+        {/* <Card width='calc(100% - 40px)' setCard={setCard} selectedCard={card} error={inputError.paiement} /> */}
+        <CardSection />
+        { inputError.paiement ? <div className='new-box-error-msg'>{t('notValidCard')}</div> : null}
       </div>
+
 
       <div className='new-announces-btn-box'>
         <div className='new-announces-box-item'>
@@ -293,8 +322,8 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
 
         <div className='new-announces-box-item'>
           <div className='new-announces-btn-box-b'>
-            <button disabled={loading} className='new-announces-btn-box-btn -validate' onClick={handleValidation}>{t('validate')}</button>
-            <button disabled={loading} className='new-announces-btn-box-btn -cancel' onClick={changeView}>{t('cancel')}</button>
+            <button type='submit' disabled={loading} className='new-announces-btn-box-btn -validate' onClick={handleValidation}>{loading ? <Loading size='small' color='white' margin='0px auto' /> : t('validate')}</button>
+            <button type='button' disabled={loading} className='new-announces-btn-box-btn -cancel' onClick={changeView}>{t('cancel')}</button>
           </div>
         </div>
       </div>
@@ -306,4 +335,4 @@ const NewAnnounces = ({ t, changeView, addAnnounce }) => {
 
 
 // @export
-export default withTranslation('common')(NewAnnounces);
+export default injectStripe(withTranslation('common')(NewAnnounces));

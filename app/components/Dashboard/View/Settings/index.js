@@ -166,7 +166,7 @@ const Settings = ({ t }) => {
         </div>
       </div>
 
-      <div className='settings-box'>
+      {/* <div className='settings-box'>
         <div className='settings-box-head'>
           <h2 className='settings-label'>{t('cards')}</h2>
           <button className='settings-cards-add-btn' onClick={() => setCardsView(cardsView === 'add' ? 'list' : 'add')}>
@@ -201,7 +201,7 @@ const Settings = ({ t }) => {
                 }
               </div>
         }
-      </div>
+      </div> */}
     </div>
   );
 };

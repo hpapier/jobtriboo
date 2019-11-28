@@ -9,6 +9,7 @@ import LocationIconGrey from '../../static/assets/localization_icon_g.svg';
 import TotemIconGrey from '../../static/assets/totem_icon_g.svg';
 import TribeIconGrey from '../../static/assets/tribe_icon_g.svg';
 import AnnounceItem from '../Dashboard/View/Announces/AnnounceItem'
+import { serverURL } from '../../utils/config';
 
 
 // @Jobcomponent
@@ -33,7 +34,7 @@ const JobComponent = ({ t, data }) => {
     <div className='company-comp-root'>
       <div className='company-comp-head'>
         <div className='company-comp-head-ib'>
-          <img className='company-comp-head-logo' src={`http://localhost:3001${data.logo}`} />
+          <img className='company-comp-head-logo' src={`${serverURL}${data.logo}`} />
           <div className='company-comp-head-tbox'>
             <div>
               <h3 className='company-comp-head-tbox-title' style={{ opacity: 1, fontSize: '2em' }}>{ data.name }</h3>

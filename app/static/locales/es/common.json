@@ -275,5 +275,9 @@
 
   "myAnnounces": "My announces",
   "createAnnounces": "Create an announce",
-  "newAnnounces": "New announce"
+  "newAnnounces": "New announce",
+
+  "fetchingNewData": "Searching jobs..",
+
+  "notValidCard": "Oh, not a valid card or insufficient funds!"
 }

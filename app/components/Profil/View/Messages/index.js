@@ -10,6 +10,7 @@ import { withTranslation } from '../../../i18n';
 import { getRooms } from '../../../../utils/request/messages';
 import RoomItem from '../../../Inbox/RoomItem';
 import Room from '../../../Inbox/Room';
+import { socketURL } from '../../../../utils/config';
 
 
 // @component
@@ -64,7 +65,7 @@ const Messages = ({ t, logInfo }) => {
 
   useEffect(() => {
     // fetchRooms();
-    socket.current = io('localhost:3001');
+    socket.current = io(socketURL);
 
     socket.current.on('connect', () => {
       socket.current.emit('join-inbox', logInfo.userId);

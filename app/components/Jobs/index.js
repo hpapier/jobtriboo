@@ -113,6 +113,7 @@ const JobsComponent = ({ t, data }) => {
               setCount(rdata.count + count);
             }
           } else {
+            console.log(rdata);
             setJobs(rdata.announces);
             setCount(rdata.count);
           }

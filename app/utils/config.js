@@ -1,0 +1,2 @@
+export const serverURL = process.env.ENV === 'dev' ? process.env.API_URL_DEV : process.env.API_URL_PROD;
+export const socketURL = process.env.ENV === 'dev' ? process.env.SOCKET_URL_DEV : process.env.SOCKET_URL_PROD;

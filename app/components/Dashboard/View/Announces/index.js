@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie';
 // @local import
 import { withTranslation } from '../../../i18n';
 import AddIconGrey from '../../../../static/assets/remove_icon_grey.svg'
-import NewAnnounces from './NewAnnounces';
+import NewAnnounces from './NewAnnounces/Stripe';
 import AnnounceItem from './AnnounceItem';
 import { getRecruiterAnnounces } from '../../../../utils/request/announces';
 import './index.css';

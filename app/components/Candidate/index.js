@@ -10,6 +10,7 @@ import ContractTypeIconGrey from '../../static/assets/contract_icon_g.svg';
 import FeatherIcon from '../../static/assets/feather_icon.svg';
 import TotemIconGrey from '../../static/assets/totem_icon_g.svg';
 import TribeIconGrey from '../../static/assets/tribe_icon_g.svg';
+import { serverURL } from '../../utils/config';
 
 
 // @component
@@ -46,29 +47,29 @@ const JobComponent = ({ t, data }) => {
   ]
 
   return (
-    <div className='candidate-root'>
-      <div className='candidate-head'>
-        <div className='candidate-head-ib'>
-          { data.picture === "" ? <div className='candidate-head-logo'></div> : <img className='candidate-head-logo' src={`http://localhost:3001${data.picture}`} /> }
-          <div className='candidate-head-tbox'>
+    <div className='candidate-comp-root'>
+      <div className='candidate-comp-head'>
+        <div className='candidate-comp-head-ib'>
+          { data.picture === "" ? <div className='candidate-comp-head-logo'></div> : <img className='candidate-comp-head-logo' src={`${serverURL}/${data.picture}`} /> }
+          <div className='candidate-comp-head-tbox'>
             <div>
-              <h3 className='candidate-head-tbox-title' style={{ opacity: 1, fontWeight: 600, fontSize: '2em' }}>{ data.firstName }</h3>
-              <h2 className='candidate-head-tbox-title' style={{ opacity: 1, fontSize: '1em' }}>{ data.jobName === "" ? t('unknow') : data.jobName }</h2>
+              <h3 className='candidate-comp-head-tbox-title' style={{ opacity: 1, fontWeight: 600, fontSize: '2em' }}>{ data.firstName }</h3>
+              <h2 className='candidate-comp-head-tbox-title' style={{ opacity: 1, fontSize: '1em' }}>{ data.jobName === "" ? t('unknow') : data.jobName }</h2>
             </div>
-            <div className='candidate-head-tbox-info'>
-              <div className='candidate-head-tbox-info-box'>
+            <div className='candidate-comp-head-tbox-info'>
+              <div className='candidate-comp-head-tbox-info-box'>
                 {/* <img src={LocationIconGrey} alt='location-icon' className='job-head-tbox-info-box-icon' /> */}
-                <p className='candidate-head-tbox-info-box-txt'>{ data.country === '' ? t('unknow') : data.country }</p>
+                <p className='candidate-comp-head-tbox-info-box-txt'>{ data.country === '' ? t('unknow') : data.country }</p>
               </div>
 
-              <div className='candidate-head-tbox-info-box'>
+              <div className='candidate-comp-head-tbox-info-box'>
                 {/* <div className='euro-icon'>€</div> */}
-                <p className='candidate-head-tbox-info-box-txt'>{ data.age } {t('years')}</p>
+                <p className='candidate-comp-head-tbox-info-box-txt'>{ data.age } {t('years')}</p>
               </div>
 
-              <div className='candidate-head-tbox-info-box'>
+              <div className='candidate-comp-head-tbox-info-box'>
                 {/* <img src={ContractTypeIconGrey} width={35} height={35} alt='contract-type-icon' className='job-head-tbox-info-box-icon' /> */}
-                <p className='candidate-head-tbox-info-box-txt'>{ studiesLvl.filter(item => item.value === data.studyLvl)[0].label }</p>
+                <p className='candidate-comp-head-tbox-info-box-txt'>{ studiesLvl.filter(item => item.value === data.studyLvl)[0].label }</p>
               </div>
             </div>
           </div>
@@ -79,25 +80,25 @@ const JobComponent = ({ t, data }) => {
         </div> */}
       </div>
 
-      <div className='candidate-body'>
-        <div className='candidate-body-left'>
-          <h3 className='candidate-body-label-txt'>{ t('postDescription') }</h3>
-          <hr className='candidate-body-label-hr'/>
-          <p className='candidate-body-left-txt'>{ data.description === '' ? t('unknow') : data.description }</p>
+      <div className='candidate-comp-body'>
+        <div className='candidate-comp-body-left'>
+          <h3 className='candidate-comp-body-label-txt'>{ t('postDescription') }</h3>
+          <hr className='candidate-comp-body-label-hr'/>
+          <p className='candidate-comp-body-left-txt'>{ data.description === '' ? t('unknow') : data.description }</p>
         </div>
 
-        <div className='candidate-body-right'>
-          <div className='candidate-body-right-box'>
-            <h3 className='candidate-body-label-txt'>{ t('skillsAndExperience') }</h3>
-            <hr className='candidate-body-label-hr'/>
-            <div className='candidate-body-right-benefit'>
+        <div className='candidate-comp-body-right'>
+          <div className='candidate-comp-body-right-box'>
+            <h3 className='candidate-comp-body-label-txt'>{ t('skillsAndExperience') }</h3>
+            <hr className='candidate-comp-body-label-hr'/>
+            <div className='candidate-comp-body-right-benefit'>
               {
                 data.skills.length === 0 ?
-                <div className='candidate-unknow'>{t('unknow')}</div> :
+                <div className='candidate-comp-unknow'>{t('unknow')}</div> :
                 data.skills.map((item, index) =>
-                  <div key={index} className='candidate-body-left-benefit-item'>
-                    <p className='candidate-body-left-benefit-item-label'>{item.name}</p>
-                    <p className='candidate-body-left-benefit-item-label'>{item.xp}</p>
+                  <div key={index} className='candidate-comp-body-left-benefit-item'>
+                    <p className='candidate-comp-body-left-benefit-item-label'>{item.name}</p>
+                    <p className='candidate-comp-body-left-benefit-item-label'>{item.xp} {item.xp > 1 ? t('years') : t('year')}</p>
                   </div>
                 )
               }

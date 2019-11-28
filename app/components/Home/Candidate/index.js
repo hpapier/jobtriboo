@@ -21,7 +21,7 @@ const Home = ({ t, data }) => {
   // Triboo state.
   const [selectedTriboo, setSelectedTriboo] = useState('commercial');
   const { announces, companies } = data;
-  const preFiltredAnnounces = announces.filter(item => item.triboo === selectedTriboo);
+  const preFiltredAnnounces = announces ? announces.filter(item => item.triboo === selectedTriboo) : [];
   const filtredAnnounces = preFiltredAnnounces.filter((item, index) => {
     if (process.browser) {
       if (window.innerWidth < 600) {
@@ -48,7 +48,7 @@ const Home = ({ t, data }) => {
   const router = useRouter();
   const isUnmounted = useRef(false);
 
-  const filtredCompanies = companies.filter((item, index) => {
+  const filtredCompanies = companies ? companies.filter((item, index) => {
     if (process.browser) {
       if (window.innerWidth < 700) {
         if (index > 1)
@@ -67,7 +67,7 @@ const Home = ({ t, data }) => {
     }
     else
       return true;
-  })
+  }) : [];
 
   const contracts = [
     { value: 'internship', label: t('dsrCt.internship') },

@@ -7,6 +7,7 @@ import TotemIconGrey from '../../../static/assets/totem_icon_g.svg';
 import LocationIconGrey from '../../../static/assets/localization_icon_g.svg';
 import TribeIconGrey from '../../../static/assets/tribe_icon_g.svg';
 import './index.css';
+import { serverURL } from '../../../utils/config';
 
 
 // @component
@@ -28,8 +29,8 @@ const CompanyItem = ({ t, data }) => {
   return (
     <div className='company-item-root'>
       <div className='company-item-root-cover-fill'></div>
-      { data.cover !== null ? <img src={`http://localhost:3001${data.cover}`} className='company-item-root-cover' /> : <div className='company-item-root-cover'></div>}
-      { data.logo !== null ? <img src={`http://localhost:3001${data.logo}`} className='company-item-root-logo' /> : <div className='company-item-root-logo'></div> }
+      { data.cover !== null ? <img src={`${serverURL}${data.cover}`} className='company-item-root-cover' /> : <div className='company-item-root-cover'></div>}
+      { data.logo !== null ? <img src={`${serverURL}${data.logo}`} className='company-item-root-logo' /> : <div className='company-item-root-logo'></div> }
 
       <div className='company-item-root-ibox'>
         <h3 className='company-item-root-ibox-name'>{data.name}</h3>

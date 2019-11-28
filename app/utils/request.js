@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-unfetch'
-
-const serverURL= "http://localhost:3001";
+import { serverURL } from './config';
 
 export const request = async (path, options = null) => {
   try {
@@ -15,7 +14,7 @@ export const request = async (path, options = null) => {
         headers: options.headers
       }
     );
-      
+
     return response;
   } catch (e) {
     throw e;

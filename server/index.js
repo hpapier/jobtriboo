@@ -3,10 +3,14 @@ const jwt = require("jsonwebtoken");
 const fs = require('fs');
 const randomize = require('randomatic');
 const app = express();
+const stripe = require('stripe')('sk_test_oIwLWkcb9toURXqbtRflOfWD001uoQR4oD');
 
 const { recruiterTokenCheck, candidateTokenCheck, basicTokenCheck } = require('./verification');
 
 const { handleInputText, handleInputEmail, handleInputPrefix, handleInputNumber } = require('./utils/input');
+const { APP_URL } = require('./config');
+
+console.log(APP_URL);
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -16,8 +20,9 @@ const jwtSecret = "qkslfkjdsq123RESFRZ2sdsdf";
 const port = 3001;
 
 const cors = require('cors');
+console.log()
 const corsOptions = {
-  origin: 'http://localhost:3000'
+  origin: APP_URL
 }
 
 const mongoose = require('mongoose');
@@ -645,7 +650,7 @@ app.post('/api/register', async (req, res) => {
     res.status(200).send({ errorMsg: 'formatError' });
     return;
   }
-    
+
   /* Check the availibility of the email received. */
   let itemFind = [];
 
@@ -902,7 +907,7 @@ app.put('/api/profil/skills/update', candidateTokenCheck, async (req, res) => {
 app.put('/api/profil/:info', candidateTokenCheck, async(req, res) => {
   const { info } = req.params;
   const { data, email } = req.body;
-  
+
   console.log('--> /api/profil/' + info);
   console.log(data)
   try {
@@ -1287,6 +1292,20 @@ app.get('/api/recruiter/announces', recruiterTokenCheck, async (req, res) => {
 
 
 
+// Create an Intent and send a client-secret for the payement.
+app.get('/api/recruiter/announce/intent', recruiterTokenCheck, async (req, res) => {
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({ amount: 50000, currency: 'eur' });
+
+    res.status(200).send({ clientSecret: paymentIntent });
+    return;
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
+
+
 
 app.post('/api/recruiter/announces', recruiterTokenCheck, async (req, res) => {
   console.log('-> /api/recruiter/announces (POST):');
@@ -1295,7 +1314,7 @@ app.post('/api/recruiter/announces', recruiterTokenCheck, async (req, res) => {
 
   try {
     const publicId = randomize('Aa0', 15);
-    const newAnnounce = new announcesModel({ ...data, publicId, card: data.card._id, company: (data.company !== 'anonymous') ? data.company._id : null });
+    const newAnnounce = new announcesModel({ ...data, publicId, company: (data.company !== 'anonymous') ? data.company._id : null });
     const rdata = await newAnnounce.save();
 
     if (rdata === null)
@@ -1455,16 +1474,17 @@ app.post('/api/jobs', async (req, res) => {
   contractor  ? contractArray.push('contractor')  : null;
   (contractArray.length !== 0) ? query.contractType = { $in: contractArray } : null;
 
-  query['salary.min'] = { $gte: data.salary.min };
-  query['salary.max'] = { $lte: data.salary.max };
+  query['salary.min'] = { $gte: (data.salary.min === '') ? 0 : parseInt(data.salary.min) };
+  query['salary.max'] = { $lte: (data.salary.max === '') ? 0 : parseInt(data.salary.max) };
 
   try {
+    console.log(query);
     const count = await announcesModel.countDocuments(query);
     const announces = await announcesModel.aggregate([
       { $match: query },
       { $limit: 20 },
       { $skip: data.offset },
-      { 
+      {
         $lookup: {
           from: 'companies',
           localField: 'company',
@@ -1480,7 +1500,7 @@ app.post('/api/jobs', async (req, res) => {
     //   for (let i = 0; i < 5; i++)
     //     ann.push(announces[0]);
     // }
-    
+
     res.status(200).send({ count, announces });
     // res.status(200).send({ count, announces });
   } catch (e) {

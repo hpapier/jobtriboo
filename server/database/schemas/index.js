@@ -54,7 +54,6 @@ const announceSchema = new mongoose.Schema({
   description: String,
   contractType: String,
   benefits: [String],
-  card: mongoose.Types.ObjectId,
   sponsoring: Boolean,
   startingDate: Date,
   triboo: String,

@@ -15,3 +15,7 @@ export const deleteAnnounce = async (data, token) => {
 export const apply = async (data, token) => {
   return await request('/api/candidate/apply', { method: 'POST', body: { data }, headers: { 'Authorization': token, 'Content-Type': 'application/json' }});
 }
+
+export const getPaymentIntent = async token => {
+  return await request('/api/recruiter/announce/intent', { method: 'GET', headers: { 'Authorization': token }})
+}

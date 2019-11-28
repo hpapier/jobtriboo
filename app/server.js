@@ -13,13 +13,13 @@ const handle = app.getRequestHandler();
     await app.prepare()
     const server = express()
     server.use(nextI18NextMiddleware(NextI18NextInstance))
-  
+
     server.get('*', (req, res) => handle(req, res))
-  
+
     await server.listen(port)
-    console.log(`> Ready on http://localhost:${port}`) // eslint-disable-line no-console
+    console.log(`-> Ready mode:${process.env.NODE_ENV} - port:${port}`) // eslint-disable-line no-console
   } catch (e) {
-    console.log("ERRRRRROOR");
+    console.log("-> Next Server Error:");
     console.log(e);
   }
 
