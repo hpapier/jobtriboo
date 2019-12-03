@@ -228,7 +228,7 @@ const Input = ({ t }) => {
 
         </div>
 
-        <div className='signup-input-body-connect'>
+        {/* <div className='signup-input-body-connect'>
           <span className='signup-input-body-connect-line'></span>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
             <button type='button' className='signup-input-body-connect-linkedin-ib'>
@@ -238,7 +238,7 @@ const Input = ({ t }) => {
                 <img src={GmailLogo} />
             </button>
           </div>
-        </div>
+        </div> */}
 
         <div className='signup-input-body-out'>
           <span className='signup-input-body-out-line'></span>

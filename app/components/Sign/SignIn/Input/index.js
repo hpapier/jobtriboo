@@ -102,13 +102,13 @@ const Input = ({ t }) => {
             <button disabled={loading} className='signin-input-body-fields-btn-login' type='submit'>{!loading ? t('login') : <div className='signin-loading-btn'></div>}</button>
             <button disabled={loading} className='signin-input-body-fields-btn-pwdFg' type='button'>{t('pwdForgotten')}</button>
           </div>
-            
+
           { error.reqRes === 403 ? <div className='signin-input-error'>{t('badId')}</div> : null}  
           { error.reqRes === 500 ? <div className='signin-input-error'>{t('error500')}</div> : null}  
 
         </div>
 
-        <div className='signin-input-body-connect'>
+        {/* <div className='signin-input-body-connect'>
           <span className='signin-input-body-connect-line'></span>
           <button className='signin-input-body-connect-linkedin'  type='button'>
             <div className='signin-input-body-connect-linkedin-ib'>
@@ -126,7 +126,7 @@ const Input = ({ t }) => {
               {t('googleConnection')}
             </p>
           </button>
-        </div>
+        </div> */}
 
         <div className='signin-input-body-out'>
           <span className='signin-input-body-out-line'></span>

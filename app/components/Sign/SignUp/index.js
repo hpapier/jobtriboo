@@ -13,7 +13,7 @@ import { withTranslation } from '../../i18n'
 const SignUp = ({ t }) => {
   return (
     <div className='signup-root'>
-      <Input t={t} /> :
+      <Input t={t} />
       <View />
     </div>
   );
