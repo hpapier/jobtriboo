@@ -12,7 +12,7 @@ import LinkIconGrey from '../../../../../static/assets/link_icon_g.svg';
 import DeleteIconGrey from '../../../../../static/assets/delete_icon_g.svg';
 import { withTranslation } from '../../../../i18n';
 import { deleteAnnounce } from '../../../../../utils/request/announces';
-import { serverURL } from '../../../../../utils/config';
+import { serverFileURL } from '../../../../../utils/config';
 
 
 // @component$
@@ -59,7 +59,7 @@ const AnnounceItem = ({ t, data, updateData, isPublic = false }) => {
   // console.log(data);
   return (
     <div className='announce-item-root'>
-      {data.company === null ? <div className='announce-item-company'></div> : <img src={`${serverURL}${data.companyInfo[0].logo}`} alt='company-logo' className='announce-item-company' />}
+      {data.company === null ? <div className='announce-item-company'></div> : <img src={`${serverFileURL}${data.companyInfo[0].logo}`} alt='company-logo' className='announce-item-company' />}
       <div className='announce-item-box'>
         <div className='announce-item-box-title'>{data.title}</div>
         <div className='announce-item-box-cpname'>{data.company !== null ? data.companyInfo[0].name : t('anonymous')}</div>

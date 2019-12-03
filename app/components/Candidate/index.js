@@ -10,7 +10,7 @@ import ContractTypeIconGrey from '../../static/assets/contract_icon_g.svg';
 import FeatherIcon from '../../static/assets/feather_icon.svg';
 import TotemIconGrey from '../../static/assets/totem_icon_g.svg';
 import TribeIconGrey from '../../static/assets/tribe_icon_g.svg';
-import { serverURL } from '../../utils/config';
+import { serverFileURL } from '../../utils/config';
 
 
 // @component
@@ -50,7 +50,7 @@ const JobComponent = ({ t, data }) => {
     <div className='candidate-comp-root'>
       <div className='candidate-comp-head'>
         <div className='candidate-comp-head-ib'>
-          { data.picture === "" ? <div className='candidate-comp-head-logo'></div> : <img className='candidate-comp-head-logo' src={`${serverURL}${data.picture}`} /> }
+          { data.picture === "" ? <div className='candidate-comp-head-logo'></div> : <img className='candidate-comp-head-logo' src={`${serverFileURL}${data.picture}`} /> }
           <div className='candidate-comp-head-tbox'>
             <div>
               <h3 className='candidate-comp-head-tbox-title' style={{ opacity: 1, fontWeight: 600, fontSize: '2em' }}>{ data.firstName }</h3>

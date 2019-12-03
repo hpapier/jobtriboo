@@ -15,7 +15,7 @@ import BottomArrowIcon from '../../../static/assets/bottom_arrow_icon.svg'
 const LangBtn = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [menuState, setMenuState] = useState(false);
-  
+
   const [cookies, setCookies, removeCookies] = useCookies(['next-i18next']);
   const prefLang = cookies['next-i18next'] === undefined ? 'en' : cookies['next-i18next'];
 

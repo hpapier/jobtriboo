@@ -8,7 +8,7 @@ import { withTranslation } from '../../../../i18n';
 import ImportIcon from '../../../../../static/assets/import_icon_w.svg';
 import './index.css';
 import { candidateProfilPictureUpdate } from '../../../../../utils/request/informations';
-import { serverURL } from '../../../../../utils/config';
+import { serverFileURL } from '../../../../../utils/config';
 
 
 // @component
@@ -40,7 +40,7 @@ const ProfilPicture = ({ link, t, updateLink }) => {
     <div className='pp-root'>
       <h2 className='pp-title'>{t('picture')}</h2>
       <div className='pp-box'>
-        { link !== '' ? <img className='pp-img' src={`${serverURL}${link}`} alt='profil-picture' /> : <div className='pp-img'></div>}
+        { link !== '' ? <img className='pp-img' src={`${serverFileURL}${link}`} alt='profil-picture' /> : <div className='pp-img'></div>}
         <div className='pp-tbox'>
           <h3 className='pp-tbox-title'>{t('profilPictureBoxTitle')}</h3>
           <p className='pp-tbox-desc'>{t('profilPictureBoxDescription')}</p>

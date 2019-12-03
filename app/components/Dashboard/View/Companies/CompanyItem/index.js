@@ -14,7 +14,7 @@ import DeleteIconGrey from '../../../../../static/assets/delete_icon_g.svg';
 import { withTranslation } from '../../../../i18n';
 import { deleteCompany } from '../../../../../utils/request/companies';
 import NewCompany from '../NewCompany';
-import { serverURL } from '../../../../../utils/config';
+import { serverFileURL } from '../../../../../utils/config';
 
 
 // @component
@@ -96,7 +96,7 @@ const CompanyItem = ({ data, t, updateCompaniesList }) => {
         ) :
         (
           <div className='comp-item-root' onClick={e => handleSetItemUpdateClick(e)}>
-            <img  src={`${serverURL}${data.logo}`} alt='' className='comp-item-logo' />
+            <img  src={`${serverFileURL}${data.logo}`} alt='' className='comp-item-logo' />
             <div style={{ height: '90px' }}>
               <h2 className='comp-item-name'>{data.name}</h2>
               <div className='comp-item-info-box'>

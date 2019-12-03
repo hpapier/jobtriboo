@@ -13,7 +13,7 @@ import { withTranslation } from '../../i18n';
 import Chat from './chat';
 import Loading from '../../Loading';
 
-import { serverURL, socketURL } from '../../../utils/config';
+import { serverFileURL, socketURL } from '../../../utils/config';
 
 
 // @component
@@ -175,7 +175,7 @@ const Room = ({ logInfo, data, t, userState }) => {
   return (
     <div className='room-root'>
       <div className='room-candidate-profil'>
-        { userState !== 'recruiter' || (candidate.picture === '' ? <div className='room-candidate-profil-picture'></div> : <img className='room-candidate-profil-picture' src={`${serverURL}${candidate.picture}`} />)}
+        { userState !== 'recruiter' || (candidate.picture === '' ? <div className='room-candidate-profil-picture'></div> : <img className='room-candidate-profil-picture' src={`${serverFileURL}${candidate.picture}`} />)}
         { userState !== 'candidate' || <div className='room-candidate-profil-picture'></div> }
         <div style={{ marginLeft: '15px' }}>
           {

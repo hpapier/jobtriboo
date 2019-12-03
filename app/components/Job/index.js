@@ -15,7 +15,7 @@ import TotemIconGrey from '../../static/assets/totem_icon_g.svg';
 import TribeIconGrey from '../../static/assets/tribe_icon_g.svg';
 import { useEffect } from 'react';
 import { apply } from '../../utils/request/announces';
-import { serverURL } from '../../utils/config';
+import { serverFileURL } from '../../utils/config';
 
 
 // @component
@@ -82,7 +82,7 @@ const JobComponent = ({ t, data, logInfo }) => {
     <div className='job-root'>
       <div className='job-head'>
         <div className='job-head-ib'>
-          { announceData.company === null ? <div className='job-head-logo'></div> : <img className='job-head-logo' src={`${serverURL}${announceData.companyInfo[0].logo}`} /> }
+          { announceData.company === null ? <div className='job-head-logo'></div> : <img className='job-head-logo' src={`${serverFileURL}${announceData.companyInfo[0].logo}`} /> }
           <div className='job-head-tbox'>
             <div>
               <h3 className='job-head-tbox-title' style={{ opacity: 0.5, fontSize: '1em' }}>{ announceData.company === null ? t('anonymous') : announceData.companyInfo[0].name }</h3>

@@ -3,7 +3,7 @@
 import './index.css';
 import SendIconGrey from '../../../static/assets/send_icon_g.svg';
 import { withTranslation } from '../../i18n';
-import { serverURL } from '../../../utils/config';
+import { serverFileURL } from '../../../utils/config';
 
 
 // @component
@@ -20,7 +20,7 @@ const RoomItem = ({ userState, data, open, t, logInfo = null }) => {
 
   return (
     <div className={`room-item-root${!lastMessageInfo.readed && lastMessageInfo.from !== logInfo.userId ? `` : ` -room-inactive`}`} onClick={open}>
-      { userState === 'candidate' || ((candidate.picture === '') ? <div className='room-item-root-picture'></div> : <img src={`${serverURL}${candidate.picture}`} className='room-item-root-picture' alt='candidate-picture' />) }
+      { userState === 'candidate' || ((candidate.picture === '') ? <div className='room-item-root-picture'></div> : <img src={`${serverFileURL}${candidate.picture}`} className='room-item-root-picture' alt='candidate-picture' />) }
       { userState === 'recruiter' || <div className='room-item-root-picture'></div> }
       <div className='room-item-body'>
         <div className='room-item-body-title'>
