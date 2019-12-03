@@ -18,7 +18,7 @@ const handle = app.getRequestHandler();
 
     await server.listen(port)
     console.log(`-> Ready mode:${process.env.NODE_ENV} - port:${port}`) // eslint-disable-line no-console
-  } catch (e) {
+  } catch (e) {
     console.log("-> Next Server Error:");
     console.log(e);
   }

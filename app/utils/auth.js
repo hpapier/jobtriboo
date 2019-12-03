@@ -9,8 +9,12 @@ export const checkAuth = async ctx => {
 
   // Server Side
   if (ctx.req) {
-    console.log('-> SERVER SIDE AUTH.')
-    const tk = ctx.req.headers.cookie.match(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/);
+    console.log('-> SERVER SIDE AUTH.');
+
+    let tk = null;
+    if (ctx.req.headers.cookie)
+      tk = ctx.req.headers.cookie.match(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/);
+
     console.log('tk: ', tk);
 
     if (tk === null || tk === undefined)
@@ -19,7 +23,7 @@ export const checkAuth = async ctx => {
     token = tk[1];
   }
 
-  // Client Side 
+  // Client Side
   else {
     console.log('-> CLIENT SIDE AUTH.')
     token = cookie.get('token');
