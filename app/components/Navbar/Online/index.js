@@ -12,6 +12,7 @@ import CompaniesIcon from '../../../static/assets/companies_icon_grey.svg';
 import ProfilIcon from '../../../static/assets/profil_icon_g.svg';
 import ArrowIcon from '../../../static/assets/arrow_icon_0.svg';
 import './index.css';
+import { withTranslation } from '../../i18n';
 
 
 // @component
@@ -41,8 +42,8 @@ const Online = ({ t, setLoginState, userState }) => {
             <div className='sign-online-lb-label'>{t('companies')}</div>
             <img className='sign-online-lb-icon' src={CompaniesIcon} />
           </button>
-          
-          <button className={`sign-online-lb-mbtn${router.pathname === '/dashboard' || router.pathname === '/profil' ? ` -navbar-element-active` : ``}`} onClick={() => router.push(userState === 'recruiter' ? '/dashboard' : '/profil')}>
+
+          <button className={`sign-online-lb-mbtn${router.pathname === '/dashboard' || router.pathname === '/profil' ? ` -navbar-element-active` : ``}`} onClick={() => router.push(userState === 'recruiter' ? '/dashboard' : '/profil')}>
             <div className='sign-online-lb-label'>{userState === 'recruiter' ? t('dashboard') : t('profil')}</div>
             <img className='sign-online-lb-icon' src={ProfilIcon} />
           </button>
@@ -62,4 +63,4 @@ const Online = ({ t, setLoginState, userState }) => {
 
 
 // @export
-export default Online;
+export default withTranslation('common')(Online);

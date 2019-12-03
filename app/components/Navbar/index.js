@@ -5,17 +5,16 @@ import { useCookies } from 'react-cookie'
 
 
 // @local import
-import { withTranslation } from '../i18n'
 import Online from './Online'
 import Offline from './Offline'
 
 
 // @component
-const Navbar = ({ logInfo, t }) => {
+const Navbar = ({ logInfo }) => {
   console.log(logInfo);
-  return (logInfo ? <Online t={t} userState={logInfo.userState} /> : <Offline t={t} />);
+  return (logInfo ? <Online userState={logInfo.userState} /> : <Offline />);
 }
 
 
 // @export
-export default withTranslation('common')(Navbar);
+export default Navbar;

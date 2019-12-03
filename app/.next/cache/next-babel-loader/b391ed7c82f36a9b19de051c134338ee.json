@@ -1,1 +1,0 @@
-{"ast":null,"code":"export const languages = ['en', 'fr', 'es'];","map":{"version":3,"sources":["/Users/hugopapier/Documents/jobTriboo/app/utils/lang.js"],"names":["languages"],"mappings":"AAAA,OAAO,MAAMA,SAAS,GAAG,CAAE,IAAF,EAAQ,IAAR,EAAc,IAAd,CAAlB","sourcesContent":["export const languages = [ 'en', 'fr', 'es' ];"]},"metadata":{},"sourceType":"module"}

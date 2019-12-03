@@ -8,6 +8,7 @@ import Layout from '../Layout';
 import Logo from '../Logo';
 import Feather from '../../../static/assets/feather_icon.svg';
 import Arrow from '../../../static/assets/arrow_icon_0.svg';
+import { withTranslation } from '../../i18n';
 import './index.css';
 
 
@@ -51,4 +52,4 @@ const Offline = ({ t }) => {
 
 
 // @export
-export default Offline;
+export default withTranslation('common')(Offline);

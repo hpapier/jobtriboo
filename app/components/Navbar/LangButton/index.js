@@ -20,6 +20,8 @@ const LangBtn = () => {
   const prefLang = cookies['next-i18next'] === undefined ? 'en' : cookies['next-i18next'];
 
   useEffect(() => {
+    // console.log('PREF LANG: ', prefLang);
+    // i18n.changeLanguage(prefLang);
     setSelectedLanguage(prefLang);
   }, []);
 
@@ -44,7 +46,7 @@ const LangBtn = () => {
 
       <div className={menuState ? "lang-btn-menu" : "--disable" }>
         {
-          languages.map((item, index) => 
+          languages.map((item, index) =>
             <button
               key={index}
               value={item}
