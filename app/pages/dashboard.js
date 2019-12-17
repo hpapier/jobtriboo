@@ -13,6 +13,7 @@ const Dashboard = ({ logInfo }) => {
       <Head>
         <script src="https://js.stripe.com/v3/"></script>
         <link rel="stylesheet" href="/static/styles/MyCardElement.css" />
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBj8ShCN6Y0-YtKPtlR6bwxcHvXjaGiOds&libraries=places"></script>
       </Head>
 
       <Navbar logInfo={logInfo} />

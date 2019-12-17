@@ -6,6 +6,8 @@ import { useRef, useEffect, useState } from 'react';
 import './index.css';
 import GreyDropDownIcon from '../../static/assets/bottom_arrow_icon.svg'
 import RemoveIconWhite from '../../static/assets/remove_icon_w.svg';
+import { withTranslation } from '../i18n';
+
 
 
 // @component: INPUT
@@ -106,7 +108,7 @@ export const TextArea = ({ width, margin, label, value, setValue, placeholder, l
 
 
 // @component: LIST_INPUT
-export const ListInput = ({ label = '', width, placeholder, objectList, addObjectList, removeObjectList, loading, error }) => {
+const ListInputComp = ({ label = '', width, placeholder, objectList, addObjectList, removeObjectList, loading, error, instructionNeeded = false, t }) => {
   const [value, setValue] = useState('');
 
   const handleAdd = e => {
@@ -119,7 +121,7 @@ export const ListInput = ({ label = '', width, placeholder, objectList, addObjec
   }
 
   return (
-    <form onSubmit={handleAdd} style={{ width }}>
+    <form onSubmit={handleAdd} style={{ width, position: 'relative' }}>
       <h2 className='info-input-label'>{label}</h2>
       <input
         className={`info-input-element${error ? ` -input-error` : ``}`}
@@ -127,7 +129,14 @@ export const ListInput = ({ label = '', width, placeholder, objectList, addObjec
         placeholder={placeholder}
         value={value}
         disabled={loading}
+        id='list-input-element'
       />
+      {
+        instructionNeeded && value.length > 0 &&
+        <button type='submit' className='list-input-instruction'>
+          {t('enter')}
+        </button>
+      }
       <div>
         {
           objectList.map((item, index) =>
@@ -143,3 +152,6 @@ export const ListInput = ({ label = '', width, placeholder, objectList, addObjec
     </form>
   );
 };
+
+
+export const ListInput = withTranslation('common')(ListInputComp);

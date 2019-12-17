@@ -34,7 +34,7 @@ export const handleInputInt = (input, max, min) => {
 
   if (input.match(regExp) === null)
     return false;
-  else if (parseInt(input) > max || parseInt(input) < min)
+  else if (parseInt(input) > max || parseInt(input) < min)
     return false;
 
   return true;
@@ -43,9 +43,10 @@ export const handleInputInt = (input, max, min) => {
 
 // Check if the prefix format for a phone number is valid.
 export const handleInputPrefix = input => {
-  const regExp = /^\+\d{2}$/;
+  const regExpWithSign    = /^\+\d{2}$/;
+  const regExpWhitoutSign = /^\d{2}$/;
 
-  if (input.match(regExp) === null)
+  if (input.match(regExpWithSign) === null && input.match(regExpWhitoutSign) === null)
     return false;
 
   return true;
@@ -53,7 +54,7 @@ export const handleInputPrefix = input => {
 
 
 // Check Month
-export const handleInputMonth = input => {
+export const handleInputMonth = input => {
   if (
     input === 'january'   ||
     input === 'february'  ||

@@ -18,6 +18,7 @@ import TribooSelect from '../../../../TribooSelect';
 import { postAnnounce, getPaymentIntent } from '../../../../../utils/request/announces';
 import { handleInputText } from '../../../../../utils/input';
 import Loading from '../../../../Loading';
+// import AutocompleteInput from '../../../../Maps/AutocompleteInput';
 
 // @component
 const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
@@ -56,7 +57,7 @@ const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
 
     !handleInputText(title) ? NEO.title = true : null;
     !handleInputText(location, 100) ? NEO.location = true : null;
-    !handleInputText(description, 1000) ? NEO.description = true : null;
+    !handleInputText(description, 1000000) ? NEO.description = true : null;
     benefits.length === 0 ? NEO.benefits = true : null;
 
     if (
@@ -303,6 +304,7 @@ const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
           error={inputError.benefits}
           width='calc(100% - 40px)'
           loading={loading}
+          instructionNeeded
         />
       </div>
 
@@ -327,6 +329,8 @@ const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
           </div>
         </div>
       </div>
+
+      {/* <AutocompleteInput /> */}
 
       { servError === 500 ? <div className='new-box-error-msg'>{t('error500')}</div> : null }
     </div>

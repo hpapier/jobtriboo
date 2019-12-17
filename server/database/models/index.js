@@ -12,7 +12,7 @@ const {
 } = require('../schemas');
 
 
-const newsletterModel = mongoose.model('Newspaper', newsletterSchema, 'newsletter');
+const newsletterModel = mongoose.model('Newsletter', newsletterSchema, 'newsletter');
 
 const userAccountModel = mongoose.model('BasicUserAccount', basicAccountSchema, 'userAccount');
 
