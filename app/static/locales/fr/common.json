@@ -285,6 +285,8 @@
 
   "companyJob": "Poste ouvert",
   "companyJobs": "Postes ouverts",
+
+  "useCoupon": "Entrez votre coupon",
   "addCoupon": "Utiliser",
   "invalidCoupon": "Coupon invalide"
 }

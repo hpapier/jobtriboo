@@ -289,7 +289,7 @@
   "companyJob": "Open Position",
   "companyJobs": "Open Positions",
 
-
-  "addCoupon": "Use coupon",
+  "useCoupon": "Enter your coupon",
+  "addCoupon": "Use",
   "invalidCoupon": "Ouh, this is an invalid coupon."
 }
