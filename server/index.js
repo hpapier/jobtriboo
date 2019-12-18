@@ -3,12 +3,13 @@ const jwt = require("jsonwebtoken");
 const fs = require('fs');
 const randomize = require('randomatic');
 const app = express();
-const stripe = require('stripe')('sk_test_oIwLWkcb9toURXqbtRflOfWD001uoQR4oD');
+const { APP_URL, STRIPE_API } = require('./config');
+
+const stripe = require('stripe')(STRIPE_API);
 
 const { recruiterTokenCheck, candidateTokenCheck, basicTokenCheck } = require('./verification');
 
 const { handleInputText, handleInputEmail, handleInputPrefix, handleInputNumber } = require('./utils/input');
-const { APP_URL } = require('./config');
 
 console.log(APP_URL);
 

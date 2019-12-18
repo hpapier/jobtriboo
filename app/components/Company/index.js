@@ -42,7 +42,7 @@ const JobComponent = ({ t, data }) => {
               <h3 target='_blank' className='company-comp-head-tbox-title' style={{ opacity: 1, fontSize: '1.2em', fontWeight: '400' }}>{ data.link }</h3>
             </div>
             <div className='company-comp-head-tbox-info'>
-              <h2 className='company-comp-head-tbox-title' style={{ opacity: 1, fontSize: '1.2em', color: '#6B5AED' }}>{ data.announces.length } {t('company-comps')}</h2>
+              <h2 className='company-comp-head-tbox-title' style={{ opacity: 1, fontSize: '1.2em', color: '#6B5AED' }}>{ data.announces.length } { data.announces.length > 1 ? t('companyJob') : t('companyJobs')}</h2>
             </div>
           </div>
         </div>
@@ -91,7 +91,7 @@ const JobComponent = ({ t, data }) => {
 
           <div className='company-comp-body-right-box'>
             <h3 className='company-comp-body-label-txt'>{ t('theCompany') }</h3>
-            <hr className='company-comp-body-label-hr' style={{ marginBottom: '20px' }} />
+            <hr className='company-comp-body-label-hr' style={{ marginBottom: '20px' }} />
             <div className='company-comp-body-company-infobox'>
               <img src={TotemIconGrey} alt='triboo-icon' className='company-comp-body-company-infobox-icon' />
               <p className='company-comp-body-company-infobox-txt' style={{ marginLeft: '15px'}} >{ triboo.filter(item => data.activityArea[0] === item.value)[0].label  }</p>

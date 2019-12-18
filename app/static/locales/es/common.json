@@ -280,5 +280,12 @@
 
   "fetchingNewData": "Buscando empleos..",
 
-  "notValidCard": "Tarjeta invalida o fondos insuficientes"
+  "notValidCard": "Tarjeta invalida o fondos insuficientes",
+
+  "companyJob": "Posición abierta",
+  "companyJobs": "Posiciones abiertas",
+
+
+  "addCoupon": "Utilizar",
+  "invalidCoupon": "Cupón inválido"
 }

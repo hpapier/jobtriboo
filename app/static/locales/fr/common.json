@@ -281,5 +281,10 @@
 
   "fetchingNewData": "Recherche de jobs..",
 
-  "notValidCard": "Oups, carte non-valide ou solde insuffisant!"
+  "notValidCard": "Oups, carte non-valide ou solde insuffisant!",
+
+  "companyJob": "Poste ouvert",
+  "companyJobs": "Postes ouverts",
+  "addCoupon": "Utiliser",
+  "invalidCoupon": "Coupon invalide"
 }

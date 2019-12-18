@@ -284,5 +284,12 @@
 
   "fetchingNewData": "Searching jobs..",
 
-  "notValidCard": "Oh, not a valid card or insufficient funds!"
+  "notValidCard": "Oh, not a valid card or insufficient funds!",
+
+  "companyJob": "Open Position",
+  "companyJobs": "Open Positions",
+
+
+  "addCoupon": "Use coupon",
+  "invalidCoupon": "Ouh, this is an invalid coupon."
 }
