@@ -8,7 +8,8 @@ const {
   companiesSchema,
   roomSchema,
   msgSchema,
-  applySchema
+  applySchema,
+  couponSchema
 } = require('../schemas');
 
 
@@ -30,7 +31,9 @@ const msgModel = mongoose.model('Message', msgSchema, 'messages');
 
 const applyModel = mongoose.model('Apply', applySchema, 'apply');
 
-module.exports = { 
+const couponModel = mongoose.model('Coupon', couponSchema, 'coupon');
+
+module.exports = {
   newsletterModel,
   userAccountModel,
   recruiterAccountModel,
@@ -39,5 +42,6 @@ module.exports = {
   companiesModel,
   roomModel,
   msgModel,
-  applyModel
+  applyModel,
+  couponModel
 };

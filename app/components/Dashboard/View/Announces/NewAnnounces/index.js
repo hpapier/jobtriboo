@@ -38,6 +38,9 @@ const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
   const [servError, setServError] = useState(null);
   const [company, setCompany] = useState('anonymous');
   const [triboo, setTriboo] = useState('commercial');
+  const [price, setPrice] = useState(500);
+  const [clientSecret, setClientSecret] = useState(null);
+
   const [inputError, setInputError] = useState({
     title: false,
     location: false,
@@ -45,6 +48,11 @@ const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
     benefits: false,
     paiement: false
   });
+
+
+
+
+
 
   const checkInputs = () => {
     const NEO = {
@@ -56,7 +64,7 @@ const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
     }
 
     !handleInputText(title) ? NEO.title = true : null;
-    !handleInputText(location, 100) ? NEO.location = true : null;
+    !handleInputText(location, 1000) ? NEO.location = true : null;
     !handleInputText(description, 1000000) ? NEO.description = true : null;
     benefits.length === 0 ? NEO.benefits = true : null;
 
@@ -75,6 +83,11 @@ const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
     return true;
   }
 
+
+
+
+
+
   const handleValidation = async () => {
 
     // Check each input
@@ -88,32 +101,40 @@ const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
 
       // Proceed to payment
       try {
-        const res = await getPaymentIntent(cookies.token);
-        if (res.status === 200) {
-          const { clientSecret } = await res.json();
-          const resObject = await stripe.handleCardPayment(clientSecret.client_secret);
-          console.log(resObject);
-          if (resObject.paymentIntent !== undefined) {
-            // If the payment succeed, push the announce to the server
-            const data = { triboo, company, title, location, level, description, contractType, salary, benefits, sponsoring, startingDate };
-            const res = await postAnnounce(data, cookies.token);
+
+        if (price !== 0) {
+          let clientSECRET = clientSecret;
+          if (clientSECRET === undefined) {
+            const res = await getPaymentIntent(cookies.token, null);
             if (res.status === 200) {
-              const rdata = await res.json();
-              addAnnounce(rdata);
-              changeView();
-            }
-            else
+              const data = await res.json();
+              clientSECRET = data.clientSecret;
+            } else {
               throw res.status;
+            }
           }
-          else {
+
+          const resObject = await stripe.handleCardPayment(clientSECRET.client_secret);
+          if (resObject.paymentIntent === undefined) {
             if (!isUnmounted.current) {
               setLoading(false);
               setInputError({ ...inputError, paiement: true });
+              return;
             }
           }
         }
+
+
+        const data = { triboo, company, title, location, level, description, contractType, salary, benefits, sponsoring, startingDate };
+        const res = await postAnnounce(data, cookies.token);
+        if (res.status === 200) {
+          const rdata = await res.json();
+          addAnnounce(rdata);
+          changeView();
+        }
         else
           throw res.status;
+
       } catch (e) {
         console.log(e);
         return;
@@ -128,6 +149,12 @@ const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
       }
     }
   }
+
+
+
+
+
+
 
   const CustomInputDate = forwardRef(({ onClick, onChange, ...props }, ref) => {
     return (
@@ -149,7 +176,16 @@ const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
   });
 
 
+
+
+
+
   useEffect(() => () => { isUnmounted.current = true }, []);
+
+
+
+
+
 
   return (
     <div className='new-announces-root'>
@@ -312,14 +348,14 @@ const NewAnnounces = ({ t, changeView, addAnnounce, stripe }) => {
       <div className='new-announces-box-item-cardsection'>
       {/* <div className='new-announces-box-item'> */}
         {/* <Card width='calc(100% - 40px)' setCard={setCard} selectedCard={card} error={inputError.paiement} /> */}
-        <CardSection />
+        <CardSection updateClientSecret={setClientSecret} setPrice={setPrice} />
         { inputError.paiement ? <div className='new-box-error-msg'>{t('notValidCard')}</div> : null}
       </div>
 
 
       <div className='new-announces-btn-box'>
         <div className='new-announces-box-item'>
-          <div className='new-announces-btn-box-price'>500€</div>
+          <div className='new-announces-btn-box-price'>{price}€</div>
         </div>
 
         <div className='new-announces-box-item'>

@@ -97,7 +97,8 @@ const {
   companiesModel,
   roomModel,
   msgModel,
-  applyModel
+  applyModel,
+  couponModel
 } = require('./database/models');
 
 //
@@ -1294,13 +1295,35 @@ app.get('/api/recruiter/announces', recruiterTokenCheck, async (req, res) => {
 
 
 // Create an Intent and send a client-secret for the payement.
-app.get('/api/recruiter/announce/intent', recruiterTokenCheck, async (req, res) => {
+app.post('/api/recruiter/announce/intent', recruiterTokenCheck, async (req, res) => {
   try {
-    const paymentIntent = await stripe.paymentIntents.create({ amount: 50000, currency: 'eur' });
+    const { coupon } = req.body;
+    let amount = 50000;
 
-    res.status(200).send({ clientSecret: paymentIntent });
+    // check the coupon validity and action
+    if (coupon !== null) {
+      console.log(req.body);
+      const couponData = await couponModel.find({ name: coupon });
+      console.log(couponData)
+      if (couponData.length > 0 && couponData[0].validity)
+        amount -= (couponData[0].reduc * 100);
+      else {
+        res.status(404).send();
+        return;
+      }
+    }
+
+    if (amount === 0) {
+      res.status(200).send({ clientSecret: null, amount });
+      return;
+    }
+
+    const paymentIntent = await stripe.paymentIntents.create({ amount, currency: 'eur' });
+
+    res.status(200).send({ clientSecret: paymentIntent, amount: amount > 0 ? (amount / 100) : 0 });
     return;
   } catch (e) {
+    console.log(e);
     res.status(500).send();
   }
 });
@@ -2289,13 +2312,13 @@ app.get('/api/room/candidate/:roomId/:offset', candidateTokenCheck, async (req, 
   try {
     const msg = await roomModel.aggregate([
       { $match: { _id: mongoose.Types.ObjectId(roomId) } },
-      { 
+      {
         $project: {
           "messagesArray": { $slice: ["$messages", parseInt(offset), 20] }
         }
       },
       { $unwind: '$messagesArray' },
-      { 
+      {
         $lookup: {
           from: 'messages',
           localField: 'messagesArray',

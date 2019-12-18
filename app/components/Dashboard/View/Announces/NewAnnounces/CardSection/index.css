@@ -1,0 +1,61 @@
+.card-section-root {
+
+}
+
+.card-section-label {
+  font-family: 'Roboto';
+  font-size: 1em;
+  font-weight: 400;
+  color: #404660;
+}
+
+.card-section-coupon-root {
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+}
+
+.card-section-coupon-input {
+  all: unset;
+  width: 100%;
+  height: 40px;
+  border-radius: 1px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  background-color: white;
+
+  font-family: 'Roboto';
+  font-size: 1em;
+  font-weight: 400;
+  color: #404660;
+  padding: 0px 5px 0px 15px;
+}
+
+.card-section-coupon-input::placeholder {
+  opacity: .5;
+  font-style: italic;
+}
+
+.card-section-coupon-btn {
+  all: unset;
+
+  font-family: 'Roboto';
+  font-size: 1em;
+  font-weight: 500;
+  color: #fff;
+
+  background-color: #6B5AED;
+  padding: 0px 15px;
+  height: 40px;
+  border-radius: 3px;
+
+  margin-left: 5px;
+}
+
+.card-section-coupon-errormsg {
+  font-family: 'Roboto';
+  font-size: 1em;
+  font-weight: 400;
+  color: red;
+
+  margin-top: 5px;
+}

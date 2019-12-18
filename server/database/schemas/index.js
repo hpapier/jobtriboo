@@ -141,6 +141,13 @@ const newsletterSchema = new mongoose.Schema({
 });
 
 
+const couponSchema = new mongoose.Schema({
+  name: String,
+  reduc: Number,
+  validity: Boolean
+});
+
+
 module.exports = {
   newsletterSchema,
   recruiterAccountSchema,
@@ -150,5 +157,6 @@ module.exports = {
   companiesSchema,
   roomSchema,
   msgSchema,
-  applySchema
+  applySchema,
+  couponSchema
 }
