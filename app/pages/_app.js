@@ -19,6 +19,7 @@ class MyApp extends App {
           href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"
         />
         <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico" />
+        <title>Jobtriboo</title>
       </Head>
     );
   }
