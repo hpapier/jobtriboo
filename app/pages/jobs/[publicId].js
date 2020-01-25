@@ -1,7 +1,7 @@
 import { checkAuth } from '../../utils/auth';
 import { getJob } from '../../utils/request/jobs';
-import Navbar from '../../components/Navbar';
-import JobComponent from '../../components/Job';
+import Navbar from '../../components/Navbar/V2';
+import JobComponent from '../../components/Job/V2';
 
 
 const Job = ({ job, logInfo }) => {
@@ -15,7 +15,8 @@ const Job = ({ job, logInfo }) => {
           body {
             padding: 0;
             margin: 0;
-            background-color: #f2f3ff !important;
+            background-color: #f7f8fc !important;
+            font-family: Poppins, sans-serif !important;
           }
       `}</style>
     </div>

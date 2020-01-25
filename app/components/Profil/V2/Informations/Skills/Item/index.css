@@ -1,0 +1,47 @@
+.comp-skill-item-root {
+  /* width: min-content; */
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(36, 107, 248, .15);
+  border-radius: 3px;
+  border: 1px solid rgba(36, 107, 248, .5);
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.csir-name {
+  all: unset;
+  color: #246BF8;
+  font-weight: 400;
+  font-size: 1em;
+  margin-right: 50px;
+  word-break: break-all;
+}
+
+.csir-btn {
+  all: unset;
+  width: 20px;
+  height: 20px;
+  opacity: .8;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .1s;
+}
+
+.csir-btn:disabled {
+  opacity: .2 !important;
+  cursor: default !important;
+}
+
+.csir-btn:hover {
+  opacity: 1;
+}
+
+.csirb-icon {
+  width: 10px;
+  margin: auto auto;
+}

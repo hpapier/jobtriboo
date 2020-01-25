@@ -39,7 +39,7 @@ export const checkAuth = async ctx => {
     if (res.status === 200) {
       try {
         const data = await res.json();
-        return { loggedIn: true, userState: data.userState, userId: data.userId };
+        return { loggedIn: true, userState: data.userState, userId: data.userId, isComplete: data.isComplete };
       } catch (e) {
         return false;
       }

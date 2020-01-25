@@ -1,0 +1,45 @@
+#information-root {
+  width: 100%;
+}
+
+#ir-boxes {
+  display: grid;
+  grid-template-columns: 50px 320px 10px 1fr 50px;
+  margin: 20px auto;
+}
+
+
+#irb-right {
+  grid-column: 4;
+  display: grid;
+}
+
+#irb-left {
+  grid-column: 2;
+}
+
+
+
+@media screen and (max-width: 1000px) {
+  #ir-boxes {
+    grid-template-columns: 50px 1fr 50px;
+  }
+
+  #irb-right {
+    grid-column: 2;
+    display: grid;
+  }
+
+  #irb-left {
+    grid-column: 2;
+  }
+}
+
+
+@media screen and (max-width: 920px) {
+  #ir-boxes {
+    width: calc(100% - 40px);
+    grid-template-columns: 0px 1fr 0px;
+    margin: 20px auto;
+  }
+}

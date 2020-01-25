@@ -1,0 +1,121 @@
+#component-company-element-root {
+  width: 100%;
+  /* display: grid; */
+  /* grid-template-columns: 50px 350px 50px 1fr 50px; */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#ccer-summary {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* grid-column: 2; */
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, .05);
+  border-radius: 5px;
+  margin-top: 50px;
+  margin: 50px 15px 0px 15px;
+}
+
+.ccers-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.ccers-name {
+  all: unset;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #404660;
+}
+
+.ccers-link {
+  all: unset;
+  font-size: 1em;
+  font-weight: 400;
+  color: #246BF8;
+  cursor: pointer;
+}
+
+.ccers-link:hover {
+  text-decoration: underline;
+}
+
+.ccers-open-offers {
+  color: #00C9A7;
+  padding: 10px 45px;
+  background-color: rgba(0, 201, 167, .1);
+  border-radius: 20px;
+  margin-bottom: 50px;
+  margin-top: 15px;
+}
+
+.ccers-info {
+  /* border-top: 1px solid rgba(0, 0, 0, .05); */
+  /* width: min-content; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0px 15px 0px;
+  flex-wrap: wrap;
+}
+
+.ccersi-title {
+  all: unset;
+  font-weight: 600;
+  font-size: 1em;
+  color: #404660;
+  margin: 5px 0px;
+}
+
+.ccersi-label {
+  all: unset;
+  font-weight: 300;
+  font-size: .875em;
+  color: #404660;
+}
+
+
+#ccer-info {
+  /* grid-column: 4; */
+  margin: 50px 0px 0px 15px;
+}
+
+.cceri-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.ccerib-title {
+  all: unset;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #404660;
+  margin-bottom: 10px;
+}
+
+.ccerib-information {
+  all: unset;
+  margin-bottom: 50px;
+  color: rgba(64, 70, 96, .8);
+  word-break: break-all;
+}
+
+
+@media screen and (max-width: 650px) {
+  #ccer-info {
+    margin: 50px 0px;
+    padding: 0px 20px;
+  }
+}

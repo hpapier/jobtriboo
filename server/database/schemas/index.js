@@ -3,41 +3,66 @@ const mongoose = require('mongoose');
 
 const basicAccountSchema = new mongoose.Schema({
   state: String,
-  firstName: String,
-  lastName: String,
+  firstname: String,
+  lastname: String,
   email: String,
   password: String,
-  prefixPhoneNumber: String,
-  phoneNumber: String,
+  phone: String,
   creationDate: { type: Date, default: new Date() }
 });
 
 
 const accountInformationSchema = new mongoose.Schema({
-  picture: { type: String, default: '' },
-  description: { type: String, default: '' },
-  country: { type: String, default: '' },
-  age: { type: Number, default: 18 },
-  triboo: { type: String, default: 'commercial' },
-  jobName: { type: String, default: '' },
+  picture:      { type: String, default: '' },
+  description:  { type: String, default: '' },
+  birthdate:    { type: String, default: '' },
+
+  qualifications: {
+    type: [{
+      _id: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() },
+      title: String,
+      startingDate: String,
+      endDate: { type: String, default: '' },
+      inProgress: Boolean,
+      school: String
+    }],
+    default: []
+  },
+
+  experiences: {
+    type: [{
+      _id: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() },
+      jobTitle: String,
+      startingDate: String,
+      endDate: { type: String, default: '' },
+      inProgress: Boolean,
+      company: String,
+      jobDescription: String
+    }],
+    default: []
+  },
+
   skills: {
     type: [{
       _id: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() },
       name: String,
-      xp: Number
     }],
     default: []
   },
-  studyLvl: { type: String, default: 'selflearner' },
-  cv: { type: String, default: '' },
-  desiredContract: { type: String, default: 'indifferent' },
-  salaryExpected: { type: String, default: 'littleDignity' },
-  availability: { type: String, default: 'now' },
-  updated: { type: Date, default: new Date() },
+
+  job:                { type: String, default: '' },
+  expertiseLevel:     { type: String, default: '' },
+  desiredContract:    { type: String, default: '' },
+  legalAvailability:  { type: String, default: '' },
+  expectedSalary:     { type: String, default: '' },
+
+  updated:            { type: Date, default: new Date() },
+
   settings: {
     emailOnMsg: { type: Boolean, default: true }
   },
-  publicId: String
+
+  publicId: String,
 });
 
 
@@ -46,17 +71,23 @@ candidateAccountSchema.add(basicAccountSchema).add(accountInformationSchema);
 
 
 const announceSchema = new mongoose.Schema({
-  company: { type: mongoose.Types.ObjectId, default: null },
-  salary: { min: Number, max: Number },
   title: String,
-  location: String,
   level: String,
-  description: String,
+  company: { type: mongoose.Types.ObjectId, default: null },
+  country: String,
+  city: String,
+  street: String,
+  formatedAddress: String,
+  remote: Boolean,
+  postDescription: String,
+  postResponsibilities: String,
+  profilDescription: String,
   contractType: String,
+  salary: { min: Number, max: Number },
+  startingDate: String,
+  visaSponsoring: Boolean,
+  category: String,
   benefits: [String],
-  sponsoring: Boolean,
-  startingDate: Date,
-  triboo: String,
   publicId: String,
   candidates: [mongoose.Types.ObjectId]
 });
@@ -64,15 +95,16 @@ const announceSchema = new mongoose.Schema({
 
 const companiesSchema = new mongoose.Schema({
   logo: { type: String, default: '' },
-  cover: { type: String, default: '' },
-  description: { type: String, default: '' },
+  // cover: { type: String, default: '' },
   name: { type: String, default: '' },
-  email: { type: String, default: '' },
   phone: { type: String, default: '' },
-  address: { type: String, default: '' },
+  email: { type: String, default: '' },
   country: { type: String, default: '' },
+  city: { type: String, default: '' },
+  description: { type: String, default: '' },
+  category: String,
   employeesNumber: { type: String, default: '' },
-  activityArea: [String],
+  formatedAddress: { type: String, default: '' },
   link: { type: String, default: '' },
   NIF: { type: String, default: '' },
   createdBy: mongoose.Types.ObjectId

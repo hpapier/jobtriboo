@@ -4,22 +4,24 @@ import React from 'react';
 
 // @local imports
 import { checkAuth } from "../utils/auth";
-import Navbar from '../components/Navbar';
-import ProfilComponent from '../components/Profil'
+// import Navbar from '../components/Navbar';
+// import ProfilComponent from '../components/Profil'
+import NavbarV2 from '../components/Navbar/V2';
+import ProfilComponent from '../components/Profil/V2'
 
 
 // @page
 const Profil = ({ logInfo }) => {
   return (
     <div>
-      <Navbar logInfo={logInfo} />
       <ProfilComponent logInfo={logInfo} />
 
       <style jsx global>{`
           body {
             padding: 0;
             margin: 0;
-            background-color: #f2f3ff !important;
+            background-color: #f7f8fc !important;
+            font-family: Poppins, sans-serif !important;
           }
       `}</style>
     </div>

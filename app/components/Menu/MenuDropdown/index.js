@@ -21,28 +21,55 @@ const MenuDropdown = ({ section, switchSection, t, logInfo, menuState, setMenuSt
 
   const rootRef = useRef(null);
   const menuStateRef = useRef(null);
+  const isUnmounted = useRef(false);
 
   useEffect(() => {
     menuStateRef.current = menuState;
   });
 
   useEffect(() => {
+    const element = document.getElementsByClassName('menu-dropdown-root')[0];
     document.addEventListener('click', e => {
-      let clickedOutside = true;
+      if (window.innerWidth > 800)
+        return;
 
-      e.path.forEach(item => {
-        if (!clickedOutside)
-          return;
+      const target = e.target;
+      let isClickedOutside = true;
 
-        if (item.className === 'menu-dropdown-root')
-          clickedOutside = false;
+      element.childNodes.forEach(item => {
+        if (item.className === target.className)
+          isClickedOutside = false;
       });
 
-      if (clickedOutside && menuStateRef.current)
-        setMenuState(false);
+      if (isClickedOutside)
+        isClickedOutside =
+          element.className !== target.className &&
+          target.className !== 'menu-dropdown-box-sw-btn-line-rotated' &&
+          target.className !== 'menu-dropdown-box-sw-btn-line';
+
+      if (isClickedOutside && window.innerWidth <= 800)
+        if (!isUnmounted.current) setMenuState(false);
     });
 
-    return () => { document.removeEventListener('click', () => console.log('listener removed')) }
+    // document.addEventListener('click', e => {
+    //   let clickedOutside = true;
+
+    //   e.path.forEach(item => {
+    //     if (!clickedOutside)
+    //       return;
+
+    //     if (item.className === 'menu-dropdown-root')
+    //       clickedOutside = false;
+    //   });
+
+    //   if (clickedOutside && menuStateRef.current)
+    //     setMenuState(false);
+    // });
+
+    return () => {
+      document.removeEventListener('click', () => console.log('listener removed'))
+      isUnmounted.current = true;
+    }
   }, []);
 
   const handleSwitch = to => {
@@ -69,14 +96,16 @@ const MenuDropdown = ({ section, switchSection, t, logInfo, menuState, setMenuSt
           logInfo.userState === 'candidate' ?
           <div className='menu-dropdown-box'>
             <MenuItem label={t('informations')} icon={InformationsIcon} isActive={section === 'informations'} switchSection={() => handleSwitch('informations')} />
-            <MenuItem label={t('messages')} icon={MessagesIcon} isActive={section === 'messages'} switchSection={() => handleSwitch('messages')} />
-            <MenuItem label={t('settings')} icon={SettingsIcon} isActive={section === 'settings'} switchSection={() => handleSwitch('settings')} />
+            {/* <MenuItem label={t('messages')} icon={MessagesIcon} isActive={section === 'messages'} switchSection={() => handleSwitch('messages')} /> */}
+            <MenuItem label={t('messages')} icon={MessagesIcon} isActive={section === 'messages'} switchSection={() => {}} />
+            {/* <MenuItem label={t('settings')} icon={SettingsIcon} isActive={section === 'settings'} switchSection={() => handleSwitch('settings')} /> */}
           </div> :
           <div className='menu-dropdown-box'>
             <MenuItem label={t('companies')} icon={CompaniesIcon} isActive={section === 'companies'} switchSection={() => handleSwitch('companies')} />
             <MenuItem label={t('announces')} icon={AnnouncesIcon} isActive={section === 'announces'} switchSection={() => handleSwitch('announces')} />
-            <MenuItem label={t('messages')} icon={MessagesIcon} isActive={section === 'messages'} switchSection={() => handleSwitch('messages')} />
-            <MenuItem label={t('settings')} icon={SettingsIcon} isActive={section === 'settings'} switchSection={() => handleSwitch('settings')} />
+            {/* <MenuItem label={t('messages')} icon={MessagesIcon} isActive={section === 'messages'} switchSection={() => handleSwitch('messages')} /> */}
+            <MenuItem label={t('messages')} icon={MessagesIcon} isActive={section === 'messages'} switchSection={() => {}} />
+            {/* <MenuItem label={t('settings')} icon={SettingsIcon} isActive={section === 'settings'} switchSection={() => handleSwitch('settings')} /> */}
           </div>
         : null
       }

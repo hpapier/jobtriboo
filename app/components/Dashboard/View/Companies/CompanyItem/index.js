@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 // @local import
 import './index.css';
 import TotemIconGrey from '../../../../../static/assets/totem_icon_g.svg';
-import LocalizationIconGrey from '../../../../../static/assets/localization_icon_g.svg';
+import LocalizationIconGrey from '../../../../../static/assets/location-icon-grey.svg';
 import TribeIconGrey from '../../../../../static/assets/tribe_icon_g.svg';
 import LinkIconGrey from '../../../../../static/assets/link_icon_g.svg';
 import DeleteIconGrey from '../../../../../static/assets/delete_icon_g.svg';

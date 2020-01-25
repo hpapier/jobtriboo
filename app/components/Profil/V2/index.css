@@ -1,0 +1,18 @@
+#profil-root {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#pr-pages {
+  width: calc(100% - 250px);
+  height: 100vh;
+  overflow: scroll;
+}
+
+@media screen and (max-width: 850px) {
+  #pr-pages {
+    width: 100%;
+    height: 100%;
+    overflow: inherit;
+  }
+}

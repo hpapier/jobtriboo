@@ -1,22 +1,76 @@
 .menu-bar-root {
-  min-height: calc(100vh - 60px);
+  /* min-height: calc(100vh - 60px); */
   background-color: #fff;
-  min-width: 215px;
-  margin: 0px;
-  overflow: hidden;
+  width: 250px;
+  height: 100%;
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#mbr-logo {
+  all: unset;
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+  margin: 50px auto !important;
+  color: #246BF8;
+  text-shadow: 0px 5px 20px rgba(36, 107, 248, .1);
+  cursor: pointer;
+}
+
+.mbr-line {
+  width: 80%;
+  height: 1px;
+  background-color: rgba(64, 70, 96, .1);
+  margin: 0px auto;
 }
 
 .menu-bar-box {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  margin-top: 90px;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .menu-bar-box-sw-btn {
   display: none;
 }
+
+
+#mbr-view-jobs {
+  all: unset;
+  width: 80%;
+  height: 40px;
+  background-color: #00C9A7;
+  border-radius: 50px;
+  box-shadow: 0px 5px 20px 0px rgba(0, 201, 167, .25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+#mbr-view-jobs:hover {
+  box-shadow: 0px 5px 20px 0px rgba(0, 201, 167, .5);
+}
+
+#mbrvj-txt {
+  all: unset;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+#mbrvj-icon {
+  margin-left: 10px;
+}
+
 
 @media screen and (max-width: 850px) {
   .menu-bar-root {

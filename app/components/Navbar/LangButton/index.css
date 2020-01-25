@@ -1,5 +1,6 @@
 .lang-btn-root {
-  /* position: relative; */
+  display: flex;
+  justify-content: center;
 }
 
 .lang-btn-select {
@@ -9,13 +10,16 @@
   background-color: rgba(0, 0, 0, 0);
   outline: none;
   cursor: pointer;
-  font-family: 'Roboto', sans-serif;
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 400;
   text-transform: Capitalize;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.lang-btn-select:hover {
+  color: #246BF8;
 }
 
 .lang-btn-select img {
@@ -50,7 +54,6 @@
   background-color: rgba(0, 0, 0, 0);
   transition: .1s;
   text-transform: capitalize;
-  font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 500;
   color: #404660;
@@ -68,7 +71,6 @@
   border: none;
   background-color: rgba(0, 0, 0, .1);
   text-transform: capitalize;
-  font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 500;
   color: #404660;

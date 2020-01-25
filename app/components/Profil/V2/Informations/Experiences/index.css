@@ -1,0 +1,90 @@
+#comp-experiences-root {
+  /* width: calc(100% - 340px); */
+  /* grid-row: 3; */
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  border-radius: 5px;
+  height: min-content;
+  margin-bottom: 10px;
+}
+
+#cer-title {
+  all: unset;
+  color: #404660;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+#cer-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+.ceri-element {
+  width: calc(50% - 10px);
+  position: relative;
+  margin: 20px 0px 0px 0px;
+}
+
+#ceri-submit {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+  background-color: #246BF8;
+  height: 40px;
+  border-radius: 50px;
+  box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, .1);
+  transition: .1s;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#ceri-submit:hover {
+  box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, .25);
+}
+
+/* #ceris-icon {} */
+
+#ceris-txt {
+  all: unset;
+  margin-left: 10px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.cer-line {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(64, 70, 96, .1);
+  margin-top: 50px;
+}
+
+
+
+#cer-list {
+  margin-top: 30px;
+}
+
+#cerl-noexperience {
+  color: #404660;
+  font-weight: 400;
+  font-size: 1em;
+  text-align: center;
+  opacity: .6;
+}
+
+
+@media screen and (max-width: 1260px) {
+  .ceri-element {
+    width: 100%;
+    position: relative;
+    margin: 20px 0px 0px 0px;
+  }
+}

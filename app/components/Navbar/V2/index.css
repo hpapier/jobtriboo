@@ -1,0 +1,251 @@
+.navbar-root {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+  background-color: #fff;
+}
+
+.--home-out {
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0);
+}
+
+.nr-box {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+#nrb-logo {
+  margin: 0px 20px;
+  color: #404660;
+  font-weight: 700;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.nrb-menu {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 0px 0px 20px;
+  cursor: pointer;
+}
+
+.nrb-menu:hover h2 {
+  transition: color .2s;
+  color: #246BF8;
+}
+
+.nrbm-txt {
+  color: #404660;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.nrbm-txt:hover {
+  transition: color .2s;
+  color: #246BF8;
+  cursor: pointer;
+}
+
+.--nr-selected {
+  font-weight: 500;
+}
+
+.nrbm-border {
+  width: 50%;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 1px;
+  height: 2px;
+  bottom: 15px;
+}
+
+.nr-register-btn {
+  all: unset;
+  padding: 0px 20px;
+  height: 40px;
+  border-radius: 3px;
+  background-color: rgba(36, 107, 248, 0.15);
+  color: rgba(36, 107, 248, 1);
+  font-weight: 400;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.05);
+  transition: .2s;
+  margin: 0px 10px;
+}
+
+.nr-register-btn:hover {
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.--home-out-register {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.nr-recruiter-btn {
+  all: unset;
+  padding: 0px 20px;
+  height: 40px;
+  border-radius: 3px;
+  background-color: rgba(36, 107, 248, 1);
+  color: #fff;
+  font-weight: 400;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.05);
+  transition: .2s;
+  margin: 0px 20px 0px 0px;
+}
+
+.nr-recruiter-btn:hover {
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, .15);
+}
+
+.--home-out-recruiter {
+  background-color: #fff;
+  color: #246bf8;
+}
+
+.nr-logout-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 40px;
+  border: 1px solid #246BF8;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 1em;
+  color: #246BF8;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: .1s;
+}
+
+.nr-logout-btn:hover {
+  background-color: rgba(36, 107, 248, .1);
+}
+
+.nr-box-small {
+  display: none;
+}
+
+.nbs-btn-menu {
+  all: unset;
+  display: flex;
+  height: 40px;
+  padding: 0px 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.nbs-btn-menu:hover .nbsbm-line{
+  transition: .2s;
+  box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, 0.3);
+}
+
+.--nbsbm-active {
+  position: relative;
+  width: 34px;
+}
+
+.nbsbm-line {
+  all: unset;
+  height: 4px;
+  width: 30px;
+  background-color: #246BF8;
+  border-radius: 3px;
+  margin: 2px;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.05);
+  transition: .2s;
+}
+.--nbsbml-top-active {
+  transform: rotate(45deg);
+  position: absolute;
+}
+
+.--nbsbml-mid-active {
+  transform: rotate(135deg);
+  position: absolute;
+}
+
+.nbs-mobile-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 60px;
+  z-index: 100;
+  background-color: #fff;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, .1);
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 10px;
+  right: 0px;
+  width: max-content;
+}
+
+.nbsmb-btn {
+  all: unset;
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, .05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #404660;
+  font-size: 1em;
+  font-weight: 500;
+  transition: .2s;
+  padding: 0px 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.nbsmb-btn:hover {
+  background-color: rgba(36, 107, 248, .1);
+  color: #246BF8;
+  border-bottom: 1px solid rgba(36, 107, 248, .0);
+}
+
+.--nbsmbb-actions {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .--nr-box-right {
+    display: none;
+  }
+
+  .nr-box-small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .--nbsmbb-actions {
+    display: flex;
+  }
+
+  .nrb-menu {
+    display: none;
+  }
+}

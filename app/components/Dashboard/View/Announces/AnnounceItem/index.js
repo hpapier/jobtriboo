@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 // @local import
 import './index.css';
-import LocationIconGrey from '../../../../../static/assets/localization_icon_g.svg';
+import LocationIconGrey from '../../../../../static/assets/location-icon-grey.svg';
 import ContractIconGrey from '../../../../../static/assets/contract_icon_g.svg';
 import LinkIconGrey from '../../../../../static/assets/link_icon_g.svg';
 import DeleteIconGrey from '../../../../../static/assets/delete_icon_g.svg';

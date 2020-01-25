@@ -20,6 +20,56 @@
   transition: .1s;
 }
 
+.checkbox-component-root {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.ccr-input {
+  display: none;
+}
+
+.ccr-input:checked +.ccr-input-element {
+  background-color: #246bf8;
+  border-color: #246bf8;
+  box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, .15);
+}
+
+.ccrie-arrow {
+  all: unset;
+  color: #fff;
+  font-size: .8em;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1px;
+  margin-bottom: 1px;
+}
+
+
+.ccr-input-element {
+  width: 15px;
+  height: 15px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(64, 70, 96, .6);
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .2s;
+}
+
+.ccr-label {
+  margin-left: 10px;
+  color: #404660;
+  font-weight: 400;
+  font-size: 1em;
+}
+
 .-checked {
   background-color: #404660;
   display: flex;

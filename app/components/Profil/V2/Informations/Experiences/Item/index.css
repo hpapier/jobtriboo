@@ -1,0 +1,103 @@
+.comp-experiences-item-root {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 150px 150px 150px 1fr 50px;
+  /* grid-template-rows: 1fr 1fr; */
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* flex-wrap: wrap; */
+  box-sizing: border-box;
+  background-color: #F7F8FC;
+  margin: 10px 0px;
+  border-radius: 3;
+  padding: 5px 20px;
+}
+
+.ceir-info {
+  display: flex;
+  grid-column: 1;
+}
+
+.ceiri-txt {
+  text-align: start;
+  color: #404660;
+  font-weight: 600;
+  font-size: .875em;
+  /* margin-right: 15px; */
+  /* text-align: center; */
+}
+
+.--ceiri-title {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.--ceiri-date {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.--ceiri-company {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+
+.ceir-remove {
+  all: unset;
+  background-color: rgba(255, 0, 0, .1);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: .1s;
+  grid-column: 5;
+  grid-row: 1;
+  margin: 5px auto 0px auto;
+}
+
+.ceir-remove:hover {
+  /* box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0px 5px 20px 0px rgba(255, 0, 0, 0.15);
+}
+
+.ceirr-icon {
+  width: 10px;
+}
+
+.--ceiri-desc {
+  grid-column: 1 / span 4;
+  grid-row: 2;
+  /* opacity: .6; */
+  font-weight: 400 !important;
+}
+
+@media screen and (max-width: 1260px) {
+  .comp-experiences-item-root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .ceir-remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .ceiri-txt {
+    margin: 10px 0px 0px 0px;
+  }
+
+  .--ceiri-desc {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+}

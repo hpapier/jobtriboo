@@ -8,7 +8,7 @@ import TribooSelect from '../../TribooSelect';
 import { withTranslation } from '../../i18n';
 import WaveImg0 from '../../../static/assets/wave_0.svg'
 import WaveImg1 from '../../../static/assets/wave_1.svg'
-import LocationIconGrey from '../../../static/assets/localization_icon_g.svg';
+import LocationIconGrey from '../../../static/assets/location-icon-grey.svg';
 import ContractIconGrey from '../../../static/assets/contract_icon_g.svg';
 import CompanyItem from '../../Companies/CompanyItem'
 import { handleInputEmail } from '../../../utils/input';

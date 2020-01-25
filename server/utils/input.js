@@ -38,9 +38,20 @@ const handleInputPrefix = input => {
   return true;
 }
 
+// Check Phone
+const handleInputPhone = input => {
+  const regexp = /^\+\d{2}\d{5,12}$/;
+
+  if (input.match(regexp) === null)
+    return false;
+
+  return true;
+}
+
 module.exports = {
   handleInputText,
   handleInputEmail,
   handleInputNumber,
   handleInputPrefix,
+  handleInputPhone
 }

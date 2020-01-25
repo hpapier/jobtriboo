@@ -1,0 +1,20 @@
+#footer-root {
+  position: relative;
+  z-index: 1;
+  padding: 30px 0px;
+  box-shadow: 0px -10px 50px 0px rgba(0, 0, 0, 0.02);
+  display: flex;
+  justify-content: space-between;
+}
+
+.fr-menu {
+  margin: 0px 20px;
+}
+
+.frm-txt {
+  all: unset;
+  font-size: 1em;
+  font-weight: 400;
+  color: #404660;
+  margin: 0px 10px;
+}

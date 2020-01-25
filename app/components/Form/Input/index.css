@@ -1,0 +1,71 @@
+.input-component-root {
+  width: 100%;
+  position: relative;
+}
+
+.icr-label {
+  font-size: .75em;
+  font-weight: 400;
+  color: rgba(64, 70, 96, .5);
+  padding: 0px 5px;
+  position: absolute;
+  top: -7px;
+  left: 20px;
+  background-color: #fff;
+}
+
+.icr-input {
+  all: unset;
+  width: 100%;
+  border: 1.5px solid rgba(64, 70, 96, .15);
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0px 15px;
+  border-radius: 8px;
+  transition: .2s;
+  color: #404660;
+  font-weight: 500;
+}
+
+.icr-input:focus +.icr-label {
+  color: #246BF8;
+}
+
+.icr-input::placeholder {
+  font-size: 1em;
+  font-weight: 300;
+  color: rgba(64, 70, 96, .25);
+}
+
+.icr-input:hover {
+  border: 1.5px solid rgba(64, 70, 96, .2);
+}
+
+.icr-input:focus {
+  border-color: rgba(36, 107, 248, 1);
+}
+
+.icr-input:disabled {
+  opacity: 0.5;
+}
+
+/* .icr-input:disabled +.icr-label{
+  opacity: 0.5;
+} */
+
+/*
+.--icr-label-focused {
+  color: #246BF8;
+}
+
+.--icr-input-focused {
+  border-color: #246BF8;
+} */
+
+.--icr-error {
+  border-color: red !important;
+}
+
+.--icr-error +.icr-label {
+  color: red !important;
+}

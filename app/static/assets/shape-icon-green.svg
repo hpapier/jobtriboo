@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="13px" viewBox="0 0 12 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_layers</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="JOB_PAGE_V2" transform="translate(-508.000000, -204.000000)">
+            <g id="Menu" transform="translate(147.000000, 130.000000)">
+                <g id="ContractType" transform="translate(359.000000, 72.000000)">
+                    <g id="ic_layers" transform="translate(0.000000, 1.000000)">
+                        <g id="Icon-24px">
+                            <polygon id="Shape" points="0 0 16 0 16 16 0 16"></polygon>
+                            <path style='fill: #00C9A7' d="M7.99333333,12.36 L3.08,8.54 L2,9.38 L8,14.0466667 L14,9.38 L12.9133333,8.53333333 L7.99333333,12.36 L7.99333333,12.36 Z M8,10.6666667 L12.9066667,6.84666667 L14,6 L8,1.33333333 L2,6 L3.08666667,6.84666667 L8,10.6666667 L8,10.6666667 Z" id="Shape" fill="#404660"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

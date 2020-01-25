@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="9px" viewBox="0 0 9 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_add</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="DB_CANDIDAT_PROFIL_V2" transform="translate(-1124.000000, -257.000000)">
+            <g id="StudiesBox" transform="translate(580.000000, 147.000000)">
+                <g id="AddBtn" transform="translate(520.000000, 102.000000)">
+                    <g id="ic_add" transform="translate(21.000000, 5.000000)">
+                        <g id="Icon-24px">
+                            <polygon id="Shape" fill="#FFFFFF" points="11.875 8.125 8.125 8.125 8.125 11.875 6.875 11.875 6.875 8.125 3.125 8.125 3.125 6.875 6.875 6.875 6.875 3.125 8.125 3.125 8.125 6.875 11.875 6.875"></polygon>
+                            <polygon id="Shape" points="0 0 15 0 15 15 0 15"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

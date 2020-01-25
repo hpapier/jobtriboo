@@ -1,0 +1,112 @@
+#component-announce-stats-pannel-root {
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, .05);
+  border-radius: 5px;
+}
+
+.caspr-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.casprh-title {
+  all: unset;
+  font-weight: 500;
+  font-size: 1.25em;
+  color: #404660;
+}
+
+.casprh-back {
+  all: unset;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, .05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.casprh-back:hover {
+  background-color: rgba(0, 0, 0, .15);
+}
+
+.caspr-box {
+  margin-top: 50px;
+}
+
+.casprb-item {
+  border-bottom: 1px solid rgba(0, 0, 0, .05);
+  padding: 10px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: .1s;
+  border-radius: 5px;
+}
+
+.casprb-item:hover {
+  background-color: #f2f3fc;
+}
+
+.casprbi-txt {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.casprbit-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.casprbit-info {
+  /* max-width: 200px; */
+  color: #404660;
+  margin: 10px 10px;
+}
+
+.casprbi-profilbtn {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 20px;
+  border-radius: 15px;
+  background-color: rgba(0, 201, 167, .15);
+  color: rgba(0, 201, 167, 1);
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: .1s;
+  border: 1px solid rgba(0, 201, 167, 0);
+  /* margin: 10px auto; */
+}
+
+.casprbi-profilbtn:hover {
+  background-color: rgba(0, 201, 167, .2);
+  box-shadow: 0px 5px 20px 0px rgba(0, 201, 167, .1);
+  border: 1px solid rgba(0, 201, 167, 1);
+}
+
+@media screen and (max-width: 1200px) {
+  .casprb-item {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .casprbi-txt {
+    justify-content: center;
+  }
+}

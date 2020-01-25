@@ -12,8 +12,8 @@ const handle = app.getRequestHandler();
   try {
     await app.prepare()
     const server = express()
-    server.use(nextI18NextMiddleware(NextI18NextInstance))
 
+    server.use(nextI18NextMiddleware(NextI18NextInstance))
     server.get('*', (req, res) => handle(req, res))
 
     await server.listen(port);

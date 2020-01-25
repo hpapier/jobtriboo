@@ -139,7 +139,7 @@ const Input = ({ t }) => {
             <label className='signup-input-body-fields-ib-label' htmlFor='signup-firstName'>{t('firstName')}</label>
             <input
               className={`signup-input-body-fields-ib-input${error.firstName ? ` -input-error` : ``}`}
-              placeholder={t('phFirstName')}
+              placeholder={t('phFirstname')}
               name='signup-firstName'
               autoComplete='first-name'
               onChange={e => setFirstName(e.target.value)}
@@ -153,7 +153,7 @@ const Input = ({ t }) => {
             <label className='signup-input-body-fields-ib-label' htmlFor='signup-lastName'>{t('lastName')}</label>
             <input
               className={`signup-input-body-fields-ib-input${error.lastName ? ` -input-error` : ``}`}
-              placeholder={t('phLastName')}
+              placeholder={t('phLastname')}
               name='signup-lastName'
               autoComplete='last-name'
               onChange={e => setLastName(e.target.value)}

@@ -1,0 +1,141 @@
+.expiration-date-input-component-root {
+  all: unset;
+  width: 100%;
+  border: 1.5px solid rgba(64, 70, 96, .15);
+  height: 50px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  transition: .2s;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  padding-left: 10px;
+}
+
+.expiration-date-input-component-root:hover {
+  border: 1.5px solid rgba(64, 70, 96, .2);
+}
+
+.edicr-element {
+  all: unset;
+  width: 40px;
+  height: 40px;
+  color: #404660;
+  font-weight: 500;
+  font-size: 1em;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.edicr-element::placeholder {
+  font-size: 1em;
+  font-weight: 300;
+  color: rgba(64, 70, 96, .25);
+}
+
+.edicr-element:disabled {
+  color: rgba(64, 70, 96, .4);
+}
+
+.edicr-txt {
+  all: unset;
+  margin: 0px 5px;
+  color: rgba(64, 70, 96, .25);
+  font-weight: 500;
+}
+
+.edicr-label {
+  font-size: .75em;
+  font-weight: 400;
+  color: rgba(64, 70, 96, .5);
+  padding: 0px 5px;
+  position: absolute;
+  top: -9px;
+  left: 20px;
+  background-color: #fff;
+}
+
+.--edicr-focus-active {
+  border-color: #246BF8 !important;
+}
+
+.edicr-element:focus ~label {
+  color: #246BF8;
+}
+
+
+.--edicr-error {
+  border-color: red !important;
+}
+
+.--edicr-error label {
+  color: red !important;
+}
+
+
+.--edicr-disabled {
+  background-color: #f7f8fc;
+}
+
+.--edicr-disabled label {
+  background-color: #f7f8fc;
+  border-radius: 10px;
+}
+
+
+/*** CURRENT BTN STYLE ***/
+
+.edicr-current {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.edicr-current-txt {
+  all: unset;
+  color: rgba(64, 70, 96, .6);
+  font-weight: 400;
+  font-size: 1em;
+  margin-right: 5px;
+}
+
+.edicr-current-btn {
+  width: 50px;
+  height: 20px;
+  border-radius: 50px;
+  background-color: rgba(64, 70, 96, .15);
+  /* margin-top: 5px; */
+  padding: 0px 1px;
+  transition: .2s;
+  position: relative;
+}
+
+.edicrcb-btn {
+  all: unset;
+  background-color: #fff;
+  width: 18px;
+  height: 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 5px 20px 0px rgba(64, 70, 96, .05);
+  transition: .1s;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+}
+
+.edicrcb-btn:hover {
+  box-shadow: 0px 5px 20px 0px rgba(64, 70, 96, .25);
+}
+
+.--edicrcb-active {
+  background-color: #246BF8;
+}
+
+.--edicrcbb-active {
+  top: 1px;
+  left: 31px;
+}

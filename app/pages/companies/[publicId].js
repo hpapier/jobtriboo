@@ -1,24 +1,25 @@
-// @module import 
+// @module import
 
 // @local import
 import { checkAuth } from '../../utils/auth';
 import { getCompany } from '../../utils/request/companies';
-import Navbar from '../../components/Navbar';
-import CompanyComponent from '../../components/Company';
+import Navbar from '../../components/Navbar/V2';
+import CompanyComponent from '../../components/Company/V2';
 
 
 // @pages
 const Company = ({ logInfo, company }) => {
   return (
     <div>
-      <Navbar logInfo={logInfo} />
+      <Navbar logInfo={logInfo} />
       <CompanyComponent data={company} />
 
       <style jsx global>{`
           body {
             padding: 0;
             margin: 0;
-            background-color: #f2f3ff !important;
+            background-color: #F7F9FC !important;
+            font-family: Poppins, sans-serif;
           }
       `}</style>
     </div>
@@ -42,6 +43,8 @@ Company.getInitialProps = async ctx => {
       document.location.pathname = '/companies'
     }
   }
+
+  console.log(company);
 
   return {
     logInfo,

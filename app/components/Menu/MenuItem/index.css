@@ -8,20 +8,19 @@
   align-items: center;
   cursor: pointer;
   transition: .2s;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-radius: 5px;
 }
 
 .menu-item-root:hover {
-  background-color: rgba(242, 243, 255, .3);
+  background-color: rgba(36, 107, 248, .03);
 }
 
 .-root-active {
-  background-color: #f2f3ff !important;
+  background-color: rgba(36, 107, 248, .1) !important;
 }
 
 .menu-item-icon {
-  opacity: .2;
+  opacity: .25;
   margin-left: 10px;
 }
 
@@ -30,13 +29,12 @@
 }
 
 .menu-item-label {
-  font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 500;
-  color: rgba(64, 70, 96, .2);
+  color: rgba(36, 107, 248, .2);
   margin-left: 15px;
 }
 
 .-label-active {
-  color: rgba(64, 70, 96, 1);
+  color: rgba(36, 107, 248, 1);
 }

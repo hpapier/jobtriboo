@@ -1,0 +1,95 @@
+.input-card-number-component-root {
+  width: 100%;
+  position: relative;
+
+
+  /* With Native Stripe Element */
+  padding: 20px;
+  width: 100%;
+  border: 1.5px solid rgba(64, 70, 96, .15);
+  box-sizing: border-box;
+  border-radius: 8px;
+  transition: .2s;
+  color: #404660;
+  font-weight: 500;
+  transition: .2s;
+}
+
+.input-card-number-component-root:hover {
+  border: 1.5px solid rgba(64, 70, 96, .2);
+}
+
+.icncr-label {
+  font-size: .75em;
+  font-weight: 400;
+  color: rgba(64, 70, 96, .5);
+  padding: 0px 5px;
+  position: absolute;
+  top: -7px;
+  left: 20px;
+  background-color: #fff;
+}
+
+.--icncr-focused {
+  border-color: rgba(36, 107, 248, 1) !important;
+}
+
+.--icncr-focused label {
+  color: #246BF8 !important;
+}
+
+/* .icncr-input {
+  all: unset;
+  width: 100%;
+  border: 1.5px solid rgba(64, 70, 96, .15);
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0px 15px;
+  border-radius: 8px;
+  transition: .2s;
+  color: #404660;
+  font-weight: 500;
+} */
+
+/* .icncr-input:focus +.icncr-label {
+  color: #246BF8;
+}
+
+.icncr-input::placeholder {
+  font-size: 1em;
+  font-weight: 300;
+  color: rgba(64, 70, 96, .25);
+}
+
+.icncr-input:hover {
+  border: 1.5px solid rgba(64, 70, 96, .2);
+}
+
+.icncr-input:focus {
+  border-color: rgba(36, 107, 248, 1);
+}
+
+.icncr-input:disabled {
+  opacity: 0.5;
+} */
+
+/* .icncr-input:disabled +.icncr-label{
+  opacity: 0.5;
+} */
+
+/*
+.--icncr-label-focused {
+  color: #246BF8;
+}
+
+.--icncr-input-focused {
+  border-color: #246BF8;
+} */
+
+.--icncr-error {
+  border-color: red !important;
+}
+
+.--icncr-error +.icncr-label {
+  color: red !important;
+}

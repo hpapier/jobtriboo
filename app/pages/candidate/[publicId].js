@@ -1,9 +1,9 @@
-// @module import 
+// @module import
 
 // @local import
 import { checkAuth } from '../../utils/auth';
 import { getCandidate } from '../../utils/request/candidate';
-import Navbar from '../../components/Navbar';
+import Navbar from '../../components/Navbar/V2';
 import CandidateComponent from '../../components/Candidate';
 
 
@@ -11,14 +11,15 @@ import CandidateComponent from '../../components/Candidate';
 const Candidate = ({ logInfo, candidate }) => {
   return (
     <div>
-      <Navbar logInfo={logInfo} />
+      <Navbar logInfo={logInfo} />
       <CandidateComponent data={candidate} />
 
       <style jsx global>{`
           body {
             padding: 0;
             margin: 0;
-            background-color: #f2f3ff !important;
+            background-color: #fff !important;
+            font-family: Poppins, sans-serif !important;
           }
       `}</style>
     </div>
@@ -29,6 +30,7 @@ const Candidate = ({ logInfo, candidate }) => {
 Candidate.getInitialProps = async ctx => {
   const logInfo = await checkAuth(ctx);
   const fetchCandidate = await getCandidate(ctx.query.publicId);
+
   let candidate = null;
 
   if (fetchCandidate.status === 200)

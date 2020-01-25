@@ -1,0 +1,135 @@
+#pwd-reset-root {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20px 1fr 1fr 20px;
+  grid-template-rows: 60px 1fr;
+}
+
+#prr-head {
+  grid-row: 1;
+  grid-column: 2 / span 2;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#prr-input {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 100px auto 0px auto;
+  width: 80%;
+}
+
+#prr-img {
+  grid-column: 3;
+  grid-row: 2;
+  width: 80%;
+  margin: 100px auto 0px auto;
+}
+
+#prrh-logo {
+  color: #246BF8;
+  font-weight: 700;
+  font-size: 2em;
+}
+
+#prri-title {
+  all: unset;
+  font-weight: 700;
+  color: #404660;
+  font-size: 2.5em;
+  text-align: center;
+}
+
+#prri-subtitle {
+  all: unset;
+  font-weight: 500;
+  color: #404660;
+  font-size: 1em;
+  opacity: .6;
+  text-align: center;
+}
+
+#prri-btn {
+  all: unset;
+  width: 100%;
+  height: 45px;
+  background-color: #246BF8;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, .15);
+  transition: .2s;
+  margin: 30px 0px 0px 0px;
+}
+
+#prri-btn:hover {
+  box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, .3);
+}
+
+#prri-txt {
+  display: flex;
+  margin-top: 50px;
+}
+
+#prrit-phrase {
+  all: unset;
+  font-weight: 400;
+  color: #404660;
+  font-size: 1em;
+  opacity: .6;
+}
+
+#prrit-login {
+  all: unset;
+  color: #246BF8;
+  font-weight: 500;
+  font-size: 1em;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#prrit-login:hover {
+  text-decoration: underline;
+}
+
+.--prr-color-blue {
+  color: #246BF8;
+}
+
+@media screen and (max-width: 750px) {
+  #pwd-reset-root {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20px 1fr 20px;
+    grid-template-rows: 60px 1fr;
+  }
+
+  #prr-head {
+    grid-row: 1;
+    grid-column: 2;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #prr-input {
+    grid-column: 2;
+    width: 90%;
+  }
+
+  #prr-img {
+    display: none;
+  }
+}

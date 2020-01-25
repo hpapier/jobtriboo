@@ -1,0 +1,247 @@
+.component-announce-item-root {
+  width: 100%;
+  min-height: 100px;
+  background-color: #fff;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .1s;
+  padding: 10px 0px;
+  position: relative;
+}
+
+.component-announce-item-root:hover {
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.08);
+}
+
+
+.cair-info {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; */
+  /* margin-left: 20px; */
+  display: grid;
+  grid-template-columns: 100px 200px 200px 200px;
+}
+
+.cairi-company {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: #F7f8fc;
+  margin: 0px 0px 0px 20px;
+  object-fit: cover;
+  grid-column: 1;
+}
+
+
+.cairi-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  /* margin: 0px 20px; */
+  width: 100%;
+}
+
+.--cairi-box-info {
+  grid-column: 2;
+}
+.--cairi-box-location {
+  grid-column: 3;
+}
+.--cairi-box-salary {
+  grid-column: 4;
+}
+
+.cairib-title {
+  all: unset;
+  font-weight: 600;
+  color: #404660;
+  font-size: 1em;
+  max-width: 180px;
+  text-align: left;
+  word-break: break-word;
+}
+
+.cairib-subtitle {
+  all: unset;
+  font-weight: 500;
+  color: rgba(64, 70, 96, .6);
+  font-size: .875em;
+}
+
+
+.cair-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.caira-btn {
+  all: unset;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .1s;
+}
+
+.--caira-btn-candidates {
+  background-color: rgba(36, 107, 248, .15);
+  height: 30px;
+  padding: 0px 15px;
+  color: #246BF8;
+  font-weight: 500;
+  font-size: 1em;
+  margin: 0px 10px;
+  cursor: default;
+}
+
+/* .--caira-btn-candidates:hover {
+  background-color: rgba(36, 107, 248, .2);
+} */
+
+.--caira-btn-remove {
+  background-color: rgba(255, 0, 0, .15);
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+
+.--caira-btn-remove:hover {
+  background-color: rgba(255, 0, 0, .2);
+}
+
+.caira-btn-candidates-icon {
+  width: 12px;
+  margin-right: 5px;
+}
+.caira-btn-remove-icon {
+  width: 10px;
+}
+
+
+.cair-contract-type {
+  padding: 0px 20px;
+  background-color: rgba(0, 201, 167, .15);
+  margin-right: 20px;
+  border-radius: 25px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cairct-txt {
+  all: unset;
+  font-weight: 600;
+  font-size: 1em;
+  color: rgba(0, 201, 167, 1);
+}
+
+.caira-see-announce {
+  all: unset;
+  position: absolute;
+  right: 15px;
+  bottom: 5px;
+  color: rgba(64, 70, 96, .4);
+  font-size: .75em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+  transition: .1s;
+}
+
+.caira-see-announce img {
+  opacity: .4;
+  width: 7px;
+  margin-left: 5px;
+  transition: .1s;
+}
+
+.caira-see-announce:hover {
+  color: rgba(64, 70, 96, .8);
+}
+
+.caira-see-announce:hover img {
+  opacity: .8;
+}
+
+@media screen and (max-width: 1175px) {
+  .cair-info {
+    display: grid;
+    grid-template-columns: 100px 150px 150px 150px;
+  }
+
+  .cairib-title {
+    all: unset;
+    font-weight: 600;
+    color: #404660;
+    font-size: 1em;
+    max-width: 130px;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 1035px) {
+  .cair-info {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .cairi-company {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #F7f8fc;
+    margin: 0px 0px 0px 20px;
+    object-fit: cover;
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+
+  .cairi-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    margin: 10px 0px;
+    height: max-content;
+  }
+
+  .cairib-title {
+    all: unset;
+    font-weight: 600;
+    color: #404660;
+    font-size: 1em;
+    max-width: 100%;
+    text-align: left;
+    word-break: break-word;
+  }
+
+  .--cairi-box-info {
+    margin-top: 0px;
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .--cairi-box-location {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .--cairi-box-salary {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+}

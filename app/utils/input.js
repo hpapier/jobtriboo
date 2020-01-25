@@ -73,3 +73,21 @@ export const handleInputMonth = input => {
 
   return false;
 }
+
+
+// Check Phone
+export const handleInputPhone = input => {
+  const regexp = /^\+\d{2}\d{5,12}$/;
+
+  if (input.match(regexp) === null)
+    return false;
+
+  return true;
+}
+
+
+// Day/Month Check
+export const handleInputDayMonth = input => {
+  // const regex = /$[0-9]{2}^/
+
+}

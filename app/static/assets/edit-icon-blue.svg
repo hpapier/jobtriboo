@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="6px" height="6px" viewBox="0 0 6 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon 24px</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="DB_RECRUITER_COMPANIES_EDIT_V2" transform="translate(-594.000000, -161.000000)">
+            <g id="Job-Copy" transform="translate(580.000000, 147.000000)">
+                <g id="EditIcon" transform="translate(10.000000, 10.000000)">
+                    <g id="ic_create" transform="translate(3.000000, 3.000000)">
+                        <g id="Icon-24px">
+                            <path d="M1,5.75 L1,7 L2.25,7 L5.93666667,3.31333333 L4.68666667,2.06333333 L1,5.75 L1,5.75 Z M6.90333333,2.34666667 C7.03333333,2.21666667 7.03333333,2.00666667 6.90333333,1.87666667 L6.12333333,1.09666667 C5.99333333,0.966666667 5.78333333,0.966666667 5.65333333,1.09666667 L5.04333333,1.70666667 L6.29333333,2.95666667 L6.90333333,2.34666667 L6.90333333,2.34666667 Z" id="Shape" fill="#246BF8"></path>
+                            <polygon id="Shape" points="0 0 8 0 8 8 0 8"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

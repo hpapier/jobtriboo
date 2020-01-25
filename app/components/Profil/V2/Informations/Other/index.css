@@ -1,0 +1,16 @@
+#comp-other-root {
+  /* grid-column: 2; */
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, .05);
+  background-color: #fff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 20px;
+  height: min-content;
+}
+
+#cor-title {
+  all: unset;
+  font-weight: 600;
+  font-size: 1em;
+  color: #404660;
+}

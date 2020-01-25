@@ -8,7 +8,7 @@ import io from 'socket.io-client'
 // @local import
 import './index.css';
 import { withTranslation } from '../i18n';
-import LocationIconGrey from '../../static/assets/localization_icon_g.svg';
+import LocationIconGrey from '../../static/assets/location-icon-grey.svg';
 import ContractTypeIconGrey from '../../static/assets/contract_icon_g.svg';
 import FeatherIcon from '../../static/assets/feather_icon.svg';
 import TotemIconGrey from '../../static/assets/totem_icon_g.svg';

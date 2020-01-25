@@ -1,0 +1,226 @@
+#create-announce-component-root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cacr-boxes {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, .05);
+  border-radius: 5px;
+  height: max-content;
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.cacrb-head {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cacrbh-number {
+  all: unset;
+  font-weight: 600;
+  font-size: 1.25em;
+  color: rgba(64, 70, 96, .25);
+}
+
+.cacrbh-title {
+  all: unset;
+  font-weight: 600;
+  font-size: 1em;
+  color: rgba(64, 70, 96, 1);
+  margin-left: 5px;
+  margin-top: 3px;
+}
+
+#cacr-cancel-btn {
+  all: unset;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(64, 70, 96, .1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .1s;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#cacr-cancel-btn:hover {
+  background-color: rgba(64, 70, 96, .2);
+}
+
+#cacr-cancel-icon {
+  width: 7px;
+  opacity: .6;
+}
+
+.cacrb-body {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.cacr-normal {
+  width: 32%;
+}
+
+.cacr-mid {
+  width: 32%;
+}
+
+.cacr-midlong {
+  width: 49%;
+}
+
+.cacr-big {
+  width: 100%;
+}
+
+.cacr-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cacr-coupon {
+  width: 50%;
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+
+.cacrc-btn {
+  all: unset;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+  background-color: #246BF8;
+  height: 50px;
+  padding: 0px 20px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0px 8px 8px 0px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.cacr-total {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cacrt-announce-price {
+  width: 130px;
+  color: #246BF8;
+  height: 50px;
+  border-radius: 25px;
+  font-weight: 600;
+  border: 1px solid rgba(36, 107, 248, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cacrt-submit {
+  all: unset;
+  width: 250px;
+  color: #fff;
+  height: 50px;
+  font-weight: 600;
+  border-radius: 25px;
+  border: 1px solid rgba(36, 107, 248, 1);
+  background-color: rgba(36, 107, 248, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  cursor: pointer;
+  box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, .1);
+}
+
+.cacrt-submit:hover {
+  box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, .15);
+}
+
+.cacrt-submit p {
+  margin-left: 20px;
+}
+
+.cacrt-icon {
+  width: 10px;
+  margin-left: 20px;
+  transition: .2s;
+}
+
+.cacrt-submit:hover img {
+  margin-left: 25px;
+}
+
+.cacr-card-element {
+  width: 100%;
+  /* border: 1.5px solid blue; */
+  /* height: 50px; */
+}
+
+
+/* ELEMENTS STYLING */
+/* .StripeElement {
+  width: 100%;
+  border: 1.5px solid rgba(64, 70, 96, .15);
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0px 15px;
+  border-radius: 8px;
+  transition: .2s;
+  color: #404660;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  color: blue !important;
+} */
+
+
+@media screen and (max-width: 1300px) {
+  .cacr-normal {
+    width: 49%;
+  }
+
+  .cacr-mid {
+    width: 100%;
+  }
+
+  .cacr-midlong {
+    width: 49%;
+  }
+
+  .cacr-big {
+    width: 100%;
+  }
+
+  .cacr-coupon {
+    width: 100%;
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .cacr-normal {
+    width: 100%;
+  }
+
+  .cacr-midlong {
+    width: 100%;
+  }
+}

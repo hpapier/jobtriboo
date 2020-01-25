@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import './index.css'
 import { withTranslation } from '../i18n';
 import SearchIconGrey from '../../static/assets/search_icon_grey.svg';
-import LocationIconGrey from '../../static/assets/localization_icon_g.svg';
+import LocationIconGrey from '../../static/assets/location-icon-grey.svg';
 import DropdownIconGrey from '../../static/assets/bottom_arrow_icon.svg';
 import RemoveIconGrey from '../../static/assets/remove_icon_grey.svg';
 import TribooSelect from '../TribooSelect';

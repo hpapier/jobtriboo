@@ -1,0 +1,240 @@
+#login-root {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 50px;
+  grid-template-rows: 60px 1fr;
+}
+
+#lr-input {
+  grid-column: 2 / span 3;
+  grid-row: 2;
+  width: 80%;
+  margin-top: 150px;
+}
+
+#lr-img {
+  grid-column: 5 / span 3;
+  grid-row: 2;
+  margin-top: 150px;
+}
+
+#lr-nav {
+  grid-column: 1 / span 8;
+  grid-row: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+#lrn-logo {
+  color: #246BF8;
+  margin-left: 50px;
+  font-weight: 700;
+  font-size: 2em;
+  text-shadow: 0px 5px 20px rgba(36, 107, 248, .15);
+  cursor: pointer;
+}
+
+#lrn-lang {
+  margin-right: 50px;
+}
+
+
+
+#lri-title {
+  all: unset;
+  display: block;
+  color: rgba(64, 70, 96, 1);
+  font-weight: 700;
+  font-size: 2em;
+  text-align: center;
+}
+
+#lri-subtitle {
+  all: unset;
+  display: block;
+  color: rgba(64, 70, 96, .6);
+  font-weight: 500;
+  font-size: 1em;
+  text-align: center;
+}
+
+#lri-form {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+#lrif-pwd {
+  all: unset;
+  cursor: pointer;
+  transition: .1s;
+  color: rgba(64, 70, 96, .6);
+  align-self: flex-end;
+  font-weight: 300;
+}
+
+#lrif-pwd:hover {
+  color: rgba(64, 70, 96, 1);
+}
+
+#lrif-pwd:focus {
+  color: rgba(64, 70, 96, 1);
+}
+
+#lrif-bbox {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+
+
+#lrifb-txt {
+  display: flex;
+}
+
+#lrifbt-nregistered {
+  font-weight: 400;
+  font-size: 1em;
+  color: rgba(64, 70, 96, .6);
+}
+
+#lrifbt-register {
+  all: unset;
+  font-weight: 400;
+  font-size: 1em;
+  color: rgba(36, 107, 248, 1);
+  margin-left: 10px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+#lrifbt-register:hover {
+  text-decoration: underline;
+}
+
+#lrifb-submit {
+  all: unset;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: #246BF8;
+  box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, .15);
+  font-weight: 500;
+  font-size: 1em;
+  cursor: pointer;
+  transition: .2s;
+}
+
+#lrifb-submit:hover {
+  box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, .3);
+}
+
+
+.--lr-color-blue {
+  color: rgba(36, 107, 248, 1);
+}
+
+
+@media screen and (max-width: 1220px) {
+  #lr-img {
+    grid-column: 5 / span 3;
+    grid-row: 2;
+    margin-top: 150px;
+    width: 100%;
+  }
+
+  #lrif-bbox {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: column-reverse;
+    margin-top: 50px;
+    align-items: center;
+  }
+
+  #lrifb-submit {
+    all: unset;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: #246BF8;
+    box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, .15);
+    font-weight: 500;
+    font-size: 1em;
+    cursor: pointer;
+    transition: .2s;
+  }
+}
+
+@media screen and (max-width: 965px) {
+  #login-root {
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 60px 1fr;
+  }
+
+  #lr-input {
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+    /* margin-top: 150px; */
+    margin: 150px auto;
+  }
+
+  #lr-img {
+    display: none;
+  }
+
+  #lrn-logo {
+    margin-left: 20px;
+  }
+
+  #lrn-lang {
+    margin-right: 20px;
+  }
+
+  #lrif-bbox {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: column-reverse;
+    margin-top: 50px;
+    align-items: center;
+  }
+
+  #lrifb-submit {
+    all: unset;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: #246BF8;
+    box-shadow: 0px 5px 20px 0px rgba(36, 107, 248, .15);
+    font-weight: 500;
+    font-size: 1em;
+    cursor: pointer;
+    transition: .2s;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #login-root {
+    display: grid;
+    grid-template-columns: 20px 1fr 20px;
+    grid-template-rows: 60px 1fr;
+  }
+}

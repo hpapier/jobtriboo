@@ -1,0 +1,60 @@
+.textarea-component-root {
+  width: 100%;
+  position: relative;
+}
+
+.tcr-element {
+  all: unset;
+  resize: none;
+  border: 1.5px solid rgba(64, 70, 96, 0.15);
+  border-radius: 8px;
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  padding: 15px;
+  color: #404660;
+  font-weight: 500;
+  transition: .2s;
+}
+
+.tcr-element::placeholder {
+  font-size: 1em;
+  font-weight: 300;
+  color: rgba(64, 70, 96, .25);
+}
+
+
+.tcr-label {
+  font-size: .75em;
+  font-weight: 400;
+  color: rgba(64, 70, 96, .5);
+  padding: 0px 5px;
+  position: absolute;
+  top: -18px;
+  left: 20px;
+  background-color: #fff;
+}
+
+.tcr-element:hover {
+  border: 1.5px solid rgba(64, 70, 96, .2);
+}
+
+.tcr-element:focus +.tcr-label {
+  color: #246BF8;
+}
+
+.tcr-element:focus {
+  border-color: rgba(36, 107, 248, 1);
+}
+
+.tcr-element:disabled {
+  opacity: 0.5;
+}
+
+.--tcr-error {
+  border-color: red !important;
+}
+
+.--tcr-error ~p {
+  color: red !important;
+}

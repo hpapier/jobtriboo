@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_person</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="JOB_PAGE_V2" transform="translate(-893.000000, -962.000000)">
+            <g id="Company" transform="translate(857.000000, 834.000000)">
+                <g id="Location-Copy" transform="translate(34.000000, 126.000000)">
+                    <g id="ic_person">
+                        <g id="Icon-24px">
+                            <path d="M8,8 C9.47333333,8 10.6666667,6.80666667 10.6666667,5.33333333 C10.6666667,3.86 9.47333333,2.66666667 8,2.66666667 C6.52666667,2.66666667 5.33333333,3.86 5.33333333,5.33333333 C5.33333333,6.80666667 6.52666667,8 8,8 L8,8 Z M8,9.33333333 C6.22,9.33333333 2.66666667,10.2266667 2.66666667,12 L2.66666667,13.3333333 L13.3333333,13.3333333 L13.3333333,12 C13.3333333,10.2266667 9.78,9.33333333 8,9.33333333 L8,9.33333333 Z" id="Shape" fill="#404660"></path>
+                            <polygon id="Shape" points="0 0 16 0 16 16 0 16"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -4,7 +4,7 @@
 // @local import
 import { withTranslation } from '../../i18n';
 import TotemIconGrey from '../../../static/assets/totem_icon_g.svg';
-import LocationIconGrey from '../../../static/assets/localization_icon_g.svg';
+import LocationIconGrey from '../../../static/assets/location-icon-grey.svg';
 import TribeIconGrey from '../../../static/assets/tribe_icon_g.svg';
 import './index.css';
 import { serverFileURL } from '../../../utils/config';

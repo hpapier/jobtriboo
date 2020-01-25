@@ -22,7 +22,7 @@ const Coordinates = ({ t, data, updateData }) => {
       <div className='coordinates-box'>
         <Input
           label={t('firstName')}
-          placeholder={t('phFirstName')}
+          placeholder={t('phFirstname')}
           data={data.firstName}
           token={cookies.token}
           updateReq={{ req: candidateInformationUpdate, endpoint: '/firstName' }}
@@ -34,7 +34,7 @@ const Coordinates = ({ t, data, updateData }) => {
 
         <Input
           label={t('lastName')}
-          placeholder={t('phLastName')}
+          placeholder={t('phLastname')}
           data={data.lastName}
           token={cookies.token}
           updateReq={{ req: candidateInformationUpdate, endpoint: '/lastName' }}
