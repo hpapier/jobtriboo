@@ -156,6 +156,7 @@
 }
 
 .cacrt-submit p {
+  all: unset;
   margin-left: 20px;
 }
 

@@ -264,7 +264,7 @@ const FormComponent: (props: ComponentProps) => JSX.Element = (props) => {``
         if (!isUnmounted.current) {
           setAnnouncePrice(intentData.amount);
           setClientSecret(intentData.clientSecret);
-          setCoupon({ ...coupon, validated: true });
+          setCoupon({ ...coupon, error: null, validated: true });
 
           if (intentData.amount === 0) {
             if (cardNumber.error !== null) setCardNumber({ ...cardNumber, error: null });
@@ -684,6 +684,7 @@ const FormComponent: (props: ComponentProps) => JSX.Element = (props) => {``
               errorValue={benefitValue.error}
               errorMessages={{ 'empty': t('noBenefitsFound') }}
               onBlurFn={() => {}}
+              onFocusBottomMsg={t('clickEnterToAddBenefit')}
             />
           </form>
 

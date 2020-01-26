@@ -5,6 +5,8 @@
   "candidate": "Candidato",
   "firstName": "Nombre",
   "lastName": "Apellidos",
+  "firstname": "Nombre",
+  "lastname": "Apellidos",
   "email": "Email",
   "password": "Contraseña",
   "birthDateDay": "Día",
@@ -380,7 +382,7 @@
   "noQualifications": "No qualifications filled.",
   "current": "Ongoing",
 
-  "other": "Ohter",
+  "other": "Other",
   "phMinimumSalary": "Min. expected salary (per year)",
   "minimumSalary": "Minimum salary",
 
@@ -505,5 +507,6 @@
   "no": "No",
   "candidateLevel": "Expertise level",
   "jobLocation": "Offer location",
-  "findOutMore": "Find out more"
+  "findOutMore": "Find out more",
+  "clickEnterToAddBenefit": "Press 'enter'to add the benefit."
 }

@@ -157,7 +157,7 @@ const Home = ({ t, data }) => {
                     </div>
 
                     <div className='home-fb-announces-item-box-info-b'>
-                      <img src={ContractIconGrey} className='home-fb-announces-item-box-info-b-icon' style={{ width: '35px', height: '35px' }} />
+                      <img src={ContractIconGrey} className='home-fb-announces-item-box-info-b-icon' style={{ width: '35px', height: '35px' }} />
                       <p className='home-fb-announces-item-box-info-b-text'>{ contracts.filter(contract => contract.value === item.contractType)[0].label }</p>
                     </div>
                   </div>
@@ -188,7 +188,7 @@ const Home = ({ t, data }) => {
 
       <div className='home-tb'>
         <img className='home-wave-image' id='second-wave' src={WaveImg1} alt='wave-img' ref={wave1Element} style={{ top: `-${waveStyle - 2}px` }} />
-        
+
         <div className='home-tb-inputb'>
           <h3 className='home-tb-label'>{t('subToNewsLabel')}</h3>
           <form className='home-tb-b' onSubmit={handleNewSubmit}>

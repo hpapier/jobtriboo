@@ -45,7 +45,7 @@ const HomeCandidate = ({ t, job, company }: AppProps) => {
             <h2 className='home-candidate-subtitle'>{t('joinYourTribooDescription')}</h2>
 
             <div id='hcrpt-statsbar'>
-              <div className='hcrpt-stats'>
+              {/* <div className='hcrpt-stats'>
                 <p className='home-candidate-stats'>{job}</p>
                 <p className='home-candidate-stats-title'>{t('jobsAvailable')}</p>
               </div>
@@ -53,7 +53,7 @@ const HomeCandidate = ({ t, job, company }: AppProps) => {
               <div className='hcrpt-stats'>
                 <p className='home-candidate-stats'>{company}</p>
                 <p className='home-candidate-stats-title'>{t('companiesAvailable')}</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

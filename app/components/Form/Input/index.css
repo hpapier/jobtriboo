@@ -69,3 +69,10 @@
 .--icr-error +.icr-label {
   color: red !important;
 }
+
+.icr-bottom-msg {
+  all: unset;
+  font-size: .75em;
+  font-weight: 300;
+  color: rgba(64, 70, 96, .5);
+}
